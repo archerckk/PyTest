@@ -8,6 +8,7 @@ def gcd(x,y):
         x = y
         y = t
 
+        '''错误演示'''
         return x
 
 print(gcd(1997,615))
