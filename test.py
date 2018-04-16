@@ -1105,4 +1105,79 @@ import os
 #     i+=2
 #     print(i)
 
+#复盘暗语1
+# def findStr():
+#     file1=open('Ar_Script/resources/string1.txt')
+#     str1=''
+#     tmp=[]
+#     for i in file1:
+#         str1+=i
+#
+#     for i in str1:
+#         # if i not in tmp:
+#         #     if i=='\n':
+#         #         print('\\n:',str1.count(i))
+#         #     else:
+#         #         print(i+':',str1.count(i))
+#         #     tmp.append(i)
+#         print(i,end='')
+#     file1.close()
+#
+# findStr()
 
+
+# 复盘暗语2
+# def findStr():
+#     file1 = open('Ar_Script/resources/string2.txt')
+#     str1 = ''
+#     # str1='ABCaAVSaAVX'
+#     countA=0
+#     countB=0
+#     countC=0
+#
+#     for i in file1:
+#         str1+=i
+#
+#     for i in str1:
+#         print(i)
+#
+#     length = len(str1)
+#
+#     for i in range(length):
+#         if str1[i]=='\n':
+#             continue
+#
+#         if str1[i].isupper():
+#             if countB:
+#                 countC+=1
+#             else:
+#                 countC=0
+#                 countA+=1
+#
+#         if str1[i].islower():
+#             if countA!=3:
+#                 countA = 0
+#                 countB = 0
+#                 countC = 0
+#             else:
+#                 if countB:
+#                     countA = 0
+#                     countB = 0
+#                     countC = 0
+#                 else:
+#                     countB=1
+#                     countC=0
+#                     target=i
+#
+#         if countA==3 and countC==3:
+#             if i+1!=length and str1[i+1].isupper():
+#                 countB=0
+#                 countC=0
+#             else:
+#                 print(str1[target],end='')
+#                 countA=3
+#                 countB=0
+#                 countC=0
+#     file1.close()
+#
+# findStr()
