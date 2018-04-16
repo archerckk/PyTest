@@ -35,4 +35,7 @@ def position(pos_x=0,pos_y=0):
     return moving
 
 move=position()
+# 避免写成position()([1,0],90))这样比较麻烦，也会让人知道这是闭包实现
 print('向右移动90的坐标为：',move([1,0],90))
+print('向左移动40的坐标为：',move([-1,0],40))
+print('向上移动30的坐标为：',move([0,1],30))
