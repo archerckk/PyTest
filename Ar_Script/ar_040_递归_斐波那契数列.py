@@ -14,7 +14,7 @@ def fei(n):
         n -= 1
     return n3
 
-print(fei(2))
+print(fei(12))
 
 #递归版本
 def feiD(n):
@@ -27,4 +27,4 @@ def feiD(n):
     else:
         return feiD(n-1)+feiD(n-2)
 
-print(feiD(11))
+print(feiD(12))
