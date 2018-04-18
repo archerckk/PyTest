@@ -15,3 +15,15 @@ def get_digits(n):
 
 get_digits(12345)
 print(result)
+
+
+'普通版本'
+def get_digit2(n):
+    result=[]
+    '普通版本是先走完循环再出来的，不会重复初始化result，所以可以放在里面'
+    while n>0:
+        result.insert(0,n%10)
+        n=n//10
+    return result
+
+print(get_digit2(12345))
