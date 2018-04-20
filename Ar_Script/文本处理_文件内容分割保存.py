@@ -37,25 +37,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #复习
 
 def save_file(boy,girl,count):
