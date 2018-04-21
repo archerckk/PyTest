@@ -7,11 +7,11 @@ print(power(2,10))
 
 #参考答案：
 # def power(x, y):
-#     result = 1
+#     result2 = 1
 #
 #     for i in range(y):
-#         result *= x
+#         result2 *= x
 #
-#     return result
+#     return result2
 #
 # print(power(10, 3))

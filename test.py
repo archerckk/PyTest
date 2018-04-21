@@ -770,12 +770,12 @@ import os
 
 #求次方的函数
 # def power(x,y):
-#     result=1
+#     result2=1
 #
 #     for i in range(y):
-#         result*=x
+#         result2*=x
 #
-#     return result
+#     return result2
 #
 # print(power(2,0))
 
@@ -793,7 +793,7 @@ import os
 #十进制转换二进制
 # def bin_test(x):
 #     tmp=[]
-#     result=''
+#     result2=''
 #     while x:
 #         t=x//2
 #         target=x%2
@@ -803,9 +803,9 @@ import os
 #
 #
 #     for i in tmp:
-#         result+=str(i)
+#         result2+=str(i)
 #
-#     return result
+#     return result2
 #
 # print(bin_test(108))
 
@@ -813,7 +813,7 @@ import os
 #
 # def Dec2Bin(dec):
 #     temp = []
-#     result = ''
+#     result2 = ''
 #
 #     while dec:
 #         quo = dec % 2
@@ -821,9 +821,9 @@ import os
 #         temp.append(quo)
 #
 #     while temp:
-#         result += str(temp.pop())
+#         result2 += str(temp.pop())
 #
-#     return result
+#     return result2
 #
 # print(Dec2Bin(64))
 
@@ -885,18 +885,18 @@ import os
 
 # 5的阶乘
 # def jiecheng(n):
-#     result = 1
+#     result2 = 1
 #     for i in range(1, n + 1):
-#         result *= i
+#         result2 *= i
 #
-#     return result
+#     return result2
 #
 #
 # print(jiecheng(5))
 
 #用递归写一个x的y次幂的计算函数
 # def power(x,y):
-#     result=0
+#     result2=0
 #     if y==0:
 #         x=1
 #         return x
@@ -961,30 +961,30 @@ import os
 
 #递归求解二进制bin的实现
 # def Dec2Bin(dec):
-#     result = ""
+#     result2 = ""
 #
 #     if dec:
-#         result = Dec2Bin(dec // 2)
-#         return result + str(dec % 2)
+#         result2 = Dec2Bin(dec // 2)
+#         return result2 + str(dec % 2)
 #     else:
-#         return result
+#         return result2
 #
 #
 # print(Dec2Bin(128))
 
 
 #获取变量的每个位数的数字存放到列表
-# result = []
+# result2 = []
 # def get_digit(n):
 #     if n>0:
 #         get_digit(n // 10)
-#         result.append(n % 10)
+#         result2.append(n % 10)
 #
 #
 #
 # get_digit(12345)
 #
-# print(result)
+# print(result2)
 
 #年龄倒推：
 # def age(n):

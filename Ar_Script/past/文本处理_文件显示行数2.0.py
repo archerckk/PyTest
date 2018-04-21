@@ -59,17 +59,17 @@ file_print2(file,lines)
 #         prompt='从%s行到%s行'%(begin,end)
 #     print('\n文件%s%s的内容如下：\n'%(filename,prompt))
 #
-#     result = int(end) - int(begin)
+#     result2 = int(end) - int(begin)
 #     f=open(filename,encoding='utf-8')
 #     begin=int(begin)
 #     for i in range(begin):
 #         f.readline()
 #
-#     if result<0:
+#     if result2<0:
 #         print(f.read())
 #         f.close()
 #     else:
-#         for i in range(result):
+#         for i in range(result2):
 #             print(f.readline())
 #         f.close()
 #

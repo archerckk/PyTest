@@ -10,11 +10,11 @@ print('%d的%d次方为%d'%(x,y,power(x,y)))
 
 
 # def power(x, y):
-#     result = 1
+#     result2 = 1
 #
 #     for i in range(y):
-#         result *= x
+#         result2 *= x
 #
-#     return result
+#     return result2
 #
 # print(power(-2, -2))
