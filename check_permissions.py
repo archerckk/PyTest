@@ -1,15 +1,20 @@
 import os
+import easygui as g
 
 
 while 1:
-    old_version = input('低版本apk包路径：')
+    old_version = g.fileopenbox('请选择低版本APK包：')
+    if old_version=='.':
+        break
     if os.path.splitext(os.path.basename(old_version))[1]!='.apk':
         print('你所选择的不是apk文件！',end='')
     else:
         break
 
 while 1:
-    new_version = input('高版本apk包路径：')
+    new_version = g.fileopenbox('请选择高版本APK包：')
+    if new_version=='.':
+        break
     if os.path.splitext(os.path.basename(new_version))[1]!='.apk':
         print('你所选择的不是apk文件！',end='')
     else:
@@ -29,9 +34,14 @@ for i in new_list:
 
 if len(differ)==0:
     print('无权限变更！')
+    g.msgbox('无权限变更！','提示')
 else:
-    print('\n新增权限：\n')
+    # print('\n新增权限：\n')
+    # for i in differ:
+    #     print(i)
+    content=''
     for i in differ:
-        print(i)
+        content+=i
+    g.textbox('新增权限：','提示',content)
 
-input()
+# input()
