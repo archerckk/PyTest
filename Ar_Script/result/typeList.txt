@@ -62,6 +62,7 @@ C:\Users\Archer\PycharmProjects\PyTest\Ar_Script\ar_055_OS_统计文件大小.py【810B
 C:\Users\Archer\PycharmProjects\PyTest\Ar_Script\ar_056_OS_统计指定格式文件的完整路径.py【2525Bytes】
 C:\Users\Archer\PycharmProjects\PyTest\Ar_Script\ar_057_OS_查找文本内容并打印位置.py【2146Bytes】
 C:\Users\Archer\PycharmProjects\PyTest\Ar_Script\ar_058_OS_查找指定格式文件统计数量和大小.py【1159Bytes】
+C:\Users\Archer\PycharmProjects\PyTest\Ar_Script\ar_059_pickle_文本分割保存.py【684Bytes】
 C:\Users\Archer\PycharmProjects\PyTest\Ar_Script\past\eg_boolbox测试.py【140Bytes】
 C:\Users\Archer\PycharmProjects\PyTest\Ar_Script\past\eg_buttonbox测试.py【191Bytes】
 C:\Users\Archer\PycharmProjects\PyTest\Ar_Script\past\eg_ccbox测试.py【195Bytes】
