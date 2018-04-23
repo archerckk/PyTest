@@ -13,37 +13,38 @@ import os
 '''
 
 filePath=g.fileopenbox('请选择你的文件','文件',"*txt")
-title=os.path.basename(filePath)
-msg='文件【%s】的内容显示如下：'%title
-with open(filePath)as f:
-    content=f.read()
-    content=g.textbox(msg,title,content)
 
-differ=[]
+try:
+    title=os.path.basename(filePath)
 
-with open(filePath)as f:
-    old=f.read()
-    # for i in content:
-    #     if i!=f.readline():
-    #         differ.append(i)
+    msg='文件【%s】的内容显示如下：'%title
 
-# if len(differ)!=0:
-if old!=content[:-1]:
-    msg='检测文件内容发生改变，请选择以下操作'
-    title='警告'
-    choices=['覆盖保存','放弃保存','另存为']
-    result=g.indexbox(msg,title,choices)
+    '拿到新老两个文本内容'
+    with open(filePath)as f:
+        content=f.read()
+        content_new=g.textbox(msg,title,content)
 
-    if result==0:
-        with open(filePath,'w')as f:
-            f.writelines(content)
-    elif result==1:
-        pass
-    elif result==2:
-        otherPath=g.filesavebox('请选择你的文件','文件','*.txt',)
-        with open(otherPath,'w')as f:
-            f.writelines(content)
-else:
-    pass
+    '图像处理的text会默认在后面多添加一个换行符，所以不取最后一个字符，判断他们是否一样'
+    if content!=content_new[:-1]:
+        msg='检测文件内容发生改变，请选择以下操作'
+        title='警告'
+        choices=['覆盖保存','放弃保存','另存为']
+        result=g.indexbox(msg,title,choices)
 
+        if result==0:
+            with open(filePath,'w')as f:
+                f.writelines(content_new)
+        elif result==1:
+            pass
+        elif result==2:
+            otherPath=g.filesavebox('请选择你的文件','文件','*.txt',)
 
+            '假如输入名字没有.txt后缀，补全扩展名'
+            ext=os.path.splitext(otherPath)[1]
+            if ext!='.txt':
+                otherPath+='.txt'
+            with open(otherPath,'w')as f:
+                f.writelines(content_new)
+
+except PermissionError:
+    g.msgbox('程序终止！','提示')
