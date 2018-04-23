@@ -31,6 +31,7 @@ def countNumSize(filePath,target):
         # print(i)
 
     for i in sizeDict.items():
+        count+=1
         f.write(i[0]+i[1]+os.linesep)
     f.write('\n总共有目标类型文件%d个，总共大小为：【%d KB】'%(count,sumSize/1028))
     f.close()
@@ -39,6 +40,7 @@ def countNumSize(filePath,target):
 scriptPath=os.getcwd()+os.sep+'result'+os.sep+'typeList.txt'
 f=open(scriptPath,'w')
 
-filePath='C:\\Users\\Archer\\PycharmProjects\\PyTest'
+os.chdir('../')
+filePath=os.getcwd()
 target=['.py']
 countNumSize(filePath,target)
