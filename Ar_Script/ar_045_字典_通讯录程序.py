@@ -38,10 +38,17 @@ def contacts():
 
         if code=='1':
             name=input('请输入联系人姓名：')
-            if name not in contact:
+            # if name not in contact:
+            #     print('你所查找的联系人不存在！！')
+            # else:
+            #     print(name+':',contact[name])
+            '异常处理优化代码效率'
+            try:
+                print(name + ':', contact[name])
+            except KeyError:
                 print('你所查找的联系人不存在！！')
-            else:
-                print(name+':',contact[name])
+
+
 
         if code=='2':
             name = input('请输入联系人姓名：')
