@@ -143,7 +143,7 @@ turtleMove=turtle.move(turtle.pos)
 # turtle = Turtle()
 fishlist = []
 
-for i in range(10):
+for i in range(1):
     fish = Fish()
     fishlist.append(fish)
 
@@ -174,4 +174,5 @@ while True:
             fishlist.remove(each_fish)
             print('现在鱼儿的数量为：%d' % len(fishlist))
             fishMove()
-            print('重新刷新鱼儿位置：%s' % fish.pos)
+            if len(fishlist):
+                print('重新刷新鱼儿位置：%s' % fish.pos)
