@@ -1,9 +1,9 @@
 import easygui as g
 import random as r
-from script import game_NameFormat as nf
-from script import game_FingerGuess as fg
-from script import game_TurtleFish_New as tf
-from script import game_GuessNum as gn
+from Ar_Script.past import game_NameFormat as nf
+from Ar_Script.past import game_FingerGuess as fg
+from Ar_Script.past import game_TurtleFish_New as tf
+from Ar_Script.past import game_GuessNum as gn
 
 
 class Game_main:
