@@ -1267,8 +1267,8 @@ while True:
         break
 
     pos = turtle.move()
-    print(turtle.x,turtle.y)
-    print(new_fish.x,new_fish.y)
+    print('\n乌龟现在的所在位置为：',turtle.x,turtle.y)
+    # print(new_fish.x,new_fish.y)
     # 在迭代器中删除列表元素是非常危险的，经常会出现意想不到的问题，因为迭代器是直接引用列表的数据进行引用
     # 这里我们把列表拷贝给迭代器，然后对原列表进行删除操作就不会有问题了^_^
     for each_fish in fish[:]:
@@ -1276,6 +1276,10 @@ while True:
             # 鱼儿被吃掉了
             turtle.eat()
             fish.remove(each_fish)
-            print('turtle',turtle.x, turtle.y)
-            print('fish',new_fish.x, new_fish.y)
+            # print('所剩下的鱼儿数量：%d'%(len(fish)))
+            # print('乌龟坐在位置：',turtle.x, turtle.y)
+            print('被吃鱼儿所在位置：',each_fish.x,each_fish.y)
             print("有一条鱼儿被吃掉了...")
+            # print('所剩下的鱼儿数量：%d' % (len(fish)))
+        else:
+            print('其他鱼儿的位置：',each_fish.x,each_fish.y)
