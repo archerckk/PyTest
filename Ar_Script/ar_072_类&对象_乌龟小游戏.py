@@ -116,7 +116,7 @@ turtle=Turtle()
 turtleMove=turtle.move(turtle.pos)
 # fishMove=fish.move(fish.pos)
 
-#
+#个人配置
 # while 1:
 #     if turtle.hp>0:
 #         turtleMove()
