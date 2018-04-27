@@ -3,7 +3,7 @@ import easygui as g
 import sys
 '''
 1.假设游戏场景为范围（x，y）为0<=x<=10 ,0<=y<=10——Y
-2.游戏生成1只乌龟和10条鱼——Y
+2.游戏生成1只乌龟和3条鱼——Y
 3.他们的移动方向是随机——Y
 4.乌龟的最大移动能力是2（它可以随机选择1还是2移动），鱼儿最大移动能力是1——Y
 5.当移动到场景边缘，自动向反向移动——Y
@@ -15,8 +15,8 @@ import sys
 '''
 
 
-legal_x=[0,10]
-legal_y=[0,10]
+legal_x=[0,5]
+legal_y=[0,5]
 
 class Turtle:
 
@@ -106,29 +106,32 @@ class Fish:
 class Game:
     def __init__(self,turtle,fishlist):
         self.turtle=turtle
+
         self.fishlist=fishlist
+        for i in range(3):
+            fish = Fish()
+            self.fishlist.append(fish)
 
-
-    def start(self):
+    def gameStart(self):
         while True:
-            if not len(fishlist):
-                print("鱼儿都吃完了，游戏结束！")
+            if not len(self.fishlist):
+                print("胜利！鱼儿都吃完了，游戏结束！")
                 break
-            if not turtle.hp:
-                print("乌龟体力耗尽，挂掉了！")
+            if not self.turtle.hp:
+                print("失败！乌龟体力耗尽，挂掉了！")
                 break
 
-            pos = turtle.move()
-            print('\n乌龟现在的所在位置为：', turtle.pos[0], turtle.pos[1])
-            print('乌龟剩余体力为：',turtle.hp)
+            pos = self.turtle.move()
+            print('\n乌龟现在的所在位置为：', self.turtle.pos[0], self.turtle.pos[1])
+            print('乌龟剩余体力为：',self.turtle.hp)
 
             # 在迭代器中删除列表元素是非常危险的，经常会出现意想不到的问题，因为迭代器是直接引用列表的数据进行引用
             # 这里我们把列表拷贝给迭代器，然后对原列表进行删除操作就不会有问题了^_^
-            for each_fish in fishlist[:]:
+            for each_fish in self.fishlist[:]:
                 if each_fish.move() == pos:
                     # 鱼儿被吃掉了
-                    turtle.eat()
-                    fishlist.remove(each_fish)
+                    self.turtle.eat()
+                    self.fishlist.remove(each_fish)
                     # print('所剩下的鱼儿数量：%d'%(len(fish)))
                     # print('乌龟坐在位置：',turtle.x, turtle.y)
                     print('被吃鱼儿所在位置：', each_fish.pos[0], each_fish.pos[1])
@@ -136,7 +139,7 @@ class Game:
                     # print('所剩下的鱼儿数量：%d' % (len(fish)))
                 else:
                     print('其他鱼儿的位置：', each_fish.pos[0], each_fish.pos[1])
-            print('剩余鱼儿数量为：',len(fishlist))
+            print('剩余鱼儿数量为：',len(self.fishlist))
 
 
 '参考配置'
@@ -144,12 +147,8 @@ class Game:
 turtle = Turtle()
 fishlist = []
 
-for i in range(10):
-    fish = Fish()
-    fishlist.append(fish)
-
 game=Game(turtle,fishlist)
-game.start()
+# game.gameStart()
 
 
 

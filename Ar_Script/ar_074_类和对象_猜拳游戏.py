@@ -24,12 +24,16 @@ class Player:
         msg = '请输入你要新建的角色名字：'
         title = '角色创建'
         toast = '你输入的角色名字多于8个字符'
-        while 1:
-            self.name = g.enterbox(msg, title)
-            if len(self.name) > 8:
-                g.msgbox(toast, '提示')
-            else:
-                break
+        try:
+            while 1:
+                self.name = g.enterbox(msg, title)
+                if len(self.name) > 8:
+                    g.msgbox(toast, '提示')
+                else:
+                    break
+        except TypeError:
+            g.msgbox('取消输入默认采用名字【张三】')
+            self.name='张三'
         self.win = 0
         self.lost = 0
         self.deuce = 0
@@ -62,35 +66,36 @@ class Computer:
 class Game:
     def __init__(self, player, com):
 
-        pass
+        self.player = player
+        self.com = com
 
     def judge(self):
-        if (player.finger == '剪刀' and com.finger == '布') or (
-                        player.finger == '石头' and com.finger == '剪刀') or (
-                        player.finger == '布' and com.finger == '石头'):
+        if (self.player.finger == '剪刀' and self.com.finger == '布') or (
+                        self.player.finger == '石头' and self.com.finger == '剪刀') or (
+                        self.player.finger == '布' and self.com.finger == '石头'):
 
-            player.win += 1
-            com.lost += 1
-            g.msgbox('恭喜【%s】，取得胜利'%player.name)
-        elif (player.finger == '石头' and com.finger == '布') or (
-                        player.finger == '布' and com.finger == '剪刀') or (
-                        player.finger == '剪刀' and com.finger == '石头'):
+            self.player.win += 1
+            self.com.lost += 1
+            g.msgbox('恭喜【%s】，取得胜利'%self.player.name)
+        elif (self.player.finger == '石头' and self.com.finger == '布') or (
+                        self.player.finger == '布' and self.com.finger == '剪刀') or (
+                        self.player.finger == '剪刀' and self.com.finger == '石头'):
 
-            player.lost += 1
-            com.win += 1
-            g.msgbox('愚蠢的【%s】，你输了'%player.name)
+            self.player.lost += 1
+            self.com.win += 1
+            g.msgbox('愚蠢的【%s】，你输了'%self.player.name)
         else:
-            player.deuce += 1
-            com.deuce += 1
+            self.player.deuce += 1
+            self.com.deuce += 1
             g.msgbox('平分秋色，不分胜败！')
 
-    def start(self):
+    def gameStart(self):
+        count=5
 
-        count = 5
         while 1:
 
-            player.getFinger()
-            com.getFinger()
+            self.player.getFinger()
+            self.com.getFinger()
             self.judge()
             count -= 1
 
@@ -102,16 +107,19 @@ class Game:
                     count = 5
                     continue
                 else:
-                    msg = '【%s】的战绩如下：' % player.name
+                    msg = '【%s】的战绩如下：' % self.player.name
                     title = '对战结果'
-                    content = '胜：%d场\t\t负：%d场 \t\t平：%d场\n' % (player.win, player.lost, player.deuce)
+                    content = '胜：%d场\t\t负：%d场 \t\t平：%d场\n' % (self.player.win, self.player.lost, self.player.deuce)
                     g.textbox(msg, title, content)
                     break
 
+# def testmethod():
+#     print('test')
 
-player = Player()
 
-com = Computer()
-
-game = Game(player, com)
-game.start()
+# player = Player()
+#
+# com = Computer()
+#
+# game = Game(player, com)
+# game.start()

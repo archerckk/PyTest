@@ -1,4 +1,5 @@
 import random as r
+
 '''
 1.假设游戏场景为范围（x，y）为0<=x<=10 ,0<=y<=10——Y
 2.游戏生成1只乌龟和1条鱼——Y
@@ -107,34 +108,41 @@ class Fish:
             return pos
         return moving
 
-    def randomPos(self,pos):
-        self.pos=pos
+class Game:
+    def __init__(self,turtle,fish):
+        self.turtle=turtle
+        self.fish=fish
+
+    def gameStart(self):
+
+        while 1:
+            if self.turtle.hp > 0:
+                turtleMove()
+                print('\n现在乌龟的体力为：%d，坐标为：%s' % (self.turtle.hp, self.turtle.pos))
+            else:
+                print('乌龟已经气绝身亡，游戏结束！')
+                break
+
+            fishMove()
+            print('现在鱼儿的体力为：%d，坐标为：%s' % (self.fish.hp, self.fish.pos))
+
+            if self.turtle.pos == self.fish.pos:
+                self.turtle.eat()
+                self.fish.hp -= 1
+                print('现在鱼儿的数量为：%d' % self.fish.hp)
+            if self.fish.hp == 0:
+                print('乌龟已成功将鱼儿干掉了！游戏结束')
+                break
+
 
 turtle=Turtle()
 fish=Fish()
 
 turtleMove=turtle.move(turtle.pos)
 fishMove=fish.move(fish.pos)
+# gameStart(turtle,fish)
 
-'个人配置'
-while 1:
-    if turtle.hp>0:
-        turtleMove()
-        print('\n现在乌龟的体力为：%d，坐标为：%s' % (turtle.hp,turtle.pos))
-    else:
-        print('乌龟已经气绝身亡，游戏结束！')
-        break
 
-    fishMove()
-    print('现在鱼儿的体力为：%d，坐标为：%s'%(fish.hp,fish.pos))
-
-    if turtle.pos==fish.pos:
-        turtle.eat()
-        fish.hp-=1
-        print('现在鱼儿的数量为：%d'%fish.hp)
-    if fish.hp==0:
-        print('乌龟已成功将鱼儿干掉了！游戏结束')
-        break
 
 
 
