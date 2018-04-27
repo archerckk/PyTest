@@ -1,17 +1,25 @@
-str1='''
-{"uid":"3062659467949056474","hasmarket":1,"sbuy":0,"sys":"4.4.4","imei":"3062659467949056474","resolution":"720*1184","aid":"e9d1eba1fe333af9","net":"wifi","pkgs":"net.openvpn.openvpn,com.scan.traceroute,com.instagram.android,com.facebook.katana,com.vklancer.savespikes,com.voyagephotolab.picframe,com.google.android.gms.drive.sample.demo,sightidea.com.setlocale,com.sohu.inputmethod.sogou,com.twitter.android,com.speedsoftware.rootexplorer,","cid":"212","lang":"en","vname":"1.0","pversion":21,"country":"US","adid":"9c085d08-f260-4747-aebc-305f95be6c5e","advposid":"3571","ua":"Mozilla\/5.0 (Linux; Android 4.4.4; HTC D820t Build\/KTU84P) AppleWebKit\/537.36 (KHTML, like Gecko) Version\/4.0 Chrome\/33.0.0.0 Mobile Safari\/537.36","dpi":"320","sdk":19,"imsi":"000","channel":"101","goid":"1500118235188e9d1eba1fe333af9","vcode":1}
+# str1='''
+#
+#
+# {"tags":"","reqs":[{"showquantity":0,"pageid":0,"moduleId":0}],"filterpkgnames":"","phead":{"entranceId":"1","model":"HTC D820t","hasmarket":1,"sys":"4.4.4","iscn":2,"dataChannel":"204","aid":"e9d1eba1fe333af9","net":"wifi","cversion":8,"pkgname":"com.voyagephotolab.picframe","lang":"en","cid":"212","cdays":2,"pversion":21,"requesttime":"2018-05-01 19:52:40","isvpn":2,"cversionname":"1.0","gadid":"9c085d08-f260-4747-aebc-305f95be6c5e","dpi":"720*1184","sdk":19,"local":"US","buychannel":"appflood","user_from":1,"channel":"101","goid":"1500118235188e9d1eba1fe333af9"}}
+#
+#
+#
+# '''
+target=['"IMEI"','"imei"','"IMSI"','"imsi"','"email"','"emails"','"gmail"','"Gmail"']
 
-'''
-target=['IMEI','imei','IMSI','imsi','email']
 
+str1=input()
 tmp=str1.split(',')
 result={}
 for i in tmp:
+  # print(i)
    try:
     (begin,end)=i.split(":")
     if begin in target:
         result.setdefault(begin,end)
    except ValueError:
        pass
+
 for i in result:
     print(i,result[i])
