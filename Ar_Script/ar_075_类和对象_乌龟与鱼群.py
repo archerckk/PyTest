@@ -104,21 +104,31 @@ class Fish:
 
 
 class Game:
-    def __init__(self,turtle,fishlist):
-        self.turtle=turtle
-
-        self.fishlist=fishlist
+    def __init__(self):
+        self.turtle=Turtle()
+        self.times=10
+        self.win=0
+        self.lost=0
+        self.fishlist=[]
         for i in range(3):
             fish = Fish()
             self.fishlist.append(fish)
 
     def gameStart(self):
+        # while 1:
+        #     if self.times == 0:
+        #         g.msgbox('你的战绩为：\n胜:%d场  负：%d场' % (win, lost))
+        #         break
         while True:
             if not len(self.fishlist):
                 print("胜利！鱼儿都吃完了，游戏结束！")
+                self.times-=1
+                self.win+=1
                 break
             if not self.turtle.hp:
                 print("失败！乌龟体力耗尽，挂掉了！")
+                self.times -= 1
+                self.lost+=1
                 break
 
             pos = self.turtle.move()
@@ -142,13 +152,17 @@ class Game:
             print('剩余鱼儿数量为：',len(self.fishlist))
 
 
+    # def result(self):
+    #     while 1:
+    #         if self.times==0:
+    #             g.msgbox('你的战绩为：\n胜:%d场  负：%d场' % (self.win, self.lost))
+    #         else:
+    #             # self.__init__()
+    #             self.gameStart()
+
+
+
 '参考配置'
-
-turtle = Turtle()
-fishlist = []
-
-game=Game(turtle,fishlist)
+game=Game()
+# game.result()
 # game.gameStart()
-
-
-
