@@ -36,9 +36,7 @@ class GameBox:
                 game.gameStart()
                 continue
             elif self.choices==3:
-                turtle = fs.Turtle()
-                fishlist = []
-                game2 = fs.Game(turtle, fishlist)
+                game2 = fs.Game()
                 game2.gameStart()
             else:
                 judge=g.ccbox('是否退出游戏','提示',choices=(['是','否']))
