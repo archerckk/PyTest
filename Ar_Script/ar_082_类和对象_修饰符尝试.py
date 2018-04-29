@@ -7,11 +7,11 @@ class Demo:
     @classmethod
     def test2(cls):
         print('这是一个可以调用的类方法')
-class Demo2:pass
+
+d=Demo()
+d.test()
 
 
-
-Demo.test2()
 
 
 def test1(fun):
