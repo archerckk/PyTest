@@ -44,7 +44,7 @@ def func():
         sum+=i
     return sum
 
-t1=MyTimer(func,10000)
+t1=MyTimer(func,2000)
 print(t1.timing())
 
 
