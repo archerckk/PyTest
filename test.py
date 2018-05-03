@@ -1,4 +1,9 @@
 import os
+import test2
+def cd():
+    print('x')
+
+test2.ab()
 
 # '''查找包括子文件夹在内的目标文件，并写入TXT文档保存'''
 #

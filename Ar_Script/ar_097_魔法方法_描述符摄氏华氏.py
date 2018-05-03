@@ -24,4 +24,4 @@ class Tempiture:
 temp=Tempiture()
 print(temp.hua)
 temp.hua=100
-print(temp.hua)
+print(temp.cel)
