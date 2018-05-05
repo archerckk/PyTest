@@ -4,6 +4,7 @@ import urllib.request as r
 2.分别打开网站里面的内容，将内容分别保存到txt文档里面
 '''
 f=open('resources/url.txt')
+'urls=f.read().splitlines()单独获取每一行的网址'
 count=0
 for i in f:
     response=r.urlopen(i)
@@ -14,3 +15,14 @@ for i in f:
     with open('result/url%d.txt'%count,'w',encoding='utf-8')as f:
         f.write(html)
 
+
+# # 识别网页编码
+# encode = chardet.detect(html)['encoding']
+# if encode == 'GB2312':
+#     encode = 'GBK'
+#
+# i += 1
+# filename = "url_%d.txt" % i
+#
+# with open(filename, "w", encoding=encode) as each_file:
+#     each_file.write(html.decode(encode, "ignore"))
