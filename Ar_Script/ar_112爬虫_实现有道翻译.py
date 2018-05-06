@@ -14,8 +14,10 @@ data['transtype']	='translang'
 
 data=p.urlencode(data).encode('utf-8')
 
+req=r.Request(url,data)
+req.add_header('User-Agent','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0')
 
-response=r.urlopen(url,data)
+response=r.urlopen(req)
 # print(r.urlopen(url,data).getcode())
 # '获取请求的状态码'
 html=response.read().decode('utf-8')
