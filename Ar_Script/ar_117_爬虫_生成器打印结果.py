@@ -31,8 +31,8 @@ def get_url(soup):
         response2 = urllib.request.urlopen(url2)
         html2 = response2.read()
         soup2 = BeautifulSoup(html2, 'html.parser')
-        # if soup2.find(class_='lemma-summary'):
-        #     print(soup2.find(class_='lemma-summary').text)
+        if soup2.find(class_='lemma-summary'):
+            print(soup2.find(class_='lemma-summary').text)
         if soup2.h2:
             content = ''.join([content, soup2.h2.text])
         content = ''.join([content, '-->', url2])

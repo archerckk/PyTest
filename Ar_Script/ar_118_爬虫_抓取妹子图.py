@@ -67,11 +67,22 @@ import os
 import random
 
 
+
+def get_Proxy(filename):
+    Proxy_list=[]
+    with open(filename)as f:
+        for i in f:
+            Proxy_list.append(i)
+    return Proxy_list
+
+
 def url_open(url):
+    filename=r'C:\Users\chenzhibin\PycharmProjects\pytest\Ar_Script\result\ip_proxy.txt'
+
     req = urllib.request.Request(url)
     req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36')
 
-    proxies = ['114.97.185.1:18118', '60.177.225.43:18118', '120.26.110.59:8080']
+    proxies =get_Proxy(filename)
     proxy = random.choice(proxies)
 
     proxy_support = urllib.request.ProxyHandler({'http':proxy})

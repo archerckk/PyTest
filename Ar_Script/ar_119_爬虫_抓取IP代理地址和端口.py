@@ -1,6 +1,7 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import re
+import os
 
 url='http://www.66ip.cn/areaindex_1/1.html'
 req=urllib.request.Request(url)
@@ -21,7 +22,15 @@ for i in soup.find_all('td',text=re.compile(r'^[1-9]\d*$')):
 for i in range(len(ipList)):
     ip_dict[ipList[i]]=portList[i]
 
-for i in ip_dict:
-    print(i,':',ip_dict[i])
+with open('result/ip_proxy.txt','w',encoding='utf-8')as f:
+    for i in ip_dict:
+        i=i+':'+ip_dict[i]+'\n'
+        f.writelines(i)
+
+with open('result/ip_proxy.txt','rb+')as f:
+    f.seek(-2,os.SEEK_END)
+    f.truncate()
+
+
 
 
