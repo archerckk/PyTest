@@ -9,6 +9,5 @@ for girl in girls:
     v.append(IntVar())
     b=Checkbutton(app,text=girl,variable=v)
     b.pack(anchor=W)
-for girl in girls:
-    toast=Label(app,textvariable=v).pack()
+
 mainloop()
