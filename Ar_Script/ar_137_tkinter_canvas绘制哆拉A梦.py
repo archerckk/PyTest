@@ -1,7 +1,11 @@
 from tkinter import *
 
 app=Tk()
+def print_pos(event):
+    print(event.x_root,event.y_root)
+
 c=Canvas(app,width=600,height=600,background='white')
+c.bind('<Button-1>',print_pos)
 c.pack()
 
 c.create_line(0,300,600,300,fill='gray',dash=(4,4))
@@ -30,7 +34,7 @@ c.create_oval(290,165,310,185,fill='red',outline='black')
 c.create_line(300,185,300,295,fill='black')
 
 '嘴巴'
-c.create_arc(180,295,600,295,fill='black',style='arc')
+c.create_arc(330,323,397,353,fill='black',style='arc')
 
 
 mainloop()
