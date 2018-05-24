@@ -1,6 +1,7 @@
 from tkinter import *
+# import tkinter as tk
 
-app=Tk()
+app=tk.Tk()
 
 def show():
     f=LabelFrame(app,width=100,height=100)
@@ -10,6 +11,6 @@ def show():
 
 
 
-Button(app,text='点我',command=show).place(relx=0.5,rely=0.5,anchor=CENTER)
+tk.Button(app,text='点我',command=show).place(relx=0.5,rely=0.5,anchor=CENTER)
 
-mainloop()
+tk.mainloop()

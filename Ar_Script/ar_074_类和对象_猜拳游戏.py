@@ -115,11 +115,11 @@ class Game:
 
 # def testmethod():
 #     print('test')
-
-
-# player = Player()
 #
-# com = Computer()
 #
-# game = Game(player, com)
-# game.start()
+player = Player()
+
+com = Computer()
+
+game = Game(player, com)
+game.gameStart()
