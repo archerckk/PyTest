@@ -72,17 +72,19 @@ class Com:
 
         self.choices={1:'曹操',2:'刘备',3:'孙权'}
         self.var=IntVar()
-        self.var.set(1)
+        self.var.set(0)
         for num,name in self.choices.items():
-            Radiobutton(frame,text=name,value=num,variable=self.var,indicatoron=False,command=compare).pack(fill=X)
+            b=Radiobutton(frame,text=name,value=num,variable=self.var,indicatoron=False,command=self.compare).pack(fill=X)
 
     def compare(self):
-        pass
+        var=self.var.get()
 
+        return var
 
 
     def defend_close(self):
-        mess.showinfo('提示''你选择的对手为：'%(self.choices[self.var]))
+        if self.var not in [1,2,3]:
+            mess.showinfo('提示','请选择一个你的对手！！！')
 
 
 
