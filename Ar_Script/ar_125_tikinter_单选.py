@@ -13,5 +13,8 @@ v=IntVar()
 v.set(1)
 for name,num in rank:
     b=Radiobutton(frame,text=name,value=num,variable=v,indicatoron=False).pack(fill=X)
+    print(v.get())
+
+
 
 mainloop()
