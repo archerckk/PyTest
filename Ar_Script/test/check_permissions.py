@@ -21,27 +21,75 @@ while 1:
         break
 
 
-# old_version='CollagePhotoEditor_branches_v1.02_svn28418_202_101_staging_resguard_20170512-1542.apk'
-# new_version='CollagePhotoEditor_branches_v1.02_svn28418_202_101_staging_resguard_20170512-1542.apk'
 
-old_list=list(os.popen('aapt dump permissions %s'%old_version))
-new_list=list(os.popen('aapt dump permissions %s'%new_version))
+# old_version=r'C:\Users\chenzhibin\Downloads\BeautyCamera_trunk_v1.24_svn12108_233_101_staging_defaultConfig_resguard_20180531-1731.apk'
+# new_version=r'C:\Users\chenzhibin\Downloads\BeautyCamera_trunk_v1.23_svn11912_232_101_staging_defaultConfig_resguard_20180524-1526.apk'
+
+old_list=list(os.popen('aapt dump permissions %s |findstr uses-permission'%old_version))
+new_list=list(os.popen('aapt dump permissions %s |findstr uses-permission'%new_version))
+
+length1=len(old_list)
+length2=len(new_list)
+judge=False
+
+if length1 >length2:
+    old_list,new_list=new_list,old_list
+    judge=True
+
+
+
 differ=[]
+repeat=[]
+dict_old=dict()
+dict_new=dict()
+
+
+
+
+for i in old_list:
+    if i not in dict_old.keys():
+        dict_old[i]=0
+    else:
+        dict_old[i]+=1
+
 
 for i in new_list:
-    if i not in old_list:
-        differ.append(i)
+    if i not in dict_new.keys():
+        dict_new[i]=0
+    else:
+        dict_new[i]+=1
 
-if len(differ)==0:
+for i in dict_new.keys():
+    if i not in dict_old.keys():
+        differ.append(i)
+    else:
+        if dict_new[i]!=dict_old[i]:
+            repeat.append(i)
+
+    # print(i)
+    # if i not in old_list:
+    #     differ.append(i)
+
+if len(differ)==0 and len(repeat)==0:
     print('无权限变更！')
     g.msgbox('无权限变更！','提示')
 else:
     # print('\n新增权限：\n')
     # for i in differ:
     #     print(i)
-    content=''
-    for i in differ:
-        content+=i
-    g.textbox('新增权限：','提示',content)
+    content = ''
+    if len(repeat)!=0:
+        for i in repeat:
+            content+=i
+        g.textbox('重复权限：','提示',content)
+    elif len(differ)!=0 and judge==True:
+        for i in differ:
+            content+=i
+        g.textbox('减少权限：','提示',content)
+    elif len(differ)!=0:
+        for i in differ:
+            content+=i
+        g.textbox('新增权限：','提示',content)
 
-# input()
+
+input()
