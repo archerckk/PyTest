@@ -80,7 +80,7 @@ class Player:
         self.var = IntVar()
         self.var.set(0)
         for num, name in self.choices.items():
-            b = Radiobutton(frame, text=name, value=num, variable=self.var, indicatoron=False, command=self.compare)
+            b = Radiobutton(self.finger, text=name, value=num, variable=self.var, indicatoron=False)
             b.pack(fill=X)
 
 
@@ -125,6 +125,7 @@ def start():
     player=Player()
     if player:
         com=Com()
+    player.guess()
 
 judge = False
 
