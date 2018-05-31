@@ -51,14 +51,17 @@ class Player:
             mess.showinfo('角色信息', '你创建的角色名为：【%s】' % self.playername.get(),parent=self.player)
 
             '通过destroy销毁窗口'
+            judge = True
             self.player.destroy()
-            player_create.config(state=DISABLED)
+            # player_create.config(state=DISABLED)
 
     def defend_close(self):
         mess.showinfo('提示', '关闭窗口采用默认名字【小强】',parent=self.player)
         self.playername = '小强'
+        judge = True
         self.player.destroy()
-        player_create.config(state=DISABLED)
+
+        # player_create.config(state=DISABLED)
 
     def guess(self):
         self.finger = Toplevel(root)
@@ -106,7 +109,7 @@ class Com:
         var=self.var.get()
         mess.showinfo('提示','你选择的对手为：【%s】'%self.choices[var])
         self.com.destroy()
-        com_chose.config(state=DISABLED)
+        # com_chose.config(state=DISABLED)
 
 
 
@@ -120,8 +123,10 @@ class Com:
 
 def start():
     player=Player()
-    player.guess()
+    if player:
+        com=Com()
 
+judge = False
 
 
 
@@ -129,19 +134,19 @@ def start():
 
     
 
-'定义角色创建按钮'
-player=Player
-player_create=Button(root, text='角色创建', width=20, command=player)
-player_create.place(relx=0.5, rely=0.3, anchor=CENTER)
-
-'定义对手选择按钮'
-com=Com
-com_chose=Button(root, text='对手选择', width=20, command=com)
-com_chose.place(relx=0.5, rely=0.6, anchor=CENTER)
+# '定义角色创建按钮'
+# player=Player
+# player_create=Button(root, text='角色创建', width=20, command=player)
+# player_create.place(relx=0.5, rely=0.3, anchor=CENTER)
+#
+# '定义对手选择按钮'
+# com=Com
+# com_chose=Button(root, text='对手选择', width=20, command=com)
+# com_chose.place(relx=0.5, rely=0.6, anchor=CENTER)
 
 '定义游戏开始按钮'
 game_start=Button(root,text='对战开始',width=20,command=start)
-game_start.place(relx=0.5, rely=0.9, anchor=CENTER)
+game_start.place(relx=0.5, rely=0.5, anchor=CENTER)
 
 
 
