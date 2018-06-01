@@ -2,7 +2,6 @@ from tkinter import *
 import tkinter.messagebox as mess
 import random as r
 
-
 '主界面设置'
 root = Tk()
 root.title('猜拳小游戏')
@@ -10,26 +9,34 @@ root.title('猜拳小游戏')
 # root.geometry('300x300')
 
 '窗口居中函数'
+
+
 def center_pos(w, h):
     # 获取屏幕的宽高
     # ws = root.winfo_screenmmwidth()
     # hs = root.winfo_screenheight()
 
-    ws,hs=root.maxsize()
+    ws, hs = root.maxsize()
     # 计算x，y位置
     x = (ws - w) / 2
     y = (hs - h) / 2
     root.geometry('%dx%d+%d+%d' % (w, h, x, y))
+
 
 center_pos(300, 300)
 
 
 class Player:
     def __init__(self):
+        self.win=0
+        self.lost=0
+        self.deuce=0
         self.playername = StringVar()
 
+    '创建角色界面'
+    def creat_player(self):
         self.player = Toplevel(root)
-        self.player.attributes('-topmost',1)
+        self.player.attributes('-topmost', 1)
         self.player.protocol('WM_DELETE_WINDOW', self.defend_close)
         self.player.title('角色创建')
         scnWidth, scnHeight = self.player.maxsize()
@@ -44,96 +51,109 @@ class Player:
     '检查名字有效性函数'
     def check_name(self):
         if self.playername.get() == '':
-            mess.showerror('提示', '请输入你的角色名字！！',parent=self.player)
+            mess.showerror('提示', '请输入你的角色名字！！', parent=self.player)
         elif not 4 <= len(self.playername.get()) <= 8:
-            mess.showerror('提示', '你输入的角色名字长度不在【4-8个字符】内！！！',parent=self.player)
+            mess.showerror('提示', '你输入的角色名字长度不在【4-8个字符】内！！！', parent=self.player)
         else:
-            mess.showinfo('角色信息', '你创建的角色名为：【%s】' % self.playername.get(),parent=self.player)
+            mess.showinfo('角色信息', '你创建的角色名为：【%s】' % self.playername.get(), parent=self.player)
 
             '通过destroy销毁窗口'
             judge = True
             self.player.destroy()
+            com=Com()
+            com.creat_top()
+
             # player_create.config(state=DISABLED)
 
     def defend_close(self):
-        mess.showinfo('提示', '关闭窗口采用默认名字【小强】',parent=self.player)
+        mess.showinfo('提示', '关闭窗口采用默认名字【小强】', parent=self.player)
         self.playername = '小强'
         judge = True
         self.player.destroy()
+        com = Com()
+        com.creat_top()
 
         # player_create.config(state=DISABLED)
+
+    def guess_show(self):
+        var=self.var.get()
+        name=self.playername.get()
+        mess.showinfo('提示','【%s】出的是【%s】'%(name,self.choices[var]),parent=self.finger)
+
 
     def guess(self):
         self.finger = Toplevel(root)
         # self.finger.protocol('WM_DELETE_WINDOW', self.defend_close)
         self.finger.title('出拳选择')
-        self.finger.attributes('-topmost',2)
+        self.finger.attributes('-topmost', 1)
         scnWidth, scnHight = self.finger.maxsize()
         tmppos = '%dx%d+%d+%d' % (300, 200, (scnWidth - 200) / 2, (scnHight - 200) / 2)
         self.finger.geometry(tmppos)
 
-        Button(self.finger,text='测试按钮').pack()
-        frame = LabelFrame(self.finger, text='你要出的拳是：')
+        # Button(self.finger, text='测试按钮').pack()
+        frame = LabelFrame(self.finger, text='你要出的拳是：',labelanchor=N)
         frame.pack(fill=X, pady=20, anchor=CENTER)
 
         self.choices = {1: '剪刀', 2: '石头', 3: '布'}
         self.var = IntVar()
         self.var.set(0)
         for num, name in self.choices.items():
-            b = Radiobutton(self.finger, text=name, value=num, variable=self.var, indicatoron=False)
-            b.pack(fill=X)
+            b = Radiobutton(frame, text=name, value=num, variable=self.var, indicatoron=False,command=self.guess_show)
+            b.pack(fill=X,pady=5)
 
 
 class Com:
-
     def __init__(self):
-        self.com=Toplevel(root)
+        self.win = 0
+        self.lost = 0
+        self.deuce = 0
+
+
+    def creat_top(self):
+        self.com = Toplevel(root)
         self.com.protocol('WM_DELETE_WINDOW', self.defend_close)
         self.com.title('对手选择')
-        scnWidth,scnHight=self.com.maxsize()
-        tmppos='%dx%d+%d+%d'%(200,200,(scnWidth-200)/2,(scnHight-200)/2)
+        scnWidth, scnHight = self.com.maxsize()
+        tmppos = '%dx%d+%d+%d' % (300, 300, (scnWidth - 200) / 2, (scnHight - 200) / 2)
         self.com.geometry(tmppos)
 
-        frame=LabelFrame(self.com,text='请选择你的对手：')
-        frame.pack(fill=X,pady=20,anchor=CENTER)
+        frame = LabelFrame(self.com, text='请选择你的对手：',labelanchor=N,width=250,height=250)
+        frame.pack(fill=X, pady=20, anchor=CENTER)
 
-        self.choices={1:'曹操',2:'刘备',3:'孙权'}
-        self.var=IntVar()
+        self.choices = {1: '曹操', 2: '刘备', 3: '孙权'}
+        self.var = IntVar()
         self.var.set(0)
-        for num,name in self.choices.items():
-            b=Radiobutton(frame,text=name,value=num,variable=self.var,indicatoron=False,command=self.compare)
-            b.pack(fill=X)
+        for num, name in self.choices.items():
+            b = Radiobutton(frame, text=name, value=num, variable=self.var, indicatoron=False, command=self.compare)
+            b.pack(fill=X,pady=5)
 
 
     def compare(self):
-        var=self.var.get()
-        mess.showinfo('提示','你选择的对手为：【%s】'%self.choices[var])
+        var = self.var.get()
+        mess.showinfo('提示', '你选择的对手为：【%s】' % self.choices[var])
         self.com.destroy()
+        player=Player()
+        player.guess()
         # com_chose.config(state=DISABLED)
 
-
-
     def defend_close(self):
-        if self.var.get() not in [1,2,3]:
-            mess.showinfo('提示','请选择一个你的对手！！！')
+        if self.var.get() not in [1, 2, 3]:
+            mess.showinfo('提示', '请选择一个你的对手！！！')
 
     def guess(self):
-        self.finger={1: '剪刀', 2: '石头', 3: '布'}
+        self.finger = {1: '剪刀', 2: '石头', 3: '布'}
 
 
 def start():
-    player=Player()
-    if player:
-        com=Com()
-    player.guess()
+    player = Player()
+    player.creat_player()
+    # player.guess()
+    # if player:
+    #     com = Com()
+
+
 
 judge = False
-
-
-
-
-
-    
 
 # '定义角色创建按钮'
 # player=Player
@@ -146,9 +166,7 @@ judge = False
 # com_chose.place(relx=0.5, rely=0.6, anchor=CENTER)
 
 '定义游戏开始按钮'
-game_start=Button(root,text='对战开始',width=20,command=start)
+game_start = Button(root, text='对战开始', width=20, command=start)
 game_start.place(relx=0.5, rely=0.5, anchor=CENTER)
-
-
 
 mainloop()
