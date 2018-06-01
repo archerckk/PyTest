@@ -31,11 +31,13 @@ class Player:
         self.win=0
         self.lost=0
         self.deuce=0
-        self.playername = StringVar()
+        self.playername=StringVar()
+        self.name=''
 
     '创建角色界面'
     def creat_player(self):
         self.player = Toplevel(root)
+
         self.player.attributes('-topmost', 1)
         self.player.protocol('WM_DELETE_WINDOW', self.defend_close)
         self.player.title('角色创建')
@@ -56,7 +58,7 @@ class Player:
             mess.showerror('提示', '你输入的角色名字长度不在【4-8个字符】内！！！', parent=self.player)
         else:
             mess.showinfo('角色信息', '你创建的角色名为：【%s】' % self.playername.get(), parent=self.player)
-
+            # self.name=self.playername.get()
             '通过destroy销毁窗口'
             judge = True
             self.player.destroy()
@@ -67,7 +69,7 @@ class Player:
 
     def defend_close(self):
         mess.showinfo('提示', '关闭窗口采用默认名字【小强】', parent=self.player)
-        self.playername = '小强'
+        self.playername.set('小强')
         judge = True
         self.player.destroy()
         com = Com()
@@ -77,11 +79,12 @@ class Player:
 
     def guess_show(self):
         var=self.var.get()
-        name=self.playername.get()
-        mess.showinfo('提示','【%s】出的是【%s】'%(name,self.choices[var]),parent=self.finger)
+        # self.name=
+        print(self.playername.get())
+        mess.showinfo('提示','【%s】出的是【%s】'%(self.name,self.choices[var]),parent=self.finger)
 
 
-    def guess(self):
+    def guess(self,):
         self.finger = Toplevel(root)
         # self.finger.protocol('WM_DELETE_WINDOW', self.defend_close)
         self.finger.title('出拳选择')
@@ -144,13 +147,18 @@ class Com:
         self.finger = {1: '剪刀', 2: '石头', 3: '布'}
 
 
-def start():
-    player = Player()
-    player.creat_player()
+class Game:
+    def __init__(self):
+        self.player = Player()
+        self.player.creat_player()
+
+
+
     # player.guess()
     # if player:
     #     com = Com()
 
+game=Game
 
 
 judge = False
@@ -166,7 +174,7 @@ judge = False
 # com_chose.place(relx=0.5, rely=0.6, anchor=CENTER)
 
 '定义游戏开始按钮'
-game_start = Button(root, text='对战开始', width=20, command=start)
+game_start = Button(root, text='对战开始', width=20, command=game)
 game_start.place(relx=0.5, rely=0.5, anchor=CENTER)
 
 mainloop()
