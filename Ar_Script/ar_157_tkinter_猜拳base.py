@@ -50,6 +50,8 @@ class Player:
 
         Button(self.player, text='角色创建', command=self.check_name).grid(row=1, columnspan=2)
 
+        return self.playername
+
     '检查名字有效性函数'
     def check_name(self):
         if self.playername.get() == '':
@@ -58,7 +60,7 @@ class Player:
             mess.showerror('提示', '你输入的角色名字长度不在【4-8个字符】内！！！', parent=self.player)
         else:
             mess.showinfo('角色信息', '你创建的角色名为：【%s】' % self.playername.get(), parent=self.player)
-            # self.name=self.playername.get()
+            self.playername.set(self.playername.get())
             '通过destroy销毁窗口'
             judge = True
             self.player.destroy()
@@ -81,7 +83,7 @@ class Player:
         var=self.var.get()
         # self.name=
         print(self.playername.get())
-        mess.showinfo('提示','【%s】出的是【%s】'%(self.name,self.choices[var]),parent=self.finger)
+        mess.showinfo('提示','【%s】出的是【%s】'%(self.playername.get(),self.choices[var]),parent=self.finger)
 
 
     def guess(self,):
