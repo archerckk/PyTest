@@ -64,10 +64,10 @@ class Computer:
 
 
 class Game:
-    def __init__(self, player, com):
+    def __init__(self):
 
-        self.player = player
-        self.com = com
+        self.player = Player()
+        self.com = Computer()
 
     def judge(self):
         if (self.player.finger == '剪刀' and self.com.finger == '布') or (
@@ -116,10 +116,8 @@ class Game:
 # def testmethod():
 #     print('test')
 #
-#
-player = Player()
 
-com = Computer()
+if __name__ == '__main__':
+    game = Game()
+    game.gameStart()
 
-game = Game(player, com)
-game.gameStart()

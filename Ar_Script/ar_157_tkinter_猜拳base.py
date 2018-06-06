@@ -33,10 +33,17 @@ class Player:
         self.deuce=0
         self.playername=StringVar()
         self.name=''
+        self.judge=False
 
     '创建角色界面'
+    def d_callback(self,event):
+        game.com.creat_top()
+        # game.com.creat_top()
+
+
     def creat_player(self):
-        self.player = Toplevel(root)
+        self.player = Toplevel()
+        self.player.bind('<Destroy>',self.d_callback)
 
         self.player.attributes('-topmost', 1)
         self.player.protocol('WM_DELETE_WINDOW', self.defend_close)
@@ -62,20 +69,17 @@ class Player:
             mess.showinfo('角色信息', '你创建的角色名为：【%s】' % self.playername.get(), parent=self.player)
             self.playername.set(self.playername.get())
             '通过destroy销毁窗口'
-            judge = True
             self.player.destroy()
-            com=Com()
-            com.creat_top()
+
 
             # player_create.config(state=DISABLED)
 
+    '关闭窗口检测'
     def defend_close(self):
         mess.showinfo('提示', '关闭窗口采用默认名字【小强】', parent=self.player)
         self.playername.set('小强')
-        judge = True
         self.player.destroy()
-        com = Com()
-        com.creat_top()
+
 
         # player_create.config(state=DISABLED)
 
@@ -112,10 +116,11 @@ class Com:
         self.win = 0
         self.lost = 0
         self.deuce = 0
-
+        self.var = IntVar()
+        self.var.set(0)
 
     def creat_top(self):
-        self.com = Toplevel(root)
+        self.com = Toplevel()
         self.com.protocol('WM_DELETE_WINDOW', self.defend_close)
         self.com.title('对手选择')
         scnWidth, scnHight = self.com.maxsize()
@@ -126,19 +131,17 @@ class Com:
         frame.pack(fill=X, pady=20, anchor=CENTER)
 
         self.choices = {1: '曹操', 2: '刘备', 3: '孙权'}
-        self.var = IntVar()
-        self.var.set(0)
-        for num, name in self.choices.items():
-            b = Radiobutton(frame, text=name, value=num, variable=self.var, indicatoron=False, command=self.compare)
-            b.pack(fill=X,pady=5)
+        # self.var = IntVar()
+        # self.var.set(0)
+        # for num, name in self.choices.items():
+        #     b = Radiobutton(frame, text=name, value=num, variable=self.var, indicatoron=False, command=self.compare)
+        #     b.pack(fill=X,pady=5)
 
 
     def compare(self):
         var = self.var.get()
         mess.showinfo('提示', '你选择的对手为：【%s】' % self.choices[var])
         self.com.destroy()
-        player=Player()
-        player.guess()
         # com_chose.config(state=DISABLED)
 
     def defend_close(self):
@@ -152,7 +155,15 @@ class Com:
 class Game:
     def __init__(self):
         self.player = Player()
+        self.com=Com()
         self.player.creat_player()
+
+    # def start(self):
+    #     while 1:
+    #         playerFinger=self.player.guess()
+    #         comFinger=self.com.guess()
+
+
 
 
 
@@ -160,10 +171,8 @@ class Game:
     # if player:
     #     com = Com()
 
-game=Game
+game=Game()
 
-
-judge = False
 
 # '定义角色创建按钮'
 # player=Player
