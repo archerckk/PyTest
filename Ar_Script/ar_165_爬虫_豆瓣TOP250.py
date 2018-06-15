@@ -8,12 +8,19 @@ def url_open(url):
 
     return res
 
+def find_depth(res):
+    soup = bs(res.text, 'html.parser')
+    depth=soup.find('span',class_='next')
+
+    return depth
+
 
 def main():
     host='https://movie.douban.com/top250'
     res=url_open(host)
-    soup=bs(res.text,'html.parser')
-    print(soup)
+    # soup = bs(res.text, 'html.parser')
+    depth=find_depth(res)
+    print(depth)
     # print(soup.prettify())
 
 
