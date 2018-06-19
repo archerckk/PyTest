@@ -23,6 +23,8 @@ def find_dict(targets,level):
 def main():
     with open('resources/taobao.txt','r',encoding='utf-8')as f:
         g_page_config=re.search(r'g_page_config = (.*?);\n',f.read())
+        # with open('resources/taobao2.txt', 'w', encoding='utf-8')as f:
+        #     f.write(g_page_config.group(1))
         page_config=json.loads(g_page_config.group(1))
         find_dict(page_config,1)
 
