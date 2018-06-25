@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 import os
 
-url = 'http://www.66ip.cn/areaindex_1/1.html'
+url = 'http://www.66ip.cn/areaindex_2/1.html'
 req = urllib.request.Request(url)
 req.add_header('User-Agent',
                'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36')
