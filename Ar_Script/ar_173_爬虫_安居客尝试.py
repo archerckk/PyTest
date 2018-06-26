@@ -2,6 +2,7 @@ import requests
 import bs4
 import openpyxl
 from openpyxl.styles import PatternFill, Font, Alignment, NamedStyle
+import re
 
 
 def url_open(url):
@@ -12,7 +13,6 @@ def url_open(url):
 
 
 def info_find(res):
-
     # '测试代码'
     # with open('result/安居客.txt','r',encoding='utf-8')as f:
     #     soup=bs4.BeautifulSoup(f.read(),'html.parser')
@@ -22,21 +22,21 @@ def info_find(res):
     '房产编码获取'
     code = []
     url_list = []
-    targets=soup.find_all('div',class_='house-title')
+    targets = soup.find_all('div', class_='house-title')
 
     for i in targets:
         url_list.append(i.a['href'])
 
     for i in url_list:
-        res=url_open(i)
-        soup2=bs4.BeautifulSoup(res.text,'html.parser')
-        targets=soup2.find_all('span',class_='house-encode')
+        res = url_open(i)
+        soup2 = bs4.BeautifulSoup(res.text, 'html.parser')
+        targets = soup2.find_all('span', class_='house-encode')
         for i in targets:
             code.append(i.text)
-    code_new=[]
+    code_new = []
     for i in code:
-        i=i.split('，')[0]
-        i=i.split('：')[1]
+        i = i.split('，')[0]
+        i = i.split('：')[1]
         code_new.append(i)
 
     '标题信息筛选'
@@ -75,33 +75,59 @@ def info_find(res):
 
     result = []
     length = len(code)
+
     for i in range(length):
-        result.append([code_new[i],title[i], total[i], price[i], detail[i], address[i]])
-    length=len(result)
+        result.append([code_new[i], title[i], total[i], price[i], detail[i], address[i]])
+
+    length = len(result)
 
     print(length)
 
-    result_dict={}
+    result_dict = {}
 
     for i in result:
         try:
-            result_dict[i[0]]=i
+            result_dict[i[0]] = i
         except KeyError:
             result_dict[i[0]] = i
 
     for i in result_dict.items():
-        print(i[0],i[1])
+        print(i[0], i[1])
 
-    length2=len(result_dict)
+    # length2 = len(result_dict)
     # print(length2)
 
-    result_final=[]
+    result_final = []
     for i in result_dict.keys():
         result_final.append(result_dict[i])
 
     # return result
 
     return result_final
+
+
+def compare(result,length):
+    wb=openpyxl.load_workbook('result/安居客.xlsx')
+    ws=wb.active
+    # tuple1=ws.rows
+    # for i in result:
+    #     if i[0] in tuple1[0]:
+    #         print('找到相同房产编号')
+    for i in ws.iter_rows(min_row=2,min_col=1,max_row=length,max_col=6):
+        if i[0].value in result:
+            print('找到相同的房产编号')
+
+    for i in ws.rows:
+        if i[0].value in result:
+            print('******')
+
+    # for i in result:
+    #     print('______')
+    #     print(type(i))
+
+
+
+
 
 
 def save_to_excel(result):
@@ -121,7 +147,7 @@ def save_to_excel(result):
 
     ws.add_named_style = title_style
 
-    ws.append(['房产编码','标题', '总价', '单价', '详细信息', '地址'])
+    ws.append(['房产编码', '标题', '总价', '单价', '详细信息', '地址'])
 
     for i in ws.rows:
         ws[i[0].coordinate].style = title_style
@@ -141,7 +167,7 @@ def save_to_excel(result):
         ws.append(i)
 
     length = len(result)
-    for i in ws.iter_rows(min_row=2, min_col=1, max_row=length+1, max_col=6):
+    for i in ws.iter_rows(min_row=2, min_col=1, max_row=length + 1, max_col=6):
         ws[i[0].coordinate].style = content_style
         ws.column_dimensions['A'].width = 15
         ws[i[1].coordinate].style = content_style
@@ -159,20 +185,31 @@ def save_to_excel(result):
 
 
 def main():
-    length=2
-    result=[]
+    length = 3
+    # result = []
 
-    for i in range(length):
-        host = 'https://qingyuan.anjuke.com/sale/p{}-rd1/?kw=时代倾城#filtersort'.format(i+1)
-        res = url_open(host)
-        print(res.text)
-        result.extend(info_find(res))
+    result={'1282902691':['1294849477','时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '8610元/m²', '3室2厅|81m²|高层(共33层)|2013年建造', '时代倾城——清城-清城-大学西路222号'],
+            '1294849478':['1294849478', '时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '8610元/m²', '3室2厅|81m²|高层(共33层)|2013年建造','时代倾城——清城-清城-大学西路222号']
 
-    save_to_excel(result)
+            }
+
+
+    # for i in range(length):
+    #     host = 'https://qingyuan.anjuke.com/sale/p{}-rd1/?kw=时代倾城#filtersort'.format(i + 1)
+    #     res = url_open(host)
+    #     # print(res.text)
+    #     result.extend(info_find(res))
+
+    # result_length=len(result)
+    result_length =180
+
+    # save_to_excel(result)
+    compare(result,result_length)
 
     # res=1
-    info_find(res)
-        #
+    # info_find(res)
+    #
+
 
 if __name__ == '__main__':
     main()
