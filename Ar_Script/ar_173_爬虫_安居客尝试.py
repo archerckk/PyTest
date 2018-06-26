@@ -121,37 +121,41 @@ def save_to_excel(result):
 
     ws.add_named_style = title_style
 
-    ws.append(['标题', '总价', '单价', '详细信息', '地址'])
+    ws.append(['房产编码','标题', '总价', '单价', '详细信息', '地址'])
 
     for i in ws.rows:
         ws[i[0].coordinate].style = title_style
-        ws.column_dimensions['A'].width = 80
+        ws.column_dimensions['A'].width = 15
         ws[i[1].coordinate].style = title_style
-        ws.column_dimensions['B'].width = 10
+        ws.column_dimensions['B'].width = 80
         ws[i[2].coordinate].style = title_style
         ws.column_dimensions['C'].width = 10
         ws[i[3].coordinate].style = title_style
-        ws.column_dimensions['D'].width = 60
+        ws.column_dimensions['D'].width = 10
         ws[i[4].coordinate].style = title_style
         ws.column_dimensions['E'].width = 60
+        ws[i[5].coordinate].style = title_style
+        ws.column_dimensions['F'].width = 60
 
     for i in result:
         ws.append(i)
 
     length = len(result)
-    for i in ws.iter_rows(min_row=2, min_col=1, max_row=length+1, max_col=5):
+    for i in ws.iter_rows(min_row=2, min_col=1, max_row=length+1, max_col=6):
         ws[i[0].coordinate].style = content_style
-        ws.column_dimensions['A'].width = 80
+        ws.column_dimensions['A'].width = 15
         ws[i[1].coordinate].style = content_style
-        ws.column_dimensions['B'].width = 10
+        ws.column_dimensions['B'].width = 80
         ws[i[2].coordinate].style = content_style
         ws.column_dimensions['C'].width = 10
         ws[i[3].coordinate].style = content_style
-        ws.column_dimensions['D'].width = 60
+        ws.column_dimensions['D'].width = 10
         ws[i[4].coordinate].style = content_style
         ws.column_dimensions['E'].width = 60
+        ws[i[5].coordinate].style = content_style
+        ws.column_dimensions['F'].width = 60
 
-    wb.save('result/安居客3.xlsx')
+    wb.save('result/安居客.xlsx')
 
 
 def main():
