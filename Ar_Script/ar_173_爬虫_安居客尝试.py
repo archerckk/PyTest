@@ -109,17 +109,23 @@ def info_find(res):
 def compare(result,length):
     wb=openpyxl.load_workbook('result/安居客.xlsx')
     ws=wb.active
-    # tuple1=ws.rows
-    # for i in result:
-    #     if i[0] in tuple1[0]:
-    #         print('找到相同房产编号')
-    for i in ws.iter_rows(min_row=2,min_col=1,max_row=length,max_col=6):
-        if i[0].value in result:
-            print('找到相同的房产编号')
 
-    for i in ws.rows:
-        if i[0].value in result:
-            print('******')
+    for i in ws.iter_rows(min_row=2,min_col=1,max_row=length,max_col=6):
+        if str(i[0].value).strip() in result:
+            new=int(re.search(r'\d+',result[str(i[0].value).strip()][3]).group())
+            old=int(re.search(r'\d+',i[3].value).group())
+            if new<old:
+                print('单价下降：%d'%(old-new))
+            elif new > old:
+                    print('单价上升：%d' % (new - old))
+            else:
+                print('没有变动')
+    # for i in ws.rows:
+    #     print(i[0].value)
+
+
+    # for i in result:
+    #     print(i)
 
     # for i in result:
     #     print('______')
@@ -188,7 +194,7 @@ def main():
     length = 3
     # result = []
 
-    result={'1282902691':['1294849477','时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '8610元/m²', '3室2厅|81m²|高层(共33层)|2013年建造', '时代倾城——清城-清城-大学西路222号'],
+    result={'1282902691':['1294849477','时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '9288元/m²', '3室2厅|81m²|高层(共33层)|2013年建造', '时代倾城——清城-清城-大学西路222号'],
             '1294849478':['1294849478', '时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '8610元/m²', '3室2厅|81m²|高层(共33层)|2013年建造','时代倾城——清城-清城-大学西路222号']
 
             }
