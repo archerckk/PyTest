@@ -40,7 +40,6 @@ def info_find(res):
         # print(i)
         code_new.append(i)
 
-
     '标题信息筛选'
     title = []
     targets = soup.find_all('div', class_='house-title')
@@ -82,7 +81,6 @@ def info_find(res):
         result.append([code_new[i], title[i], total[i], price[i], detail[i], address[i]])
 
     # length = len(result)
-    #
     # print(length)
 
     result_dict = {}
@@ -93,17 +91,12 @@ def info_find(res):
         except KeyError:
             result_dict[i[0]] = i
 
-    for i in result_dict.items():
-        print(i[0], i[1])
-
-    # length2 = len(result_dict)
-    # print(length2)
+    # for i in result_dict.items():
+    #     print(i[0], i[1])
 
     result_final = []
     for i in result_dict.keys():
         result_final.append(result_dict[i])
-
-    # return result
 
     return result_final
 
@@ -121,23 +114,17 @@ def compare(result, length):
             if new < old:
                 differ = old - new
                 # print('单价下降：%d' % differ)
-                result[str(i[0].value).strip()][4]=('-%d' % differ)
+                result[str(i[0].value).strip()][4] = ('-%d' % differ)
                 # print(result[str(i[0].value).strip()])
             elif new > old:
                 differ = new - old
                 # print('单价上升：%d' % differ)
-                result[str(i[0].value).strip()][4]=('+%d' % differ)
-            elif new==old:
-                result[str(i[0].value).strip()][4]='0'
-        # else:
-        #     differ = 0
-        #     try:
-        #         result[str(i[0].value).strip()].insert(4, '没有变动')
-        #     except KeyError:
-        #         result[str(i[0].value).strip()].insert(4, '没有变动')
+                result[str(i[0].value).strip()][4] = ('+%d' % differ)
+            elif new == old:
+                result[str(i[0].value).strip()][4] = '0'
 
-    for i in result:
-        print(result[i])
+    # for i in result:
+    #     print(result[i])
 
 
     return result
@@ -215,13 +202,6 @@ def main():
     #          '时代倾城——清城-清城-大学西路222号']
     #         ]
 
-    # result = {
-    #     '1282902691': ['1294849477', '时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '9288元/m²', '3室2厅|81m²|高层(共33层)|2013年建造',
-    #                    '时代倾城——清城-清城-大学西路222号'],
-    #     '1282075594': ['1282075594', '时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '6000元/m²', '3室2厅|81m²|高层(共33层)|2013年建造',
-    #                    '时代倾城——清城-清城-大学西路222号']
-    #     }
-
     for i in range(length):
         host = 'https://qingyuan.anjuke.com/sale/p{}-rd1/?kw=时代倾城#filtersort'.format(i + 1)
         res = url_open(host)
@@ -232,34 +212,27 @@ def main():
     # for i in result:
     #     print(i)
 
-    result_dict={}
+    result_dict = {}
     for i in result:
-        result_dict[i[0]]=i
+        result_dict[i[0]] = i
 
-    result_length=len(result_dict)
+    result_length = len(result_dict)
     # result_length = 180
 
     for i in result_dict:
-        result_dict[i].insert(4,'0')
-
+        result_dict[i].insert(4, '0')
 
     # result['1294849477'][3] = '9000元/m²'
     # for i in result_dict:
     #     print()
 
     # compare(result_dict, result_length)
-    result_final=compare(result_dict, result_length)
+    result_final = compare(result_dict, result_length)
 
-    print('__________________')
     for i in result_final:
         print(result_final[i])
 
     save_to_excel(result_final)
-
-
-    # res=1
-    # info_find(res)
-    #
 
 
 if __name__ == '__main__':
