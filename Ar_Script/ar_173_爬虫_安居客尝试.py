@@ -222,7 +222,6 @@ def main():
     for i in result_dict:
         result_dict[i].insert(4, '0')
 
-    # result['1294849477'][3] = '9000元/m²'
     # for i in result_dict:
     #     print()
 
