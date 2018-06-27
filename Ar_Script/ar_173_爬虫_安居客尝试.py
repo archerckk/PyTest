@@ -35,9 +35,11 @@ def info_find(res):
             code.append(i.text)
     code_new = []
     for i in code:
-        i = i.split('，')[0]
-        i = i.split('：')[1]
+        i = i.split('，')[0].strip()
+        i = i.split('：')[1].strip()
+        # print(i)
         code_new.append(i)
+
 
     '标题信息筛选'
     title = []
@@ -79,9 +81,9 @@ def info_find(res):
     for i in range(length):
         result.append([code_new[i], title[i], total[i], price[i], detail[i], address[i]])
 
-    length = len(result)
-
-    print(length)
+    # length = len(result)
+    #
+    # print(length)
 
     result_dict = {}
 
@@ -106,34 +108,39 @@ def info_find(res):
     return result_final
 
 
-def compare(result,length):
-    wb=openpyxl.load_workbook('result/安居客.xlsx')
-    ws=wb.active
-
-    for i in ws.iter_rows(min_row=2,min_col=1,max_row=length,max_col=6):
-        if str(i[0].value).strip() in result:
-            new=int(re.search(r'\d+',result[str(i[0].value).strip()][3]).group())
-            old=int(re.search(r'\d+',i[3].value).group())
-            if new<old:
-                print('单价下降：%d'%(old-new))
+def compare(result, length):
+    wb = openpyxl.load_workbook('result/安居客.xlsx')
+    ws = wb.active
+    # result[' 1294849477'][3] = '8000元/m²'
+    # result[' 1285562934'][3] = '8000元/m²'
+    for i in ws.iter_rows(min_row=2, min_col=1, max_row=length, max_col=6):
+        if (str(i[0].value)) in result:
+            new = int(re.search(r'\d+', result[str(i[0].value).strip()][3]).group())
+            old = int(re.search(r'\d+', i[3].value).group())
+            differ = 0
+            if new < old:
+                differ = old - new
+                # print('单价下降：%d' % differ)
+                result[str(i[0].value).strip()][4]=('-%d' % differ)
+                # print(result[str(i[0].value).strip()])
             elif new > old:
-                    print('单价上升：%d' % (new - old))
-            else:
-                print('没有变动')
-    # for i in ws.rows:
-    #     print(i[0].value)
+                differ = new - old
+                # print('单价上升：%d' % differ)
+                result[str(i[0].value).strip()][4]=('+%d' % differ)
+            elif new==old:
+                result[str(i[0].value).strip()][4]='0'
+        # else:
+        #     differ = 0
+        #     try:
+        #         result[str(i[0].value).strip()].insert(4, '没有变动')
+        #     except KeyError:
+        #         result[str(i[0].value).strip()].insert(4, '没有变动')
+
+    for i in result:
+        print(result[i])
 
 
-    # for i in result:
-    #     print(i)
-
-    # for i in result:
-    #     print('______')
-    #     print(type(i))
-
-
-
-
+    return result
 
 
 def save_to_excel(result):
@@ -153,7 +160,7 @@ def save_to_excel(result):
 
     ws.add_named_style = title_style
 
-    ws.append(['房产编码', '标题', '总价', '单价', '详细信息', '地址'])
+    ws.append(['房产编码', '标题', '总价', '单价', '浮动', '详细信息', '地址'])
 
     for i in ws.rows:
         ws[i[0].coordinate].style = title_style
@@ -165,15 +172,17 @@ def save_to_excel(result):
         ws[i[3].coordinate].style = title_style
         ws.column_dimensions['D'].width = 10
         ws[i[4].coordinate].style = title_style
-        ws.column_dimensions['E'].width = 60
+        ws.column_dimensions['E'].width = 15
         ws[i[5].coordinate].style = title_style
         ws.column_dimensions['F'].width = 60
+        ws[i[6].coordinate].style = title_style
+        ws.column_dimensions['G'].width = 60
 
-    for i in result:
-        ws.append(i)
+    for i in result.keys():
+        ws.append(result[i])
 
     length = len(result)
-    for i in ws.iter_rows(min_row=2, min_col=1, max_row=length + 1, max_col=6):
+    for i in ws.iter_rows(min_row=2, min_col=1, max_row=length + 1, max_col=7):
         ws[i[0].coordinate].style = content_style
         ws.column_dimensions['A'].width = 15
         ws[i[1].coordinate].style = content_style
@@ -183,34 +192,70 @@ def save_to_excel(result):
         ws[i[3].coordinate].style = content_style
         ws.column_dimensions['D'].width = 10
         ws[i[4].coordinate].style = content_style
-        ws.column_dimensions['E'].width = 60
+        ws.column_dimensions['E'].width = 15
         ws[i[5].coordinate].style = content_style
         ws.column_dimensions['F'].width = 60
+        ws[i[6].coordinate].style = content_style
+        ws.column_dimensions['G'].width = 60
 
     wb.save('result/安居客.xlsx')
 
 
 def main():
-    length = 3
-    # result = []
+    length = 1
+    result = []
 
-    result={'1282902691':['1294849477','时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '9288元/m²', '3室2厅|81m²|高层(共33层)|2013年建造', '时代倾城——清城-清城-大学西路222号'],
-            '1294849478':['1294849478', '时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '8610元/m²', '3室2厅|81m²|高层(共33层)|2013年建造','时代倾城——清城-清城-大学西路222号']
+    # result=[['1294849477', '时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '8000元/m²', '3室2厅|81m²|高层(共33层)|2013年建造',
+    #    '时代倾城——清城-清城-大学西路222号'],
+    #         ['1285562934', '时代倾城 71万 3室2厅1卫 精装修，难得的好户型急售', '70万', '7000元/m²', '3室2厅|81m²|高层(共33层)|2013年建造',
+    #          '时代倾城——清城-清城-大学西路222号'],
+    #         ['1282902691', '时代倾城 71万 3室2厅1卫 精装修，难得的好户型急售', '70万', '9243元/m²', '3室2厅|81m²|高层(共33层)|2013年建造',
+    #          '时代倾城——清城-清城-大学西路222号'],
+    #         ['1294849404', '时代倾城 71万 3室2厅1卫 精装修，难得的好户型急售', '70万', '9666元/m²', '3室2厅|81m²|高层(共33层)|2013年建造',
+    #          '时代倾城——清城-清城-大学西路222号']
+    #         ]
 
-            }
+    # result = {
+    #     '1282902691': ['1294849477', '时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '9288元/m²', '3室2厅|81m²|高层(共33层)|2013年建造',
+    #                    '时代倾城——清城-清城-大学西路222号'],
+    #     '1282075594': ['1282075594', '时代倾城 70万 3室2厅1卫 精装修，难得的好户型急售', '70万', '6000元/m²', '3室2厅|81m²|高层(共33层)|2013年建造',
+    #                    '时代倾城——清城-清城-大学西路222号']
+    #     }
+
+    for i in range(length):
+        host = 'https://qingyuan.anjuke.com/sale/p{}-rd1/?kw=时代倾城#filtersort'.format(i + 1)
+        res = url_open(host)
+        # print(res.text)
+        result.extend(info_find(res))
+
+    # print(len(result))
+    # for i in result:
+    #     print(i)
+
+    result_dict={}
+    for i in result:
+        result_dict[i[0]]=i
+
+    result_length=len(result_dict)
+    # result_length = 180
+
+    for i in result_dict:
+        result_dict[i].insert(4,'0')
 
 
-    # for i in range(length):
-    #     host = 'https://qingyuan.anjuke.com/sale/p{}-rd1/?kw=时代倾城#filtersort'.format(i + 1)
-    #     res = url_open(host)
-    #     # print(res.text)
-    #     result.extend(info_find(res))
+    # result['1294849477'][3] = '9000元/m²'
+    # for i in result_dict:
+    #     print()
 
-    # result_length=len(result)
-    result_length =180
+    # compare(result_dict, result_length)
+    result_final=compare(result_dict, result_length)
 
-    # save_to_excel(result)
-    compare(result,result_length)
+    print('__________________')
+    for i in result_final:
+        print(result_final[i])
+
+    save_to_excel(result_final)
+
 
     # res=1
     # info_find(res)
