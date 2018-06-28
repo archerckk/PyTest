@@ -5,13 +5,14 @@ from openpyxl.styles import PatternFill, Font, Alignment, NamedStyle
 import re
 
 
+'url打开函数'
 def url_open(url):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0'}
     res = requests.get(url=url, headers=headers)
 
     return res
 
-
+'页面信息收集'
 def info_find(res):
     # '测试代码'
     # with open('result/安居客.txt','r',encoding='utf-8')as f:
@@ -33,7 +34,9 @@ def info_find(res):
         targets = soup2.find_all('span', class_='house-encode')
         for i in targets:
             code.append(i.text)
+
     code_new = []
+    '对拿到的房产编号字符串进行分割处理，分割的空格打印出来并不明显，要记得进行前后去空格处理'
     for i in code:
         i = i.split('，')[0].strip()
         i = i.split('：')[1].strip()
@@ -76,7 +79,7 @@ def info_find(res):
 
     result = []
     length = len(code)
-
+    '将上面的列表信息都存在进去一个列表项里面加在result里面'
     for i in range(length):
         result.append([code_new[i], title[i], total[i], price[i], detail[i], address[i]])
 
@@ -84,7 +87,7 @@ def info_find(res):
     # print(length)
 
     result_dict = {}
-
+    '将列表的第一项'
     for i in result:
         try:
             result_dict[i[0]] = i
