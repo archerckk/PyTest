@@ -5,6 +5,7 @@ import re
 import sys
 sys.getdefaultencoding()
 from Ar_Script import ar_073_类和对象_点和直线
+from selenium import webdriver
 
 
 # import test
@@ -54,3 +55,6 @@ from Ar_Script import ar_073_类和对象_点和直线
 
 test1=ar_073_类和对象_点和直线.Point(1,2)
 print(test1.getX())
+
+driver=webdriver.Chrome()
+driver.switch_to.default_content()
