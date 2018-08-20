@@ -47,3 +47,13 @@ psw='a3203589'
 driver=webdriver.Chrome()
 driver.get('http://www.126.com')
 
+driver.switch_to.frame('x-URS-iframe')
+
+driver.find_element_by_xpath('//div[@id="account-box"]/div[@class="u-input box"]/input[@class="j-inputtext dlemail"]').send_keys(account)
+driver.find_element_by_xpath('//input[@name="password" and @class="j-inputtext dlpwd"]').send_keys(psw)
+
+driver.find_element_by_id('dologin').click()
+
+time.sleep(7)
+
+driver.quit()
