@@ -1,7 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 import time
+from time import ctime,sleep
 
 'demo代码'
 # driver=webdriver.Chrome()
@@ -60,29 +62,62 @@ import time
 #
 # driver.quit()
 
-'鼠标事件加键盘事件'
-driver = webdriver.Chrome()
+# '鼠标事件加键盘事件'
+# driver = webdriver.Chrome()
+# driver.get('http://www.baidu.com')
+# option = driver.find_element_by_link_text('设置')
+# map = driver.find_element_by_link_text('地图')
+# target = driver.find_element_by_id('kw')
+#
+# '将鼠标移动到设置项'
+# ActionChains(driver).move_to_element(option).perform()
+# time.sleep(3)
+#
+# '鼠标右键'
+# ActionChains(driver).context_click(map).perform()
+# time.sleep(3)
+#
+# target.send_keys('Selenium2')
+# target.send_keys(Keys.BACK_SPACE)
+# target.send_keys(Keys.SPACE)
+# target.send_keys('教程')
+# target.send_keys(Keys.CONTROL, 'A')
+# target.send_keys(Keys.CONTROL, 'X')
+# target.send_keys(Keys.CONTROL, 'V')
+# target.click()
+#
+# time.sleep(2)
+# driver.quit()
+
+'显式等待'
+# driver=webdriver.Chrome()
+# driver.get('http://www.baidu.com')
+# print(ctime())
+#
+# for i in range(10):
+#     try:
+#         element=driver.find_element_by_id('kw22')
+#         if element.is_displayed():
+#             break
+#     except:pass
+#     sleep(1)
+# print('timeout')
+# print(ctime())
+
+'隐式等待'
+driver=webdriver.Chrome()
 driver.get('http://www.baidu.com')
-option = driver.find_element_by_link_text('设置')
-map = driver.find_element_by_link_text('地图')
-target = driver.find_element_by_id('kw')
+driver.implicitly_wait(10)
 
-'将鼠标移动到设置项'
-ActionChains(driver).move_to_element(option).perform()
-time.sleep(3)
+print(ctime())
 
-'鼠标右键'
-ActionChains(driver).context_click(map).perform()
-time.sleep(3)
+try:
+    driver.find_element_by_id('kw')
+except NoSuchElementException as e:
+    print(e)
+finally:
+    print(ctime())
 
-target.send_keys('Selenium2')
-target.send_keys(Keys.BACK_SPACE)
-target.send_keys(Keys.SPACE)
-target.send_keys('教程')
-target.send_keys(Keys.CONTROL, 'A')
-target.send_keys(Keys.CONTROL, 'X')
-target.send_keys(Keys.CONTROL, 'V')
-target.click()
-
-time.sleep(2)
 driver.quit()
+
+
