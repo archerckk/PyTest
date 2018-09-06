@@ -105,19 +105,44 @@ from time import ctime,sleep
 # print(ctime())
 
 '隐式等待'
+# driver=webdriver.Chrome()
+# driver.get('http://www.baidu.com')
+# driver.implicitly_wait(10)
+#
+# print(ctime())
+#
+# try:
+#     driver.find_element_by_id('kw')
+# except NoSuchElementException as e:
+#     print(e)
+# finally:
+#     print(ctime())
+#
+# driver.quit()
+
+'窗口切换'
 driver=webdriver.Chrome()
 driver.get('http://www.baidu.com')
-driver.implicitly_wait(10)
 
-print(ctime())
+search_element=driver.find_element_by_link_text('贴吧')
+search_element.send_keys(Keys.CONTROL,Keys.ENTER)
+current_handle=driver.current_window_handle
+print(driver.title)
 
-try:
-    driver.find_element_by_id('kw')
-except NoSuchElementException as e:
-    print(e)
-finally:
-    print(ctime())
+for handle in driver.window_handles:
+    if handle!=current_handle:
+        driver.switch_to.window(handle)
+        driver.find_element_by_id('wd1').send_keys('海贼王')
+        driver.find_element_by_link_text('进入贴吧').click()
+        sleep(2)
+print(driver.title)
+
+for handle in driver.window_handles:
+    if handle==current_handle:
+        driver.switch_to.window(current_handle)
+        driver.find_element_by_id('kw').send_keys('Selenium2')
+        driver.find_element_by_id('su').click()
+        sleep(2)
+print(driver.title)
 
 driver.quit()
-
-
