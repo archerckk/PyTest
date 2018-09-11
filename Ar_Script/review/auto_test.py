@@ -121,28 +121,45 @@ from time import ctime,sleep
 # driver.quit()
 
 '窗口切换'
+# driver=webdriver.Chrome()
+# driver.get('http://www.baidu.com')
+#
+# search_element=driver.find_element_by_link_text('贴吧')
+# search_element.send_keys(Keys.CONTROL,Keys.ENTER)
+# current_handle=driver.current_window_handle
+# print(driver.title)
+#
+# for handle in driver.window_handles:
+#     if handle!=current_handle:
+#         driver.switch_to.window(handle)
+#         driver.find_element_by_id('wd1').send_keys('海贼王')
+#         driver.find_element_by_link_text('进入贴吧').click()
+#         sleep(2)
+# print(driver.title)
+#
+# for handle in driver.window_handles:
+#     if handle==current_handle:
+#         driver.switch_to.window(current_handle)
+#         driver.find_element_by_id('kw').send_keys('Selenium2')
+#         driver.find_element_by_id('su').click()
+#         sleep(2)
+# print(driver.title)
+#
+# driver.quit()
+
+
+'警告窗口处理'
 driver=webdriver.Chrome()
 driver.get('http://www.baidu.com')
 
-search_element=driver.find_element_by_link_text('贴吧')
-search_element.send_keys(Keys.CONTROL,Keys.ENTER)
-current_handle=driver.current_window_handle
-print(driver.title)
-
-for handle in driver.window_handles:
-    if handle!=current_handle:
-        driver.switch_to.window(handle)
-        driver.find_element_by_id('wd1').send_keys('海贼王')
-        driver.find_element_by_link_text('进入贴吧').click()
-        sleep(2)
-print(driver.title)
-
-for handle in driver.window_handles:
-    if handle==current_handle:
-        driver.switch_to.window(current_handle)
-        driver.find_element_by_id('kw').send_keys('Selenium2')
-        driver.find_element_by_id('su').click()
-        sleep(2)
-print(driver.title)
+element=driver.find_element_by_link_text('设置')
+ActionChains(driver).move_to_element(element).perform()
+driver.find_element_by_link_text('搜索设置').click()
+sleep(3)
+driver.find_element_by_link_text('保存设置').click()
+sleep(2)
+print(driver.switch_to_alert().text)
+driver.switch_to_alert().accept()
 
 driver.quit()
+
