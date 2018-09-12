@@ -3,6 +3,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 import time
+import os
 from time import ctime,sleep
 
 'demo代码'
@@ -149,17 +150,36 @@ from time import ctime,sleep
 
 
 '警告窗口处理'
-driver=webdriver.Chrome()
-driver.get('http://www.baidu.com')
+# driver=webdriver.Chrome()
+# driver.get('http://www.baidu.com')
+#
+# element=driver.find_element_by_link_text('设置')
+# ActionChains(driver).move_to_element(element).perform()
+# driver.find_element_by_link_text('搜索设置').click()
+# sleep(3)
+# driver.find_element_by_link_text('保存设置').click()
+# sleep(2)
+# print(driver.switch_to_alert().text)
+# driver.switch_to_alert().accept()
+#
+# driver.find_element_by_id('kw').send_keys('selenium 教程')
+# driver.find_element_by_id('su').click()
+# sleep(2)
+# print(driver.title)
+#
+# driver.quit()
 
-element=driver.find_element_by_link_text('设置')
-ActionChains(driver).move_to_element(element).perform()
-driver.find_element_by_link_text('搜索设置').click()
-sleep(3)
-driver.find_element_by_link_text('保存设置').click()
-sleep(2)
-print(driver.switch_to_alert().text)
-driver.switch_to_alert().accept()
 
+'实现下载文件'
+cp=webdriver.ChromeOptions()
+prefs={'profile_default_content_popups':0,'download_default_directory':os.getcwd()}
+cp.add_experimental_option('prefs',prefs)
+
+driver=webdriver.Chrome(chrome_options=cp)
+driver.get('https://pypi.org/project/selenium/#files')
+
+
+driver.find_element_by_link_text('selenium-3.14.0.tar.gz').click()
+
+sleep(5)
 driver.quit()
-
