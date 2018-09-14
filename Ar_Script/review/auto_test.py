@@ -171,15 +171,38 @@ from time import ctime,sleep
 
 
 '实现下载文件'
-cp=webdriver.ChromeOptions()
-prefs={'profile_default_content_popups':0,'download_default_directory':os.getcwd()}
-cp.add_experimental_option('prefs',prefs)
+# cp=webdriver.ChromeOptions()
+# prefs={'profile_default_content_popups':0,'download_default_directory':os.getcwd()}
+# cp.add_experimental_option('prefs',prefs)
+#
+# driver=webdriver.Chrome(chrome_options=cp)
+# driver.get('https://pypi.org/project/selenium/#files')
+#
+#
+# driver.find_element_by_link_text('selenium-3.14.0.tar.gz').click()
+#
+# sleep(5)
+# driver.quit()
 
-driver=webdriver.Chrome(chrome_options=cp)
-driver.get('https://pypi.org/project/selenium/#files')
+'操作cookies'
+driver=webdriver.Chrome()
+driver.get('http://www.youdao.com')
 
+cookies=driver.get_cookies()
+for i in cookies:
+    print(i)
 
-driver.find_element_by_link_text('selenium-3.14.0.tar.gz').click()
+print()
+driver.add_cookie({'name':'test','value':'123456'})
 
-sleep(5)
+for i in driver.get_cookies():
+    print(i)
+print()
+driver.delete_cookie('test')
+
+for i in driver.get_cookies():
+    print(i)
+
 driver.quit()
+
+''
