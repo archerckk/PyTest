@@ -185,24 +185,37 @@ from time import ctime,sleep
 # driver.quit()
 
 '操作cookies'
+# driver=webdriver.Chrome()
+# driver.get('http://www.youdao.com')
+#
+# cookies=driver.get_cookies()
+# for i in cookies:
+#     print(i)
+#
+# print()
+# driver.add_cookie({'name':'test','value':'123456'})
+#
+# for i in driver.get_cookies():
+#     print(i)
+# print()
+# driver.delete_cookie('test')
+#
+# for i in driver.get_cookies():
+#     print(i)
+#
+# driver.quit()
+
+'调用公共模块'
+from Ar_Script.review.auto_test_account_info import Public
+from time import sleep
+
 driver=webdriver.Chrome()
-driver.get('http://www.youdao.com')
+driver.get('http://mail.qq.com')
+driver.refresh()
+driver.implicitly_wait(5)
 
-cookies=driver.get_cookies()
-for i in cookies:
-    print(i)
+public=Public()
 
-print()
-driver.add_cookie({'name':'test','value':'123456'})
-
-for i in driver.get_cookies():
-    print(i)
-print()
-driver.delete_cookie('test')
-
-for i in driver.get_cookies():
-    print(i)
-
-driver.quit()
-
-''
+public.login(driver)
+sleep(5)
+public.web_quit(driver)
