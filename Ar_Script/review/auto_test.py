@@ -5,6 +5,7 @@ from selenium.common.exceptions import NoSuchElementException
 import time
 import os
 from time import ctime,sleep
+import unittest
 
 'demo代码'
 # driver=webdriver.Chrome()
@@ -206,16 +207,71 @@ from time import ctime,sleep
 # driver.quit()
 
 '调用公共模块'
-from Ar_Script.review.auto_test_account_info import Public
-from time import sleep
+# from Ar_Script.review.auto_test_account_info import Public
+# from time import sleep
+#
+# driver=webdriver.Chrome()
+# driver.get('http://mail.qq.com')
+# driver.refresh()
+# driver.implicitly_wait(5)
+#
+# public=Public()
+#
+# public.login(driver)
+# sleep(5)
+# public.web_quit(driver)
 
-driver=webdriver.Chrome()
-driver.get('http://mail.qq.com')
-driver.refresh()
-driver.implicitly_wait(5)
+#
+# class Test_print(unittest.TestCase):
+#
+#     def setUp(self):
+#         print('开始')
+#
+#     def test_case1(self):
+#         a=10
+#         self.assertEqual(a,9,msg='数值错误,数值不为10')
+#
+#     def test_case2(self):
+#         a=11
+#         self.assertEqual(a,9,msg='数值错误,数值不为11')
+#
+#     def tearDown(self):
+#         print('结束')
+#
+# if __name__ == '__main__':
+#     # unittest.main()
+#     suite=unittest.TestSuite()
+#     suite.addTest(Test_print("test_case1"))
+#
+#     suite1=unittest.TestLoader.loadTestsFromTestCase(Test_print)
+#
+#     runner=unittest.TextTestRunner()
+#     runner.run(suite)
 
-public=Public()
 
-public.login(driver)
-sleep(5)
-public.web_quit(driver)
+class UCTestCase(unittest.TestCase):
+    def setUp(self):
+        # 测试前需执行的操作
+        print('start')
+
+    def tearDown(self):
+        # 测试用例执行完后所需执行的操作
+        print('end')
+
+    # 测试用例1
+    def testCreateFolder(self):
+        a = 12
+        self.assertEqual(a, 9, msg='数值错误,数值不为12')
+
+    def testDeleteFolder(self):
+        a = 11
+        self.assertEqual(a, 9, msg='数值错误,数值不为11')
+
+if __name__ == "__main__":
+    # 构造测试集
+    suit = unittest.TestSuite()
+    suit.addTest(UC7TestCase("testCreateFolder"))
+    # suite.addTest(UC7TestCase("testDeleteFolder"))
+    # 执行测试
+    runner = unittest.TextTestRunner()
+    runner.run(suit)
