@@ -15,7 +15,6 @@ class Login:
         self.data=csv.reader(open('resources/test_account.csv','r'))
 
 
-
     def account_login(self):
         for account in self.data:
             self.driver = webdriver.Chrome()
