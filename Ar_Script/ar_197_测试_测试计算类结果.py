@@ -8,11 +8,11 @@ class Test_Cal(unittest.TestCase):
 
     def test_add(self):
         test=Cal(2,3)
-        self.assertEqual(test.count(),5)
+        self.assertEqual(test.add(),5)
 
     def test_add2(self):
         test=Cal(11,11)
-        self.assertEqual(test.count(),22)
+        self.assertEqual(test.add(),22)
 
     def tearDown(self):
         print('test end')
