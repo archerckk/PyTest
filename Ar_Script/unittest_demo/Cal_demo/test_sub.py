@@ -5,10 +5,10 @@ import unittest
 
 class Testadd(unittest.TestCase):
     def setUp(self):
-        print('test add start')
+        print('test sub start')
 
     def tearDown(self):
-        print('test add end')
+        print('test sub end')
 
     def test_case1(self):
         count = cal.Cal(5, 6)
