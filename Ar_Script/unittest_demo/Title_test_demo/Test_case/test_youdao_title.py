@@ -3,15 +3,16 @@ from time import sleep
 import unittest
 from selenium.webdriver.common.keys import Keys
 
-class Test_baidu(unittest.TestCase):
-
+class Test_youdao(unittest.TestCase):
+    '测试有道是否能正常翻译'
     def setUp(self):
         self.driver=webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.base_url='http://www.youdao.com'
 
-    def test_baidu(self):
+    def test_youdao(self):
+        '翻译关键字【selenium】'
         driver=self.driver
         driver.get(self.base_url)
         driver.find_element_by_id('translateContent').clear()
