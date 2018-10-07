@@ -20,10 +20,12 @@ t2=threading.Thread(target=movie,args=('熊出没',2))
 threads.append(t2)
 
 if __name__ == '__main__':
+
+    '启动线程'
     for i in threads:
         i.start()
 
-    '启动进程'
+    '守护线程'
     for i in threads:
         i.join()
 
