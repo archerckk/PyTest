@@ -3,7 +3,7 @@ from .driver import browser
 import unittest
 import os
 
-class Mytest(unittest.TestCase):
+class MyTest(unittest.TestCase):
 
     def setUp(self):
         self.driver=browser()

@@ -32,7 +32,7 @@ def send_email(file):
     '发送邮件'
     smtp=smtplib.SMTP('smtp.sina.cn',25)
     smtp.login('archerbin@sina.cn','archer3203589')
-    smtp.sendmail('archerbin@sina.cn','501824353@qq.com',msg.as_string())
+    smtp.sendmail('archerbin@sina.cn','chenzhibin@gomo.com',msg.as_string())
     smtp.quit()
     print('邮件发送成功')
 
