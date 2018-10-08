@@ -14,7 +14,7 @@ class Page(object):
 
     def _open(self,url):
         self.url=self.base_url+url
-        self.driver.get(url)
+        self.driver.get(self.url)
 
     def open(self):
         self._open(self.login_url)
@@ -27,7 +27,7 @@ class Login_page(Page):
     url='/'
 
     user_loc=(By.NAME,'email')
-    password_loc=(By.CLASS_NAME,'j-inputtext dlpwd')
+    password_loc=(By.NAME,'password')
     submit_loc=(By.ID,'dologin')
 
 
@@ -60,11 +60,11 @@ def main():
     psw='a3203589'
 
     test_login(driver,user,psw)
-
+    sleep(5)
     text=driver.find_element_by_id('spnUid').text
     assert (text=='archerckk@126.com'),'用户名称不匹配，登陆失败！！'
 
     driver.quit()
-
+    print('登陆成功')
 
 main()
