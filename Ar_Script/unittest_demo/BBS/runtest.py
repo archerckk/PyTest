@@ -18,7 +18,7 @@ def send_email(report):
     mail_server='smtp.sina.cn'
     smtp=smtplib.SMTP(mail_server,25)
     smtp.login('archerbin@sina.cn','archer3203589')
-    smtp.sendmail('archerbin@sina.cn','chenzhibin@gomo.com',msg.as_string())
+    a=smtp.sendmail('archerbin@sina.cn','501824353@qq.com',msg.as_string())
     smtp.quit()
 
 
