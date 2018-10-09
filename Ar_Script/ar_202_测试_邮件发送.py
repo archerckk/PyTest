@@ -33,6 +33,6 @@ content['To'] = receiver_email
 '发送邮件'
 smtp=smtplib.SMTP(smtp_server,25)
 # smtp.connect(smtp_server)
-smtp.login(user_send,user_pwd)
-smtp.sendmail(sender_email,receiver_email,content.as_string())
+a=smtp.login(user_send,user_pwd)
+abc=smtp.sendmail(sender_email,receiver_email,content.as_string())
 smtp.quit()
