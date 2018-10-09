@@ -4,7 +4,7 @@ from .base import Page
 
 class Login(Page):
 
-    url='/'
+    url='/cgi-bin/loginpage'
 
     #网页元素定位loc
     # xpath写法"//div[@id='mzCust']/div/img"
@@ -41,5 +41,7 @@ class Login(Page):
         return self.find_element(*self.err_msg_loc).text
 
     def success_msg(self,username):
-        assert self.find_element(*self.success_msg_loc).text==username+'@qq.com'
+        find_text=self.find_element(*self.success_msg_loc).text
+        result_text=username+'@qq.com'
+        assert find_text==result_text
         return '登录成功'

@@ -9,7 +9,7 @@ class Page(object):
     页面打开检查
     调用JavaScript代码
     '''
-    bbs_url='http://mail.qq.com'
+    bbs_url='https://mail.qq.com'
 
     def __init__(self,selenium_driver,base_url=bbs_url,parent=None):
         self.base_url=base_url
@@ -20,12 +20,13 @@ class Page(object):
     def _open(self,url):
         self.url=self.base_url+url
         self.driver.get(self.url)
-        # assert self.on_page() ,'%s打开失败'%self.url
+        assert self.on_page() ,'【%s】打开失败'%self.url
 
     def open(self):
         return self._open(self.url)
 
     def on_page(self):
+        print(self.driver.current_url)
         return self.driver.current_url==(self.url)
 
     def find_element(self,*loc):
