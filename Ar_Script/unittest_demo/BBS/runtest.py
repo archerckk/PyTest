@@ -75,7 +75,7 @@ def new_report(file_path):
 
 if __name__ == '__main__':
     now = time.strftime("%Y_%m_%d_%H_%M_%S")
-    report_file = os.getcwd() + os.sep + 'report' + os.sep + now + 'result.html'
+    report_file = os.getcwd() + os.sep + 'report' + os.sep + now + '_result.html'
 
 
     file = open(report_file, 'wb')
