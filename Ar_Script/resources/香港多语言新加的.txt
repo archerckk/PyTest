@@ -1,0 +1,383 @@
+
+    <string name="private_upgrade_no">不了</string>
+    <string name="private_upgrade_yes">升級</string>
+    <string name="private_upgrade_upgrade_now">升級訂閱</string>
+    <string name="private_upgrade_tip_hide">隱藏私密信箱圖標</string>
+    <string name="private_upgrade_tip_fake">假通知</string>
+    <string name="private_upgrade_tip_add">添加無限的會話或聯繫人</string>
+    <string name="get_pwd_from_mailbox_input_tip_new">驗證碼已發到你的密保郵箱(%1$s)。請在下方輸入驗證碼以重置密碼。</string>
+    <string name="go_sms_cancel">由於產品業務需要，GO聊服務將於9月初下線，對此造成的不便，我們深感抱歉。</string>
+    <string name="anonymous_cancel">由於產品業務需要，匿名短訊功能將於9月初下線，對此造成的不便，我們深感抱歉。</string>
+    <string name="go_sms_shear">9月初下線</string>
+    <string name="anonymous_i_konw">我知道了</string>
+    <string name="purchase_vip">購買VIP</string>
+    <string name="purchase_vip_content">GO短訊將獲取您的Gmail賬號權限用於記錄您的購買信息！在此過程中我們已對賬號信息加密傳輸來確保您的賬號安全！
+    </string>
+    <string name="password_recovery">找回密碼</string>
+    <string name="password_recovery_content">
+        GO短訊將獲取您的Gmail賬號權限用於幫助您找回密碼！在此過程中我們已對賬號信息加密傳輸來確保您的賬號安全！
+    </string>
+    <string name="vip_recovery">找回VIP</string>
+    <string name="vip_recovery_content">GO短訊將獲取您的Gmail賬號權限用於查詢您的購買信息！在此過程中我們已對賬號信息加密傳輸來確保您的賬號安全！
+    </string>
+    <string name="disagree">Disagree</string>
+    <string name="agree">Agree</string>
+    <string name="sivp_trial_purchase_button">免費試用3天</string>
+    <string name="svip_limit_count_tip">非SVIP用戶僅能添加3條會話/3個聯繫人，升級到SVIP即可添加無限會話/聯繫人。</string>
+    <string name="svip_limit_count_cancel">不了</string>
+    <string name="svip_limit_count_confirm">升級</string>
+    <string name="sticker_list_item_pay_get">獲取</string>
+    <string name="discovery_item_info_flow_title">精彩小視頻</string>
+    <string name="discovery_item_info_flow_subtitle">海量好玩小視頻免費看</string>
+
+
+    <string name="menu_call_back">撥號給 %s</string>
+    <string name="send">發送</string>
+    <string name="cancel">取消</string>
+    <string name="delete">刪除</string>
+    <string name="loading_tips">載入中，請稍候。</string>
+    <string name="tip">小技巧</string>
+    <string name="hint">提示</string>
+    <string name="download">下載</string>
+    <string name="mms">MMS</string>
+    <string name="confirm">確認</string>
+    <string name="confirm_todo">確認</string>
+    <string name="save">儲存</string>
+    <string name="get_it">了解</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="word_sure">當然</string>
+    <string name="word_hascancel">已取消</string>
+    <string name="get">獲得</string>
+    <string name="symbol_splite">,</string>
+    <string name="mycenter_supervip">超級VIP</string>
+    <string name="slide_edit_add_slide">新增分頁</string>
+    <string name="writesms_anonymous">匿名</string>
+    <string name="group">群組</string>
+    <string name="send_by_sim1">SIM1</string>
+    <string name="send_by_sim2">SIM2</string>
+    <string name="sim1">SIM1</string>
+    <string name="sim2">SIM2</string>
+    <string name="diagnosis_mms_need_data_open">請開啟行動上網服務以發送MMS。</string>
+    <string name="type_file">檔案</string>
+    <string name="messagebox_new_theme_update_title">有新主題或已更新主題，點此看細節。
+    </string>
+    <string name="logining">登入中……</string>
+    <string name="webbr_prepare_restore_new">準備恢復中：%1$s</string>
+    <string name="goshare_type_image_buy_tip_msg">要發送的圖片超過10M。您可以免費壓縮，發送一張較低畫質的圖片。或者您可以購買進階服務，就能發送20M以內的原始檔。
+    </string>
+    <string name="goshare_type_file_buy_tip_msg">要發送的檔案超過10M。購買進階服務就能取消原有檔案大小限制，發送大至20M的檔案。
+    </string>
+    <string name="goshare_type_image_rebuy_tip_msg">本進階服務可用的大圖片檔數量為0，請重新購買。
+    </string>
+    <string name="goshare_type_file_rebuy_tip_msg">本進階服務可用的大檔案數量為0，請重新購買。
+    </string>
+    <string name="goshare_send_via_text">發送自</string>
+    <string name="goshare_file_text">夾帶檔案</string>
+    <string name="goshare_photo_text">照片</string>
+    <string name="goshare_video_text">影片</string>
+    <string name="goshare_location_text">地點</string>
+    <string name="goshare_cost_text">花費</string>
+    <string name="goshare_send_via_mms">MMS</string>
+    <string name="goshare_send_via_bigmms">大MMS</string>
+    <string name="goshare_compression">壓縮</string>
+    <string name="goshare_hd">HD</string>
+    <string name="goshare_mms_size">&lt;300KB</string>
+    <string name="goshare_bigmms_size">&lt;100MB</string>
+    <string name="goshare_bigmms_size_pro">&lt;20MB</string>
+    <string name="goshare_mms_type">1次壓縮</string>
+    <string name="goshare_bigmms_type">8張全HD</string>
+    <string name="goshare_notsupport">不支援</string>
+    <string name="goshare_support">支援</string>
+    <string name="goshare_mms_cost">1個MMS</string>
+    <string name="goshare_bigmms_cost">1個SMS</string>
+    <string name="goshare_tips_activity_title">大MMS技巧</string>
+    <string name="goshare_purchase">現在升級</string>
+
+    <string name="please_input_contact">請先加入聯絡人。</string>
+    <string name="goteamswitch_name">訊息設定</string>
+    <string name="word_receive">接收</string>
+    <string name="today">今天</string>
+    <string name="msgcenter_dialog_wait_msg">更新中，請稍候……</string>
+    <string name="message_center_nomsg">沒有未讀訊息。</string>
+    <string name="gosms_about_adchoise">ADchoice</string>
+    <string name="testmode_manage_dailog_title">測試模式</string>
+    <string name="using_language">套用語言包</string>
+    <string name="pref_title_services_category">服務</string>
+    <string name="key_max_count">key_max_count</string>
+    <string name="anonymous_sms_activate_gochat_tip">小技巧</string>
+    <string name="anonymous_sms_activate_gochat_text">需要啟用go聊天。您要現在啟用嗎？
+    </string>
+    <string name="anonymous_sms_activate_gochat_activate">啟用</string>
+    <string name="anonymous_sms_activate_gochat_cancel">取消</string>
+    <string name="anonymous_sms_send_multiple">無法發送匿名SMS給多位收件人。
+    </string>
+    <string name="theme3_mine_bottom_diy">DIY</string>
+    <string name="iap_vip_title">功能加強版</string>
+    <string name="iap_vip_detail">關掉所有廣告。</string>
+    <string name="iap_svip_title">主題VIP+功能加強版</string>
+    <string name="iap_svip_detail">關掉所有廣告，免費獲得所有付費主題。</string>
+    <string name="delete_diy_font">刪除此字體？</string>
+    <string name="iap_interstitial_svip_title">超級VIP</string>
+    <string name="notify_gift_zcamera_install">獲得主題，馬上下載！</string>
+    <string name="notify_gift_zcamera_active">獲得主題，點擊馬上套用！</string>
+    <string name="weather_folder_contactname">天氣先生</string>
+    <string name="action_settings">設定</string>
+    <string name="iap_inteinstitial_pay_to_get">付款</string>
+    <string name="mycenter_restore_vip">VIP還原服務</string>
+    <string name="mycenter_restore_btn_cancel">取消</string>
+    <string name="mycenter_restore_btn_restore">開始</string>
+    <string name="mycenter_restore_btn_feedback">意見</string>
+    <string name="mycenter_restore_btn_ok">OK</string>
+    <string name="mycenter_restore_service_function">功能加強版</string>
+    <string name="mycenter_restore_service_theme">主題VIP</string>
+    <string name="mycenter_restore_service_super">超級VIP</string>
+    <string name="mycenter_restore_start_1">此功能是給遺失VIP功能的VIP客戶使用。
+    </string>
+    <string name="mycenter_restore_start_2">更正帳戶：%1$s，如果這不是您的購買帳戶，請進入系統介面更正帳戶序號或聯絡我們。
+    </string>
+    <string name="mycenter_restore_nogmail_title">找不到您的Gmail帳戶</string>
+    <string name="mycenter_restore_nogmail_content">GO SMS偵測不到VIP服務，因為您的Gmail帳戶尚未設定完成。如果您已經設定了，請透過「Feedback」聯絡我們。
+    </string>
+    <string name="mycenter_restore_nonetwork_title">網路連線錯誤</string>
+    <string name="mycenter_restore_nonetwork_content">GO SMS無法進行還原，因為您的手機並未連接到網路。
+    </string>
+    <string name="mycenter_restore_processing_content">正在提交購買資訊問題至 Google Play。還原會花費約30秒。請稍候……
+    </string>
+    <string name="mycenter_restore_success_title">還原成功！</string>
+    <string name="mycenter_restore_success_content">您的帳戶%1$s已經還原：\\n%2$s\\n\\n 謝謝您支持GO SMS！
+    </string>
+    <string name="mycenter_restore_failed_title">還原失敗！</string>
+    <string name="mycenter_restore_failed_content">無法為%1$s還原VIP服務。\\n\\n請再多試個3-4次。如果還是無法還原，請將您的問題告訴GO SMS。
+    </string>
+    <string name="mycenter_restore_feedback_nogmail">無Gmail</string>
+    <string name="mycenter_restore_feedback_nogmail_content">找不到Gmail以進行VIP還原
+    </string>
+    <string name="mycenter_restore_feedback_failed">VIP還原失敗</string>
+    <string name="bind_mobile_slogan">免費去GO Chat聊聊</string>
+    <string name="bind_mobile_message">若啟用Go Chat，您就可以完全免費跟好友聊天。
+    </string>
+    <string name="iap_purchase_month_tips1">1個月</string>
+    <string name="iap_purchase_forver_tips">購買一次</string>
+    <string name="iap_purchase_forver_tips1">終身享有</string>
+    <string name="iap_purchase_month_tips2">新用戶限定</string>
+    <string name="iap_purchase_year_tips">訂越久越划算</string>
+    <string name="iap_purchase_year_tips1">12個月</string>
+    <string name="theme3_promotion_select">選取</string>
+    <string name="theme3_promotion_selected">已選取</string>
+    <string name="iap_theme_store_notify_title">好消息！</string>
+    <string name="iap_theme_store_notify_content">主題商店有新貨！</string>
+    <string name="diy_search_page_title">DIY主題</string>
+    <string name="diy_search_start">掃描</string>
+    <string name="diy_search_stop">停止</string>
+    <string name="purchase_combo_level1_free">免費獲得</string>
+    <string name="myprofile_title">設定檔</string>
+    <string name="main_resource_top_theme">最高排名主題</string>
+    <string name="main_resource_hot_theme">熱門主題</string>
+    <string name="main_resource_new_theme">最新主題</string>
+    <string name="main_resource_emoji">表情</string>
+    <string name="vip_label">VIP</string>
+    <string name="like_fb_button_text">幫我們按讚</string>
+    <string name="conv_list_no_item_selected">沒有選取任何項目</string>
+    <string name="congrats">恭喜！</string>
+    <string name="got_discount_vip">您獲得VIP六折優惠！</string>
+    <string name="got_filter">您獲得一個免費主題。</string>
+    <string name="got_card">您免費獲得一張Google Play禮物卡。</string>
+    <string name="gift_card_help">若您有任何問題，請透過Facebook聯繫我們。</string>
+    <string name="save_to_album">儲存至相簿</string>
+    <string name="discard">丟棄</string>
+    <string name="use_it_now">現在使用</string>
+    <string name="get_nothing">謝謝您的使用。請再試一次。</string>
+    <string name="image_edit_save_success">儲存成功。</string>
+    <string name="image_edit_save_fail">儲存失敗。請檢查您的SD記憶卡。</string>
+    <string name="discovery_item_game_title">遊戲</string>
+    <string name="svip_subs_main_page_title">超級VIP</string>
+    <string name="svip_promotion_keep_title">真的想要結束免費試用版嗎？</string>
+    <string name="svip_promotion_keep_content">以下的SVIP功能現正免費試用中。您可以隨時取消。
+    </string>
+    <string name="svip_promotion_keep_free_now">馬上免費試用</string>
+    <string name="svip_promotion_keep_later">稍候</string>
+    <string name="svip_promotion_keep_no_ads">無廣告</string>
+    <string name="svip_promotion_keep_theme">所有主題免費</string>
+    <string name="svip_promotion_keep_emoji">Emoji all free</string>
+    <string name="svip_promotion_keep_private_box">優質私密信箱</string>
+    <string name="svip_b_free_now">馬上免費試用</string>
+    <string name="svip_b_free_trial_tip">三天試用後只要美金4.99/月，為期12個月。
+        隨時取消
+    </string>
+    <string name="svip_subs_time_limit_month_label">/ 月</string>
+    <string name="svip_subs_no_market_found">裝置上無法使用帳單服務。</string>
+    <string name="svip_subs_buy_discount_title">雙重摺扣。\\n年度最低價。</string>
+    <string name="svip_time_limit_notify_title">SVIP折扣，最後機會！</string>
+    <string name="svip_time_limit_notify_content">最後一個小時四折優惠！</string>
+    <string name="svip_subs_purchased">已購買</string>
+    <string name="svip_subs_countdonw_left_days">天</string>
+    <string name="contact_group_family">家庭</string>
+    <string name="contact_group_colleague">同事</string>
+    <string name="contact_group_friend">朋友</string>
+    <string name="pref_middle_showmode_entries_all">顯示所有訊息</string>
+    <string name="pref_middle_showmode_entries_unread">顯示未讀訊息</string>
+    <string name="white">白色</string>
+    <string name="black">黑色</string>
+    <string name="first_upper_default">預設值</string>
+    <string name="first_upper_blue">藍色</string>
+    <string name="first_upper_green">綠色</string>
+    <string name="first_upper_red">紅色</string>
+    <string name="first_upper_yellow">黃色</string>
+    <string name="first_upper_magenta">藍色</string>
+    <string name="first_upper_cyan">藍綠色</string>
+    <string name="first_upper_custom">自訂</string>
+    <string name="first_upper_disabled">停用</string>
+    <string name="first_upper_small">小</string>
+    <string name="first_upper_normal">一般</string>
+    <string name="first_upper_large">大</string>
+    <string name="first_upper_huge">超大</string>
+    <string name="first_upper_copy">複製</string>
+    <string name="first_upper_call">撥號</string>
+    <string name="first_upper_forward">轉寄</string>
+    <string name="first_upper_reply">回覆</string>
+    <string name="first_upper_remove">移除</string>
+    <string name="pref_entries_vibrate_mode_always">總是</string>
+    <string name="pref_entries_vibrate_mode_only_set_vibrate">只在手機設定為震動時
+    </string>
+    <string name="pref_entries_vibrate_mode_never">永不</string>
+    <string name="pref_entries_mms_behavior_system">系統</string>
+    <string name="pref_entries_mms_behavior_legacy">舊的</string>
+    <string name="tags_maxinum_number_array_all">所有</string>
+    <string name="number_quick_operations_send_msg">發送訊息</string>
+    <string name="number_quick_operations_add_new_contact">新增聯絡人</string>
+    <string name="number_quick_operations_add_exist_contact">加到聯絡人</string>
+    <string name="add_avatar_menu_use_photo">使用現有照片</string>
+    <string name="add_avatar_menu_take_photo">拍攝新照片</string>
+    <string name="find_pwd_operation_by_mailbox">由信箱恢復</string>
+    <string name="find_pwd_operation_by_sec_question">由安全提問恢復</string>
+    <string name="find_pwd_operation_by_waiting">等待以恢復</string>
+    <string name="backup_change_goid_actions_change_pwd">更改密碼</string>
+    <string name="backup_change_goid_actions_logout">登出</string>
+    <string name="add_to_contactlist_actions_from_convlist">從對話清單選擇</string>
+    <string name="add_to_contactlist_actions_from_contacts">從聯絡人選擇</string>
+    <string name="add_to_contactlist_actions_input_number">直接加入電話號碼</string>
+    <string name="add_to_contactlist_actions_add_prefix">加入號碼稱謂</string>
+    <string name="lock_type_entries_immediately">立刻上鎖</string>
+    <string name="lock_type_entries_three_min_later">3分鐘後</string>
+    <string name="lock_type_entries_five_min_later">5分鐘後</string>
+    <string name="lock_type_entries_ten_min_later">10分鐘後</string>
+    <string name="lock_type_entries_dont_lock">「不要上鎖」</string>
+    <string name="mms_size_limit_tow_mega">2M（僅4G網路）</string>
+    <string name="mms_size_limit_five_mega">5M（僅4G網路）</string>
+    <string name="vibrate_pattern_entries_normal">一般（單次）</string>
+    <string name="vibrate_pattern_entries_short">短震動</string>
+    <string name="vibrate_pattern_entries_long">長震動</string>
+    <string name="vibrate_pattern_entries_multiple_short">多次短震動</string>
+    <string name="vibrate_pattern_entries_multiple_long">多次長震動</string>
+    <string name="pref_title_enable_chargelock">充電時螢幕顯示</string>
+    <string name="pref_summary_enable_chargelock">充電時螢幕顯示廣告</string>
+    <string name="svip_subs_freeget_dialog_tips">用金幣免費獲得SVIP</string>
+    <string name="svip_subs_expired_dialog_tips1">VIP</string>
+    <string name="svip_subs_expired_dialog_tips2">已過期</string>
+    <string name="svip_subs_expired_dialog_descript">您的SVIP已過期，您要續訂並繼續使用嗎？
+    </string>
+    <string name="svip_subs_expired_dialog_renew">續訂</string>
+    <string name="permission_alert_window_rationale">需要警告視窗權限以顯示電話號碼辨識結果。
+    </string>
+    <string name="recommend_title">特色內容</string>
+    <string name="recommend_turn_off">關閉</string>
+    <string name="recommend_off_dailog_title">小技巧</string>
+    <string name="recommend_off_dailog_content">您會停止收到特色內容。您確定嗎？
+    </string>
+    <string name="recommend_off_dailog_confirm">確認</string>
+    <string name="recommend_off_dailog_cancel">取消</string>
+    <string name="recommend_default_ad_description">一個現正流行的應用程式要推薦給您</string>
+    <string name="recommend_folder_contactname">每日特色內容</string>
+    <string name="search_hit_svip">SVIP半價優惠</string>
+    <string name="search_hit_christmas">聖誕節主題</string>
+    <string name="search_hit_hottheme">熱門主題</string>
+    <string name="guide_enjoy">嘿！喜歡使用GO SMS嗎？</string>
+    <string name="guide_enjoy_not">不喜歡</string>
+    <string name="guide_enjoy_yes">喜歡</string>
+    <string name="guide_rate_content">您介意幫我們打個分數嗎？</string>
+    <string name="guide_rate_no">不要，謝謝。</string>
+    <string name="guide_rate_ok">好哇，沒問題。</string>
+    <string name="startpage_ad_sign">贊助</string>
+    <string name="startpage_ad_close">跳過</string>
+    <string name="startpage_ad_center">歡迎回來</string>
+    <string name="chargelocker_tips_title">充電也可以很有趣！</string>
+    <string name="chargelocker_tips_content_1">清理手機上的空間。\\n經典遊戲免費玩。
+    </string>
+    <string name="chargelocker_tips_content_2">*充電時螢幕上會顯示廣告。</string>
+    <string name="chargelocker_tips_confirm">現在啟用</string>
+    <string name="set_default_sms">將GO SMS設定為預設簡訊</string>
+    <string name="download_success_tip">恭喜！下載完成。</string>
+    <string name="theme_apply_success">套用成功</string>
+    <string name="recommend_activity_title">向您推薦</string>
+    <string name="image_file_select">相簿</string>
+
+    <string name="discovery_item_realis_title">真的</string>
+    <string name="discovery_item_realis_subtitle">收到朋友寄來的匿名訊息！</string>
+    <string name="left_navigator_title_gomail">GO Mail</string>
+    <string name="left_navigator_title_iar">將照片變成藝術品</string>
+    <string name="pref_title_enable_baidu_weather">氣象預報</string>
+    <string name="pref_title_enable_baidu_caller">電話號碼辨識</string>
+    <string name="pref_summary_enable_baidu_weather">螢幕上會顯示廣告。</string>
+    <string name="first_tip_title">這是您第一次使用Dropbox備份插件，請閱讀以下說明：
+    </string>
+    <string name="first_tip_message">1.請點選「同意」按鈕登入Dropbox並完成授權。\\n2.GO SMS Pro將在Dropbox建立一個備份專用資料夾，並擁有讀寫權限。\\n3.GO SMS Pro將完全遵守Dropbox %1$s，保護您訊息的完整性及隱私。
+    </string>
+    <string name="tip_createfolder">授權成功，GO SMS Pro將會在Dropbox根目錄底下建立一個備份專用資料夾。
+    </string>
+    <string name="user_private_article">使用者隱私及條款</string>
+    <string name="tip_authn_failed">授權失敗，請重試。</string>
+    <string name="tip_create_brfolder_success">備份專用資料夾建立成功！</string>
+    <string name="start_backup">開始備份</string>
+    <string name="tip_create_brfolder_failed">備份專用資料夾建立失敗，請重試。
+    </string>
+    <string name="tip_create_brfolder">正在建立備份專用資料夾……</string>
+    <string name="dropbox_progress">Dropbox進行中……</string>
+    <string name="tip_updropbox_success">上傳成功！</string>
+    <string name="tip_downdropbox_success">下載檔案成功！</string>
+    <string name="tip_downdropbox_failed">下載檔案失敗！</string>
+    <string name="backup_main_dropbox">Dropbox</string>
+    <string name="backup_main_googledrive">Google Driver</string>
+    <string name="backup_main_local">本地</string>
+    <string name="backup_scheduled_backup">已排定備份</string>
+    <string name="backup_login_fail">登入失敗</string>
+    <string name="backup_every_week">每週</string>
+    <string name="backup_every_month">每月</string>
+    <string name="backup_every_week_tip">在每星期一24:00備份。</string>
+    <string name="backup_every_month_tip">在每個月的第一個星期一24:00備份。</string>
+    <string name="backup_loading_num">訊息</string>
+    <string name="backup_loading_tip">備份中……</string>
+    <string name="restore_loading_tip">恢復中……</string>
+    <string name="restore_loading_text">手機正在恢復時，請不要重開機或關機。
+    </string>
+    <string name="backup_loading_text">手機正在備份時，請不要重開機或關機。
+    </string>
+    <string name="backup_loading_success">備份成功</string>
+    <string name="restore_loading_success">恢復成功</string>
+    <string name="backup_scheduled_tab_title">已排定</string>
+    <string name="fb_ad_choice">贊助</string>
+    <string name="tip_uninstall_dropbox">請解除安裝一個Dropbox插件以支援備份資料至Dropbox。
+    </string>
+    <string name="compose_bottom_ad_default_txt">升級至VIP以去除廣告，免費使用所有主題。
+    </string>
+    <string name="compose_bottom_ad_i">$</string>
+    <string name="compose_bottom_ad_one">1</string>
+    <string name="compose_bottom_ad_n">99</string>
+    <string name="compose_bottom_ad_mo">/ 月</string>
+
+    <string name="yearly_subscription_title">12個月只要\\n %s/ 月</string>
+    <string name="season_subscription_title">3個月只要\\n %s/ 月</string>
+    <string name="monthly_subscription_title">1個月只要\\n %s/ 月</string>
+    <string name="yearly_subscription_title_b">%s/ 月</string>
+    <string name="yearly_subscription_title_c">12個月\\n %s/ 月</string>
+    <string name="monthly_subscription_title_c">1個月\\n %s/ 月</string>
+    <string name="vip_free_trial">免費3天試用</string>
+    <string name="vip_ab_continue">繼續</string>
+    <string name="vip_free_date_tip">*試用期結束時自動續訂。您的帳戶會被收取續訂費用。您可以隨時在Google Play管理訂閱。
+    </string>
+    <string name="purchase_dialog_content">升級至SVIP，享受所有主題&#160;貼紙&#160;字體
+    </string>
+    <string name="channel_name_push">新訊息</string>
+    <string name="channel_name_crash">錯誤通知</string>
+    <string name="channel_name_recomment">相片編輯器加強版推薦</string>
+    <string name="channel_name_takephoto">照相</string>
