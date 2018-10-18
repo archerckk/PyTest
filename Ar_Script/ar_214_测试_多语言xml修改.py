@@ -18,12 +18,14 @@ for i in root:
 
 str_xml = open('resources/台湾多语言新加的.txt', 'r', encoding='GBK')
 
-with open('resources/new_target2.txt', 'w', encoding='GBK')as f:
+with open('resources/new_target3.txt', 'w', encoding='GBK')as f:
     for i in str_xml:
         a = i.partition('name="')
         b = a[2].partition('"')
-        if b[0] not in attr_list:
+        if b[0] not in attr_list and 'anonymous'not in b[0] and 'goshare'not in b[0] and 'svip_subs'not in b[0]\
+                and 'iap_purchase'not in b[0] and 'got'not in b[0]:
             f.write(i)
+
 
 # for i in target_file.findall('string'):
 #     if i.attrib['name'] in attr_list:
