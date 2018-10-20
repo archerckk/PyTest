@@ -5,7 +5,9 @@ from xml.etree import ElementTree as et
 # target_file=et.parse('resources/香港多语言新加的.xml')
 # target_root=et.XML(str_xml)
 # target_root=target_file.getroot()
+'读取xml文件'
 xml_file = et.parse('resources/gosms.xml')
+'建立跟标签'
 root = xml_file.getroot()
 attr_list = []
 # count=0
