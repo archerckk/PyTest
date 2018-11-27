@@ -11,7 +11,9 @@
     <input name="password" type="password" placeholder="password"><br>
     {{error}}<br>
     <button id="btn" type="submit">登陆</button>
+    <!--解决Django CSRF mechanism错误-->
     {% csrf_token %}
+
 </form>
 
 </body>
