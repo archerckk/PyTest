@@ -14,7 +14,7 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
-
+#嘉宾表
 class Guest(models.Model):
     event = models.ForeignKey(Event)                    #关联发布会ID
     realname =models.CharField(max_length=64)           #姓名
