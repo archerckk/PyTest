@@ -1,7 +1,7 @@
 from appium import webdriver
 from time import sleep
 from appium.webdriver.common.touch_action import TouchAction
-from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.common.keys import Keys
 import unittest
 
 
@@ -26,6 +26,7 @@ class SearchTest(unittest.TestCase):
         # 搜索框
         search_src_text = driver.find_element_by_id("com.cnblogs.xamarinandroid:id/search_src_text")
         search_src_text.click()
+        sleep(1)
         # 输入搜索关键字“appium”
         driver.keyevent(29)  # a
         driver.keyevent(44)  # p
