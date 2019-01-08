@@ -29,7 +29,7 @@ class SearchTest(unittest.TestCase):
         driver=self.driver
 
         img_folder=os.curdir+os.sep+'result'
-        cur_time=time.strftime('%Y_%m_%d_%H_%m',time.localtime())
+        cur_time=time.strftime('%Y_%m_%d_%H_%M_%S',time.localtime())
         screen_shot=img_folder+os.sep+cur_time+'_'+'拼图截图保存.png'
 
 
@@ -74,6 +74,8 @@ class SearchTest(unittest.TestCase):
 
         if 'Save to album' not in driver.page_source:
             assert print('拼图保存失败')
+        else:
+            print('测试通过，正确保存拼图')
 
         '保存截图'
         driver.save_screenshot(screen_shot)
@@ -104,6 +106,16 @@ class SearchTest(unittest.TestCase):
             sleep(3)
         else:
             assert print('bug,滑动到底部还有拍照按钮显示')
+
+    def test_case3(self):
+        driver=self.driver
+        sleep(3)
+        driver.press_keycode(3)
+        # sleep(2)
+        # driver.start_activity('com.picstudio.photoeditorplus','com.picstudio.photoeditorplus.camera.MainActivity')
+        # # driver.press_keycode(82)
+        # sleep(3)
+
 
     def tearDown(self):
         self.driver.quit()
