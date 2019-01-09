@@ -10,9 +10,9 @@ class SearchTest(unittest.TestCase):
     def setUp(self):
         desired_caps = {}
         desired_caps['automationName'] = 'Appium'
-        desired_caps['deviceName'] = '68cac4b1'
+        desired_caps['deviceName'] = '5LM0215C28005216'
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '4.4.4'
+        desired_caps['platformVersion'] = '7.0'
         desired_caps['noReset'] = True
         desired_caps["appPackage"] = "com.picstudio.photoeditorplus"
         desired_caps["appActivity"] = "com.picstudio.photoeditorplus.camera.MainActivity"
@@ -21,13 +21,12 @@ class SearchTest(unittest.TestCase):
         sleep(5)
 
         '按4下返回键退出订阅页'
-        for i in range(4):
-            self.driver.press_keycode(4)
-            sleep(1)
+        # for i in range(4):
+        #     self.driver.press_keycode(4)
+        #     sleep(1)
 
     def test_case(self):
         driver=self.driver
-
         img_folder=os.curdir+os.sep+'result'
         cur_time=time.strftime('%Y_%m_%d_%H_%M_%S',time.localtime())
         screen_shot=img_folder+os.sep+cur_time+'_'+'拼图截图保存.png'
@@ -37,7 +36,7 @@ class SearchTest(unittest.TestCase):
         #     driver.press_keycode(4)
         #     sleep(1)
         '点击主页collage icon'
-        collage=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/tc'][@text='Collage']")
+        collage=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/tc'][@text='COLLAGE']")
         collage.click()
 
         '处理进入相册的全屏广告'
@@ -93,28 +92,31 @@ class SearchTest(unittest.TestCase):
             y1=int(y*0.75)
             y2=int(y*0.25)
             t=100
+
             driver.swipe(x1,y1,x1,y2,t)
+            sleep(0.1)
 
         '测试代码'
-        # x1=int(x*0.5)
-        # y1=int(y*0.25)
-        # y2=int(y*0.75)
-        # driver.swipe(x1, y1, x1, y2, t)
-
+        x1=int(x*0.5)
+        y1=int(y*0.25)
+        y2=int(y*0.75)
+        driver.swipe(x1, y1, x1, y2, t)
+        sleep(2)
         if 'android.widget.ImageButton' not in driver.page_source:
             print('测试通过，滑动到底部并且没有拍照按钮展示')
             sleep(3)
         else:
+
             assert print('bug,滑动到底部还有拍照按钮显示')
 
-    def test_case3(self):
-        driver=self.driver
-        sleep(3)
-        driver.press_keycode(3)
-        # sleep(2)
-        # driver.start_activity('com.picstudio.photoeditorplus','com.picstudio.photoeditorplus.camera.MainActivity')
-        # # driver.press_keycode(82)
-        # sleep(3)
+    # def test_case3(self):
+        # driver=self.driver
+        # cut=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/tc']")
+
+
+
+
+
 
 
     def tearDown(self):
