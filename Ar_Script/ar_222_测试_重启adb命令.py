@@ -13,4 +13,4 @@ while a:
         print(os.popen('adb devices').readlines())
         a=False
     else:
-        print('List of devices attached')
+        print(b)

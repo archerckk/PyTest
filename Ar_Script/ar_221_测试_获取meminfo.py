@@ -1,5 +1,6 @@
 import os
 
+'需要手机调试模式成功，并且目标程序已经运行'
 
 command="adb shell dumpsys meminfo com.picstudio.photoeditorplus"
 
