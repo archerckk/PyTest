@@ -5,14 +5,15 @@ import unittest
 import os
 import time
 
+
 class SearchTest(unittest.TestCase):
 
     def setUp(self):
         desired_caps = {}
         desired_caps['automationName'] = 'Appium'
-        desired_caps['deviceName'] = '5LM0215C28005216'
+        desired_caps['deviceName'] = '98891936513437444f'
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '7.0'
+        desired_caps['platformVersion'] = '8.0'
         desired_caps['noReset'] = True
         desired_caps["appPackage"] = "com.picstudio.photoeditorplus"
         desired_caps["appActivity"] = "com.picstudio.photoeditorplus.camera.MainActivity"
@@ -21,7 +22,7 @@ class SearchTest(unittest.TestCase):
         sleep(5)
 
         '按4下返回键退出订阅页'
-        # for i in range(4):
+        # for i in range(2):
         #     self.driver.press_keycode(4)
         #     sleep(1)
 
@@ -46,9 +47,6 @@ class SearchTest(unittest.TestCase):
             driver.press_keycode(4)
 
         '在相册选择同一张照片3张'
-        for i in range(3):
-            driver.tap([(716,1513),])
-            sleep(1)
 
         pic_out=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/a4h'][@text='Start']/../..")
         pic_frame=pic_out.find_element_by_class_name('android.widget.FrameLayout')
@@ -84,9 +82,13 @@ class SearchTest(unittest.TestCase):
         '切换到拼图tab'
         change=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/f3'][@index=2][@class='android.widget.ImageView']")
         change.click()
-        sleep(2)
+        sleep(0.5)
         '保存图片'
-        confirm=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/gc'][@index=2]")
+        # out_side_change=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/f3'][@index=2]/..")
+        #
+        # confirm=out_side_change.find_element_by_xpath("//*[@class='android.widget.ImageView'][4]")
+
+        confirm=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/gc']")
         confirm.click()
         sleep(5)
         '按返回键关闭广告'
