@@ -49,42 +49,63 @@ class SearchTest(unittest.TestCase):
         for i in range(3):
             driver.tap([(716,1513),])
             sleep(1)
-        pic_out=driver.find_element_by_xpath("//*[resource-id='com.picstudio.photoeditorplus:id/sm'][@index=0][class='android.widget.ListView']")
-        for i in pic_out:
-            print(i)
+
+        pic_out=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/a4h'][@text='Start']/../..")
+        pic_frame=pic_out.find_element_by_class_name('android.widget.FrameLayout')
+        pic_tmp=pic_frame.find_element_by_class_name('android.widget.RelativeLayout')
+        pic_list=pic_tmp.find_element_by_class_name('android.widget.ListView')
+        pic_list_position=pic_list.rect
+
+        origin_album=pic_list.find_element_by_xpath("//*[@class='android.widget.LinearLayout'][@index=0]")
+        origin_album_position=origin_album.rect
+        print(origin_album_position)
+
+        origin_pic=pic_list.find_element_by_xpath("//*[@class='android.widget.LinearLayout'][@index=1]")
+        origin_pic_position=origin_pic.rect
+        print(origin_pic_position)
+        origin_pic_x=(origin_pic_position['width']-18)/3/2
+
+        origin_pic_y=(origin_pic_position['y']+(origin_pic_position['height']/2))
+
+        target_x=origin_pic_x+((origin_pic_position['width']-18)/3)*1
+        target_y=origin_pic_y+origin_pic_position['height']*0
 
 
+        print(target_x,target_y)
+        for i in range(3):
+            driver.tap([(target_x,target_y)])
+            sleep(0.5)
 
-        # '点击开始拼图'
-        # start=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/a4h'][@text='Start']")
-        # start.click()
-        # sleep(3)
-        #
-        # '切换到拼图tab'
-        # change=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/f3'][@index=2][@class='android.widget.ImageView']")
-        # change.click()
-        # sleep(2)
-        # '保存图片'
-        # confirm=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/gc'][@index=2]")
-        # confirm.click()
-        # sleep(5)
-        # '按返回键关闭广告'
-        # if 'android.webkit.WebView' in driver.page_source:
-        #     driver.press_keycode(4)
-        #     sleep(2)
-        #
-        # if 'Not Really'in driver.page_source:
-        #     driver.press_keycode(4)
-        #     sleep(2)
-        #
-        # if 'Save to album' not in driver.page_source:
-        #     assert print('拼图保存失败')
-        # else:
-        #     print('测试通过，正确保存拼图')
-        #
-        # '保存截图'
-        # driver.save_screenshot(screen_shot)
-        # sleep(3)
+        '点击开始拼图'
+        start=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/a4h'][@text='Start']")
+        start.click()
+        sleep(3)
+
+        '切换到拼图tab'
+        change=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/f3'][@index=2][@class='android.widget.ImageView']")
+        change.click()
+        sleep(2)
+        '保存图片'
+        confirm=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/gc'][@index=2]")
+        confirm.click()
+        sleep(5)
+        '按返回键关闭广告'
+        if 'android.webkit.WebView' in driver.page_source:
+            driver.press_keycode(4)
+            sleep(2)
+
+        if 'Not Really'in driver.page_source:
+            driver.press_keycode(4)
+            sleep(2)
+
+        if 'Save to album' not in driver.page_source:
+            assert print('拼图保存失败')
+        else:
+            print('测试通过，正确保存拼图')
+
+        '保存截图'
+        driver.save_screenshot(screen_shot)
+        sleep(3)
 
     # def test_case2(self):
     #     driver=self.driver
