@@ -20,7 +20,7 @@ class Juxing:
     def getArea(self):
         return  (self.length*self.weight)
 
-juxing=Juxing()
-juxing.getOption()
-juxing.setOption()
-print(juxing.getArea())
+# juxing=Juxing()
+# juxing.getOption()
+# juxing.setOption()
+# print(juxing.getArea())

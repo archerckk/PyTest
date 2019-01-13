@@ -29,8 +29,8 @@ class Test(unittest.TestCase):
     def test_print(self):
         print('print aaaa')
 
-if __name__ == '__main__':
-    test=unittest.main()
+# if __name__ == '__main__':
+#     test=unittest.main()
 
 
 '测试代码'
