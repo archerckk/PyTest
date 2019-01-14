@@ -10,10 +10,11 @@ class SearchTest_Main(unittest.TestCase):
     def setUp(self):
         desired_caps = {}
         desired_caps['automationName'] = 'Appium'
-        desired_caps['deviceName'] = '68cac4b1'
+        # desired_caps['deviceName'] = '68cac4b1'
         # desired_caps['deviceName'] = '5LM0215C28005216'
+        desired_caps['deviceName'] ='LGD8587de68c9'
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '4.4.4'
+        desired_caps['platformVersion'] = '5.0.1'
         desired_caps['noReset'] = True
         desired_caps["appPackage"] = "com.picstudio.photoeditorplus"
         desired_caps["appActivity"] = "com.picstudio.photoeditorplus.camera.MainActivity"
@@ -60,8 +61,8 @@ class Test_Case(SearchTest_Main):
         version_command="adb shell getprop ro.build.version.release"
         android_version=os.popen(version_command).readlines()[0].split('\n')[0]
 
-
-        if android_version=='4.4.4':
+        Collage_list=['4.4.4','5.0.1']
+        if android_version in Collage_list:
             collage = driver.find_element_by_xpath(
             "//*[@resource-id='com.picstudio.photoeditorplus:id/tc'][@text='Collage']")
             collage.click()
@@ -104,11 +105,12 @@ class Test_Case(SearchTest_Main):
         '点击开始拼图'
         start = driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/a4h'][@text='Start']")
         start.click()
-        sleep(3)
+        driver.implicitly_wait(15)
+        # sleep(10)
 
         '切换到拼图tab'
         change = driver.find_element_by_xpath(
-            "//*[@resource-id='com.picstudio.photoeditorplus:id/f3'][@index=2][@class='android.widget.ImageView']")
+            "//*[@resource-id='com.picstudio.photoeditorplus:id/f3'][@index=2][@class='android.widget.ImageView'][@instance=4]")
         change.click()
         sleep(0.5)
         '保存图片'
@@ -116,10 +118,15 @@ class Test_Case(SearchTest_Main):
         #
         # confirm=out_side_change.find_element_by_xpath("//*[@class='android.widget.ImageView'][4]")
 
-        confirm = driver.find_element_by_xpath(
-            "//*[@resource-id='com.picstudio.photoeditorplus:id/gc']")
+        # confirm = driver.find_element_by_xpath(
+        #     # "//*[@resource-id='com.picstudio.photoeditorplus:id/gc']")
+        confirm=driver.find_element_by_xpath(
+            '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ImageView[2]')
+
         confirm.click()
         sleep(5)
+
+
         '按返回键关闭广告'
         if 'android.webkit.WebView' in driver.page_source:
             driver.press_keycode(4)
@@ -133,11 +140,11 @@ class Test_Case(SearchTest_Main):
             assert print('拼图保存失败')
         else:
             print('测试通过，正确保存拼图')
-            # '保存截图'
-            # driver.save_screenshot(screen_shot)
+            '保存截图'
+            driver.save_screenshot(screen_shot)
             # driver.get_screenshot_as_file(screen_shot)
-            # sleep(3)
-
+            sleep(3)
+            print('截图保存为%s'%screen_shot)
     # @unittest.skip('跳过测试不执行')
     def test_case2(self):
         """
@@ -176,6 +183,9 @@ class Test_Case(SearchTest_Main):
         driver=self.driver
         cut=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/tc']")
 
+        '进入商店（相册）广告处理'
+        if "com.picstudio.photoeditorplus:id/ad_cormImage" in driver.page_source:
+            driver.press_keycode(3)
 
 
 
