@@ -13,7 +13,7 @@ def get_meminfo():
                 i.remove('')
             result_list.append(i)
 
-    allocSize=result_list[0][6]
+    allocSize=int(result_list[0][6])
     allocSize/1024
     # print(allocSize)
     return allocSize
