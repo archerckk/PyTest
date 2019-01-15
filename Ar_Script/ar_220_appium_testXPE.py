@@ -4,6 +4,7 @@ from appium.webdriver.common.touch_action import TouchAction
 import unittest
 import os
 import time
+from ar_221_测试_获取meminfo import get_meminfo
 
 
 class SearchTest_Main(unittest.TestCase):
@@ -180,14 +181,55 @@ class Test_Case(SearchTest_Main):
             assert print('bug,滑动到底部还有拍照按钮显示')
 
     def test_case3(self):
+        '多次点击进入商店回退到主页之后内存数值的变化情况'
         driver=self.driver
-        cut=driver.find_element_by_xpath("//*[@resource-id='com.picstudio.photoeditorplus:id/tc']")
+        origin_meminfo=get_meminfo()
+        print(origin_meminfo)
 
-        '进入商店（相册）广告处理'
-        if "com.picstudio.photoeditorplus:id/ad_cormImage" in driver.page_source:
-            driver.press_keycode(3)
+        for i in range(15):
+            cut=driver.find_element_by_xpath(
+                "//*[@resource-id='com.picstudio.photoeditorplus:id/tc']"
+                "[@text='Effects']")
+            cut.click()
+
+            '进入商店（相册）广告处理'
+            if "com.picstudio.photoeditorplus:id/ad_cormImage" in driver.page_source:
+                driver.press_keycode(3)
+            elif 'android.webkit.WebView' in driver.page_source:
+                driver.press_keycode(3)
 
 
+            tab_makeover=driver.find_element_by_xpath(
+                "//*[@resource-id='com.picstudio.photoeditorplus:id/c9']"
+                "[@instance=4]"
+            )
+            tab_makeover.click()
+            driver.implicitly_wait(3)
+
+            tab_filters = driver.find_element_by_xpath(
+                "//*[@resource-id='com.picstudio.photoeditorplus:id/c9']"
+                "[@instance=5]"
+            )
+            tab_filters.click()
+            driver.implicitly_wait(3)
+
+            tab_hot = driver.find_element_by_xpath(
+                "//*[@resource-id='com.picstudio.photoeditorplus:id/c9']"
+                "[@instance=3]"
+            )
+            tab_hot.click()
+            sleep(3)
+
+            driver.find_element_by_xpath(
+                "//*[@resource-id='com.picstudio.photoeditorplus:id/ni']"
+                "[@instance=0]"
+            ).click()
+            # driver.press_keycode(3)
+            sleep(2)
+
+        sleep(5)
+        result_meminfo=get_meminfo()
+        print(result_meminfo)
 
 
 
