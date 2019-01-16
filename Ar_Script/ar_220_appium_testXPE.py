@@ -184,9 +184,9 @@ class Test_Case(SearchTest_Main):
         '多次点击进入商店回退到主页之后内存数值的变化情况'
         driver=self.driver
         origin_meminfo=get_meminfo()
-        print(origin_meminfo)
+        # print(origin_meminfo)
 
-        for i in range(15):
+        for i in range(10):
             cut=driver.find_element_by_xpath(
                 "//*[@resource-id='com.picstudio.photoeditorplus:id/tc']"
                 "[@text='Effects']")
@@ -226,10 +226,13 @@ class Test_Case(SearchTest_Main):
             ).click()
             # driver.press_keycode(3)
             sleep(2)
+            print('现在的执行次数为：%d，内存信息为：%s'%(i+1,get_meminfo()))
 
         sleep(5)
         result_meminfo=get_meminfo()
-        print(result_meminfo)
+        print('回到主页的最终内存数值为：%s'%result_meminfo)
+        self.assertTrue(result_meminfo<(origin_meminfo+10),'测试后，内存增加大于10M')
+        # print(result_meminfo)
 
 
 
