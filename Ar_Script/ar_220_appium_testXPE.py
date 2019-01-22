@@ -12,10 +12,10 @@ class SearchTest_Main(unittest.TestCase):
         desired_caps = {}
         desired_caps['automationName'] = 'Appium'
         # desired_caps['deviceName'] = '68cac4b1'
-        # desired_caps['deviceName'] = '5LM0215C28005216'
-        desired_caps['deviceName'] ='LGD8587de68c9'
+        desired_caps['deviceName'] = '5LM0215C28005216'
+        # desired_caps['deviceName'] ='LGD8587de68c9'
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '5.0.1'
+        desired_caps['platformVersion'] = '7.0'
         desired_caps['noReset'] = True
         desired_caps["appPackage"] = "com.picstudio.photoeditorplus"
         desired_caps["appActivity"] = "com.picstudio.photoeditorplus.camera.MainActivity"
@@ -35,6 +35,19 @@ class SearchTest_Main(unittest.TestCase):
 
 
 class Test_Case(SearchTest_Main):
+
+    def main_info_change(self,attr):
+        version_command = "adb shell getprop ro.build.version.release"
+        android_version = os.popen(version_command).readlines()[0].split('\n')[0]
+        Collage_list = ['4.4.4', '5.0.1']
+        if android_version in Collage_list:
+            self.attr=attr
+        elif android_version == '7.0':
+            self.attr=attr.upper()
+        return self.attr
+
+
+
     def test_case1(self):
         """
         保存一张3个拼图的图片
@@ -185,11 +198,20 @@ class Test_Case(SearchTest_Main):
         driver=self.driver
         origin_meminfo=get_meminfo()
         # print(origin_meminfo)
+        main_text=self.main_info_change('Effects')
+        print(main_text)
+
 
         for i in range(10):
+
+            '处理主界面的全屏广告展示'
+            if 'android.webkit.WebView' in driver.page_source:
+                driver.press_keycode(4)
+                driver.implicitly_wait(4)
+
             cut=driver.find_element_by_xpath(
                 "//*[@resource-id='com.picstudio.photoeditorplus:id/tc']"
-                "[@text='Effects']")
+                "[@text='%s']"%(main_text))
             cut.click()
 
             '进入商店（相册）广告处理'
@@ -230,8 +252,9 @@ class Test_Case(SearchTest_Main):
 
         sleep(5)
         result_meminfo=get_meminfo()
-        print('回到主页的最终内存数值为：%s'%result_meminfo)
-        self.assertTrue(result_meminfo<(origin_meminfo+10),'测试后，内存增加大于10M')
+        print('\n\n初始的内存数值为：%s\n回到主页的最终内存数值为：%s\n增加的'
+              '内存大小为：%s'%(origin_meminfo,result_meminfo,result_meminfo-origin_meminfo))
+        self.assertTrue(result_meminfo<(origin_meminfo+50),'测试后，内存增加大于50M')
         # print(result_meminfo)
 
 
