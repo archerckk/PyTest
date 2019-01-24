@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',# 解决Django CSRF mechanism错误，直接忽略这个风险
+    # 'django.middleware.csrf.CsrfViewMiddleware',# 解决Django CSRF mechanism错误，直接忽略这个风险
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -89,7 +89,7 @@ DATABASES={
         'PORT':'3306',
         'NAME':'guest',
         'USER':'root',
-        'PASSWORD':'123456',
+        'PASSWORD':'Admin',
         'OPTIONS':{
             'init_command':'SET sql_mode="STRICT_TRANS_TABLES"'#对于InnoDB表，sql插入执行失败，会报错，全部回滚。
         }
