@@ -87,9 +87,9 @@ DATABASES={
         'ENGINE':'django.db.backends.mysql',
         'HOST':'127.0.0.1',
         'PORT':'3306',
-        'NAME':'guest',
+        'NAME':'guest_test',
         'USER':'root',
-        'PASSWORD':'Admin',
+        'PASSWORD':'123456',
         'OPTIONS':{
             'init_command':'SET sql_mode="STRICT_TRANS_TABLES"'#对于InnoDB表，sql插入执行失败，会报错，全部回滚。
         }

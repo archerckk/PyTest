@@ -9,7 +9,7 @@ class Event(models.Model):
     status=models.BooleanField()                    #状态
     address=models.CharField(max_length=200)        #地址
     start_time=models.DateTimeField('events time')  #发布会时间
-    cteate_time=models.DateTimeField(auto_now=True) #创建时间（自动获取当前时间）
+    create_time=models.DateTimeField(auto_now=True) #创建时间（自动获取当前时间）
 
     def __str__(self):
         return self.name
