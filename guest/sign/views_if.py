@@ -92,7 +92,7 @@ def add_guest(request):
 
     result=Event.objects.get(id=eid).status
     if not result:
-        return JsonResponse({'status':10023,'meaage':'event status is not available'})
+        return JsonResponse({'status':10023,'message':'event status is not available'})
 
     event_limit=Event.objects.get(id=eid).limit #发布会限制人数
     guest_limit=Guest.objects.filter(event_id=eid)#发布会已添加的嘉宾数
