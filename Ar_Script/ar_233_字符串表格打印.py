@@ -1,4 +1,3 @@
-
 def print_dict_table(target,leftWidth,rightWidth):
     print('Items List'.center(leftWidth+rightWidth,'-'))
 

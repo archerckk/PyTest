@@ -22,7 +22,7 @@ def findMaxWidth(target_list):
             maxWidth=len(target_list[i])
     return maxWidth
 
-print(findMaxWidth(tableData[1]))
+# print(findMaxWidth(tableData[1]))
 
 def printTable(target):
     k=len(target)
