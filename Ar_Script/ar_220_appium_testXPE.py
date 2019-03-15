@@ -12,10 +12,10 @@ class SearchTest_Main(unittest.TestCase):
         desired_caps = {}
         desired_caps['automationName'] = 'Appium'
         # desired_caps['deviceName'] = '68cac4b1'
-        desired_caps['deviceName'] = '5LM0215C28005216'
+        desired_caps['deviceName'] = 'TA992190CD'
         # desired_caps['deviceName'] ='LGD8587de68c9'
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '7.0'
+        desired_caps['platformVersion'] = '5.1'
         desired_caps['noReset'] = True
         desired_caps["appPackage"] = "com.picstudio.photoeditorplus"
         desired_caps["appActivity"] = "com.picstudio.photoeditorplus.camera.MainActivity"
@@ -24,9 +24,9 @@ class SearchTest_Main(unittest.TestCase):
         sleep(5)
 
         '按4下返回键退出订阅页'
-        # for i in range(2):
-        #     self.driver.press_keycode(4)
-        #     sleep(0.5)
+        for i in range(2):
+            self.driver.press_keycode(4)
+            sleep(0.5)
 
     def tearDown(self):
         self.driver.quit()
@@ -39,10 +39,10 @@ class Test_Case(SearchTest_Main):
     def main_info_change(self,attr):
         version_command = "adb shell getprop ro.build.version.release"
         android_version = os.popen(version_command).readlines()[0].split('\n')[0]
-        Collage_list = ['4.4.4', '5.0.1']
+        Collage_list = ['4.4.4', '5.0.1','5.1']
         if android_version in Collage_list:
             self.attr=attr
-        elif android_version == '7.0':
+        elif android_version == '8.0':
             self.attr=attr.upper()
         return self.attr
 
@@ -244,6 +244,7 @@ class Test_Case(SearchTest_Main):
 
             driver.find_element_by_xpath(
                 "//*[@resource-id='com.picstudio.photoeditorplus:id/ni']"
+                "[@instance=0]"
                 "[@instance=0]"
             ).click()
             # driver.press_keycode(3)

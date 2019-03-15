@@ -9,9 +9,9 @@ class SearchTest(unittest.TestCase):
     def setUp(self):
         desired_caps = {}
         desired_caps['automationName'] = 'Appium'
-        desired_caps['deviceName'] = 'HC4AVYC01597'
+        desired_caps['deviceName'] = '98891936513437444f'
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '4.4.4'
+        desired_caps['platformVersion'] = '8.0'
         desired_caps['noReset'] = True
         desired_caps["appPackage"] = "com.cnblogs.xamarinandroid"
         desired_caps["appActivity"] = "md522127645c21675e531a6ac609ef72b2a.SplashScreenActivity"
@@ -26,7 +26,7 @@ class SearchTest(unittest.TestCase):
         # 搜索框
         search_src_text = driver.find_element_by_id("com.cnblogs.xamarinandroid:id/search_src_text")
         search_src_text.click()
-        sleep(1)
+        sleep(3)
         # 输入搜索关键字“appium”
         driver.keyevent(29)  # a
         driver.keyevent(44)  # p
