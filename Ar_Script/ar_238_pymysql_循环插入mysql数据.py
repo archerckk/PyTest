@@ -12,15 +12,15 @@ conn=connect(host=host_list[2],
              cursorclass=cursors.DictCursor)
 
 try:
-    # with conn.cursor()as cursor:
-    #     for i in range (1,1000):
-    #         id="%03d"%i
-    #         sex=randint(0,1)
-    #         age=randint(12,70)
-    #         sql='INSERT INTO test_user(id,name,sex,age)VALUES (%d,"user_%s",%d,%d)'\
-    #             %(i,id,sex,age)
-    #         cursor.execute(sql)
-    # conn.commit()
+    with conn.cursor()as cursor:
+        for i in range (1,1000):
+            id="%03d"%i
+            sex=randint(0,1)
+            age=randint(12,70)
+            sql='INSERT INTO test_user(id,name,sex,age)VALUES (%d,"user_%s",%d,%d)'\
+                %(i,id,sex,age)
+            cursor.execute(sql)
+    conn.commit()
 
     with conn.cursor()as cursor:
         sql='SELECT * from test_user WHERE name=%s'
