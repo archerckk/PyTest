@@ -9,6 +9,10 @@ filename=g.fileopenbox(msg=msg,default=default)
 filename=filename.replace(' ','_')
 print(filename)
 
+file
+
+
+
 package_name_tmp=re.compile(r"package: name='(.+?)'")
 tmp_package=os.popen('aapt dump badging %s |findstr package'%filename).read()
 print(tmp_package)
