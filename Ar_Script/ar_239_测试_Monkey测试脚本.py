@@ -3,34 +3,34 @@ import os
 import re
 import time
 
-msg='请选择一个你要跑脚本的产品apk包'
-default='*.apk'
-filename=g.fileopenbox(msg=msg,default=default)
-if ' ' in filename:
-    os.rename(filename,filename.replace(' ','_'))
-    filename = filename.replace(' ', '_')
-if "&"  in filename:
-    os.rename(filename,filename.replace('&','_'))
-    filename = filename.replace('&', '_')
-if "&&" in filename:
-    os.rename(filename,filename.replace('&&','_'))
-    filename=filename.replace('&&','_')
-print(filename)
-package_name_tmp=re.compile(r"package: name='(.+?)'")
-tmp_package=os.popen('aapt dump badging %s |findstr package'%filename).read()
-print(tmp_package)
-package_name=package_name_tmp.findall(tmp_package)[0]
-print(package_name)
+# msg='请选择一个你要跑脚本的产品apk包'
+# default='*.apk'
+# filename=g.fileopenbox(msg=msg,default=default)
+# if ' ' in filename:
+#     os.rename(filename,filename.replace(' ','_'))
+#     filename = filename.replace(' ', '_')
+# if "&"  in filename:
+#     os.rename(filename,filename.replace('&','_'))
+#     filename = filename.replace('&', '_')
+# if "&&" in filename:
+#     os.rename(filename,filename.replace('&&','_'))
+#     filename=filename.replace('&&','_')
+# print(filename)
+# package_name_tmp=re.compile(r"package: name='(.+?)'")
+# tmp_package=os.popen('aapt dump badging %s |findstr package'%filename).read()
+# print(tmp_package)
+# package_name=package_name_tmp.findall(tmp_package)[0]
+# print(package_name)
 
 
-# msg='请选择一个你要跑脚本的产品包名'
-# title='包名选择'
-# package_list=[]
-# with open("d:"+os.sep+'package_list.txt','r',encoding='utf-8')as f:
-#     for i in f:
-#         package_list.append(i)
-# package_name=g.choicebox(msg=msg,title=title,choices=package_list)
-# package_name=package_name.strip('\n')
+msg='请选择一个你要跑脚本的产品包名'
+title='包名选择'
+package_list=[]
+with open("d:"+os.sep+'package_list.txt','r',encoding='utf-8')as f:
+    for i in f:
+        package_list.append(i)
+package_name=g.choicebox(msg=msg,title=title,choices=package_list)
+package_name=package_name.strip('\n')
 print('运行包名：',package_name)
 
 #记录运行时间
