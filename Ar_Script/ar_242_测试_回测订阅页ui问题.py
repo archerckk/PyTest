@@ -2,6 +2,7 @@ from appium import webdriver
 from time import sleep
 import unittest
 import os
+import time
 
 
 #设备顺序为：三星C7，VIVO AX6
@@ -63,6 +64,13 @@ class SearchTest(unittest.TestCase):
                     print('购买按钮不存在箭头')
                 except AssertionError as e:
                     print(e)
+
+    def test_app_start(self):
+        print(time.ctime())
+        driver=self.driver
+        driver.implicitly_wait(10)
+
+
 
     def tearDown(self) :
         self.driver.quit()
