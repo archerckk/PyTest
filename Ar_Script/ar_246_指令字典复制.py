@@ -48,3 +48,5 @@ while True:
         else:
             print("你输入你的指令有误！")
 
+input()
+
