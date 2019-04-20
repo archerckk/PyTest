@@ -2,26 +2,19 @@ import re
 import requests
 import os
 import time
+import threading
 import signal
 import  subprocess
-
-def get_info():
-        command='adb shell logcat |findstr nad >log.txt'
-        os.system(command)
-        time.sleep(3)
+import sys
 
 
 
-# result=subprocess.Popen(command,shell=True,stdout=subprocess.PIPE).stdout
-# print(result.read())
+handle = subprocess.Popen("adb shell  logcat |findstr nad >log.txt " , shell=True)
+time.sleep(12)
+subprocess.Popen("taskkill /F /T /PID " + str(handle.pid) , shell=True)
 
-result=get_info()
-# signal.signal(signal.SIGTERM, get_info())
+
 print('测试成功')
-# time.sleep(15)
 
 
 
-# signal.signal(signal.SIGINT,get_info())
-print(result)
-# print(result)
