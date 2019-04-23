@@ -7,21 +7,14 @@ import  subprocess
 import sys
 
 
-#获取手机日志
-handle = subprocess.Popen("adb shell  logcat |findstr nad >log.txt " , shell=True)
-
-time.sleep(30)
-subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
-# handle2 = subprocess.Popen("adb shell  logcat |findstr Stat >log.txt " , shell=True)
-# subprocess.Popen("taskkill /F /T /PID %s"% str(handle2.pid) , shell=True)
-
-
 
 #获取产品连接名字
 def get_product_name():
+    product=input('请输入你要选择的产品缩写：')
     with open('product_name_list.txt','r')as f:
         tmp_str=f.readline()
-        product=tmp_str.split(':')[1]
+        if product==tmp_str.split(':')[0]:
+            product=tmp_str.split(':')[1]
     return product
 
 def get_mo_conf(product):
@@ -65,6 +58,16 @@ def get_cf_conf(product):
     return cf_link_final
 
 product=get_product_name()
+# print(product)
+
+#获取手机日志
+handle = subprocess.Popen("adb shell  logcat |findstr nad >log.txt " , shell=True)
+time.sleep(30)
+subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
+
+handle2 = subprocess.Popen("adb shell  logcat |findstr Stat >log.txt " , shell=True)
+subprocess.Popen("taskkill /F /T /PID %s"% str(handle2.pid) , shell=True)
+
 mo_link=get_mo_conf(product)
 cf_link=get_cf_conf(product)
 
