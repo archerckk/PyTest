@@ -15,7 +15,7 @@ subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
 # handle2 = subprocess.Popen("adb shell  logcat |findstr Stat >log.txt " , shell=True)
 # subprocess.Popen("taskkill /F /T /PID %s"% str(handle2.pid) , shell=True)
 
-
+print()
 
 #获取产品连接名字
 def get_product_name():
