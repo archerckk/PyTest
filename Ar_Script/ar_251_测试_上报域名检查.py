@@ -32,21 +32,23 @@ def get_stt_link(product):
     with open('log2.txt', 'r', encoding='utf-8')as f:
         log = f.read()
         reg_real_str=reg_real.search(log).group()
-        print(reg_real_str)
+        print('\n真实日活验证成功：',reg_real_str)
         reg_daily_str = reg_daily.search(log).group()
-        print(reg_daily_str)
+        print('\n进程日活验证成功：',reg_daily_str)
         reg_ne_str = reg_ne.search(log).group()
-        print(reg_ne_str)
+        print('\n事件打点上报域名验证成功：',reg_ne_str)
         reg_nx_str=reg_nx.search(log).group()
-        print(reg_nx_str)
+        print('\n日活打点上报验证成功：',reg_nx_str)
         reg_code_str=reg_code.search(log).group()
-        print(reg_code_str)
+        print('\n上传成功日志：',reg_code_str)
 
     # return cf_link_final
-product=get_product_name()
+product=get_product_name().strip('\n')
 
-# handle = subprocess.Popen("adb shell  logcat |findstr Stat >log2.txt " , shell=True)
-# time.sleep(15)
-# subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
+print('\n正在执行log截取，请等待15秒左右')
+handle = subprocess.Popen("adb shell  logcat |findstr Stat >log2.txt " , shell=True)
+time.sleep(15)
+subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
 
 get_stt_link(product)
+input()
