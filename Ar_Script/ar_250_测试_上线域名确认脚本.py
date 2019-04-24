@@ -11,10 +11,15 @@ import sys
 #获取产品连接名字
 def get_product_name():
     product=input('请输入你要选择的产品缩写：')
+    product_list=[]
     with open('product_name_list.txt','r')as f:
-        tmp_str=f.readline()
-        if product==tmp_str.split(':')[0]:
-            product=tmp_str.split(':')[1]
+        for i in f:
+            product_list.append(i)
+    for i in product_list:
+        if product==i.split(':')[0]:
+            product=i.split(':')[1]
+        else:
+            pass
     return product
 
 def get_mo_conf(product):
@@ -58,26 +63,27 @@ def get_cf_conf(product):
     return cf_link_final
 
 product=get_product_name()
-# print(product)
+print(product)
 
 #获取手机日志
-handle = subprocess.Popen("adb shell  logcat |findstr nad >log.txt " , shell=True)
-time.sleep(30)
-subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
+# handle = subprocess.Popen("adb shell  logcat |findstr nad >log.txt " , shell=True)
+# time.sleep(30)
+# subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
+#
+# mo_link=get_mo_conf(product)
+# cf_link=get_cf_conf(product)
+#
+# mo_json=requests.get(mo_link).json()
+# print('广告配置的连接为：\n%s\n配置内容：'%mo_link)
+# pprint.pprint(mo_json)
+# print()
+# cf_json=requests.get(cf_link).json()
+# print('功能和外部广告配置的连接为：\n%s\n配置内容：'%cf_link)
+# pprint.pprint(cf_json)
 
-handle2 = subprocess.Popen("adb shell  logcat |findstr Stat >log.txt " , shell=True)
-subprocess.Popen("taskkill /F /T /PID %s"% str(handle2.pid) , shell=True)
 
-mo_link=get_mo_conf(product)
-cf_link=get_cf_conf(product)
 
-mo_json=requests.get(mo_link).json()
-print('广告配置的连接为：\n%s\n配置内容：'%mo_link)
-pprint.pprint(mo_json)
-print()
-cf_json=requests.get(cf_link).json()
-print('功能和外部广告配置的连接为：\n%s\n配置内容：'%cf_link)
-pprint.pprint(cf_json)
+
 
 
 # reg_test=re.compile(r'.+')
