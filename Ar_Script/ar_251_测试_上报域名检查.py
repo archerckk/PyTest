@@ -1,6 +1,7 @@
 import re
 import time
 import subprocess
+import threading
 
 
 def get_product_name():
@@ -15,6 +16,8 @@ def get_product_name():
         else:
             pass
     return product
+
+
 
 
 def get_stt_link(product):
@@ -45,7 +48,7 @@ def get_stt_link(product):
     # return cf_link_final
 product=get_product_name().strip('\n')
 
-print('\n正在执行log截取，请等待15秒左右')
+
 handle = subprocess.Popen("adb shell  logcat |findstr Stat >log2.txt " , shell=True)
 time.sleep(15)
 subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
