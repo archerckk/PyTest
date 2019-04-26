@@ -1,2 +1,3 @@
 pc:pikacamera
 ac:apluscamera
+ach:beautycamera

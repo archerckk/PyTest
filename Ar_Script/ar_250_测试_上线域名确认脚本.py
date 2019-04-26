@@ -4,7 +4,7 @@ import requests
 import pprint
 import time
 import  subprocess
-
+import os
 
 
 #获取产品连接名字
@@ -47,12 +47,15 @@ def get_mo_conf(product):
     reg_mo_new=re.compile(r'/(cr)/')
 
     with open('log.txt', 'r', encoding='utf-8')as f:
-        log=f.read()
-        result=reg_mo.search(log)
-        result_link_str=result.group(1)
-        result_key = reg_mo_new.search(result_link_str)
-        result_key_str=result_key.group()
-        mo_link_final = result_link_str.replace(result_key_str, '/v3/')
+        try :
+            log=f.read()
+            result=reg_mo.search(log)
+            result_link_str=result.group(1)
+            result_key = reg_mo_new.search(result_link_str)
+            result_key_str=result_key.group()
+            mo_link_final = result_link_str.replace(result_key_str, '/v3/')
+        except AttributeError as e:
+            print(e)
 
     return result_link_str,mo_link_final
 
@@ -68,11 +71,14 @@ def get_cf_conf(product):
 
     with open('log.txt', 'r', encoding='utf-8')as f:
         log = f.read()
-        result = reg_mo.search(log)
-        result_link_str = result.group(1)
-        result_key = reg_mo_new.search(result_link_str)
-        result_key_str = result_key.group()
-        cf_link_final = result_link_str.replace(result_key_str, '/p/')
+        try:
+            result = reg_mo.search(log)
+            result_link_str = result.group(1)
+            result_key = reg_mo_new.search(result_link_str)
+            result_key_str = result_key.group()
+            cf_link_final = result_link_str.replace(result_key_str, '/p/')
+        except AttributeError as e:
+            print(e)
 
     return  result_link_str,cf_link_final
 
@@ -83,25 +89,39 @@ def get_stt_link(product):
     # 匹配mo原始链接
     reg_ne = re.compile(r'http://stt.%s.+/ne' % product, re.I)
     reg_nx = re.compile(r'http://stt.%s.+/nx' % product, re.I)
-    reg_real=re.compile(r'("g_act":)(.*real_active)(.+}?)', re.I)
-    reg_daily=re.compile(r'("g_act":)(.*daily_active)(.+}?)', re.I)
+    reg_real=re.compile(r'({"g_act":)(.*real_active)(.+?,"g_ver")', re.I)
+    reg_daily=re.compile(r'("g_act":)(.*daily_active)(.+?,"g_ver")', re.I)
     # 匹配mo链接的cr参数
     reg_code = re.compile(r' {"code":.+{}}')
 
     with open('log2.txt', 'r', encoding='utf-8')as f:
         log = f.read()
-        reg_real_str=reg_real.search(log).group()
-        print('\n真实日活验证成功：',reg_real_str)
-        reg_daily_str = reg_daily.search(log).group()
-        print('\n进程日活验证成功：',reg_daily_str)
-        reg_ne_str = reg_ne.search(log).group()
-        print('\n事件打点上报域名验证成功：',reg_ne_str)
-        reg_nx_str=reg_nx.search(log).group()
-        print('\n日活打点上报验证成功：',reg_nx_str)
-        reg_code_str=reg_code.search(log).group()
-        print('\n上传成功日志：',reg_code_str)
-
-
+        try:
+            reg_real_str=reg_real.search(log).group()
+            print('\n真实日活验证成功：',reg_real_str)
+        except:
+            print('\n真实日活验证失败')
+        try:
+            reg_daily_str = reg_daily.search(log).group()
+            print('\n进程日活验证成功：', reg_daily_str)
+        except:
+            print('\n进程日活验证失败')
+        try:
+            reg_ne_str = reg_ne.search(log).group()
+            print('\n事件打点上报域名验证成功：',reg_ne_str)
+        except:
+            print('\n事件打点上报域名验证失败')
+        try:
+            reg_nx_str=reg_nx.search(log).group()
+            print('\n日活打点上报验证成功：',reg_nx_str)
+        except:
+            print('\n日活打点上报验失败')
+        try:
+            reg_code_str=reg_code.search(log).group()
+            print('\n成功上传打点日志：',reg_code_str)
+        except:
+            print('\n没有找到上传成功的日志')
+        print()
 
 #获取产品信息
 product=get_product_name().strip('\n')
@@ -121,39 +141,60 @@ for t in threads:
 for t in threads:
     t.join()
 
-mo_link=get_mo_conf(product)
-cf_link=get_cf_conf(product)
+i = 2
+for t in threads:
+    while 1:
+        if t.is_alive():
+            continue
+        else:
+            i-=1
+            print('线程运行数为：',i)
+            break
 
-#打印stt上报域名信息
-get_stt_link(product)
+print('线程关闭完毕')
 
-
-mo_json=requests.get(mo_link[1]).json()
-print('\n广告配置的连接为：\n%s\n配置内容：'%mo_link[0])
-pprint.pprint(mo_json)
-print()
-cf_json=requests.get(cf_link[1]).json()
-print('功能和外部广告配置的连接为：\n%s\n配置内容：'%cf_link[0])
-pprint.pprint(cf_json)
-
-
-#
-
-#测试代码
-# handle = subprocess.Popen("adb shell  logcat |findstr nad >log.txt " , shell=True)
-# time.sleep(30)
-# subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
-
-# reg_test=re.compile(r'.+')
-# result_test=reg_test.search(str2)
-
-# print(result)
-# handle = subprocess.Popen("adb shell  logcat |findstr StatTag >log2.txt " , shell=True)
-# time.sleep(30)
-# subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
-
-
-# print('测试成功')
+while 1:
+    if os.path.exists('.%slog.txt'%os.sep)and  os.path.exists('.%slog2.txt'%os.sep):
+        print('\n日志文件生成完毕')
+        print('\n开始检查日志文件')
+        break
+    else:
+        print('\n日志生成中，继续检查')
+        continue
 
 
 
+try:
+    mo_link = get_mo_conf(product)
+    cf_link = get_cf_conf(product)
+
+    # 打印stt上报域名信息
+    get_stt_link(product)
+
+    mo_json = requests.get(mo_link[1]).json()
+    print('\n广告配置的连接为：\n%s\n配置内容：' % mo_link[0])
+    pprint.pprint(mo_json)
+    print()
+    cf_json = requests.get(cf_link[1]).json()
+    print('功能和外部广告配置的连接为：\n%s\n配置内容：' % cf_link[0])
+    pprint.pprint(cf_json)
+except UnboundLocalError:
+    print('在日志中查找不到要匹配的地址，请不要删除log文件，检查输出的内容！！！')
+
+toast = '\n是否删除tmp文件（log.txt文件）y/n：'
+while True:
+    choice=input(toast)
+    if choice =='y':
+        print('执行删除缓存的log')
+        os.remove('./log.txt')
+        os.remove('./log2.txt')
+        break
+    elif choice =='n':
+        print('不执行删除')
+        break
+    else:
+        toast='你输入的选项有误！请重新输入：'
+        continue
+
+
+input('输入回车关闭窗口')

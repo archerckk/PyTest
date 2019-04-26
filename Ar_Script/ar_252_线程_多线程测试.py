@@ -1,7 +1,7 @@
 import subprocess
 import threading
 import time
-
+import os
 
 def test1():
     handle = subprocess.Popen("adb shell  logcat |findstr nad >log.txt " , shell=True)
@@ -30,3 +30,4 @@ for t in threads:
 for t in threads:
     t.join()
 
+os.remove('./log.txt')
