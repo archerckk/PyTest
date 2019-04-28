@@ -25,7 +25,7 @@ def get_product_name():
 def get_log1():
     handle = subprocess.Popen("adb shell  logcat |findstr nad >log.txt " , shell=True)
     print('\n正在执行log截取，请等待15秒左右')
-    time.sleep(15)
+    time.sleep(20)
     subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
     print('日志获取1执行完成')
 
