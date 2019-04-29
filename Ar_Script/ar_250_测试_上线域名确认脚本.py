@@ -23,9 +23,9 @@ def get_product_name():
 
 
 def get_log1():
-    handle = subprocess.Popen("adb shell  logcat |findstr nad >log.txt " , shell=True)
+    handle = subprocess.Popen("adb shell  logcat  >log.txt " , shell=True)
     print('\n正在执行log截取，请等待15秒左右')
-    time.sleep(20)
+    time.sleep(15)
     subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
     print('日志获取1执行完成')
 
@@ -129,6 +129,7 @@ print(product)
 
 #配置线程
 threads=[]
+# t1=threading.Thread(target=get_log1,args=(product,))
 t1=threading.Thread(target=get_log1)
 t2=threading.Thread(target=get_log2)
 
@@ -162,24 +163,37 @@ while 1:
         print('\n日志生成中，继续检查')
         continue
 
+# 打印stt上报域名信息
+get_stt_link(product)
 
-
+#尝试打印广告配置
 try:
     mo_link = get_mo_conf(product)
-    cf_link = get_cf_conf(product)
-
-    # 打印stt上报域名信息
-    get_stt_link(product)
-
-    mo_json = requests.get(mo_link[1]).json()
+except:
+    print('广告配置获取失败')
+else:
     print('\n广告配置的连接为：\n%s\n配置内容：' % mo_link[0])
-    pprint.pprint(mo_json)
-    print()
-    cf_json = requests.get(cf_link[1]).json()
+    try:
+        mo_json = requests.get(mo_link[1]).json()
+        pprint.pprint(mo_json)
+        print()
+    except Exception as e:
+        print('解析服务器地址失败，错误信息为：%s'%e)
+
+#尝试打印功能和外部广告配置
+try:
+    cf_link = get_cf_conf(product)
+except:
+    print('功能和外部广告配置获取失败')
+else:
     print('功能和外部广告配置的连接为：\n%s\n配置内容：' % cf_link[0])
-    pprint.pprint(cf_json)
-except UnboundLocalError:
-    print('在日志中查找不到要匹配的地址，请不要删除log文件，检查输出的内容！！！')
+    try:
+        cf_json = requests.get(cf_link[1]).json()
+        pprint.pprint(cf_json)
+    except Exception as e:
+        print('解析服务器地址失败，错误信息为：%s' % e)
+
+# print('在日志中查找不到要匹配的地址，请不要删除log文件，检查输出的内容！！！')
 
 toast = '\n是否删除tmp文件（log.txt文件）y/n：'
 while True:

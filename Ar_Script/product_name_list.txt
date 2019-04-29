@@ -2,3 +2,4 @@ pc:pikacamera
 ac:apluscamera
 ach:beautycamera
 pa:privatealbumgroup
+qc:qphotoeditor
