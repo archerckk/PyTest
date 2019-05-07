@@ -27,7 +27,7 @@ def get_log1():
     print('\n正在执行log截取，请等待15秒左右')
     time.sleep(15)
     result=subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , stdout=subprocess.PIPE,shell=True)
-    print('日志获取1执行完成')
+    # print('日志获取1执行完成')
 
 
 def get_log2():
@@ -89,8 +89,8 @@ def get_stt_link(product):
     # 匹配mo原始链接
     reg_ne = re.compile(r'http://stt.%s.+/ne' % product, re.I)
     reg_nx = re.compile(r'http://stt.%s.+/nx' % product, re.I)
-    reg_real=re.compile(r'({"g_act":)(.*real_active)(.+?,"g_ver")', re.I)
-    reg_daily=re.compile(r'("g_act":)(.*daily_active)(.+?,"g_ver")', re.I)
+    reg_real=re.compile(r'(,{"g_act":.*)(real_active)(.+?,"g_ver")', re.I)
+    reg_daily=re.compile(r'("g_act":.*)(daily_active)(.+?,"g_ver")', re.I)
 
     # 匹配mo链接的cr参数
     reg_code = re.compile(r' {"code":.+{}}')
@@ -98,7 +98,7 @@ def get_stt_link(product):
     with open('log.txt', 'r', encoding='utf-8')as f:
         log = f.read()
         try:
-            reg_real_str=reg_real.search(log).group()
+            reg_real_str=reg_real.search(log).group().strip(',{')
             print('\n真实日活验证成功：',reg_real_str)
         except:
             print('\n真实日活验证失败')
@@ -132,14 +132,14 @@ def get_longLive_versionName(link):
     try:
         packageName=reg_link.search(link).group(1)
         # print('\n包名为：',packageName)
-        reg_longLive = re.compile(r'.+g_pkgname":"(%s)".+"libVerName":"(.+?)",' % packageName)
+        reg_longLive = re.compile(r'{.+g_pkgname":"(%s)".+"libVerName":"(.+?)",' % packageName)
     except:
         print('由于配置连接获取失败，无法正常匹配')
     else:
         try:
             reg_longLive_str = reg_longLive.search(log).group(2)
-            print('匹配日志为：', reg_longLive.search(log).group())
-            print('匹配的包名为：',packageName)
+            print('保活SDK匹配日志为：', reg_longLive.search(log).group())
+            print('匹配的包名为：',reg_longLive.search(log).group(1))
             print('保活SDK版本为：：', reg_longLive_str)
         except:
             print('\n没有找到上传成功的日志')
