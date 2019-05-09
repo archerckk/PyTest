@@ -16,29 +16,58 @@ import re
     通过包名抓取mo配置
     通过包名
 """
-packInfoFileOj = './packageInfo.txt'
 
 def getPackagInfo():
     msg='请选择你要检查的apk安装包'
     title='文件选择'
-    filePath=g.fileopenbox(msg=msg,title=title,default="*.apk")
+    default="*.apk"
+    filePath=g.fileopenbox(msg=msg,title=title,default=default)
     print(filePath)
-    command='aapt dumpsys badging %s '%filePath
-    packInfoFileOj='./packageInfo.txt'
+    command='aapt dumpsys badging %s > packageInfo.txt'%filePath
+    packInfoFile='./packageInfo.txt'
     list1=[]
 
-    with open(packInfoFileOj,'w',encoding='utf-8')as f:
-        handle=subprocess.Popen(command,stdout=f,shell=True)
-
-
-packageinfo=[]
-def getKeyInfo():
-    with open(packInfoFileOj, 'r',encoding='utf-8')as f :
+    # with open(packInfoFileOj,'w',encoding='utf-8')as f:
+    handle=subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
+    time.sleep(2)
+    reg_packageName=re.compile(r"package: name='(.+?)'")
+    reg_launchableActivity=re.compile(r"launchable-activity: name='(.+?)'")
+    log=''
+    with open(packInfoFile, encoding='utf-8')as f :
         for i in f:
-           print(i)
+            log+=i
+
+    packageName=reg_packageName.search(log).group(1)
+    lanuchableActivity=reg_launchableActivity.search(log).group(1).strip()
+    print(packageName)
+    print(lanuchableActivity)
+
+    return filePath,packageName,lanuchableActivity
+
+def uninstallApp(packageName):
+    command='adb uninstall %s'%packageName
+    handle=subprocess.Popen(command,shell=True,stdout=subprocess.PIPE)
+
+    return handle
+
+def judgeRunning(function):
+    while True:
 
 
-# for i in packageinfo:
-#     print(i)
+        if function.poll()!=None:
+            print('指令执行完成')
+            break
+        else:
+            continue
 
-getPackagInfo()
+# filePath,packageName,lanuchableActivity=getPackagInfo()
+# handle=uninstallApp(packageName)
+handle=subprocess.Popen("ping www.baidu.com",shell=True,stdout=subprocess.PIPE)
+a=handle.stdout.read()
+a=a.decode('gbk')
+print(a)
+# print(a.decode('utf-8'))
+# print(str(handle.stdout.encode("utf-8")))
+
+
+# judgeRunning(handle)
