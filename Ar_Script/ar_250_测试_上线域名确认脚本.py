@@ -7,6 +7,7 @@ import  subprocess
 import os
 
 
+
 #获取产品连接名字
 def get_product_name():
     product=input('请输入你要选择的产品缩写：')
