@@ -335,6 +335,7 @@ while 1:
         print('\n日志生成中，继续检查')
         continue
 
+time.sleep(2)
 product=get_cf_conf(packageName)
 get_stt_link(product)
 get_longLive_versionName(packageName)
