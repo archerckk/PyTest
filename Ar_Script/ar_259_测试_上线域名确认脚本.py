@@ -289,11 +289,20 @@ print('%s 卸载成功'%packageName)
 
 print('%s 开始安装，请稍后'%packageName)
 handle_install=installapp(filePath)
-if str(handle_install.stdout.read()).find('Success')!=-1:
-    print('%s 安装成功' % packageName)
-else:
-    input('程序安装失败！请检查是否没有授权安装程序，按回车退出脚本')
-    sys.exit()
+
+while True:
+    handle=os.popen('adb shell pm list package')
+    if packageName in handle.read():
+        print('%s 安装成功' % packageName)
+        break
+    else:
+        continue
+
+# if str(handle_install.stdout.read()).find('Success')!=-1:
+#     print('%s 安装成功' % packageName)
+# else:
+#     input('程序安装失败！请检查是否没有授权安装程序，按回车退出脚本')
+#     sys.exit()
 judgeRunning(handle_install)
 
 
