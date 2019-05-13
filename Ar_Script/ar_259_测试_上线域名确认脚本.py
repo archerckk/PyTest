@@ -113,10 +113,10 @@ def get_log():
 def get_cf_conf(packageName):
 
     # 各个配置连接的正则表达式
-    reg_cashSDK_cf = re.compile(r'(http://cf.(.+?)\..+moduleid=(3000)&.+%s.+)' % packageName, re.I)
-    reg_radicalSDK_cf=re.compile(r'(http://cf.(.+?)\..+moduleid=(3300)&.+%s.+)' % packageName, re.I)
-    reg_guidSDK_cf = re.compile(r'(http://cf.(.+?)\..+moduleid=(3100)&.+%s.+)' % packageName, re.I)
-    reg_adSDK_cf=re.compile(r'(http://mo.(.+)\..+/(cr)/.+pkg_name=%s&.+has_sim=false.+)'%packageName,re.I)
+    reg_cashSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3000&.+%s.+)|(http://.+moduleid=3000&.+%s.+)' % (packageName,packageName), re.I)
+    reg_radicalSDK_cf=re.compile(r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+).+moduleid=3300&.+%s.+)' % (packageName,packageName), re.I)
+    reg_guidSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3100&.+%s.+)|(http://(.+).+moduleid=3100&.+%s.+)' % (packageName,packageName), re.I)
+    reg_adSDK_cf=re.compile(r'((http://mo.(.+)\..+)|(http://(.+))/(cr)/.+pkg_name=%s&.+has_sim=false.+)'%packageName,re.I)
 
     # 匹配cf链接的m参数
     reg_cf_new = re.compile(r'/(m)/')
@@ -225,8 +225,8 @@ def get_cf_conf(packageName):
 def get_stt_link(product):
 
     # 匹配stt原始链接
-    reg_ne = re.compile(r'http://stt.%s.+/ne' % product, re.I)
-    reg_nx = re.compile(r'http://stt.%s.+/nx' % product, re.I)
+    reg_ne = re.compile(r'(http://stt.%s.+)|(http://.+)/nw/ne' % product, re.I)
+    reg_nx = re.compile(r'(http://stt.%s.+)|(http://.+)/nw/nx' % product, re.I)
     reg_real=re.compile(r'({("g_act":"real_active").+?"g_cnt":1})', re.I)
     reg_daily = re.compile(r'({("g_act":"daily_active").+?"g_cnt":1})', re.I)
     reg_code = re.compile(r' {"code":.+{}}')
