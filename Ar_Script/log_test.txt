@@ -1,0 +1,17 @@
+mo_link="url:http://127.0.0.0:11111/cr/config?pubid=10344&pkg_ver=1&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=d81cb6c5-de99-455b-83cd-4a918d48f784&pkg_name=com.pika.camera.android&osv=25&new_user=1&ad_sdk_version=2&first_time=1555660372&bid=75&has_sim=false&sdk_vercode=2&sdk_vername=1.0.2.0118&channel=101&file_ver=0"%product
+mo_link="url:http://mo.%s.info/cr/config?pubid=10344&pkg_ver=1&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=d81cb6c5-de99-455b-83cd-4a918d48f784&pkg_name=com.pika.camera.android&osv=25&new_user=1&ad_sdk_version=2&first_time=1555660372&bid=75&has_sim=false&sdk_vercode=2&sdk_vername=1.0.2.0118&channel=101&file_ver=0"%product
+mo_link="url:http://mo.%s.info/cr/config?pubid=10344&pkg_ver=1&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=d81cb6c5-de99-455b-83cd-4a918d48f784&pkg_name=com.pika.camera.android&osv=25&new_user=1&ad_sdk_version=2&first_time=1555660372&bid=75&has_sim=false&sdk_vercode=2&sdk_vername=1.0.2.0118&channel=101&file_ver=0"%product
+
+
+
+
+
+cf_link="http://cf.pikacamera.info/m/config?pubid=10344&moduleid=3000&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=c8892207-a92f-4f41-b267-7489a832f0d2&pkg_name=com.pika.camera.android&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0313&first_time=1555660372&update_time=1555660372&new_user=1&lc=zh_CN_%23Hans&bid=75&file_ver=0"
+cf_link="http://cf.pikacamera.info/m/config?pubid=10344&moduleid=3300&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=c8892207-a92f-4f41-b267-7489a832f0d2&pkg_name=com.pika.camera.android&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0313&first_time=1555660372&update_time=1555660372&new_user=1&lc=zh_CN_%23Hans&bid=75&file_ver=0"
+cf_link="http://cf.pikacamera.info/m/config?pubid=10344&moduleid=3100&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=c8892207-a92f-4f41-b267-7489a832f0d2&pkg_name=com.pika.camera.android&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0313&first_time=1555660372&update_time=1555660372&new_user=1&lc=zh_CN_%23Hans&bid=75&file_ver=0"
+
+
+
+cf_link="http://127.0.0.0:11111/m/config?pubid=10344&moduleid=3000&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=c8892207-a92f-4f41-b267-7489a832f0d2&pkg_name=com.pika.camera.android&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0313&first_time=1555660372&update_time=1555660372&new_user=1&lc=zh_CN_%23Hans&bid=75&file_ver=0"
+cf_link="http://127.0.0.0:11111/m/config?pubid=10344&moduleid=3300&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=c8892207-a92f-4f41-b267-7489a832f0d2&pkg_name=com.pika.camera.android&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0313&first_time=1555660372&update_time=1555660372&new_user=1&lc=zh_CN_%23Hans&bid=75&file_ver=0"
+cf_link="http://127.0.0.0:11111/m/config?pubid=10344&moduleid=3100&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=c8892207-a92f-4f41-b267-7489a832f0d2&pkg_name=com.pika.camera.android&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0313&first_time=1555660372&update_time=1555660372&new_user=1&lc=zh_CN_%23Hans&bid=75&file_ver=0"

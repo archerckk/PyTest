@@ -22,6 +22,7 @@ import pprint
     通过包名
 """
 
+
 def openLog():
     add_debug_list = [
         "adb shell touch sdcard/abcxxxtestmodefilexxx",
@@ -42,12 +43,13 @@ def openLog():
         os.popen(i)
     print("测试日志文件创建成功")
 
-def getPackagInfo():
-    msg='请选择你要检查的apk安装包'
-    title='文件选择'
-    default="*.apk"
 
-    filePath=g.fileopenbox(msg=msg,title=title,default=default)
+def getPackagInfo():
+    msg = '请选择你要检查的apk安装包'
+    title = '文件选择'
+    default = "*.apk"
+
+    filePath = g.fileopenbox(msg=msg, title=title, default=default)
     if ' ' in filePath:
         os.rename(filePath, filePath.replace(' ', '_'))
         filePath = filePath.replace(' ', '_')
@@ -58,75 +60,89 @@ def getPackagInfo():
         os.rename(filePath, filePath.replace('&&', '_'))
         filePath = filePath.replace('&&', '_')
 
-    print('选择的apk路径为：',filePath)
-    command='aapt dumpsys badging %s > packageInfo.txt'%filePath
-    packInfoFile='./packageInfo.txt'
+    print('选择的apk路径为：', filePath)
+    command = 'aapt dumpsys badging %s > packageInfo.txt' % filePath
+    packInfoFile = './packageInfo.txt'
 
-    handle=subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
+    handle = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
     time.sleep(2)
-    reg_packageName=re.compile(r"package: name='(.+?)'")
-    reg_launchableActivity=re.compile(r"launchable-activity: name='(.+?)'")
-    log=''
-    with open(packInfoFile, encoding='utf-8')as f :
+    reg_packageName = re.compile(r"package: name='(.+?)'")
+    reg_launchableActivity = re.compile(r"launchable-activity: name='(.+?)'")
+    log = ''
+    with open(packInfoFile, encoding='utf-8')as f:
         for i in f:
-            log+=i
+            log += i
 
-    packageName=reg_packageName.search(log).group(1)
-    lanuchableActivity=reg_launchableActivity.search(log).group(1).strip()
-    print('选择的apk包名为：',packageName)
+    packageName = reg_packageName.search(log).group(1)
+    lanuchableActivity = reg_launchableActivity.search(log).group(1).strip()
+    print('选择的apk包名为：', packageName)
     # print(lanuchableActivity)
 
-    return filePath,packageName,lanuchableActivity
+    return filePath, packageName, lanuchableActivity
+
 
 def uninstallApp(packageName):
-    command='adb uninstall %s'%packageName
-    handle=subprocess.Popen(command,shell=True,stdout=subprocess.PIPE)
+    command = 'adb uninstall %s' % packageName
+    handle = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
 
     return handle
+
 
 def installapp(packagePath):
-    command='adb install %s'%packagePath
-    handle=subprocess.Popen(command,shell=True,stdout=subprocess.PIPE)
+    command = 'adb install %s' % packagePath
+    handle = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
 
     return handle
 
-def starApp(packageName,lanuchableActivity):
-    handle = subprocess.Popen(r'adb shell am start %s/%s' % (packageName,lanuchableActivity))
+
+def starApp(packageName, lanuchableActivity):
+    handle = subprocess.Popen(r'adb shell am start %s/%s' % (packageName, lanuchableActivity))
 
     return handle
+
 
 def judgeRunning(function):
     while True:
-        if function.poll()!=None:
+        if function.poll() != None:
             print('进程已终止')
             break
         else:
             continue
 
+
 def get_log():
-    handle = subprocess.Popen("adb shell  logcat  >log.txt " , shell=True)
+    handle = subprocess.Popen("adb shell  logcat  >log.txt ", shell=True)
     print('\n正在执行log截取，请等待20秒左右')
     time.sleep(20)
-    result=subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , stdout=subprocess.PIPE,shell=True)
+    result = subprocess.Popen("taskkill /F /T /PID %s" % str(handle.pid), stdout=subprocess.PIPE, shell=True)
     # print('日志获取1执行完成')
 
-def get_cf_conf(packageName):
 
+def get_cf_conf(packageName):
     # 各个配置连接的正则表达式
-    reg_cashSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3000&.+%s.+)|(http://.+moduleid=3000&.+%s.+)' % (packageName,packageName), re.I)
-    reg_radicalSDK_cf=re.compile(r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+).+moduleid=3300&.+%s.+)' % (packageName,packageName), re.I)
-    reg_guidSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3100&.+%s.+)|(http://(.+).+moduleid=3100&.+%s.+)' % (packageName,packageName), re.I)
-    reg_adSDK_cf=re.compile(r'((http://mo.(.+)\..+)|(http://(.+))/(cr)/.+pkg_name=%s&.+has_sim=false.+)'%packageName,re.I)
+
+    reg_cashSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+)/m/.+moduleid=3000&.+%s.+)' % (
+        packageName, packageName), re.I)
+
+    reg_radicalSDK_cf = re.compile(
+        r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+)/m/.+moduleid=3300&.+%s.+)' % (
+            packageName, packageName), re.I)
+
+    reg_guidSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+)/m/.+moduleid=3100&.+%s.+)' % (
+        packageName, packageName), re.I)
+
+    reg_adSDK_cf = re.compile(
+        r'((http://mo.(.+)\..+)|(http://(.+))/(cr)/.+pkg_name=%s&.+has_sim=false.+)' % packageName, re.I)
 
     # 匹配cf链接的m参数
     reg_cf_new = re.compile(r'/(m)/')
     reg_mo_new = re.compile(r'/(cr)/')
 
-    mainIndex=''
-    result_cash_mainIndex=''
-    result_guidSDK_mainIndex=''
-    result_adSDK_mainIndex=''
-    result_radicalSDK_mainIndex=''
+    mainIndex = ''
+    result_cash_mainIndex = ''
+    result_guidSDK_mainIndex = ''
+    result_adSDK_mainIndex = ''
+    result_radicalSDK_mainIndex = ''
 
     with open('log.txt', 'r', encoding='utf-8')as f:
         try:
@@ -153,7 +169,7 @@ def get_cf_conf(packageName):
             except Exception as e:
                 print('\n解析变现sdk的功能配置请求失败，错误信息为：%s' % e)
 
-        #激进sdk的功能配置请求信息打印
+        # 激进sdk的功能配置请求信息打印
         try:
             result_radicalSDK = reg_radicalSDK_cf.search(log)
             result_radicalSDK_link_str = result_radicalSDK.group(1)  # 原始链接
@@ -173,7 +189,7 @@ def get_cf_conf(packageName):
                 print('解析激进sdk的功能配置请求失败，错误信息为：%s' % e)
         print()
 
-        #guidsdk功能配置请求信息打印
+        # guidsdk功能配置请求信息打印
         try:
             result_guidSDK = reg_guidSDK_cf.search(log)
             result_guidSDK_link_str = result_guidSDK.group(1)  # 原始链接
@@ -213,7 +229,7 @@ def get_cf_conf(packageName):
                 print('\n解析adsdk功能配置请求失败，错误信息为：%s' % e)
         print()
 
-        for i in result_cash_mainIndex,result_radicalSDK_mainIndex,result_guidSDK_mainIndex,result_adSDK_mainIndex:
+        for i in result_cash_mainIndex, result_radicalSDK_mainIndex, result_guidSDK_mainIndex, result_adSDK_mainIndex:
             if i != None:
                 mainIndex = i
                 break
@@ -222,12 +238,12 @@ def get_cf_conf(packageName):
 
     return mainIndex
 
-def get_stt_link(product):
 
+def get_stt_link(product):
     # 匹配stt原始链接
     reg_ne = re.compile(r'(http://stt.%s.+)|(http://.+)/nw/ne' % product, re.I)
     reg_nx = re.compile(r'(http://stt.%s.+)|(http://.+)/nw/nx' % product, re.I)
-    reg_real=re.compile(r'({("g_act":"real_active").+?"g_cnt":1})', re.I)
+    reg_real = re.compile(r'({("g_act":"real_active").+?"g_cnt":1})', re.I)
     reg_daily = re.compile(r'({("g_act":"daily_active").+?"g_cnt":1})', re.I)
     reg_code = re.compile(r' {"code":.+{}}')
 
@@ -237,8 +253,8 @@ def get_stt_link(product):
         except Exception as e:
             print(e)
         try:
-            reg_real_str=reg_real.search(log).group(2)
-            print('真实日活验证成功：',reg_real_str)
+            reg_real_str = reg_real.search(log).group(2)
+            print('真实日活验证成功：', reg_real_str)
         except:
             print('\n真实日活验证失败')
         try:
@@ -248,12 +264,12 @@ def get_stt_link(product):
             print('\n进程日活验证失败')
         try:
             reg_ne_str = reg_ne.search(log).group()
-            print('\n事件打点上报域名验证成功：',reg_ne_str)
+            print('\n事件打点上报域名验证成功：', reg_ne_str)
         except:
             print('\n事件打点上报域名验证失败')
         try:
-            reg_nx_str=reg_nx.search(log).group()
-            print('\n日活打点上报验证成功：',reg_nx_str)
+            reg_nx_str = reg_nx.search(log).group()
+            print('\n日活打点上报验证成功：', reg_nx_str)
         except:
             print('\n日活打点上报验失败')
         try:
@@ -262,6 +278,7 @@ def get_stt_link(product):
         except:
             print('\n没有找到上传成功的日志')
         print()
+
 
 def get_longLive_versionName(packageName):
     with open('log.txt', 'r', encoding='utf-8')as f:
@@ -277,7 +294,7 @@ def get_longLive_versionName(packageName):
         try:
             reg_longLive_str = reg_longLive.search(log).group(2)
             print('保活SDK匹配日志为：', reg_longLive.search(log).group())
-            print('匹配的包名为：',reg_longLive.search(log).group(1))
+            print('匹配的包名为：', reg_longLive.search(log).group(1))
             print('保活SDK版本为：：', reg_longLive_str)
         except:
             print('\n没有找到上传成功的日志')
@@ -292,19 +309,19 @@ def get_longLive_versionName(packageName):
 if __name__ == '__main__':
     openLog()
 
-    filePath,packageName,lanuchableActivity=getPackagInfo()
-    handle=uninstallApp(packageName)
+    filePath, packageName, lanuchableActivity = getPackagInfo()
+    handle = uninstallApp(packageName)
     uninstallApp(handle)
     judgeRunning(handle)
-    print('%s 卸载成功'%packageName)
+    print('%s 卸载成功' % packageName)
 
-    print('%s 开始安装，请稍后'%packageName)
-    handle_install=installapp(filePath)
+    print('%s 开始安装，请稍后' % packageName)
+    handle_install = installapp(filePath)
 
-    print('安装日志为：',handle_install.stdout.read().decode().strip('\r\n'))
+    print('安装日志为：', handle_install.stdout.read().decode().strip('\r\n'))
 
     while True:
-        handle=os.popen('adb shell pm list package')
+        handle = os.popen('adb shell pm list package')
         if packageName in handle.read():
             print('%s 安装成功' % packageName)
             break
@@ -318,13 +335,11 @@ if __name__ == '__main__':
     #     sys.exit()
     judgeRunning(handle_install)
 
-
-
-    #配置线程
-    threads=[]
+    # 配置线程
+    threads = []
     # t1=threading.Thread(target=get_log1,args=(product,))
-    t1=threading.Thread(target=get_log)
-    t2=threading.Thread(target=starApp,args=[packageName,lanuchableActivity])
+    t1 = threading.Thread(target=get_log)
+    t2 = threading.Thread(target=starApp, args=[packageName, lanuchableActivity])
 
     threads.append(t1)
     threads.append(t2)
@@ -341,8 +356,8 @@ if __name__ == '__main__':
             if t.is_alive():
                 continue
             else:
-                i-=1
-                print('线程运行数为：',i)
+                i -= 1
+                print('线程运行数为：', i)
                 break
 
     print('线程关闭完毕')
@@ -358,23 +373,23 @@ if __name__ == '__main__':
             continue
 
     time.sleep(2)
-    product=get_cf_conf(packageName)
+    product = get_cf_conf(packageName)
     get_stt_link(product)
     get_longLive_versionName(packageName)
 
     toast = '\n是否删除tmp文件（log.txt文件）y/n：'
     while True:
-        choice=input(toast)
-        if choice =='y':
+        choice = input(toast)
+        if choice == 'y':
             print('执行删除缓存的log')
             os.remove('./log.txt')
             os.remove('./packageInfo.txt')
             break
-        elif choice =='n':
+        elif choice == 'n':
             print('不执行删除')
             break
         else:
-            toast='你输入的选项有误！请重新输入：'
+            toast = '你输入的选项有误！请重新输入：'
             continue
 
     input('输入回车关闭窗口')
