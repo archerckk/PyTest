@@ -69,7 +69,7 @@ def getPackagInfo():
     reg_packageName = re.compile(r"package: name='(.+?)'")
     reg_launchableActivity = re.compile(r"launchable-activity: name='(.+?)'")
     log = ''
-    with open(packInfoFile, encoding='utf-8')as f:
+    with open(packInfoFile, encoding='utf-8',errors='ignore')as f:
         for i in f:
             log += i
 
@@ -144,7 +144,7 @@ def get_cf_conf(packageName):
     result_adSDK_mainIndex = ''
     result_radicalSDK_mainIndex = ''
 
-    with open('log.txt', 'r', encoding='utf-8')as f:
+    with open('log.txt', 'r', encoding='utf-8',errors='ignore')as f:
         try:
             log = f.read()
         except Exception as e:
@@ -250,7 +250,7 @@ def get_stt_link(product):
     reg_daily = re.compile(r'({("g_act":"daily_active").+?"g_cnt":1})', re.I)
     reg_code = re.compile(r' {"code":.+{}}')
 
-    with open('log.txt', 'r', encoding='utf-8')as f:
+    with open('log.txt', 'r', encoding='utf-8',errors='ignore')as f:
         try:
             log = f.read()
         except Exception as e:
@@ -284,7 +284,7 @@ def get_stt_link(product):
 
 
 def get_longLive_versionName(packageName):
-    with open('log.txt', 'r', encoding='utf-8')as f:
+    with open('log.txt', 'r', encoding='utf-8',errors='ignore')as f:
         try:
             log = f.read()
         except Exception as e:
