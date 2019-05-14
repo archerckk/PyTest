@@ -13,16 +13,20 @@ with open('log_test.txt', 'r', encoding='utf-8')as f:
     reg_radicalSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+)/m/.+moduleid=3300&.+%s.+)' %('com.pika.camera.android','com.pika.camera.android'), re.I)
     reg_guidSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+)/m/.+moduleid=3100&.+%s.+)' %('com.pika.camera.android','com.pika.camera.android'), re.I)
     reg_ne = re.compile(r'(http://stt.%s.+/nw/ne)|(http://.+)/nw/ne' % 'qphotoeditor', re.I)
+
+    reg_ne = re.compile(r'(http://stt.%s.+/nw/ne|http://\d+.+/nw/ne)' % 'copohoroscopechina', re.I)
     reg_adSDK_cf = re.compile(
         r'((http://mo.(.+)\..+)|(http://(.+))/(cr)/.+pkg_name=%s&.+has_sim=false.+)' % 'com.pika.camera.android', re.I)
     try:
         # reg_ne_str = reg_ne.search(log).group()
         # print(reg_daily.search(log).group(2))
-        print(reg_cashSDK_cf.search(log).group())
+        print(reg_ne.search(log).group())
+        # print(reg_cashSDK_cf.search(log).group())
         # print(reg_radicalSDK_cf.search(log).group())
         # print(reg_guidSDK_cf.search(log).group())
         # print(reg_adSDK_cf.search(log).group())
         # print(reg_ne.search(log).group())
         # print('\n事件打点上报域名验证成功：', reg_ne_str)
+
     except:
         print('\n事件打点上报域名验证失败')

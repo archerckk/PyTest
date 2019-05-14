@@ -6,7 +6,7 @@ mo_link="url:http://mo.%s.info/cr/config?pubid=10344&pkg_ver=1&gaid=79e8de18-52f
 
 
 
-
+05-14 16:36:23.036 20246 20386 D StatTag : [2019-05-14 16:36:23.035] [BaseTask] http://stt.copohoroscopechina.info/nw/ne
 cf_link="http://cf.pikacamera.info/m/config?pubid=10344&moduleid=3000&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=c8892207-a92f-4f41-b267-7489a832f0d2&pkg_name=com.pika.camera.android&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0313&first_time=1555660372&update_time=1555660372&new_user=1&lc=zh_CN_%23Hans&bid=75&file_ver=0"
 cf_link="http://cf.pikacamera.info/m/config?pubid=10344&moduleid=3300&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=c8892207-a92f-4f41-b267-7489a832f0d2&pkg_name=com.pika.camera.android&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0313&first_time=1555660372&update_time=1555660372&new_user=1&lc=zh_CN_%23Hans&bid=75&file_ver=0"
 cf_link="http://cf.pikacamera.info/m/config?pubid=10344&moduleid=3100&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=c8892207-a92f-4f41-b267-7489a832f0d2&pkg_name=com.pika.camera.android&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0313&first_time=1555660372&update_time=1555660372&new_user=1&lc=zh_CN_%23Hans&bid=75&file_ver=0"

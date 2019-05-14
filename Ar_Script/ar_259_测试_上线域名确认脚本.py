@@ -121,18 +121,18 @@ def get_log():
 def get_cf_conf(packageName):
     # 各个配置连接的正则表达式
 
-    reg_cashSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3000&.+%s.+|http://(.+)/m/.+moduleid=3000&.+%s.+)' % (
+    reg_cashSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3000&.+%s.+|http://(\d.+)/m/.+moduleid=3000&.+%s.+)' % (
         packageName,packageName), re.I)
 
     reg_radicalSDK_cf = re.compile(
-        r'(http://cf.(.+)\..+moduleid=3300&.+%s.+|http://(.+)/m/.+moduleid=3300&.+%s.+)' % (
+        r'(http://cf.(.+)\..+moduleid=3300&.+%s.+|http://(\d.+)/m/.+moduleid=3300&.+%s.+)' % (
             packageName,packageName), re.I)
 
-    reg_guidSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3100&.+%s.+|http://(.+)/m/.+moduleid=3100&.+%s.+)' % (
+    reg_guidSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3100&.+%s.+|http://(\d.+)/m/.+moduleid=3100&.+%s.+)' % (
         packageName, packageName), re.I)
 
     reg_adSDK_cf = re.compile(
-        r'((http://mo.(.+)\..+)|(http://(.+))/(cr)/.+pkg_name=%s&.+has_sim=false.+)' % packageName, re.I)
+        r'(http://mo.(.+)\..+/cr/.+pkg_name=%s&.+has_sim=false.+|http://(\d+.+)/cr/.+pkg_name=%s&.+has_sim=false.+)' % (packageName,packageName) ,re.I)
 
     # 匹配cf链接的m参数
     reg_cf_new = re.compile(r'/(m)/')
@@ -216,7 +216,8 @@ def get_cf_conf(packageName):
         try:
             result_adSDK = reg_adSDK_cf.search(log)
             result_adSDK_link_str = result_adSDK.group(1)  # 原始链接
-            result_adSDK_mainIndex = result_adSDK.group(2)  # 主域名
+            if result_adSDK.group(2) != None:
+                result_adSDK_mainIndex = result_adSDK.group(2)  # 主域名
             resultAD_key = reg_mo_new.search(result_adSDK_link_str)
             resultAD_key_str = resultAD_key.group()
             cf_link_final = result_adSDK_link_str.replace(resultAD_key_str, '/v3/')
@@ -238,14 +239,14 @@ def get_cf_conf(packageName):
                 break
             else:
                 print('\n没有匹配到请求配置的相关连接')
-
+        print('主域名为：',mainIndex)
     return mainIndex
 
 
 def get_stt_link(product):
     # 匹配stt原始链接
-    reg_ne = re.compile(r'(http://stt.%s.+)|(http://.+)/nw/ne' % product, re.I)
-    reg_nx = re.compile(r'(http://stt.%s.+)|(http://.+)/nw/nx' % product, re.I)
+    reg_ne = re.compile(r'(http://stt.%s.+/nw/ne)|(http://.+)/nw/ne' % product, re.I)
+    reg_nx = re.compile(r'(http://stt.%s.+/nw/nx)|(http://.+)/nw/nx' % product, re.I)
     reg_real = re.compile(r'({("g_act":"real_active").+?"g_cnt":1})', re.I)
     reg_daily = re.compile(r'({("g_act":"daily_active").+?"g_cnt":1})', re.I)
     reg_code = re.compile(r' {"code":.+{}}')
