@@ -2,6 +2,7 @@ mo_link="url:http://127.0.0.0:11111/cr/config?pubid=10344&pkg_ver=1&gaid=79e8de1
 mo_link="url:http://mo.%s.info/cr/config?pubid=10344&pkg_ver=1&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=d81cb6c5-de99-455b-83cd-4a918d48f784&pkg_name=com.pika.camera.android&osv=25&new_user=1&ad_sdk_version=2&first_time=1555660372&bid=75&has_sim=false&sdk_vercode=2&sdk_vername=1.0.2.0118&channel=101&file_ver=0"%product
 mo_link="url:http://mo.%s.info/cr/config?pubid=10344&pkg_ver=1&gaid=79e8de18-52f7-445b-9cdc-82561a913022&guid=d81cb6c5-de99-455b-83cd-4a918d48f784&pkg_name=com.pika.camera.android&osv=25&new_user=1&ad_sdk_version=2&first_time=1555660372&bid=75&has_sim=false&sdk_vercode=2&sdk_vername=1.0.2.0118&channel=101&file_ver=0"%product
 
+    05-14 10:12:50.162  3536  3670 D nad     : [2019-05-14 10:12:50.158] [?] download url:http://169.55.74.167:15480/m/config?pubid=100038&moduleid=3000&gaid=3a19263c-72f2-4bbb-bf81-0826c51b7088&guid=179301e2-d193-4689-a713-70bbb8b3a207&pkg_name=com.copohoroscope.china&pkg_ver=1&sdk_vercode=2&sdk_vername=1.0.2.0509&first_time=1557799946&update_time=1557799946&new_user=1&lc=zh_CN&bid=91&device_id=&android_id=8246437f63b7e50d&file_ver=0
 
 
 

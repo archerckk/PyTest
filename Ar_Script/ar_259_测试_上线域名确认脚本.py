@@ -121,14 +121,14 @@ def get_log():
 def get_cf_conf(packageName):
     # 各个配置连接的正则表达式
 
-    reg_cashSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+)/m/.+moduleid=3000&.+%s.+)' % (
-        packageName, packageName), re.I)
+    reg_cashSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3000&.+%s.+|http://(.+)/m/.+moduleid=3000&.+%s.+)' % (
+        packageName,packageName), re.I)
 
     reg_radicalSDK_cf = re.compile(
-        r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+)/m/.+moduleid=3300&.+%s.+)' % (
-            packageName, packageName), re.I)
+        r'(http://cf.(.+)\..+moduleid=3300&.+%s.+|http://(.+)/m/.+moduleid=3300&.+%s.+)' % (
+            packageName,packageName), re.I)
 
-    reg_guidSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3300&.+%s.+)|(http://(.+)/m/.+moduleid=3100&.+%s.+)' % (
+    reg_guidSDK_cf = re.compile(r'(http://cf.(.+)\..+moduleid=3100&.+%s.+|http://(.+)/m/.+moduleid=3100&.+%s.+)' % (
         packageName, packageName), re.I)
 
     reg_adSDK_cf = re.compile(
@@ -154,7 +154,8 @@ def get_cf_conf(packageName):
         try:
             result_cash = reg_cashSDK_cf.search(log)
             result_cash_link_str = result_cash.group(1)  # 原始链接
-            result_cash_mainIndex = result_cash.group(2)  # 主域名
+            if result_cash.group(2)!=None:
+                result_cash_mainIndex = result_cash.group(2)  # 主域名
             result3000_key = reg_cf_new.search(result_cash_link_str)
             result3000_key_str = result3000_key.group()
             cf_link_final = result_cash_link_str.replace(result3000_key_str, '/p/')
@@ -173,7 +174,8 @@ def get_cf_conf(packageName):
         try:
             result_radicalSDK = reg_radicalSDK_cf.search(log)
             result_radicalSDK_link_str = result_radicalSDK.group(1)  # 原始链接
-            result_radicalSDK_mainIndex = result_radicalSDK.group(2)  # 主域名
+            if result_radicalSDK.group(2) != None:
+                 result_radicalSDK_mainIndex = result_radicalSDK.group(2)  # 主域名
             result3300_key = reg_cf_new.search(result_radicalSDK_link_str)
             result_key3300_str = result3300_key.group()
             cf_link_final = result_radicalSDK_link_str.replace(result_key3300_str, '/p/')
@@ -193,7 +195,8 @@ def get_cf_conf(packageName):
         try:
             result_guidSDK = reg_guidSDK_cf.search(log)
             result_guidSDK_link_str = result_guidSDK.group(1)  # 原始链接
-            result_guidSDK_mainIndex = result_guidSDK.group(2)  # 主域名
+            if result_guidSDK.group(2) != None:
+                result_guidSDK_mainIndex = result_guidSDK.group(2)  # 主域名
             result3100_key = reg_cf_new.search(result_guidSDK_link_str)
             result_key3100_str = result3100_key.group()
             cf_link_final = result_cash_link_str.replace(result_key3100_str, '/p/')
@@ -372,7 +375,7 @@ if __name__ == '__main__':
             print('\n日志生成中，继续检查')
             continue
 
-    time.sleep(2)
+    time.sleep(3)
     product = get_cf_conf(packageName)
     get_stt_link(product)
     get_longLive_versionName(packageName)
