@@ -5,7 +5,6 @@ import os
 import unittest
 from  ar_265_测试_自动检测星座接口 import  DailyTest
 import time
-from HTMLTestRunnerCN import HTMLTestReportCN
 from email.header import Header
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -14,6 +13,7 @@ import smtplib
 from BeautifulReport import BeautifulReport as bf
 from selenium import webdriver
 
+os.chdir(os.getcwd())
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s-%(levelname)s-%(message)s')
 
 '测试集脚本配置'
@@ -39,7 +39,7 @@ file.close()
 time.sleep(2)
 
 '图片截图生成'
-screenShot='rusultScreenShot_%s.png'%now
+screenShot='./result/rusultScreenShot_%s.png'%now
 
 driver=webdriver.Chrome()
 driver.get(fileName)
