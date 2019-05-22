@@ -36,7 +36,7 @@ class DailyTest(unittest.TestCase):
             print('页面有404错误')
 
     def testEnglishApi(self):
-        '检测国际版星座数据内容返回接口是否正常'
+        '检测国际版星座内容返回接口是否正常'
         apiLink = 'http://api.copohoroscopechina.info/horoscope'
         self.responseEn = requests.get(apiLink)
         print('接口连接：', apiLink)

@@ -25,7 +25,7 @@ now = time.strftime("%Y_%m_%d_%H_%M_%S",time.localtime())
 fileName = os.getcwd() + os.sep + 'result' + os.sep + 'HoroscopesApiTest_' + now + '.html'
 logging.debug('报告路径为：', fileName)
 
-file = open(fileName, 'wb')
+# file = open(fileName, 'wb')
 
 
 # runner = HTMLTestReportCN(
@@ -35,7 +35,7 @@ file = open(fileName, 'wb')
 # )
 runner=bf(suite)
 runner.report(filename=os.sep + 'result' + os.sep + 'HoroscopesApiTest_' + now + '.html',description='星座接口测试用例执行情况：')
-file.close()
+# file.close()
 time.sleep(2)
 
 '图片截图生成'
