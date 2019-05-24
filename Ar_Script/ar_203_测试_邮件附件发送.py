@@ -9,6 +9,9 @@ import subprocess
 import os
 import time
 from selenium import webdriver
+import logging as log
+
+log.basicConfig(level=log.DEBUG,format='%(asctime)s-%()s-%()')
 
 
 '发送邮件服务器'
@@ -45,6 +48,8 @@ driver.get(htmlFile)
 driver.maximize_window()
 driver.implicitly_wait(10)
 driver.get_screenshot_as_file('./baidu.png')
+time.sleep(2)
+driver.quit()
 
 htmlsmg="""<p><img src="cid:baidu.png"></p>"""
 #
