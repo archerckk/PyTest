@@ -64,7 +64,7 @@ with open('mailList.txt')as f:
 '邮件的基础参数'
 message=MIMEMultipart('related')
 message['from']=smtpAccount
-message['to']=Header(target_list[1],'utf-8')
+message['to']=Header('柏林组员','utf-8')
 message['subject']=Header('Re:%s_星座中文接口和星座英文数据返回接口测试报告'%now,'utf-8')
 
 
@@ -74,7 +74,7 @@ sendFileContent=open(fileName,'rb').read()
 att=MIMEText(sendFileContent,'base64','utf-8')
 #这是一个未知的类型
 att['Content-Type']='application/octet-scream'
-att['Content-Disposition']='attachment; filename=%s'%fileName
+att['Content-Disposition']='attachment; filename=%s'%('HoroscopesApiTest_' + now + '.html')
 message.attach(att)
 
 '发送文本内容构造'
@@ -99,7 +99,7 @@ logging.debug('开始发送邮件')
 try:
     smtp=smtplib.SMTP(smtpServer)
     smtp.login(smtpAccount,smtpPsw)
-    smtp.sendmail(smtpAccount,target_list[1],message.as_string())
+    smtp.sendmail(smtpAccount,target_list,message.as_string())
     smtp.quit()
     logging.debug('发送成功')
 except smtplib.SMTPException:
