@@ -89,6 +89,9 @@ att['Content-Type']='application/octet-scream'
 att['Content-Disposition']='attachment; filename="testreport.html"'
 msg.attach(att)
 
+
+
+
 '邮件发送'
 smtp=smtplib.SMTP(smtp_server)
 smtp.login(user_send,user_pwd)
