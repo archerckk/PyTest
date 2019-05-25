@@ -12,12 +12,15 @@ values = [['jason', '2000-01-01', 'male'],
 {'name': 'mike', 'dob': '1999-01-01', 'gender': 'male'}, 
 {'name': 'nancy', 'dob': '2001-02-01', 'gender': 'female'}] 
 """
-result=[]
+# result=[]
 '多行代码的实现'
-for i in values:
-        result.append(dict(zip(attributes,i)))
+# for i in values:
+#         result.append(dict(zip(attributes,i)))
+'单行代码实现'
+result=[dict(zip(attributes,i)) for i in values ]
+print(result)
 
-print(dict(result))
-
+for index,value in enumerate(attributes):
+        print(index,value)
 
 

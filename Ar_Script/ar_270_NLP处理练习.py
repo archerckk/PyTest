@@ -32,14 +32,16 @@ def parser(text):
 
     return dictNew
 
-tmpList=[]
+# tmpList=[]
 # with open('resources/testNLP')as f:
 #     text=f.read()
 
 with open('resources/testNLP')as f:
-    for i in f:
-        print(i)
-        tmpList.append(str(i))
+    # for i in f:
+    #     # print(i)
+    #     tmpList.append(str(i))
+    tmpList=[str(i)for i in f]
+
 text=''.join(tmpList)
 dictFinal=parser(text)
 # print(dictFinal)
