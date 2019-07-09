@@ -46,7 +46,7 @@ for i in a:
 print(''.join(tmpList))
 
 #1.5
-print('练习5结果演示')
+print('练习1.5结果演示')
 b=list(reversed(a))
 c=''
 c=c.join(b)
@@ -91,3 +91,58 @@ for i in checkList:
     else:
         print('True')
     resultList=[]
+
+#1.9 输出a字符串出现频率最高的字母
+max=0
+target=[]
+for i in countDict.items():
+    if i[1]>max:
+        max=i[1]
+
+for i in countDict.items():
+    if i[1]==max:
+        target.append(i[0])
+
+print('1.9结果展示')
+print('出现次数最高的的字母为：',end='')
+for i in target:
+    print(i,end=' ')
+
+"""
+2.在python命令行里，输入import this 以后出现的文档，统计该文档中，"be" "is" "than" 的出现次数。
+"""
+
+text="""
+The Zen of Python, by Tim Peters
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+"""
+
+targetDict={'be':0,'is':0,'than':0}
+wordList=text.split(' ')
+
+print("\n练习2结果展示")
+for i in wordList:
+    if i in targetDict.keys():
+        targetDict[i]+=1
+print(targetDict)
+
+
+"3.一文件的字节数为 102324123499123，请计算该文件按照kb与mb计算得到的大小。"
