@@ -14,13 +14,22 @@
 """
 a = "aAsmr3idd4bgs7Dlsf9eAF"
 #1.1
+print('练习结果展示：')
 print(a.swapcase())
+
+
 #1.2
 x=''
 for i in a:
     if i.isdigit():
         x+=i
-print(x)
+
+#[i for i in a if i.isdigit()]
+print('练习2结果展示')
+print(x.join([i for i in a if i.isdigit()]))
+
+
+
 #1.3
 a=a.lower()
 countDict={}
@@ -33,6 +42,11 @@ for i in a:
         continue
 print(countDict)
 
+'集合解法'
+# dict([(i,a.count(i))for i in set(a))
+
+
+
 #1.4
 b=a.lower()
 print(b)
@@ -44,6 +58,14 @@ for i in a:
         continue
 
 print(''.join(tmpList))
+'参考解法'
+# b=list(a)
+# b=list(set(a))
+# b=b.sort(key=list(a).index)
+# print(''.join(b))
+
+
+
 
 #1.5
 print('练习1.5结果演示')
@@ -51,6 +73,11 @@ b=list(reversed(a))
 c=''
 c=c.join(b)
 print(c)
+print()
+
+'参考解法'
+print(a[::-1])
+
 
 #1.6 去除a字符串内的数字后，请将该字符串里的单词重新排序（a-z），并且重新输出一个排序后的字符 串。（保留大小写,a与A的顺序关系为：A在a前面。例：AaBb）
 a = list("aAsmr3idd4bgs7Dlsf9eAF")
@@ -60,7 +87,33 @@ for i in stripNum:#去除a字符串内的数字
         stripNum.remove(i)
 
 stripNum.sort()
+print('1.6的结果展示为')
 print(''.join(stripNum))
+
+"精简版"
+b=list("aAsmr3idd4bgs7Dlsf9eAF")
+stripNum2=b[:]
+stripNum2=[stripNum2.remove(i) for i in stripNum if i.isdigit()]
+print(stripNum2)
+stripNum2.sort()
+print('精简版答案展示')
+print(''.join(stripNum2))
+
+"参考解法"
+"""
+1.要有小写字母从a-z的排序
+2.大小写不同，但值不同的字母，大小在小写的前面
+3.放两个列表然后对比插入
+"""
+an="aAsmr3idd4bgs7Dlsf9eAF"
+xiao= sorted([i for i in an if i.islower()])
+da=sorted([i for i in an if i.isupper()])
+for i in da:
+    lower_i=i.lower()
+    if lower_i in xiao:
+        xiao.insert(xiao.index(lower_i),i)
+print('参考答案：打印')
+print(''.join(xiao))
 
 
 #1.7 请判断 'boy'里出现的每一个字母，是否都出现在a字符串里。如果出现，则输出True，否则，则输 出False.
@@ -74,6 +127,14 @@ if 'False' in resultList:
     print('False')
 else:
     print('True')
+
+'参考答案'
+cc=set(b)
+search='b'
+cc.update(search)
+print(len(cc)==len(set(b)))
+"不用遍历可以节省性能"
+
 
 #1.8 要求如1.7，此时的单词判断，由'boy'改为四个，分别是 'boy','girl','bird','dirty'，请判断如上这4个字符串里的每个字母，是否都出现在a字符串里。
 resultList=[]
@@ -91,6 +152,10 @@ for i in checkList:
     else:
         print('True')
     resultList=[]
+'参考答案'
+print(len())
+
+
 
 #1.9 输出a字符串出现频率最高的字母
 max=0
@@ -146,3 +211,16 @@ print(targetDict)
 
 
 "3.一文件的字节数为 102324123499123，请计算该文件按照kb与mb计算得到的大小。"
+targetNum=102324123499123
+kbNum=targetNum/1024
+mbNum=kbNum/1024
+print("\n练习3结果展示")
+print(kbNum,mbNum)
+
+
+"4.已知  a =  [1,2,3,6,8,9,10,14,17],请将该list转换为字符串，例如 '123689101417'."
+a = [1, 2, 3, 6, 8, 9, 10, 14, 17]
+str1=''
+print("\n练习4结果展示")
+str1=str1.join([str(x) for x in a])
+print(str1)
