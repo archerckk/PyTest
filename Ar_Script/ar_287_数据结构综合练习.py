@@ -14,7 +14,7 @@
 """
 a = "aAsmr3idd4bgs7Dlsf9eAF"
 #1.1
-print('练习结果展示：')
+print('练习1结果展示：')
 print(a.swapcase())
 
 
@@ -25,12 +25,12 @@ for i in a:
         x+=i
 
 #[i for i in a if i.isdigit()]
-print('练习2结果展示')
-print(x.join([i for i in a if i.isdigit()]))
+print('\n练习2结果展示')
+print(''.join([i for i in a if i.isdigit()]))
 
 
 
-#1.3
+#1.3 请统计a字符串出现的每个字母的出现次数（忽略大小写，a与A是同一个字母），并输出成一个字典。 例 {'a':4,'b':2}
 a=a.lower()
 countDict={}
 for i in a:
@@ -40,14 +40,16 @@ for i in a:
         countDict[i]+=1
     else:
         continue
+print("\n练习3答案展示")
 print(countDict)
 
 '集合解法'
+#
 # dict([(i,a.count(i))for i in set(a))
 
 
 
-#1.4
+#1.4 请去除a字符串多次出现的字母，仅留最先出现的一个。例 'abcabb'，经过去除后，输出 'abc'
 b=a.lower()
 print(b)
 tmpList=[]
@@ -153,7 +155,12 @@ for i in checkList:
         print('True')
     resultList=[]
 '参考答案'
-print(len())
+ca=set(a)
+testList=['b','a']
+ca.update(testList)
+print("练习1.8参考答案结果展示：")
+print(len(ca)==len(set(a)))
+
 
 
 
@@ -217,10 +224,32 @@ mbNum=kbNum/1024
 print("\n练习3结果展示")
 print(kbNum,mbNum)
 
+#参考答案
+print('\n练习3参考答案展示')
+print(targetNum>>10,targetNum>>20)
+
 
 "4.已知  a =  [1,2,3,6,8,9,10,14,17],请将该list转换为字符串，例如 '123689101417'."
 a = [1, 2, 3, 6, 8, 9, 10, 14, 17]
 str1=''
 print("\n练习4结果展示")
 str1=str1.join([str(x) for x in a])
-print(str1)
+print(''.join([str(x) for x in a]))
+
+#参考答案
+print('\n练习4参考答案展示：')
+print(str(a)[1:-1].replace(',',''))
+
+
+
+#
+ainfo = {'b':'python','a':'haha','c':'hehe','f':'xiaoming'}
+at=tuple(ainfo)
+print(at)
+ainNew=list(tuple(ainfo)).sort(key=at[1])
+print(ainNew)
+
+#2.3 写出查找字典里面值等于'haha'的key的代码
+print(ainfo.get('haha'))
+
+

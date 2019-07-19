@@ -32,6 +32,7 @@ for i in targetFileList:
 
 try:
     productNameList=[ i.split("：")[1] for i in productList if "："in i]
+
 except Exception as e:
     print('错误信息为；{}'.format(e))
 
