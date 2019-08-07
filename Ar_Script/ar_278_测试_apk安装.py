@@ -33,13 +33,16 @@ def getPackagInfo():
     with open(packInfoFile, encoding='utf-8',errors='ignore')as f:
         for i in f:
             log += i
-
-    packageName = reg_packageName.search(log).group(1)
-    lanuchableActivity = reg_launchableActivity.search(log).group(1).strip()
-    print('选择的apk包名为：', packageName)
+    try:
+        packageName = reg_packageName.search(log).group(1)
+        lanuchableActivity = reg_launchableActivity.search(log).group(1).strip()
+        print('选择的apk包名为：', packageName)
+        return filePath, packageName, lanuchableActivity
+    except Exception as err:
+        print(err)
     # print(lanuchableActivity)
 
-    return filePath, packageName, lanuchableActivity
+
 
 def uninstallApp(packageName):
     command = 'adb uninstall %s' % packageName

@@ -28,19 +28,16 @@ for i in targetFileList:
     print(i)
     wb=openpyxl.load_workbook(desktop+os.sep+i)
     worksheet=wb.active
-    productList.append(worksheet['A1'].value)
+    productNameList.append(worksheet['B1'].value)
 
-try:
-    productNameList=[ i.split("：")[1] for i in productList if "："in i]
-
-except Exception as e:
-    print('错误信息为；{}'.format(e))
 
 
 for i in range(len(productNameList)):
     targetFile=radicalPath + os.sep + productNameList[i]
+
     if not os.path.exists(targetFile):
         os.mkdir(targetFile)
+        print('项目文件不存在，执行新建目录')
     try:
         shutil.move(desktop+os.sep+targetFileList[i],targetFile+os.sep+targetFileList[i])
     except Exception as e:
