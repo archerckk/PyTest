@@ -13,7 +13,9 @@
 1.9 输出a字符串出现频率最高的字母
 """
 a = "aAsmr3idd4bgs7Dlsf9eAF"
-#1.1
+
+
+#1.1 请将a字符串的大写改为小写，小写改为大写。
 print('练习1结果展示：')
 print(a.swapcase())
 
