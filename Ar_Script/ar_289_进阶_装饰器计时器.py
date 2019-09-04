@@ -22,4 +22,4 @@ def realFun():
         result=result+i
     return result
 
-print(realFun())
+realFun()
