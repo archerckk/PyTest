@@ -20,13 +20,13 @@ class Controler(object):
         self.count=count
         desired_caps = {}
         desired_caps['automationName'] = 'Appium'
-        desired_caps['deviceName'] = '98891936513437444f'
+        desired_caps['deviceName'] = 'ZY2249WM66'
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '8.0'
+        desired_caps['platformVersion'] = '7.1.1'
         desired_caps['noReset'] = True
-        desired_caps["appPackage"] = "com.cnblogs.xamarinandroid"
-        desired_caps["appActivity"] = "md522127645c21675e531a6ac609ef72b2a.SplashScreenActivity"
-        self.driver=webdriver.
+        desired_caps["appPackage"] = "com.android.chrome"
+        desired_caps["appActivity"] = "com.google.android.apps.chrome.Main"
+        self.driver=webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
 
 
@@ -36,8 +36,9 @@ class Controler(object):
 
     def getCpuInfo(self):
         cmd='adb shell dumpsys cpuinfo |findstr com.android.chrome'
-        self.cpuInfo=os.popen(cmd).read().split('%')[0].split('+')[1]
+        self.cpuInfo=os.popen(cmd).read().split('%')[0]
         print(self.cpuInfo)
+
         return self.cpuInfo
 
     def startApp(self):
@@ -45,9 +46,26 @@ class Controler(object):
         os.popen(cmd)
 
     def testOnce(self):
+        urlBar=self.driver.find_element_by_id('com.android.chrome:id/url_bar')
+        urlBar.send_keys("wwww.baidu.com")
+        self.driver.keyevent(66)
+        time.sleep(7)
+        search=self.driver.find_element_by_id('index-kw')
+        search.send_keys("appium")
+        clickSearch=self.driver.find_element_by_id('index-bn')
+        clickSearch.click()
+
+    def run(self):
+        for count in range(self.count):
+            self.startApp()
+            time.sleep(2)
+            self.getCpuInfo()
+            self.testOnce()
+            time.sleep(2)
+            self.getCpuInfo()
+            print()
+        self.driver.quit()
 
 if __name__ == '__main__':
-    cl=Controler(1)
-    cl.startApp()
-    cl.getCpuInfo()
-    cl.getCurrentTime()
+    cl=Controler(10)
+    cl.run()
