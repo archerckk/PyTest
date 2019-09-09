@@ -74,24 +74,24 @@ class Control(object):
         return currentTime
 
     def saveData(self):
-        # csvFile=open('testData.csv','w')
-        # writer=csv.writer(csvFile)
-        # writer.writerows(self.allData)
-        # csvFile.close()
+        csvFile=open('testData.csv','w',newline='')
+        writer=csv.writer(csvFile)
+        writer.writerows(self.allData)
+        csvFile.close()
 
-        wb = openpyxl.Workbook()
-        ws = wb.active
-        for i in range(1, self.count + 1):
-            # 设置单元格的格式为数字，去掉单元格的前后空格
-            ws['A{}'.format(i)].number_format = numbers.FORMAT_NUMBER
-            ws['B{}'.format(i)].number_format = numbers.FORMAT_NUMBER
-            ws['A{}'.format(i)] = self.allData[i - 1][0].strip()
-            ws['B{}'.format(i)] = self.allData[i - 1][1]
-            ws['c{}'.format(i)] = self.allData[i - 1][2].strip()
-        wb.save('testData.xlsx')
+        # wb = openpyxl.Workbook()
+        # ws = wb.active
+        # for i in range(1, self.count + 1):
+        #     # 设置单元格的格式为数字，去掉单元格的前后空格
+        #     ws['A{}'.format(i)].number_format = numbers.FORMAT_NUMBER
+        #     ws['B{}'.format(i)].number_format = numbers.FORMAT_NUMBER
+        #     ws['A{}'.format(i)] = self.allData[i - 1][0].strip()
+        #     ws['B{}'.format(i)] = self.allData[i - 1][1]
+        #     ws['c{}'.format(i)] = self.allData[i - 1][2].strip()
+        # wb.save('testData.xlsx')
 
 
 if __name__ == '__main__':
-    control = Control(11)
+    control = Control(5)
     control.run()
     control.saveData()

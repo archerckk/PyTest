@@ -2,6 +2,7 @@ import os
 import time
 import openpyxl
 from appium import webdriver
+import csv
 
 """
 1、启动app
@@ -18,15 +19,15 @@ class Controler(object):
         self.cpuInfo=0
         self.currentTime=0
         self.count=count
-        desired_caps = {}
-        desired_caps['automationName'] = 'Appium'
-        desired_caps['deviceName'] = 'ZY2249WM66'
-        desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '7.1.1'
-        desired_caps['noReset'] = True
-        desired_caps["appPackage"] = "com.android.chrome"
-        desired_caps["appActivity"] = "com.google.android.apps.chrome.Main"
-        self.driver=webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        # desired_caps = {}
+        # desired_caps['automationName'] = 'Appium'
+        # desired_caps['deviceName'] = 'ZY2249WM66'
+        # desired_caps['platformName'] = 'Android'
+        # desired_caps['platformVersion'] = '7.1.1'
+        # desired_caps['noReset'] = True
+        # desired_caps["appPackage"] = "com.android.chrome"
+        # desired_caps["appActivity"] = "com.google.android.apps.chrome.Main"
+        # self.driver=webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
 
 
@@ -66,6 +67,13 @@ class Controler(object):
             print()
         self.driver.quit()
 
+    def saveData(self):
+        csvData=open("csvData.csv",'w')
+        writer=csv.writer(csvData)
+        writer.writerows([('1',"2","3"),('1',"2","3"),('1',"2","3")])
+        csvData.close()
+
 if __name__ == '__main__':
     cl=Controler(10)
-    cl.run()
+    # cl.run()
+    cl.saveData()
