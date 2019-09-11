@@ -29,11 +29,13 @@ for i in targetFileList:
     wb=openpyxl.load_workbook(desktop+os.sep+i)
     worksheet=wb.active
     productNameList.append(worksheet['B1'].value)
+    wb.close()
 
 
-
+print()
 for i in range(len(productNameList)):
     targetFile=radicalPath + os.sep + productNameList[i]
+    print("\n"+targetFile)
 
     if not os.path.exists(targetFile):
         os.mkdir(targetFile)
