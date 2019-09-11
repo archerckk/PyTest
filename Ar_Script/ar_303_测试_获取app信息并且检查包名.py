@@ -88,6 +88,7 @@ def judgePackageExist(packageName):
         print('包名线上没有重复')
     else:
         print('包名已重复')
+    time.sleep(3)
     driver.quit()
 
 if __name__ == '__main__':
