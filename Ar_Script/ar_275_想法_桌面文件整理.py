@@ -12,7 +12,8 @@ import shutil
 5、将文件剪切到新建的目录里面
 """
 
-desktop=r'C:\Users\Avazu Holding\Desktop'
+# desktop=r'C:\Users\Avazu Holding\Desktop'
+desktop=r'C:\Users\Administrator\Desktop'
 os.chdir(desktop)
 fileList=os.listdir(desktop)
 targetFileList=[]
