@@ -245,9 +245,10 @@ for line in lines_on_hour11:
     lines_by_uid_on_hour11[uid] += 1
 d = [(k,v) for k,v in lines_by_uid_on_hour11.items()]
 d.sort(key=lambda k:k[1],reverse=True)
-uid_by_max_tweets_on_hour11 = d[0][0]
+uid_by_max_tweets_on_hour11 = d[0]
 # todo 如果有多个最多怎么办？
-assert type(uid_by_max_tweets_on_hour11) == str
+print(uid_by_max_tweets_on_hour11)
+# assert type(uid_by_max_tweets_on_hour11) == str
 
 
 #15 该文本里，哪个用户的源微博URL次数最多。 （要求：输出用户的uid，字符串格式。）
@@ -259,8 +260,9 @@ for line in lines:
         uid_by_v_url[uid] += 1
 uid_sort_by_v_url = [(k,v) for k,v in uid_by_v_url.items()]
 uid_sort_by_v_url.sort(key=lambda k:k[1],reverse=True)
-uid_by_max_v_url = uid_sort_by_v_url[0][0]
+uid_by_max_v_url = uid_sort_by_v_url[0]
+print(uid_by_max_v_url)
 # todo 如果有多个最多怎么办？
-assert type(uid_by_max_v_url) == str
+# assert type(uid_by_max_v_url) == str
 
 print ('运算时间：%s'%(time.time() - now)) #整体运行时间
