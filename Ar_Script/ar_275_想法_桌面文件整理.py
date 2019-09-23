@@ -12,8 +12,8 @@ import shutil
 5、将文件剪切到新建的目录里面
 """
 
-# desktop=r'C:\Users\Avazu Holding\Desktop'
-desktop=r'C:\Users\Administrator\Desktop'
+desktop=r'C:\Users\Avazu Holding\Desktop'
+# desktop=r'C:\Users\Administrator\Desktop'
 os.chdir(desktop)
 fileList=os.listdir(desktop)
 targetFileList=[]
@@ -28,8 +28,14 @@ for i in fileList:
 for i in targetFileList:
     print(i)
     wb=openpyxl.load_workbook(desktop+os.sep+i)
-    worksheet=wb.active
+    # worksheet = wb.active
+    worksheet=wb['基础信息']
+
+
+    worksheet["B1"]=worksheet['B1'].value.strip()
+    print(worksheet['B1'].value)
     productNameList.append(worksheet['B1'].value)
+
     wb.close()
 
 
