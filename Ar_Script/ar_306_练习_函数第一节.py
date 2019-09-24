@@ -2,11 +2,12 @@
 
 #1.定义一个方法 func，该func可以引入任意多的整型参数，结果返回其中最大与最小的值。
 def func1(*item):
-    min=0
-    max=0
-    tmp=0
+    "1."
+    length=len(item)
 
-    for i in item:
+
+
+    for i in range(length):
         if isinstance(i,int):
             if i <min:
                 min=i
