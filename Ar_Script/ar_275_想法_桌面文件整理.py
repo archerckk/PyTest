@@ -25,6 +25,8 @@ for i in fileList:
     if 'index' in i:
         targetFileList.append(i)
 
+print('扫描到的桌面包含index的文件有：')
+
 for i in targetFileList:
     print(i)
     wb=openpyxl.load_workbook(desktop+os.sep+i)
@@ -33,7 +35,7 @@ for i in targetFileList:
 
 
     worksheet["B1"]=worksheet['B1'].value.strip()
-    print(worksheet['B1'].value)
+    # print(worksheet['B1'].value)
     productNameList.append(worksheet['B1'].value)
 
     wb.close()
