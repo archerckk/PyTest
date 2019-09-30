@@ -1,7 +1,7 @@
 #encoding=utf-8
 import linecache
 import os
-
+import glob
 
 
 #1.定义一个方法 func，该func可以引入任意多的整型参数，结果返回其中最大与最小的值。
@@ -83,3 +83,10 @@ print(get_text("product_name_list.txt"))
 
 
 #5.定义一个方法get_dir(folder),folder参数为任意一个文件夹，该函数返回folder文件夹的文件列表。提示（可以了解python的glob模块）
+def get_dir(folder):
+    fileList=glob.glob(folder)
+
+    return fileList
+fileList=get_dir(r'D:\Download\**')
+for i in fileList:
+    print(i)
