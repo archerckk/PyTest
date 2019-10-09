@@ -1,5 +1,8 @@
 #coding=utf-8
-import string
+
+import random
+import os
+import requests
 
 '''
 1.定义一个func(name)，该函数效果如下。
@@ -60,8 +63,8 @@ def func3(*kargs):
     return kargs
 
 l=func3(5,5,3,4,1)
-for i in l:
-    print(i,end=' ')
+# for i in l:
+#     print(i,end=' ')
 
 
 
@@ -103,3 +106,67 @@ def func5(name=None,**kargs):
 assert func5('lilei') == "lilei"
 assert func5("lilei",years=4) == "lilei,years:4"
 assert func5("lilei",years=10,body_weight=20) == "lilei,years:10,body_weight:20"
+
+
+#6、定义一个函数，可以获取到url的网页内容并且保存到一个文件目录下方，随机生成一个文件名
+
+def func6(url,path):
+
+    if not(url.startswith('http://')or url.startswith('https://')):
+        return '传入的url参数不符合规范'
+
+    if not os.path.isdir(path):
+        return 'path参数不是一个有效的文件夹'
+
+    body=requests.get(url)
+    # content=body.text
+
+    intRandom=random.randint(1,1000)
+    fileObject=path+os.sep+'test{}.txt'.format(intRandom)
+
+    with open(fileObject,'wb')as f:
+        for chunk in body.iter_content(chunk_size=128):
+            f.write(chunk)
+
+    return fileObject
+
+print(func6('http://www.vgooo.com/',os.curdir))
+
+
+#7、定义一个函数，可以返回一个网页里面的url数量
+
+def func7(url):
+
+    if not(url.startswith('http://')or url.startswith('https://')):
+        return '传入的url参数不符合规范'
+
+    body = requests.get(url)
+    content=body.text
+    result=content.count('a href=')
+
+    # result=len(content.split('a href='))-1
+
+    return result
+
+print(func7('http://www.vgooo.com/'))
+
+
+#8、合并一个文件夹里面的所有的文件内容
+
+def func8(filePath):
+
+    if not os.path.isdir(filePath):
+        return '你所传入的参数不是一个文件夹'
+
+    for file in os.listdir(filePath):
+        fileObject=os.path.join(filePath,file)
+        if os.path.isdir(file):
+            func8(file)
+        else:
+            result=open(os.curdir+os.sep+'result.txt','a')
+            content=open(fileObject,'r').read()
+            print(content)
+            result.write(content)
+            result.close()
+
+print(func8(r'D:\Pytest\Ar_Script\resources\test'))
