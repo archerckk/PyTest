@@ -3,6 +3,8 @@
 import random
 import os
 import requests
+import urlparser
+import urllib.parse
 
 '''
 1.定义一个func(name)，该函数效果如下。
@@ -53,7 +55,7 @@ for i in l:
 	print i,
 #输出 1 2 3 4 5
 
-l = func(5,3,4,5,6)
+l = func(5,3,4,5,6) 
 for i in l:
 	print i
 #输出 5 3 4 5 6
@@ -130,7 +132,7 @@ def func6(url,path):
 
     return fileObject
 
-print(func6('http://www.vgooo.com/',os.curdir))
+# print(func6('http://www.vgooo.com/',os.curdir))
 
 
 #7、定义一个函数，可以返回一个网页里面的url数量
@@ -163,10 +165,45 @@ def func8(filePath):
         if os.path.isdir(file):
             func8(file)
         else:
-            result=open(os.curdir+os.sep+'result.txt','a')
-            content=open(fileObject,'r').read()
+            result=open(os.curdir+os.sep+'result.txt','ab')
+            f=open(fileObject,'r')
+            content=f.read().encode('utf-8')
             print(content)
             result.write(content)
+            f.close()
             result.close()
 
-print(func8(r'D:\Pytest\Ar_Script\resources\test'))
+# print(func8(r'D:\Pytest\Ar_Script\resources\test'))
+
+
+#9 获取的到一个url后面的参数，并且返回一个字典格式：如：www.baidu.com/api?a=123&b=12，返回{a:123,b:12}
+def url_dict(url):
+    if not(url.startswith('http://')or url.startswith('https://')):
+        return '传入的url参数不符合规范'
+
+    urlResult=urllib.parse.urlparse(url).query
+    tmp_dict=urllib.parse.parse_qs(urlResult)
+    find_dict=dict([(k,v[0]) for k,v in tmp_dict.items()])
+
+    return find_dict
+print(url_dict('http://www.baidu.com?abc=1223&a=222'))
+
+
+#10 删除一个文件夹里面的所有文件
+def del_all_file(filePath):
+
+    if not os.path.exists(filePath):
+        return '你所传入的目录并不存在'
+
+    if not os.path.isdir(filePath):
+        return '你所传入的参数不是一个文件夹'
+
+    for file in os.listdir(filePath):
+        fileObject=os.path.join(filePath,file)
+        if os.path.isdir(file):
+            del_all_file(file)
+        else:
+            os.remove(fileObject)
+            print("删除文件{}".format(fileObject))
+
+del_all_file(r'D:\Pytest\Ar_Script\resources\test')
