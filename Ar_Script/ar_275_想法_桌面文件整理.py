@@ -18,7 +18,7 @@ os.chdir(desktop)
 fileList=os.listdir(desktop)
 targetFileList=[]
 productList=[]
-radicalPath=r'D:\项目记录\激进包'
+radicalPath=r'D:\项目记录\激进包\测试记录'
 productNameList=[]
 
 for i in fileList:
