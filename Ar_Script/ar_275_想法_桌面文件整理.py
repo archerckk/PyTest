@@ -33,8 +33,11 @@ for i in targetFileList:
     # worksheet = wb.active
     worksheet=wb['基础信息']
 
-
-    worksheet["B1"]=worksheet['B1'].value.strip()
+    try:
+        worksheet["B1"]=worksheet['B1'].value.strip()
+    except AttributeError as e:
+        print(str(e)+"错误文件为：{}".format(i))
+        raise AttributeError
     # print(worksheet['B1'].value)
     productNameList.append(worksheet['B1'].value)
 
