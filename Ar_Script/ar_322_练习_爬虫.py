@@ -23,11 +23,17 @@ url :"http://money.163.com/special/002534NU/house2010.html"
 1、先将网页的整体内容抓取下来
 2、分析网页的内容，将要保留的东西保存到对应的数据结构
 """
+
+
 url="http://money.163.com/special/002534NU/house2010.html"
 
 result_list=[]
 
-body=requests.get(url)
+try:
+    body=requests.get(url)
+except requests.exceptions.ConnectionError:
+    raise requests.exceptions.ConnectionError
+
 html_content=body.text
 soup=BeautifulSoup(html_content,'html.parser')
 
@@ -67,6 +73,71 @@ print jd_search(keyword)
 dict {pic:'',title:'',price:'',url:''}
 
 
-
-
 """
+
+def jd_search(keyword):
+    url="https://search.jd.com/Search?keyword={}&enc=utf-8#filter".format(keyword)
+    headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36'}
+
+    try:
+        response=requests.get(url,headers=headers)
+    except requests.exceptions.ConnectionError:
+        return '网络存在异常，无法访问'
+
+    response.encoding = response.apparent_encoding
+    html_text=response.text
+
+    if "抱歉，没有找到" in html_text:
+        return "没有找到该商品的信息"
+
+    soup=BeautifulSoup(html_text,'html.parser')
+
+    #图片匹配规则
+    pic_result = soup.find_all("div", class_='p-img')
+    reg_pic = re.compile(r'.+source-data-lazy-img="(.+)" width=')
+
+    #标题匹配规则
+    title_result=soup.find_all('div',class_='p-name')
+
+    #价格匹配规则
+    price_result=soup.find_all('div',class_='p-price')
+
+    item_list=[]
+
+
+    #图片列表获取
+    pic_list=[ reg_pic.match(str(i.a.img)).group(1)for i in pic_result]
+    # pic_list = [i.img['source-data-lazy-img'] for i in pic_result]
+
+    #标题列表获取
+    title_list=[i.a.em.text  for i in title_result ]
+
+    #价格列表获取
+    price_list=[ i.strong.i.text for i in price_result]
+
+    #url列表获取
+
+    url_list=[ i.a['href'] for i in pic_result]
+
+    length=len(pic_result)
+    for i in range(length):
+        tmp_dict=dict()
+        tmp_dict['pic']=pic_list[i]
+        tmp_dict['title']=title_list[i]
+        tmp_dict['price']=price_list[i]
+        tmp_dict['url']=url_list[i]
+
+        item_list.append(tmp_dict)
+    return item_list
+
+print()
+
+keyword = input('请输入你要查找的商品：')
+result = jd_search(keyword)
+if isinstance(result,str):
+    print(result)
+else:
+    for i in result:
+        print(i)
+
+
