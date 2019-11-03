@@ -43,18 +43,22 @@ reg_time=re.compile(r'<span class="time">(.+)</span>')
 result=re.findall(reg_link,html_content)
 
 
-div_list=soup.find_all('div',class_='list_item clearfix')
+div_list=soup.find_all('div',class_='item_top')
 for i in div_list:
-    dict_item = {}
-    link=reg_link.match(str(i.h2.a)).group(1)
-    title=reg_link.match(str(i.h2.a)).group(2)
-    time_value=reg_time.match(str(i.p.span)).group(1)
+    # dict_item = {}
+    # link=reg_link.match(str(i.h2.a)).group(1)
+    # title=reg_link.match(str(i.h2.a)).group(2)
+    # time_value=reg_time.match(str(i.p.span)).group(1)
+    #
+    # dict_item['title']=title
+    # dict_item['time']=time_value
+    # dict_item['url']=link
 
-    dict_item['title']=title
-    dict_item['time']=time_value
-    dict_item['url']=link
+    #参考做法
+    result_list.append({'title':i.h2.a.text,'time':i.p.span.text,'url':i.h2.a['href']})
 
-    result_list.append(dict_item)
+
+    # print(i.div)
 
 for i in result_list:
     print(i)
@@ -121,13 +125,16 @@ def jd_search(keyword):
 
     length=len(pic_result)
     for i in range(length):
-        tmp_dict=dict()
-        tmp_dict['pic']=pic_list[i]
-        tmp_dict['title']=title_list[i]
-        tmp_dict['price']=price_list[i]
-        tmp_dict['url']=url_list[i]
+        # tmp_dict=dict()
+        # tmp_dict['pic']=pic_list[i]
+        # tmp_dict['title']=title_list[i]
+        # tmp_dict['price']=price_list[i]
+        # tmp_dict['url']=url_list[i]
+        #
+        # item_list.append(tmp_dict)
 
-        item_list.append(tmp_dict)
+        #参考做法
+        item_list.append({'pic':pic_list[i],'title':title_list[i],'price':price_list[i],'url':url_list[i]})
     return item_list
 
 print()
