@@ -11,4 +11,7 @@ import scrapy
 class Test41104Item(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    pic=scrapy.Field()
+    title=scrapy.Field()
+    price=scrapy.Field()
+    url=scrapy.Field()
