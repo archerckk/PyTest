@@ -79,12 +79,18 @@ dict {pic:'',title:'',price:'',url:''}
 
 """
 
-def jd_search(keyword):
-    url="https://search.jd.com/Search?keyword={}&enc=utf-8#filter".format(keyword)
+def jd_search(keyword,page=1):
+
+
+    params={'keyword':keyword,'page':page*2-1,"enc":"utf-8",'qsrt':1,'rt':1,"stop":1,"vt":1,"s":(page+1-1)*60}
+
+
+    url="https://search.jd.com/Search?"
     headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36'}
 
     try:
-        response=requests.get(url,headers=headers)
+        response=requests.get(url,headers=headers,params=params)
+        print(response.url)
     except requests.exceptions.ConnectionError:
         return '网络存在异常，无法访问'
 
@@ -110,8 +116,8 @@ def jd_search(keyword):
 
 
     #图片列表获取
-    pic_list=[ reg_pic.match(str(i.a.img)).group(1)for i in pic_result]
-    # pic_list = [i.img['source-data-lazy-img'] for i in pic_result]
+    # pic_list=[ reg_pic.match(str(i.a.img)).group(1)for i in pic_result]
+    pic_list = [i.a['href'] for i in pic_result]
 
     #标题列表获取
     title_list=[i.a.em.text  for i in title_result ]
@@ -140,11 +146,18 @@ def jd_search(keyword):
 print()
 
 keyword = input('请输入你要查找的商品：')
-result = jd_search(keyword)
+
+start=int(input('请输入你的起始页：'))
+end=int(input('请输入你的结束页：'))
+total=[]
+
+for i in range(start,end+1):
+    result = jd_search(keyword,page=i)
+    total.extend(result)
 if isinstance(result,str):
     print(result)
 else:
-    for i in result:
+    for i in total:
         print(i)
 
 
