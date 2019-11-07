@@ -11,11 +11,15 @@ data_keys = (
 '生成每一个参数的字典属性顺序字典'
 keys = {data_keys[i]: i for i in range(len(data_keys))}
 
+# print(keys)
+
 '读取目标文档的所有行，并且生成列表'
 f = linecache.getlines('resources/twitter数据挖掘片段.txt')
 
-'将'
+'将每一行作为项单独分割出来'
 lines = [line.split('","') for line in f]
+
+# print(lines)
 
 now = time.time()
 print(now)
@@ -24,6 +28,7 @@ print(now)
 
 
 # 1.该文本里，有多少个用户。（要求：输出为一个整数。）
+#关键字username对应的键值为，line里面名字对应的索引位置，再通过集合去重
 userCountSet = set([line[keys['username']] for line in lines])
 
 userNum = len(userCountSet)
