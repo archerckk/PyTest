@@ -58,5 +58,5 @@ for i in range(length):
     driver.get(url)
     driver.implicitly_wait(60)
 
-print("添加成功：{}个产品，失败：{}个产品,执行时间为{}".format(length-err_file,err_file,time.time()-start))
+print("\n添加成功：{}个产品，失败：{}个产品,执行时间为{}".format(length-err_file,err_file,time.time()-start))
 driver.quit()
