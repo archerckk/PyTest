@@ -3,6 +3,7 @@ import time
 import openpyxl
 from appium import webdriver
 import csv
+import json
 
 """
 1、启动app
@@ -19,16 +20,24 @@ class Controler(object):
         self.cpuInfo=0
         self.currentTime=0
         self.count=count
-        # desired_caps = {}
-        # desired_caps['automationName'] = 'Appium'
-        # desired_caps['deviceName'] = 'ZY2249WM66'
-        # desired_caps['platformName'] = 'Android'
-        # desired_caps['platformVersion'] = '7.1.1'
-        # desired_caps['noReset'] = True
-        # desired_caps["appPackage"] = "com.android.chrome"
-        # desired_caps["appActivity"] = "com.google.android.apps.chrome.Main"
-        # self.driver=webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        #打开手机的配置的json文件
+        with open('./resources/motog5.json','r')as f:
+            desired_caps = json.load(f)
 
+        self.driver=webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        self.test_result=[('cpu占用比率','测试时间')]
+
+
+    def test_operate(self):
+        self.driver.get('http://www.baidu.com')
+        # tmp_list=['selenium','appium','python','test home','51test']
+        tmp_list=['selenium','appium']
+        for i in tmp_list:
+            self.driver.find_element_by_id('index-kw').send_keys(i)
+            self.driver.find_element_by_id('index-bn').click()
+            self.driver.implicitly_wait(5)
+            self.driver.back()
+            self.driver.implicitly_wait(5)
 
 
     def getCurrentTime(self):
@@ -47,33 +56,33 @@ class Controler(object):
         os.popen(cmd)
 
     def testOnce(self):
-        urlBar=self.driver.find_element_by_id('com.android.chrome:id/url_bar')
-        urlBar.send_keys("wwww.baidu.com")
-        self.driver.keyevent(66)
-        time.sleep(7)
-        search=self.driver.find_element_by_id('index-kw')
-        search.send_keys("appium")
-        clickSearch=self.driver.find_element_by_id('index-bn')
-        clickSearch.click()
+        self.startApp()
+        time.sleep(2)
+        first_result=self.getCpuInfo()
+        current_time = self.getCurrentTime()
+        self.test_result.append((first_result,current_time))
+        self.test_operate()
+        time.sleep(2)
+
+        after_result=self.getCpuInfo()
+        current_time2=self.getCurrentTime()
+        self.test_result.append((after_result,current_time2))
+        print()
 
     def run(self):
         for count in range(self.count):
-            self.startApp()
-            time.sleep(2)
-            self.getCpuInfo()
             self.testOnce()
-            time.sleep(2)
-            self.getCpuInfo()
-            print()
         self.driver.quit()
+        print('执行完成')
 
     def saveData(self):
-        csvData=open("csvData.csv",'w')
+        csvData=open("csvData.csv",'w',newline='')
         writer=csv.writer(csvData)
-        writer.writerows([('1',"2","3"),('1',"2","3"),('1',"2","3")])
+        writer.writerows(self.test_result)
         csvData.close()
 
 if __name__ == '__main__':
-    cl=Controler(10)
-    # cl.run()
+    cl=Controler(5)
+    # cl.test_operate()
+    cl.run()
     cl.saveData()
