@@ -1,0 +1,9 @@
+{
+  "automationName": "Appium",
+  "deviceName": "5LM0215C28005216",
+  "platformName": "Android",
+  "platformVersion": "7.0",
+  "noReset": true,
+  "appPackage": "com.android.chrome",
+  "appActivity": "com.google.android.apps.chrome.Main"
+}
