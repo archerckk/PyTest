@@ -15,10 +15,10 @@ class Control(object):
     def __init__(self):
         self.result=[("测试时间","VSS(Kb)","RSS(Kb)")]
         self.file_time=time.strftime('%Y_%m_%d_%H_%M_%S',time.localtime())
-        with open('resources/mate8.json','r')as f:
+        with open('resources/phone.json','r')as f:
             self.desired=json.load(f)
         self.top_file=r'G:\Pycharm_Project\Pytest\Ar_Script\resources\top_file.txt'
-        self.driver=webdriver.Remote('http://localhost:4723/wd/hub',self.desired)
+        self.driver=webdriver.Remote('http://localhost:4723/wd/hub',self.desired['mate8'])
 
     def startApp(self):
         cmd = 'adb shell am start -W -n com.android.chrome/com.google.android.apps.chrome.Main'
