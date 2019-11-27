@@ -5,11 +5,12 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG,format='%(asctime)s-%(levelname)s-%(message)s')
 
-environment = 'test'
+environment = 'normal'
 if environment == 'test':
     host = 'http://150.109.38.68'
     token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQzZTRhZDU5NzQ4NzU1ZjMwODI5YmYyNDQzN2JhODViODY3ODNhNzhhYmZhY2I4MGI3ODY1YTQ5OWJiNmVjZmU1MTM2ZjlmNzhiZDg5N2NhIn0.eyJhdWQiOiIyIiwianRpIjoiZDNlNGFkNTk3NDg3NTVmMzA4MjliZjI0NDM3YmE4NWI4Njc4M2E3OGFiZmFjYjgwYjc4NjVhNDk5YmI2ZWNmZTUxMzZmOWY3OGJkODk3Y2EiLCJpYXQiOjE1NzQ0Mjk3NDgsIm5iZiI6MTU3NDQyOTc0OCwiZXhwIjoxNTc1NzI1NzQ4LCJzdWIiOiI0MjkiLCJzY29wZXMiOltdfQ.COE8VPyJQOJSPWEG0i_iOcm81Rg0Y9a5gCOyeuHJfqHdvsHAOm2jkAA6nfU_WhmqXrZlNA64GrqNi9BjE8sFlMUcwRBl5EjJap_p2X33uxBtM-u4Ge1nr3H8phBYPZK6sOmGSMYuwWFo6fdem3wot5swz2eKGKrCA1Pn4aSH5L87vidfF2-FJfo5Zl45ePrzr68__MkqQyce7LWj-SGxUCejkBv7PTJputtg-7Azz8GJKl4QAyOAmhCqFTwXE4dy29jyMqdBKDEf1cTlhhiNayyLLY_m4om-MtVj9KNZWY09xnMq9WBynKU3_s_nSCLVH2po0jfUt1_o62TWKL1UAN9fBGY9Zl6d-jIwVt8WUVoJikaUahXLFzGaF880nGmYSxs_DG2-VRrLAhlm5lWfvwYH3DfGBOFp-Imk9a7sBpIKZAJ2kIjPl6Oo-RapPTNwAE3rsYsSQD0igt5_jtn55BfMKspn8RJf6leKsTCs0lSOe2qpnvU94SUTnbGbqNaLZrvDDYJQu_BRO5uZWbBDElETimMf4q4dQMEvHSC-NqiViiisgsHyztDKUsrcz_orfEmxw2yGeumobpKDt8jc0HNEJ3mPQnZKV7zs6KrDNlwDbKNvreV-ARt6rZRuLhTuKjQcKcmR0nFB6KwlfDvOfYC7AbJYdfAqFjEbhw5DE0A'
 elif environment == 'normal':
+    token='Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImY3NGEzNTUwMTdkYjhkODBiOWMyMzFkNDhhMTc4ZDI1YjE5NTc2YzlkMGQ2ZDJkNWU0Nzk3MmQzMzgzYmNiYzQzYzdkNTgzMmVkYTBiZGFkIn0.eyJhdWQiOiIxIiwianRpIjoiZjc0YTM1NTAxN2RiOGQ4MGI5YzIzMWQ0OGExNzhkMjViMTk1NzZjOWQwZDZkMmQ1ZTQ3OTcyZDMzODNiY2JjNDNjN2Q1ODMyZWRhMGJkYWQiLCJpYXQiOjE1NzQ4NTc2MDgsIm5iZiI6MTU3NDg1NzYwOCwiZXhwIjoxNjA2NDgwMDA4LCJzdWIiOiI2MiIsInNjb3BlcyI6W119.fj92n_Rl1w_dG985eH6sv4YbqG1cccu3Rv0-GDhgsJ3bwmBT3gLamNHYNyw9RYXvezrIhIhgSvXrVffiVUTFnC6tWcG6_tMF2Hl5Xa8n-6qz4Bm0j-gJx5SJie8UDjzwTaSu6UP2tC8JL3uuq5fL_Pf35OPaOaHBjBoM6qP-iskUd3qQwyWw-c1eNQfK-Yrz-0iZSOGGYRHvR3DWh4GIAbVr7CAkBNElJ0vjAMxAJowda5et3_eQ0yHLwLRi3AiAImX7Qk_3dzPOoqE9UFqHMUrGiJUoVVvIOiVAeWq1LxrXninCRuTNEmfWmu915CF7suc79rS_avj-ZED1VlOYzUwhQhgxzHwnhpsBTvK5rkTciqwVkxiP9pxP1SnOKHxzJPd3-8yNCKM03QXpsKUGqzSQgHVkYFJODYoWgy7wZlLIoOWk5zWbN2r5EKWXdJQrcxW3skwLuoOxyipVNlaQgLAdKGrNH7ZT2KO82SnRUUluJoMWV-yzjOhsGmldMjAdpT_6OoMxhydQfWzg4WpBqvYeFCSO6M2QNZuSCTEtdw8OFNGTwmekW8xiu7bv1lAQ5JsvQr11_LziDrBSne-fyCnwDHaod0YeS8hp2xNdiPO7298Rz2LLQOP28KtK8X5TeA6Fv155YE9KblilCyz49Cc90eyE1K1ZAscERRyEwAU'
     host = 'http://www.meetuapp.info'
 
 
@@ -27,7 +28,7 @@ class Get_test(unittest.TestCase):
         #构造header部分
         headers={
         "Authorization":value,
-        "Host": "150.109.38.68",
+        # "Host": "150.109.38.68",
         "Connection": "Keep - Alive",
         "Accept - Encoding": "gzip",
         "User - Agent": "okhttp / 3.12.0",
@@ -54,7 +55,7 @@ class Get_test(unittest.TestCase):
         "Authorization": token,
         "Content-Type": "application/x-www-form-urlencoded",
         "Content-Length": "74",
-        "Host": "150.109.38.68",
+        # "Host": "150.109.38.68",
         "Connection": "Keep-Alive",
         "Accept-Encoding": "gzip",
         "User-Agent": "okhttp/3.12.0",
@@ -89,7 +90,7 @@ class Get_test(unittest.TestCase):
         # 构造header部分
         headers = {
             "Authorization": value,
-            "Host": "150.109.38.68",
+            # "Host": "150.109.38.68",
             "Connection": "Keep - Alive",
             "Accept - Encoding": "gzip",
             "User - Agent": "okhttp / 3.12.0",
@@ -106,7 +107,7 @@ class Get_test(unittest.TestCase):
             self.assertTrue('Login to Your Account' in content)
         else:
             result_json = response.json()
-            self.assertEqual(result_json['user_id'],429)
+            self.assertTrue(result_json['user_id']is not None)
 
             self.assertTrue(result_json['gender']is not None)
 
@@ -131,7 +132,7 @@ class Get_test(unittest.TestCase):
             "Authorization":token,
             "Content-Type": "application/x-www-form-urlencoded",
             "Content-Length": "5",
-            "Host": "150.109.38.68",
+            # "Host": "150.109.38.68",
             "Connection": "Keep-Alive",
             "Accept-Encoding": "gzip",
             "User-Agent": "okhttp/3.12.0",
@@ -160,7 +161,7 @@ class Get_test(unittest.TestCase):
             "Authorization":value,
             "Content-Type": "application/x-www-form-urlencoded",
             "Content-Length": "5",
-            "Host": "150.109.38.68",
+            # "Host": "150.109.38.68",
             "Connection": "Keep-Alive",
             "Accept-Encoding": "gzip",
             "User-Agent": "okhttp/3.12.0",
@@ -192,7 +193,7 @@ class Get_test(unittest.TestCase):
 
         headers = {
          "Authorization": value,
-         "Host": "150.109.38.68",
+         # "Host": "150.109.38.68",
          "Connection": "Keep-Alive",
          "Accept-Encoding": "gzip",
          "User-Agent": "okhttp/3.12.0",
@@ -222,7 +223,7 @@ class Get_test(unittest.TestCase):
 
         headers = {
             "Authorization": value,
-            "Host": "150.109.38.68",
+            # "Host": "150.109.38.68",
             "Connection": "Keep-Alive",
             "Accept-Encoding": "gzip",
             "User-Agent": "okhttp/3.12.0",
@@ -253,7 +254,7 @@ class Get_test(unittest.TestCase):
         headers = {
             "Authorization": value,
             "Content-Length": "0",
-            "Host": "150.109.38.68",
+            # "Host": "150.109.38.68",
             "Connection": "Keep-Alive",
             "Accept-Encoding": "gzip",
             "User-Agent": "okhttp/3.12.0",
@@ -288,7 +289,7 @@ class Get_test(unittest.TestCase):
             "Authorization": value,
             "Content-Type": "application/x-www-form-urlencoded",
             "Content-Length": "5",
-            "Host": "150.109.38.68",
+            # "Host": "150.109.38.68",
             "Connection": "Keep-Alive",
             "Accept-Encoding": "gzip",
             "User-Agent": "okhttp/3.12.0",
@@ -372,7 +373,7 @@ class Get_test(unittest.TestCase):
             "Authorization":token,
              "Content-Type": "application/x-www-form-urlencoded",
              "Content-Length": "246",
-             "Host": "150.109.38.68",
+             # "Host": "150.109.38.68",
              "Connection": "Keep-Alive",
              "Accept-Encoding": "gzip",
              "User-Agent": "okhttp/3.12.0",
@@ -411,7 +412,7 @@ class Get_test(unittest.TestCase):
             "Authorization":token,
             "Content-Type": "application/x-www-form-urlencoded",
             "Content-Length": "25",
-            "Host": "150.109.38.68",
+            # "Host": "150.109.38.68",
             "Connection": "Keep-Alive",
             "Accept-Encoding": "gzip",
             "User-Agent": "okhttp/3.12.0",
@@ -440,7 +441,7 @@ class Get_test(unittest.TestCase):
 
         headers = {
             "Authorization":token,
-            "Host": "150.109.38.68",
+            # "Host": "150.109.38.68",
             "Connection": "Keep-Alive",
             "Accept-Encoding": "gzip",
             "User-Agent": "okhttp/3.12.0",
