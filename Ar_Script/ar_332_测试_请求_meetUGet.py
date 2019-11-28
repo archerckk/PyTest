@@ -50,7 +50,7 @@ class Get_test(unittest.TestCase):
 
 
     def test_user_app(self):
-        logging.debug('用户信息获取接口_user/user_app测试开始')
+        logging.debug('用户信息获取接口_user /user_app测试开始')
         headers={
         "Authorization": token,
         "Content-Type": "application/x-www-form-urlencoded",
