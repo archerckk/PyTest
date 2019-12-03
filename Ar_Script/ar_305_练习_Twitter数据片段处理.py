@@ -10,7 +10,8 @@ now = time.time()
 
 
 f = linecache.getlines('resources/twitter数据挖掘片段.txt')
-
+# for i in f:
+#     print(i)
 print(type(f))
 lines=[x[1:-1].split('","') for x in f]
 

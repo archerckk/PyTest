@@ -502,5 +502,3 @@ class Get_test(unittest.TestCase):
                 self.assertEqual(result_json['message'], 'User liked successfully')
 
 
-if __name__ == '__main__':
-    unittest.main()
