@@ -15,11 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,re_path
-from . import views
-import sys
-
-
+from index import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^index/', views.demo),
+    path('hello/', views.hello),
+    re_path(r'hello/(?P<name>.+)/$',views.hello2)
 ]
