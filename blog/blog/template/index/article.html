@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章添加</title>
+</head>
+<body>
+访问方式：{{method}}
+<!--<form action="{% url 'index:article' %}" method="post">-->
+<form action="/index/article/" method="post">
+     {% csrf_token %}
+    <p>文章标题：<input name="title" type="text"></p>
+    <p>文章内容：<textarea name="content" ></textarea></p>
+    <input type="submit" value="提交" >
+</form>
+
+
+</body>
+</html>

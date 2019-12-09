@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章列表</title>
+</head>
+<body>
+
+<h2>文章列表</h2>
+<a href="{% url 'index:article' %}">添加文章</a>
+
+{%for a in articles%}
+<div>
+
+    <h1><a href="{% url 'index:adetail' a.id %}">{{a.title}}</a> </h1>
+    <div>
+        {{a.content}}
+    </div>
+</div>
+{% endfor %}
+</body>
+</html>

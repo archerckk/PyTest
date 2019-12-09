@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章内容页</title>
+</head>
+<body>
+
+<h1>{{article.title}}</h1>
+<p>文章的编号为：{{article.id}}</p>
+<p>{{article.content}}</p>
+
+
+{% for comment in comments %}
+<p>{{comment.content}}</p>
+{% endfor %}
+
+
+<form action="/index/comment/" method="post">
+     {% csrf_token %}
+    <p>评论：<textarea name="com_content"></textarea></p>
+    <input name="article_id" type="hidden" value={{article.id}}>
+    <input type="submit" value="提交">
+</form>
+
+
+</body>
+</html>
