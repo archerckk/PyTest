@@ -18,6 +18,17 @@ def hello2(request,name):
 #     print(questions)
 #     return render(request,'list.html',{'questions':questions})
 
+#注册
+def register(request):
+
+    if request.method=='POST':
+        pass
+
+    return render(request,'')
+
+
+
+
 def add(request):
     print(request.method)
     if request.method=='POST':
@@ -57,6 +68,7 @@ def article_detail(request,article_id):
     print(article_id)
     article = get_object_or_404(Article, pk=article_id)
 
+
     comments=Comment.objects.filter(article_id_id=article_id).order_by('-id').all()
     print(len(comments))
     return render(request,'adetail.html',{'article':article,'comments':comments})
@@ -74,10 +86,12 @@ def comment_add(request):
         content=request.POST.get('com_content')
 
         comment=Comment()
-        comment.article_id=article_id
+        #外键约束的新增正确方式
+        comment.article_id=Article(id=article_id)
         comment.content=content
         comment.save()
         return HttpResponseRedirect(reverse("index:adetail",args=article_id,))
+
 
 #投票
 # def index(request):
