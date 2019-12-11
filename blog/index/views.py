@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,reverse
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from .models import Question as q
-from .models import Choice,Article,Comment
+from .models import Choice,Article,Comment,User
 from django.utils import timezone
 # Create your views here.
 
@@ -22,27 +22,30 @@ def hello2(request,name):
 def register(request):
 
     if request.method=='POST':
-        pass
+        user_name=request.POST.get('user_name').strip()
+        password=request.POST.get('password')
+        password_repeat=request.POST.get('password2')
 
-    return render(request,'')
+        if user_name.isspace() or len(user_name)==0:
+            return render(request, 'register.html', {'error':'你的账号为空，请输入！'})
 
+        elif password.isspace() or len(password)==0:
+            return render(request, 'register.html', {'error': '你的密码为空，请输入！'})
 
+        elif password_repeat.isspace() or len(password_repeat)==0:
+            return render(request, 'register.html', {'error': '你的确认密码为空，请输入！'})
 
+        elif password_repeat!=password:
+            return render(request, 'register.html', {'error': '你两次输入的密码不一致，清重新输入'})
 
-def add(request):
-    print(request.method)
-    if request.method=='POST':
-        print(request.method)
-        title=request.POST.get('title',None)
-        question_text=request.POST.get('question_text',None)
-        print(title)
-        print(question_text)
+        else:
+            user=User()
+            user.user_name=user_name
+            user.password=password
+            user.save()
+            return HttpResponseRedirect(reverse("index:alist"),kwargs={"user_name":user_name})
 
-        qustion=q(title=title,question_text=question_text,pub_date=timezone.now())
-        qustion.save()
-        return HttpResponseRedirect('/index/list')
-
-    return render(request,'add.html')
+    return render(request,'register.html')
 
 
 def article(request):
@@ -68,7 +71,6 @@ def article_detail(request,article_id):
     print(article_id)
     article = get_object_or_404(Article, pk=article_id)
 
-
     comments=Comment.objects.filter(article_id_id=article_id).order_by('-id').all()
     print(len(comments))
     return render(request,'adetail.html',{'article':article,'comments':comments})
@@ -79,18 +81,40 @@ def article_list(request):
     print(a)
     return render(request,'alist.html',{'articles':a})
 
+#评论添加
 def comment_add(request):
 
     if request.method=='POST':
         article_id=request.POST.get('article_id')
         content=request.POST.get('com_content')
+        print(content)
+        if content==''or content==None or len(content)==0:
+            return JsonResponse({'status': '10001', 'message': 'comment is none'})
+        else:
+            comment=Comment()
+            #外键约束的新增正确方式
+            comment.article_id=Article(id=article_id)
+            comment.content=content
+            comment.save()
+            return HttpResponseRedirect(reverse("index:adetail",args=article_id,))
 
-        comment=Comment()
-        #外键约束的新增正确方式
-        comment.article_id=Article(id=article_id)
-        comment.content=content
-        comment.save()
-        return HttpResponseRedirect(reverse("index:adetail",args=article_id,))
+
+def add(request):
+    print(request.method)
+    if request.method=='POST':
+        print(request.method)
+        title=request.POST.get('title',None)
+        question_text=request.POST.get('question_text',None)
+        print(title)
+        print(question_text)
+
+        qustion=q(title=title,question_text=question_text,pub_date=timezone.now())
+        qustion.save()
+        return HttpResponseRedirect('/index/list')
+
+    return render(request,'add.html')
+
+
 
 
 #投票

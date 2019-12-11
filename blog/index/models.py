@@ -30,5 +30,5 @@ class Comment(models.Model):
 class User(models.Model):
     user_name=models.CharField(max_length=20,unique=True)
     password=models.CharField(max_length=20)
-    article=models.ForeignKey(Article,on_delete=models.CASCADE)
-    content=models.ForeignKey(Comment,on_delete=models.CASCADE)
+    article=models.ForeignKey(Article,on_delete=models.CASCADE,null=True)
+    content=models.ForeignKey(Comment,on_delete=models.CASCADE,null=True)

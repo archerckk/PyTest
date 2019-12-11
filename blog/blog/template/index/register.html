@@ -5,12 +5,13 @@
     <title>注册</title>
 </head>
 <body>
-<form>
+<form method="post" action="/index/register/" >
+    {% csrf_token %}
     <p>账号：<input name="user_name" type="text"></p>
     <p>密码：<input name="password" type="password"></p>
-    <p>密码：<input name="password2" type="password"></p>
-
-
+    <p>密码：<input name="password2" type="password"></p><br>
+    <input value="注册" type="submit">
+        {{error}}
 
 </form>
 
