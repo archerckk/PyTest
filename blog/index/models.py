@@ -18,18 +18,18 @@ class Choice(models.Model):
     votes=models.IntegerField(default=0)
 
 
+class User(models.Model):
+    user_name=models.CharField(max_length=20,unique=True)
+    password=models.CharField(max_length=20)
+
+
 class Article(models.Model):
     title = models.CharField(max_length=50)
     content = models.CharField(max_length=200)
-
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
 
 class Comment(models.Model):
     article_id=models.ForeignKey(Article,on_delete=models.CASCADE)
     content=models.CharField(max_length=500)
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
 
-
-class User(models.Model):
-    user_name=models.CharField(max_length=20,unique=True)
-    password=models.CharField(max_length=20)
-    article=models.ForeignKey(Article,on_delete=models.CASCADE,null=True)
-    content=models.ForeignKey(Comment,on_delete=models.CASCADE,null=True)
