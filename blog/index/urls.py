@@ -11,7 +11,7 @@ urlpatterns = [
 
     #文章
     path('article/', views.article, name='article'),
-    path('alist/', views.article_list, name='alist'),
+    path('salist/', views.article_list, name='alist'),
     path('article/<int:article_id>/', views.article_detail, name='adetail'),
     path('comment/',views.comment_add,name='comment'),
     path('register/',views.register,name='register')
