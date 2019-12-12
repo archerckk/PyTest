@@ -3,6 +3,8 @@ from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from .models import Question as q
 from .models import Choice,Article,Comment,User
 from django.utils import timezone
+from .form import Resgister_form
+from django.template import RequestContext
 # Create your views here.
 
 def hello(request):
@@ -21,31 +23,70 @@ def hello2(request,name):
 #注册
 def register(request):
 
-    if request.method=='POST':
-        user_name=request.POST.get('user_name').strip()
-        password=request.POST.get('password')
-        password_repeat=request.POST.get('password2')
+    if request.method=='GET':
+        print('执行get')
+        register_form=Resgister_form()
+        print('执行表单')
+        return render(request,'register.html',{'register_form':register_form})
+        # return render(request,'register.html')
+    else:
+        print('执行post')
+        register_form = Resgister_form(request.POST)
 
-        if user_name.isspace() or len(user_name)==0:
-            return render(request, 'register.html', {'error':'你的账号为空，请输入！'})
+        if register_form.user_name.isspace() or len(register_form.user_name)==0:
+            return render(request, 'register.html', {'register_form':register_form,
+                                                     'error':'你的账号为空，请输入！'})
 
-        elif password.isspace() or len(password)==0:
-            return render(request, 'register.html', {'error': '你的密码为空，请输入！'})
+        elif register_form.password.isspace() or len(register_form.password)==0:
+            return render(request, 'register.html', {'register_form':register_form,
+                                                     'error': '你的密码为空，请输入！'})
 
-        elif password_repeat.isspace() or len(password_repeat)==0:
-            return render(request, 'register.html', {'error': '你的确认密码为空，请输入！'})
+        elif register_form.password_repeat.isspace() or len(register_form.password_repeat)==0:
+            return render(request, 'register.html', {'register_form':register_form,
+                                                     'error': '你的确认密码为空，请输入！'})
 
-        elif password_repeat!=password:
-            return render(request, 'register.html', {'error': '你两次输入的密码不一致，清重新输入'})
-
-        else:
-            user=User()
-            user.user_name=user_name
-            user.password=password
+        elif register_form.password_repeat!=register_form.password:
+            return render(request, 'register.html', {'register_form':register_form,
+                                                     'error': '你两次输入的密码不一致，清重新输入'})
+        elif register_form.is_valid():
+            user = User()
+            user.user_name=register_form.cleaned_data['user_name']
+            user.password=register_form.cleaned_data['password']
             user.save()
-            return HttpResponseRedirect(reverse("index:alist"),kwargs={"user_name":user_name})
+            return HttpResponseRedirect(reverse("index:alist"), kwargs={"user_name": register_form.user_name})
+        return render(request,'register.html',{'register_form':register_form})
 
-    return render(request,'register.html')
+
+
+
+
+
+    #HTML表单代码
+    # if request.method=='POST':
+    #     user_name=request.POST.get('user_name').strip()
+    #     password=request.POST.get('password')
+    #     password_repeat=request.POST.get('password2')
+    #
+    #     if user_name.isspace() or len(user_name)==0:
+    #         return render(request, 'register.html', {'error':'你的账号为空，请输入！'})
+    #
+    #     elif password.isspace() or len(password)==0:
+    #         return render(request, 'register.html', {'error': '你的密码为空，请输入！'})
+    #
+    #     elif password_repeat.isspace() or len(password_repeat)==0:
+    #         return render(request, 'register.html', {'error': '你的确认密码为空，请输入！'})
+    #
+    #     elif password_repeat!=password:
+    #         return render(request, 'register.html', {'error': '你两次输入的密码不一致，清重新输入'})
+    #
+    #     else:
+    #         user=User()
+    #         user.user_name=user_name
+    #         user.password=password
+    #         user.save()
+    #         return HttpResponseRedirect(reverse("index:alist"),kwargs={"user_name":user_name})
+    #
+    # return render(request,'register.html')
 
 
 def article(request):

@@ -7,12 +7,11 @@
 <body>
 <form method="post" action="/index/register/" >
     {% csrf_token %}
-    <p>账号：<input name="user_name" type="text"></p>
-    <p>密码：<input name="password" type="password"></p>
-    <p>密码：<input name="password2" type="password"></p><br>
+    <p>用户名：{{register_form.user_name}} </p>
+    <p>密码：{{register_form.password}} </p>
+    <p>确认密码：{{register_form.password_repeat}} </p><br>
     <input value="注册" type="submit">
-        {{error}}
-
+    {{error}}
 </form>
 
 
