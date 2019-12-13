@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<form method="post" action="/index/login/" novalidate>
+    {% csrf_token %}
+    <p>用户名：{{login_form.user_name}} {{login_form.user_name.errors.0}} </p>
+    <p>密码：{{login_form.password}}  {{login_form.password.errors.0}}</p>
+    <input value="登录" type="submit">
+    {{error}}
+</form>
+
+</body>
+</html>

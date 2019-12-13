@@ -3,7 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Question as q
 from .models import Choice, Article, Comment, User
 from django.utils import timezone
-from .form import Resgister_form
+from .form import Resgister_form,Login_form
+from django.core.exceptions import ObjectDoesNotExist
 from django.template import RequestContext
 
 
@@ -25,7 +26,7 @@ def hello2(request, name):
 # 注册
 def register(request):
     register_form = Resgister_form()
-    articles = Article.objects.order_by('-id').all()
+
     if request.method == 'POST':
         register_form = Resgister_form(request.POST)
 
@@ -36,16 +37,43 @@ def register(request):
 
             if password!=password_repeat:
                 error='两次输入的密码不一致'
-                return render(request, 'register.html', {'register_form': register_form, 'aricles': articles,"error":error})
+                return render(request, 'register.html', {'register_form': register_form,"error":error})
             else:
                 user = User()
                 user.user_name = user_name
                 user.password = password
                 user.save()
-                return HttpResponseRedirect(reverse("index:alist",kwargs={'user_name':user_name}))
+                return HttpResponseRedirect(reverse("index:login"))
         else:
-            return render(request, 'register.html', {'register_form': register_form,'aricles':articles})
+            return render(request, 'register.html', {'register_form': register_form})
     return render(request, 'register.html', {'register_form': register_form})
+
+
+def login(request):
+    login_form=Login_form()
+    # user=User()
+    if request.method=='POST':
+        login_form=Login_form(request.POST)
+
+        if login_form.is_valid():
+            login_user = login_form.cleaned_data.get('user_name')
+            login_password = login_form.cleaned_data.get('password')
+
+            try:
+                login_user_info=User.objects.get(user_name=login_user)
+                if login_password==login_user_info.password:
+                    return HttpResponse('登录成功')
+                # else:
+
+            except ObjectDoesNotExist:
+                error='用户不存在！'
+                return render(request, 'login.html', {'login_form': login_form,'error':error})
+
+        print('test')
+        return render(request,'login.html',{'login_form':login_form})
+
+    return render(request, 'login.html', {'login_form': login_form})
+
 
 
 

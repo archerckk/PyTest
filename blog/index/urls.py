@@ -11,10 +11,12 @@ urlpatterns = [
 
     #文章
     path('article/', views.article, name='article'),
-    path('salist/', views.article_list, name='alist'),
+    path('alist/', views.article_list, name='alist'),
     path('article/<int:article_id>/', views.article_detail, name='adetail'),
     path('comment/',views.comment_add,name='comment'),
-    path('register/',views.register,name='register')
+    path('register/',views.register,name='register'),
+    path('login/',views.login,name='login')
+
     #投票地址
     # path('<int:question_id>/', views.detail, name='detail'),
     # path('<int:question_id>/results/', views.results, name='results'),

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Question(models.Model):
@@ -30,6 +31,7 @@ class Article(models.Model):
 
 class Comment(models.Model):
     article_id=models.ForeignKey(Article,on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     content=models.CharField(max_length=500)
-    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
+    pub_time=models.DateField(auto_created=True,default=timezone.now)
 
