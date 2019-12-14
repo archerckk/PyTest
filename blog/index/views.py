@@ -68,13 +68,6 @@ def login(request):
             try:
                 login_user_info=User.objects.get(user_name=login_user)
 
-                article_list=Article.objects.filter(user_id_id=login_user_info.id)
-
-                if len(article_list)==0:
-                    articles=0
-                else:
-                    articles=article_list[0]
-
                 if login_password!=login_user_info.password:
                     error = '你输入的账号与密码不匹配！'
                     return render(request, 'login.html', {'login_form': login_form, 'error': error})
@@ -128,6 +121,13 @@ def article_detail(request, article_id):
 
 
 def article_list(request):
+    user=User()
+    article_list = Article.objects.filter(user_id_id=login_user_info.id)
+
+    if len(article_list) == 0:
+        articles = 0
+    else:
+        articles = article_list[0]
     if request.method == 'POST':
         article_id = request.POST.get('article_id')
     articles = Article.objects.order_by('-id').all()
