@@ -35,8 +35,13 @@ def register(request):
             password = register_form.cleaned_data.get('password')
             password_repeat = register_form.cleaned_data.get('password_repeat')
 
-            if password!=password_repeat:
-                error='两次输入的密码不一致'
+            user_info=User.objects.filter(user_name=user_name)
+            if len(user_info)!=0:
+                error = '你输入的账号已注册！'
+                return render(request, 'register.html', {'register_form': register_form, "error": error})
+
+            elif password!=password_repeat:
+                error='两次输入的密码不一致！'
                 return render(request, 'register.html', {'register_form': register_form,"error":error})
             else:
                 user = User()
@@ -51,20 +56,33 @@ def register(request):
 
 def login(request):
     login_form=Login_form()
-    # user=User()
+    user=User()
     if request.method=='POST':
         login_form=Login_form(request.POST)
 
         if login_form.is_valid():
             login_user = login_form.cleaned_data.get('user_name')
             login_password = login_form.cleaned_data.get('password')
+            login_user_id=login_form.cleaned_data.get('user_id')
 
             try:
                 login_user_info=User.objects.get(user_name=login_user)
-                if login_password==login_user_info.password:
-                    return HttpResponse('登录成功')
-                # else:
 
+                article_list=Article.objects.filter(user_id_id=login_user_info.id)
+
+                if len(article_list)==0:
+                    articles=0
+                else:
+                    articles=article_list[0]
+
+                if login_password!=login_user_info.password:
+                    error = '你输入的账号与密码不匹配！'
+                    return render(request, 'login.html', {'login_form': login_form, 'error': error})
+                else:
+                    return HttpResponseRedirect(reverse('index:alist',kwargs={'user_id':login_user_info.id}
+                                                                                ))
+
+                    # return render(request,'alist.html',{'user_name':login_user,'articles':articles})
             except ObjectDoesNotExist:
                 error='用户不存在！'
                 return render(request, 'login.html', {'login_form': login_form,'error':error})
@@ -76,8 +94,8 @@ def login(request):
 
 
 
-
-def article(request):
+#添加文章
+def add_article(request):
     # print('测试代码：', request.method)
     if request.method == 'GET':
         print('get method')
@@ -89,6 +107,9 @@ def article(request):
         content = request.POST.get('content')
 
         print(title, content)
+        article=Article()
+        article.title=title
+        article.content=content
 
         a = Article(title=title, content=content)
         a.save()

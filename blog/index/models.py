@@ -28,6 +28,7 @@ class Article(models.Model):
     title = models.CharField(max_length=50)
     content = models.CharField(max_length=200)
     user_id=models.ForeignKey(User,on_delete=models.CASCADE)
+    pub_time = models.DateField(auto_created=True, default=timezone.now)
 
 class Comment(models.Model):
     article_id=models.ForeignKey(Article,on_delete=models.CASCADE)

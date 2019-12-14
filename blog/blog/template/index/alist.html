@@ -9,15 +9,23 @@
 <h2>{{user_name}}的文章列表</h2>
 <a href="{% url 'index:article' %}">添加文章</a>
 
-{%for article in articles%}
 
-<div>
+{%if articles %}
 
-    <h1><a href="{% url 'index:adetail' article.id %}">{{article.title}}</a> </h1>
+    {%for article in articles%}
+
     <div>
-        {{article.content}}
+
+        <h1><a href="{% url 'index:adetail' article.id %}">{{article.title}}</a> </h1>
+        <div>
+            {{article.content}}
+        </div>
     </div>
-</div>
-{% endfor %}
+    {% endfor %}
+
+{% else %}
+<P>你还没有发布任何文章</P>
+{% endif %}
+
 </body>
 </html>
