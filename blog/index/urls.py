@@ -10,7 +10,7 @@ urlpatterns = [
     # path('list/',views.question_list,name='list'),
 
     #添加文章
-    path('article/', views.add_article, name='article'),
+    path('<int:user_id>/add_article/', views.add_article, name='article'),
     #显示文章列表
     path('<int:user_id>/alist/', views.article_list, name='alist'),
     #进入文章详情

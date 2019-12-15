@@ -7,7 +7,7 @@
 <body>
 
 <h2>{{user_name}}的文章列表</h2>
-<a href="{% url 'index:article' %}">添加文章</a>
+<a href="{% url 'index:article' user_id %}">添加文章</a>
 
 
 {%if articles %}

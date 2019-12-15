@@ -85,10 +85,24 @@ def login(request):
 
     return render(request, 'login.html', {'login_form': login_form})
 
+#文章列表页
+def article_list(request,user_id):
+    user=User()
+    article_list = Article.objects.filter(user_id_id=user_id)
+    user_name=User.objects.filter(id=user_id)[0].user_name
+
+    if len(article_list) == 0:
+        articles = 0
+    else:
+        articles = article_list.all()
+
+    # articles = Article.objects.order_by('-id').all()
+
+    return render(request, 'alist.html', {'articles': articles,'user_name':user_name})
 
 
 #添加文章
-def add_article(request):
+def add_article(request,user_id):
     # print('测试代码：', request.method)
     if request.method == 'GET':
         print('get method')
@@ -103,13 +117,15 @@ def add_article(request):
         article=Article()
         article.title=title
         article.content=content
+        article.user_id_id=User(id=user_id)
+        article.pub_time=timezone.now()
 
-        a = Article(title=title, content=content)
-        a.save()
+        article.save()
         return HttpResponseRedirect(reverse("index:alist"))
         # return render(request,'alist.html')
 
 
+#文章详情页
 def article_detail(request, article_id):
     print(article_id)
     article = get_object_or_404(Article, pk=article_id)
@@ -119,20 +135,6 @@ def article_detail(request, article_id):
     return render(request, 'adetail.html', {'article': article, 'comments': comments})
     # return render(request,'adetail.html',{'article':article})
 
-
-def article_list(request):
-    user=User()
-    article_list = Article.objects.filter(user_id_id=login_user_info.id)
-
-    if len(article_list) == 0:
-        articles = 0
-    else:
-        articles = article_list[0]
-    if request.method == 'POST':
-        article_id = request.POST.get('article_id')
-    articles = Article.objects.order_by('-id').all()
-    # print(a)
-    return render(request, 'alist.html', {'articles': articles})
 
 
 # 评论添加
