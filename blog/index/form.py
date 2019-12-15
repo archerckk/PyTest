@@ -20,5 +20,9 @@ class Login_form(Form):
                                                                           'min_length':'密码的长度小于6',
                                                                           })
 
+class Article_form(Form):
+    title=fields.CharField(max_length=50,error_messages={'required':'请输入你的文章标题！'})
+    content=fields.CharField(min_length=10,max_length=500,error_messages={'required':'请输入你的文章内容！',
+                                                                          'min_length':'文章内容至少为10个字符'})
 
 

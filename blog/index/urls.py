@@ -14,7 +14,7 @@ urlpatterns = [
     #显示文章列表
     path('<int:user_id>/alist/', views.article_list, name='alist'),
     #进入文章详情
-    path('article/<int:article_id>/', views.article_detail, name='adetail'),
+    path('<int:user_id>/article/<int:article_id>/', views.article_detail, name='adetail'),
     #添加评论
     path('comment/',views.comment_add,name='comment'),
     #注册

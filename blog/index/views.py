@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Question as q
 from .models import Choice, Article, Comment, User
 from django.utils import timezone
-from .form import Resgister_form,Login_form
+from .form import Resgister_form,Login_form,Article_form
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import RequestContext
 
@@ -87,6 +87,7 @@ def login(request):
 
 #文章列表页
 def article_list(request,user_id):
+    print('文章列表的用户id为：',user_id)
     user=User()
     article_list = Article.objects.filter(user_id_id=user_id)
     user_name=User.objects.filter(id=user_id)[0].user_name
@@ -94,45 +95,54 @@ def article_list(request,user_id):
     if len(article_list) == 0:
         articles = 0
     else:
-        articles = article_list.all()
+        articles = article_list.all().order_by('-id')
 
     # articles = Article.objects.order_by('-id').all()
 
-    return render(request, 'alist.html', {'articles': articles,'user_name':user_name})
+    # return render(request, 'alist.html', {'articles': articles,'user_name':user_name,'user_id':user_id})
+    return render(request, 'alist.html', locals())
 
 
 #添加文章
 def add_article(request,user_id):
     # print('测试代码：', request.method)
-    if request.method == 'GET':
-        print('get method')
-        return render(request, 'article.html', {'method': request.method})
+    article_form = Article_form()
+    print('添加文章的用户id为：',user_id)
 
     if request.method == "POST":
-        print('测试代码：', request.method)
-        title = request.POST.get('title')
-        content = request.POST.get('content')
+        article_form=Article_form(request.POST)
 
-        print(title, content)
-        article=Article()
-        article.title=title
-        article.content=content
-        article.user_id_id=User(id=user_id)
-        article.pub_time=timezone.now()
+        if article_form.is_valid():
+            title = article_form.cleaned_data.get('title')
+            content=article_form.cleaned_data.get('content')
 
-        article.save()
-        return HttpResponseRedirect(reverse("index:alist"))
-        # return render(request,'alist.html')
+            article = Article()
+
+            print('测试代码：', request.method)
+            print(title, content)
+            print(type(user_id))
+            article.title=title
+            article.content=content
+            article.user_id_id=user_id
+            article.pub_time=timezone.now()
+            article.save()
+            return HttpResponseRedirect(reverse("index:alist",kwargs={'user_id':user_id}))
+            # return HttpResponseRedirect(reverse("index:alist"))
+
+        return render(request,'article.html',{'article_form':article_form,'user_id':user_id})
+
+    return render(request, 'article.html', {'article_form': article_form,'user_id':user_id})
 
 
 #文章详情页
-def article_detail(request, article_id):
+def article_detail(request, article_id,user_id):
     print(article_id)
     article = get_object_or_404(Article, pk=article_id)
 
     comments = Comment.objects.filter(article_id_id=article_id).order_by('-id').all()
     print(len(comments))
-    return render(request, 'adetail.html', {'article': article, 'comments': comments})
+    # return render(request, 'adetail.html', {'article': article, 'comments': comments})
+    return render(request, 'adetail.html', locals())
     # return render(request,'adetail.html',{'article':article})
 
 

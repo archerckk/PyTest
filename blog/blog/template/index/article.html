@@ -5,12 +5,12 @@
     <title>文章添加</title>
 </head>
 <body>
-访问方式：{{method}}
-<!--<form action="{% url 'index:article' %}" method="post">-->
-<form action="/index/article/" method="post">
+<!--访问方式：{{method}}-->
+
+<form action="/index/{{user_id}}/add_article/" method="post" novalidate>
      {% csrf_token %}
-    <p>文章标题：<input name="title" type="text"></p>
-    <p>文章内容：<textarea name="content" ></textarea></p>
+    <p>文章标题：{{article_form.title}} {{article_form.title.errors.0}}</p>
+    <p>文章内容：{{article_form.content}} {{article_form.content.errors.0}}</p>
     <input type="submit" value="提交" >
 </form>
 
