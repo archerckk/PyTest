@@ -9,18 +9,23 @@ urlpatterns = [
     # path('add/', views.add,name='add'),
     # path('list/',views.question_list,name='list'),
 
+    # 注册
+    path('register/', views.register, name='register'),
+    # 登录
+    path('login/', views.login, name='login'),
     #添加文章
     path('<int:user_id>/add_article/', views.add_article, name='article'),
     #显示文章列表
     path('<int:user_id>/alist/', views.article_list, name='alist'),
     #进入文章详情
     path('<int:user_id>/article/<int:article_id>/', views.article_detail, name='adetail'),
+
+    # # 整站详情
+    # path('<int:user_id_id>article/<int:article_id>/', views.all_detail, name='all_detail'),
+    # # 整站文章
+    # path('all_article/', views.all_article, name='all_article'),
     #添加评论
-    path('comment/',views.comment_add,name='comment'),
-    #注册
-    path('register/',views.register,name='register'),
-    #登录
-    path('login/',views.login,name='login')
+    # path('comment/',views.comment_add,name='comment'),
 
     #投票地址
     # path('<int:question_id>/', views.detail, name='detail'),

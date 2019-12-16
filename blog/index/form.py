@@ -26,3 +26,6 @@ class Article_form(Form):
                                                                           'min_length':'文章内容至少为10个字符'})
 
 
+class Comment_form(Form):
+    comment=fields.CharField(min_length=5,max_length=100,error_messages={'required':'请输入你的评论内容！',
+                                                                          'min_length':'评论内容至少为10个字符'})

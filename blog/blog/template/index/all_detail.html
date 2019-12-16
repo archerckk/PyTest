@@ -21,7 +21,7 @@
 {% endfor %}
 
 
-<form action="/index/{{user_id}}/article/{{article.id}}/" method="post">
+<form action="/index/article/{{article.id}}/" method="post">
      {% csrf_token %}
     <p>评论：{{comment_form.comment}}{{comment_form.comment.errors.0}}</p>
 <!--    <input name="article_id" type="hidden" value={{article.id}}>-->

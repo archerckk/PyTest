@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Question as q
 from .models import Choice, Article, Comment, User
 from django.utils import timezone
-from .form import Resgister_form,Login_form,Article_form
+from .form import Resgister_form,Login_form,Article_form,Comment_form
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import RequestContext
 
@@ -142,26 +142,116 @@ def article_detail(request, article_id,user_id):
     comments = Comment.objects.filter(article_id_id=article_id).order_by('-id').all()
     print(len(comments))
     # return render(request, 'adetail.html', {'article': article, 'comments': comments})
-    return render(request, 'adetail.html', locals())
-    # return render(request,'adetail.html',{'article':article})
+
+    comment_form = Comment_form()
+    print('评论渲染')
+    if request.method == 'POST':
+        print('评论检测')
+        comment_form = Comment_form(request.POST)
+
+        if comment_form.is_valid():
+            print("评论提交")
+            comment_content = comment_form.cleaned_data.get('comment')
+
+            comment = Comment()
+            comment.content = comment_content
+            comment.pub_time = timezone.now()
+            comment.article_id = Article(id=article_id)
+            comment.user_id = User(id=user_id)
+            comment.save()
+
+            comments = Comment.objects.filter(article_id_id=article_id).order_by('-id').all()
+
+            user_name=User.objects.filter(id=user_id)[0].user_name
+            comment_form = Comment_form()
+            return render(request, 'adetail.html', locals())
+
+        return render(request, 'adetail.html', locals())
+
+    return render(request, 'adetail.html',locals())
+
+# #整站文章列表
+# def all_article(request):
+#     articles=Article.objects.all().order_by('-pub_time')
+#     # article
+#     return render(request, 'all_article.html', locals())
+#
+# #整站详情页
+# def all_detail(request,article_id,user_id):
+#     print(article_id)
+#     article = get_object_or_404(Article, pk=article_id)
+#
+#     comments = Comment.objects.filter(article_id_id=article_id).order_by('-id').all()
+#     print(len(comments))
+#     # return render(request, 'adetail.html', {'article': article, 'comments': comments})
+#
+#     comment_form = Comment_form()
+#     print('评论渲染')
+#     if request.method == 'POST':
+#         print('评论检测')
+#         comment_form = Comment_form(request.POST)
+#
+#         if comment_form.is_valid():
+#             print("评论提交")
+#             comment_content = comment_form.cleaned_data.get('comment')
+#
+#             comment = Comment()
+#             comment.content = comment_content
+#             comment.pub_time = timezone.now()
+#             comment.article_id = Article(id=article_id)
+#             comment.user_id = User(id=user_id)
+#             comment.save()
+#
+#             comments = Comment.objects.filter(article_id_id=article_id).order_by('-id').all()
+#
+#             user_name=User.objects.filter(id=user_id)[0].user_name
+#
+#             return render(request, 'all_detail.html', locals())
+#
+#         return render(request, 'all_detail.html', locals())
+#
+#     return render(request, 'all_detail.html', locals())
+
 
 
 
 # 评论添加
-def comment_add(request):
-    if request.method == 'POST':
-        article_id = request.POST.get('article_id')
-        content = request.POST.get('com_content')
-        print(content)
-        if content == '' or content == None or len(content) == 0:
-            return JsonResponse({'status': '10001', 'message': 'comment is none'})
-        else:
-            comment = Comment()
-            # 外键约束的新增正确方式
-            comment.article_id = Article(id=article_id)
-            comment.content = content
-            comment.save()
-            return HttpResponseRedirect(reverse("index:adetail", args=article_id, ))
+# def comment_add(request,article_id,user_id):
+#     comment_form=Comment_form()
+#     print('评论渲染')
+#     if request.method == 'POST':
+#         print('评论检测')
+#         comment_form=Comment_form(request.POST)
+#
+#         if comment_form.is_valid():
+#             print("评论提交")
+#             comment_content=comment_form.cleaned_data.get('comment')
+#
+#             comment=Comment()
+#             comment.content=comment_content
+#             comment.pub_time=timezone.now()
+#             comment.article_id=article_id
+#             comment.user_id=user_id
+#             comment.save()
+#             return HttpResponseRedirect(reverse("index:adetail"))
+#
+#         return render(request, 'adetail.html', locals())
+#     #
+#
+#     return render(request,'adetail.html',locals())
+    # if request.method == 'POST':
+    #     article_id = request.POST.get('article_id')
+    #     content = request.POST.get('com_content')
+    #     print(content)
+    #     if content == '' or content == None or len(content) == 0:
+    #         return JsonResponse({'status': '10001', 'message': 'comment is none'})
+    #     else:
+    #         comment = Comment()
+    #         # 外键约束的新增正确方式
+    #         comment.article_id = Article(id=article_id)
+    #         comment.content = content
+    #         comment.save()
+    #         return HttpResponseRedirect(reverse("index:adetail", args=article_id, ))
 
 
 def add(request):
