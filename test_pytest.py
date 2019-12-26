@@ -1,4 +1,8 @@
 import pytest
+import logging
+import allure
+
+logging.basicConfig(level=logging.DEBUG,format='%(asctime)s-%(levelname)s-%(message)s')
 
 def sum(a,b):
 
@@ -11,15 +15,28 @@ def test_sum():
 class Test_demo:
     # @pytest.fixture(scope='function')
     def setup(self):
-        print("setup run")
+        logging.debug("setup run")
 
+    @allure.step('参数化设置测试用例')
+    @pytest.mark.some
     def test_sum1(self):
-        assert sum(10.1,1.1)==11.2
-
-    def test_sum2(self):
-        assert sum(10,1)==11
+        assert sum(10.1,1.1)==11.3
+    @pytest.mark.web
+    @pytest.mark.parametrize('a,b,expect',[
+        (10,1,11),
+        (12,1,13),
+        (11,2,14),
+        (11,2,15)
+    ])
+    def test_sum2(self,a,b,expect):
+        logging.debug('sum2')
+        assert sum(a,b)==expect
 
     # @pytest.fixture(scope='function')
     def teardown(self):
-        print("teardown run")
+        logging.debug("teardown run")
 
+
+if __name__ == '__main__':
+    # pytest.main(['-s','-v','-m not some','test_pytest.py'])
+    pytest.main(['-s','test_pytest.py'])
