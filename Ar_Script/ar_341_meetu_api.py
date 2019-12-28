@@ -7,7 +7,7 @@ import pytest
 
 logging.basicConfig(level=logging.DEBUG,format='%(asctime)s-%(levelname)s-%(message)s')
 
-environment = 'test'
+environment = 'normal'
 
 if environment == 'test':
     host = 'http://150.109.38.68'
@@ -32,18 +32,12 @@ class Test_meetU_API:
 
 
     @allure.story('谁喜欢我人数统计接口')
-    # @data(
-    #     token,
-    #     '',
-    #     '123'
-    # )
     @pytest.mark.parametrize('value',[token,'','123'])
     def test_who_likes_me_count(self,value):
         '谁喜欢我人数统计'
         #构造header部分
         headers={
         "Authorization":value,
-        # "Host": "150.109.38.68",
         "Connection": "Keep - Alive",
         "Accept - Encoding": "gzip",
         "User - Agent": "okhttp / 3.12.0",
@@ -51,20 +45,23 @@ class Test_meetU_API:
         }
 
         url='{}/api/user/who_likes_me_count'.format(host)
-
         response=requests.get(url,headers=headers)
         content=response.text
+        logging.debug(content)
         # logging.debug('返回内容为：{}'.format(content))
 
         if value=='' or value=='123':
+            logging.debug('传入异常token，验证接口需要登录才能使用')
             logging.debug('无效参数传输，token值为：{}'.format(value))
-            assert 'Login to Your Account'in content
-            logging.debug('Login to Your Account in json result')
+            assert 'Login to Your Account' in content
+            logging.debug(content)
         else:
-
+            content=response.json()
             assert 'likes_me_count'in content
+            logging.debug('喜欢我的人数为：{}'.format(content['likes_me_count']))
             assert response.status_code==200
-            assert '"code":200'in content
+            assert content['code']==200
+            assert content['status']==True
 
 
     def test_user_app(self):
