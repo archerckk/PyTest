@@ -11,7 +11,7 @@ environment = 'test'
 
 if environment == 'test':
     host = 'http://150.109.38.68'
-    token='Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijc3MzlkNDBlNzM0NDZjMTI1MTdkMzUzNzZjYTdlM2IzMjhjN2RhZGMzMjA0YmM0MmU0MDJiMTk4NzVjMDZhNzBmYWE3NWVjYTI5ZDExMzlkIn0.eyJhdWQiOiIyIiwianRpIjoiNzczOWQ0MGU3MzQ0NmMxMjUxN2QzNTM3NmNhN2UzYjMyOGM3ZGFkYzMyMDRiYzQyZTQwMmIxOTg3NWMwNmE3MGZhYTc1ZWNhMjlkMTEzOWQiLCJpYXQiOjE1NzcxMDA1NDYsIm5iZiI6MTU3NzEwMDU0NiwiZXhwIjoxNTc4Mzk2NTQ2LCJzdWIiOiI0MjkiLCJzY29wZXMiOltdfQ.YA4qIweJU8AAwzyf76o1cai9S7uY3Owk7gQDFD6HSluvZAj5Tzw4Ma9ZAsDoLXuanNrVQZgzs3S4XaCkE2sQOEQFCXiAwUB28pPQgURy_o7obPhDFM68Aozgrzq9eEKoGYxK9gMLKW6AFVY128DmmpRC4iWshmaFguuFv3RgjsVU9fcJ8Wfr4TnVXqafZk_xvFrU9Yk24_2RLpVno8SMgUpovDucqoscxNc8EI5YiSE4gOC0_BorFXhhm8oSE46RFP_PCqOzz4gJCwbM0CJjVgnViTMsqAGnzSHfE1JI9J5Y-Rd05HAzwJ4lQqAskYzRlZYy2wEcY7ob7fj9qhNMDrWgc68TaEgRP7Mspx82gx-m4t_OxPRR5M2g1OuKz_Vik8x3Bg7z6jaL4A3lqneWp7oMHQAx6FGiJ15Q-dg-WwRwr7Hbg6u9SUqLaO5v1dRCnOcc7r0-LnlDI_Sl9L21jWV4xfrJmVuyS7FT9nh4HdBLVd0UMl7Y3wo4sw__9P9LMrf8UsiTgCGhLGzaH1ed2UfhLManpGY1HwmWs1BVvvAbfqRU7EfzKIRJP-QQZG-Ralm86QCFbiN2CEAmypSRA8iPYeuG0GPAzvKay2f_6ruM1c_xx18medOCMSqzo6-i9F1ximpwwogMrafRohuJ4Y3KXI5kSCo772Pffgf4L7o'
+    token='Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjBiNTEzNjVkZjhhZjlmNWI0MWYxMmI0MDQ2NmFhMTY2M2QyMjAxNjE2Mjc2ODVmNTkxMWE4OTNmMzNkZDVlNGI4ZjFjNjNjYmY3ZjA1MWIzIn0.eyJhdWQiOiIxIiwianRpIjoiMGI1MTM2NWRmOGFmOWY1YjQxZjEyYjQwNDY2YWExNjYzZDIyMDE2MTYyNzY4NWY1OTExYTg5M2YzM2RkNWU0YjhmMWM2M2NiZjdmMDUxYjMiLCJpYXQiOjE1Nzc2OTYxNDgsIm5iZiI6MTU3NzY5NjE0OCwiZXhwIjoxNjA5MzE4NTQ4LCJzdWIiOiI3MjgiLCJzY29wZXMiOltdfQ.ZFPe-vWCLgqAfvjcHTHwlBCFHtdB4dBfz_9NNYgBzEPhN5bCTEeLzPgUViG75g2JA9xZndGmHXa6j8FXymmV7UG2XyQwINvc5l68E5K9y2ozikUTNRLTKoloaNK0d5p0nb2fWN6AgRdgdppsRFT_CrJcvcql5kcMzQektHCld3CX8DP41inB-NxdHTSFO4EPF6lHaKIjYGVz9j5coxP6yPaoSZ6aZaY4SMrXVxO5_RQlRyPgfrhfhVOTl0zyY13r8QF1mlMHKqGiK8FsXdVaC3uSWNLFTqDYI83VtPwiWJlrCGkL1d1mxwUC-mAgns49GdlPrISZWNNi8ZWHogs8kn07jPTOK5_fuYIDJM_tXCjzOc3iYkAVRxvydALgV1e9DtW6oRXwuJnAwsTKhVFq5VfgGleAcY0Yx4fFDoq-SztARPOVqGrJzmbMQINR-16FY3FsxJbXHEAm3pNp5isNeIjEt3r8hwX-9iLZQCyWK4a2OEmfpaHbAbS6a_Tw616lpqFvrtCjulUg0lZpfMo4DyIX_RLbC01QHYmLb3td8iCaJmyZicTsGaU-e4f7MzbxdkuiMmFbrUEsMzhlr45uCX6o19BNPSVSVfUsLmJU8t2CKDncpzXmThSYazF4QbB6nt9LUVQy41GTx5k_lIGS9fSMUmGzj-GQpHw8H0nsu1E'
 elif environment == 'normal':
     host = 'http://www.meetuapp.info'
     token='Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImY3NGEzNTUwMTdkYjhkODBiOWMyMzFkNDhhMTc4ZDI1YjE5NTc2YzlkMGQ2ZDJkNWU0Nzk3MmQzMzgzYmNiYzQzYzdkNTgzMmVkYTBiZGFkIn0.eyJhdWQiOiIxIiwianRpIjoiZjc0YTM1NTAxN2RiOGQ4MGI5YzIzMWQ0OGExNzhkMjViMTk1NzZjOWQwZDZkMmQ1ZTQ3OTcyZDMzODNiY2JjNDNjN2Q1ODMyZWRhMGJkYWQiLCJpYXQiOjE1NzQ4NTc2MDgsIm5iZiI6MTU3NDg1NzYwOCwiZXhwIjoxNjA2NDgwMDA4LCJzdWIiOiI2MiIsInNjb3BlcyI6W119.fj92n_Rl1w_dG985eH6sv4YbqG1cccu3Rv0-GDhgsJ3bwmBT3gLamNHYNyw9RYXvezrIhIhgSvXrVffiVUTFnC6tWcG6_tMF2Hl5Xa8n-6qz4Bm0j-gJx5SJie8UDjzwTaSu6UP2tC8JL3uuq5fL_Pf35OPaOaHBjBoM6qP-iskUd3qQwyWw-c1eNQfK-Yrz-0iZSOGGYRHvR3DWh4GIAbVr7CAkBNElJ0vjAMxAJowda5et3_eQ0yHLwLRi3AiAImX7Qk_3dzPOoqE9UFqHMUrGiJUoVVvIOiVAeWq1LxrXninCRuTNEmfWmu915CF7suc79rS_avj-ZED1VlOYzUwhQhgxzHwnhpsBTvK5rkTciqwVkxiP9pxP1SnOKHxzJPd3-8yNCKM03QXpsKUGqzSQgHVkYFJODYoWgy7wZlLIoOWk5zWbN2r5EKWXdJQrcxW3skwLuoOxyipVNlaQgLAdKGrNH7ZT2KO82SnRUUluJoMWV-yzjOhsGmldMjAdpT_6OoMxhydQfWzg4WpBqvYeFCSO6M2QNZuSCTEtdw8OFNGTwmekW8xiu7bv1lAQ5JsvQr11_LziDrBSne-fyCnwDHaod0YeS8hp2xNdiPO7298Rz2LLQOP28KtK8X5TeA6Fv155YE9KblilCyz49Cc90eyE1K1ZAscERRyEwAU'
@@ -29,12 +29,16 @@ class Test_meetU_API:
     def teardown(self):
         pass
 
+    def login_require(self,result_json,value):
+        logging.debug('传入异常token，验证接口需要登录才能使用')
+        logging.debug('无效参数传输，token值为：{}'.format(value))
+        assert 'Unauthenticated' in result_json['error']
+        logging.debug(result_json)
 
 
     @allure.story('谁喜欢我人数统计接口')
     @pytest.mark.parametrize('value',[token,'','123'])
     def test_who_likes_me_count(self,value):
-        '谁喜欢我人数统计'
         #构造header部分
         headers={
         "Authorization":value,
@@ -68,7 +72,7 @@ class Test_meetU_API:
     def test_user_app(self,value):
         logging.debug('用户信息获取接口_user /user_app测试开始')
         headers={
-        "Authorization": token,
+        "Authorization": value,
         "Content-Type": "application/x-www-form-urlencoded",
         "Content-Length": "74",
         # "Host": "150.109.38.68",
@@ -92,19 +96,20 @@ class Test_meetU_API:
 
         result=responese.text
 
+        if value==token:
+            logging.debug('返回内容为：{}'.format(result))
 
-        logging.debug('返回内容为：{}'.format(result))
+            assert '"message":"success"'in result
+            assert '"user_id":429' in result
+        else:
+            logging.debug('传入异常token，验证接口需要登录才能使用')
+            logging.debug('无效参数传输，token值为：{}'.format(value))
+            assert 'Unauthenticated' in result
+            logging.debug(result)
 
-        assert '"message":"success"'in result
-        assert '"user_id":429' in result
-
-    @data(
-        token,
-        '',
-        '123'
-    )
+    @allure.story('配置获取接口接口测试')
+    @pytest.mark.parametrize('value', [token, '', '123'])
     def test_update_setting(self,value):
-        '配置获取接口'
         # 构造header部分
         headers = {
             "Authorization": value,
@@ -122,32 +127,41 @@ class Test_meetU_API:
         content = response.text
 
         if value == '' or value == '123':
-            self.assertTrue('Login to Your Account' in content)
+            assert ('Login to Your Account' in content)
         else:
             result_json = response.json()
-            self.assertTrue(result_json['user_id']is not None)
+            assert(result_json['user_id']is not None)
 
-            self.assertTrue(result_json['gender']is not None)
+            assert(result_json['gender']is not None)
+            logging.debug('user_id返回为：{}'.format(result_json['user_id']))
+            logging.debug('gender返回为：{}'.format(result_json['gender']))
+
 
             #年龄返回检查
-            self.assertTrue(result_json['age_limit']!='')
+            assert(result_json['age_limit']!='')
+            logging.debug('年龄限制返回为：{}'.format(result_json['age_limit']))
 
-            self.assertTrue(int(result_json['age_limit'].split(',')[0])in range(18,101))
-            self.assertTrue(int(result_json['age_limit'].split(',')[1])in range(18,101))
+            assert(int(result_json['age_limit'].split(',')[0])in range(18,101))
+            assert(int(result_json['age_limit'].split(',')[1])in range(18,101))
+            logging.debug('年龄最小值跟最大值返回正常')
+
+            assert(result_json['latitude'] is not None)
+            assert(result_json['longitude']  is not None)
+            logging.debug('经纬度返回正常{}{}'.format(result_json['latitude'],result_json['longitude']))
+
+            assert(result_json['created_at'] is not None)
+            assert(result_json['updated_at'] is not None)
 
 
-            self.assertTrue(result_json['latitude'] is not None)
-            self.assertTrue(result_json['longitude']  is not None)
-
-            self.assertTrue(result_json['created_at'] is not None)
-            self.assertTrue(result_json['updated_at'] is not None)
-
-    @data( '1','0')
-    def test_find_match(self,value):
-        '匹配卡片下发'
+    @allure.story('匹配卡片下发')
+    @pytest.mark.parametrize('value,vip', [(token,0),
+                                           (token,1),
+                                            ('',0),
+                                            ('123',0)])
+    def test_find_match(self,value,vip):
         #vip状态无法识别的时候会持续loading
         headers={
-            "Authorization":token,
+            "Authorization":value,
             "Content-Type": "application/x-www-form-urlencoded",
             "Content-Length": "5",
             # "Host": "150.109.38.68",
@@ -159,22 +173,27 @@ class Test_meetU_API:
 
         url='{}/api/user/find_match'.format(host)
 
-        data={'vip':value}
+        data={'vip':vip}
 
         response=requests.post(url,headers=headers,data=data)
         result_json=response.json()
 
-        logging.debug(response.text)
-        logging.debug("卡片的剩余数为：{}".format(result_json['remain_amount']))
-        self.assertTrue(isinstance(result_json['remain_amount'],int),True)
 
-    @data(
-        token,
-        '123',
-        ''
-    )
+        logging.debug(response.text)
+        if value==token:
+            if vip==1:
+                assert result_json['remain_amount']==30
+                logging.debug('vip用户下发的卡片数量为30')
+            elif vip==0:
+                assert result_json['remain_amount'] == 15
+                logging.debug('普通用户下发的卡片数量为15')
+            logging.debug("卡片的剩余数为：{}".format(result_json['remain_amount']))
+        else:
+            assert result_json['error']=='Unauthenticated.'
+
+    @allure.story('获取用户信息接口测试')
+    @pytest.mark.parametrize('value', [token, '', '123'])
     def test_get_profile(self,value):
-        '获取用户信息'
         headers={
             "Authorization":value,
             "Content-Type": "application/x-www-form-urlencoded",
@@ -197,18 +216,13 @@ class Test_meetU_API:
         logging.debug(result_json)
 
         if value=='123' or value=='':
-            self.assertEqual(result_json['error'],'Unauthenticated.')
+            assert (result_json['error'],'Unauthenticated.')
         else:
-            self.assertTrue(result_json['user']['id']==423)
+            assert(result_json['user']['id']==728)
 
-    @data(
-        token,
-        '123',
-        ''
-    )
+    @allure.story('获取发过消息用户列表接口测试')
+    @pytest.mark.parametrize('value', [token, '', '123'])
     def test_match_list(self,value):
-        '获取发过消息用户列表'
-
         headers = {
          "Authorization": value,
          # "Host": "150.109.38.68",
@@ -227,18 +241,13 @@ class Test_meetU_API:
         logging.debug(result_json)
 
         if value == '123' or value == '':
-            self.assertEqual(result_json['error'], 'Unauthenticated.')
+            assert (result_json['error'], 'Unauthenticated.')
         else:
-            self.assertTrue(result_json[0]['user_id'] == 423)
+            assert(result_json[0]['user_id'] == 728)
 
-    @data(
-        token,
-        '123',
-        ''
-    )
+    @allure.story('用户是否在线状态更新接口测试')
+    @pytest.mark.parametrize('value', [token, '', '123'])
     def test_update_online_state(self, value):
-        '用户是否在线状态更新'
-
         headers = {
             "Authorization": value,
             # "Host": "150.109.38.68",
@@ -257,18 +266,14 @@ class Test_meetU_API:
         logging.debug(result_json)
 
         if value == '123' or value == '':
-            self.assertEqual(result_json['error'], 'Unauthenticated.')
+            assert(result_json['error'], 'Unauthenticated.')
         else:
-            self.assertTrue(result_json['message'] == 'update_online_state_success')
+            assert(result_json['message'] == 'update_online_state_success')
+            logging.debug("更新状态信息结果为：{}".format(result_json['message']))
 
-    @data(
-        token,
-        '123',
-        ''
-    )
+    @allure.story('查看互相喜欢用户接口测试')
+    @pytest.mark.parametrize('value', [token, '', '123'])
     def test_all_matchs(self, value):
-        '查看互相喜欢用户'
-
         headers = {
             "Authorization": value,
             "Content-Length": "0",
@@ -288,18 +293,17 @@ class Test_meetU_API:
         logging.debug(result_json)
 
         if value == '123' or value == '':
-            self.assertEqual(result_json['error'], 'Unauthenticated.')
+            assert(result_json['error'], 'Unauthenticated.')
         else:
-            self.assertTrue('list'in result_json['data'])
-            self.assertTrue('total'in result_json['data'])
+            assert('list'in result_json['data'])
+            assert('total'in result_json['data'])
+            logging.debug('相互喜欢的人数为：{}'.format( result_json['data']['total']))
 
-    @data(
-        ( token,1),
-        ( token,0),
-        ('123',0),
-        ('',0)
-    )
-    @unpack
+    @allure.story('匹配卡片下发接口测试')
+    @pytest.mark.parametrize('value,vip', [(token, 0),
+                                           (token, 1),
+                                           ('', 0),
+                                           ('123', 0)])
     def test_instant_match(self, value,vip):
         '即时匹配'
 
@@ -325,70 +329,70 @@ class Test_meetU_API:
         logging.debug(result_json)
 
         if value == '123' or value == '':
-            self.assertEqual(result_json['error'], 'Unauthenticated.')
+            self.login_require(result_json,value)
         else:
-            logging.debug(result_json['instantMatchCount'])
-            logging.debug(result_json['surplusMatchCount'])
-            self.assertTrue(result_json['instantMatchCount']is not None)
-            self.assertTrue(result_json['surplusMatchCount']is not None)
-            self.assertTrue(result_json['code']==200)
-            self.assertTrue(result_json['message']=='User instantMatch successfully')
+            if vip==0:
+                logging.debug("普通用户的匹配总次数为：{}".format(result_json['matchTotal']))
 
-    # def test_send_email_code(self):
-    #     ' 发送邮箱验证码（注册、忘记密码）'
-    #
-    #     headers = {
-    #         "Accept": "application/json",
-    #     }
-    #
-    #     data={
-    #         "email": "archerckkbin@gmail.com",
-    #         "operation": "setEmail"
-    #           }
-    #
-    #     url = '{}/api/user/send_email_code'.format(host)
-    #
-    #     response = requests.post(url, headers=headers,data=data)
-    #
-    #     result_json = response.json()
-    #
-    #     logging.debug(result_json)
-    #
-    #
-    #     self.assertEqual(result_json['status'],True)
-    #     self.assertTrue(result_json['code']==200)
-    #     self.assertTrue(result_json['data']['email']is not None)
+            assert (result_json['instantMatchCount'] is not None)
+            assert (result_json['surplusMatchCount'] is not None)
+            logging.debug("已使用次数为:{}".format(result_json['instantMatchCount']))
+            logging.debug("剩余次数为:{}".format(result_json['surplusMatchCount']))
+            assert result_json['matchTotal']==result_json['surplusMatchCount']+result_json['instantMatchCount']
 
+            assert(result_json['code']==200)
+            assert(result_json['message']=='User instantMatch successfully')
+            logging.debug('即时匹配返回状态码200，返回信息为：{}'.format('User instantMatch successfully'))
 
-
-    def test_getNationalCity(self):
-        '获取国际城市'
-
+    @allure.story('发送邮箱验证码（注册、忘记密码）')
+    def test_send_email_code(self):
         headers = {
             "Accept": "application/json",
         }
 
-        # data={
-        #     # "email": "archerckkbin@gmail.com",
-        #     # "operation": "setEmail"
-        #       }
+        data={
+            "email": "archerckkbin@gmail.com",
+            "operation": "setEmail"
+              }
 
-        url = '{}/api/user/getNationalCity'.format(host)
+        url = '{}/api/user/send_email_code'.format(host)
 
-        response = requests.post(url, headers=headers)
+        response = requests.post(url, headers=headers,data=data)
 
         result_json = response.json()
 
         logging.debug(result_json)
 
+        assert(result_json['status'],True)
+        assert(result_json['code']==200)
+        assert(result_json['data']['email']is not None)
+        logging.debug('验证码发送状态码会200，发送成功')
 
-        self.assertEqual(result_json[0]['name'],'Singapore')
-        self.assertEqual(result_json[1]['name'],'United Kingdom')
-        self.assertEqual(result_json[2]['name'],'United States')
 
-    def test_update_profile(self):
+    # @allure.story('获取国际城市接口测试_已弃用')
+    # def test_getNationalCity(self):
+    #     '获取国际城市'
+    #
+    #     headers = {
+    #         "Accept": "application/json",
+    #     }
+    #
+    #     url = '{}/api/user/getNationalCity'.format(host)
+    #
+    #     response = requests.post(url, headers=headers)
+    #
+    #     result_json = response.json()
+    #
+    #     logging.debug(result_json)
+    #     assert(result_json[0]['name'],'Singapore')
+    #     assert(result_json[1]['name'],'United Kingdom')
+    #     assert(result_json[2]['name'],'United States')
+
+    @allure.story('更新用户状态接口测试')
+    @pytest.mark.parametrize('value', [token, '', '123'])
+    def test_update_profile(self,value):
         headers = {
-            "Authorization":token,
+            "Authorization":value,
              "Content-Type": "application/x-www-form-urlencoded",
              "Content-Length": "246",
              # "Host": "150.109.38.68",
@@ -422,12 +426,18 @@ class Test_meetU_API:
 
         logging.debug('返回内容为：{}'.format(result_json))
 
-        self.assertEqual(result_json['message'],'success')
+        if value==token:
+            assert(result_json['message'],'success')
+            assert(result_json['code'],1)
+            logging.debug('更新成功')
+        else:
+            self.login_require(result_json,value)
 
-    def test_user_block(self):
-        '添加黑名单'
+    @allure.story('添加黑名单接口测试')
+    @pytest.mark.parametrize('value', [token, '', '123'])
+    def test_user_block(self,value):
         headers = {
-            "Authorization":token,
+            "Authorization":value,
             "Content-Type": "application/x-www-form-urlencoded",
             "Content-Length": "25",
             # "Host": "150.109.38.68",
@@ -450,13 +460,15 @@ class Test_meetU_API:
 
         logging.debug('返回内容为：{}'.format(result_json))
 
-        self.assertEqual(result_json['code'], 200)
-        self.assertEqual(result_json['status'], True)
-        logging.debug('提示信息：{}'.format(result_json['message']))
+        if value==token:
+            assert(result_json['code'], 200)
+            assert(result_json['status'], True)
+            logging.debug('提示信息：{}'.format(result_json['message']))
+        else:
+            self.login_require(result_json,value)
 
+    @allure.story('匹配小红点状态修改接口')
     def test_match_list_429(self):
-        '匹配小红点状态修改接口'
-
         headers = {
             "Authorization":token,
             # "Host": "150.109.38.68",
@@ -474,16 +486,23 @@ class Test_meetU_API:
 
         logging.debug('返回内容为：{}'.format(result_json))
 
-        self.assertTrue(result_json['message']is not None)
-        self.assertTrue(result_json['status']is not None)
-        # self.assertTrue(result_json['data'] is not None)
+        assert(result_json['message']is not None)
+        assert(result_json['status']is not None)
+        logging.debug('选中的id不正确，修改失败')
+        # assert(result_json['data'] is not None)
 
-    @data(1,3)
-    def test_likes(self,value):
+    @allure.story('滑动卡片发送状态接口测试')
+    @pytest.mark.parametrize('value,code', [(token,1),
+                                            (token,3),
+                                            (token,2),
+                                            (token,4),
+                                            ('',3),
+                                            ('123',3)])
+    def test_likes(self,value,code):
         '滑动卡片发送喜欢或者不喜欢状态'
 
         headers = {
-            "Authorization": token,
+            "Authorization": value,
             "Content-Type": "application/x-www-form-urlencoded",
             "Content-Length": "20",
             "Host": "150.109.38.68",
@@ -506,17 +525,37 @@ class Test_meetU_API:
 
         logging.debug('返回内容为：{}'.format(result_json))
 
-        if result_json['message']=='request times used up':
-            logging.debug('卡片测试次数用完了')
-        else:
-            if value==3:
-                self.assertEqual(result_json['status'],'DISLIKED')
-                self.assertEqual(result_json['statuscode'],3)
-                self.assertEqual(result_json['message'] ,'User disliked successfully')
+        if value==token:
+            if result_json['message']=='request times used up':
+                logging.debug('测试卡片是否用完')
+                logging.debug('卡片测试次数用完了')
+            elif code==3:
+                logging.debug('测试标记不喜欢')
+                assert result_json['status']=='DISLIKED'
+                assert result_json['statuscode']==3
+                assert result_json['message'] =='User disliked successfully'
+                logging.debug('不喜欢成功')
             elif value==1:
-                self.assertEqual(result_json['status'], 'LIKED')
-                self.assertEqual(result_json['statuscode'], 1)
-                self.assertEqual(result_json['message'], 'User liked successfully')
+                logging.debug('测试标记喜欢')
+                assert result_json['status']=='LIKED'
+                assert result_json['statuscode']== 1
+                assert result_json['message']=='User liked successfully'
+                logging.debug('喜欢成功')
+            elif value==2:
+                logging.debug('测试标记超级喜欢')
+                assert result_json['status']=='SUPERLIKED'
+                assert result_json['statuscode']==2
+                assert result_json['message']=='User superliked successfully'
+                logging.debug('超级喜欢成功')
+            elif value==4:
+                logging.debug('测试标记你已经喜欢过他了')
+                assert (result_json['status']=='ALREADY_LIKED')
+                assert (result_json['statuscode']==4)
+                assert (result_json['message'], 'You already liked')
+                logging.debug('你已经喜欢过他了')
+        else:
+            self.login_require(result_json,value)
+
 
 
 if __name__ == '__main__':
