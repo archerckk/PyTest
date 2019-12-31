@@ -7,11 +7,12 @@ import pytest
 
 logging.basicConfig(level=logging.DEBUG,format='%(asctime)s-%(levelname)s-%(message)s')
 
-environment = 'normal'
+environment = 'test'
 
 if environment == 'test':
     host = 'http://150.109.38.68'
     token='Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjBiNTEzNjVkZjhhZjlmNWI0MWYxMmI0MDQ2NmFhMTY2M2QyMjAxNjE2Mjc2ODVmNTkxMWE4OTNmMzNkZDVlNGI4ZjFjNjNjYmY3ZjA1MWIzIn0.eyJhdWQiOiIxIiwianRpIjoiMGI1MTM2NWRmOGFmOWY1YjQxZjEyYjQwNDY2YWExNjYzZDIyMDE2MTYyNzY4NWY1OTExYTg5M2YzM2RkNWU0YjhmMWM2M2NiZjdmMDUxYjMiLCJpYXQiOjE1Nzc2OTYxNDgsIm5iZiI6MTU3NzY5NjE0OCwiZXhwIjoxNjA5MzE4NTQ4LCJzdWIiOiI3MjgiLCJzY29wZXMiOltdfQ.ZFPe-vWCLgqAfvjcHTHwlBCFHtdB4dBfz_9NNYgBzEPhN5bCTEeLzPgUViG75g2JA9xZndGmHXa6j8FXymmV7UG2XyQwINvc5l68E5K9y2ozikUTNRLTKoloaNK0d5p0nb2fWN6AgRdgdppsRFT_CrJcvcql5kcMzQektHCld3CX8DP41inB-NxdHTSFO4EPF6lHaKIjYGVz9j5coxP6yPaoSZ6aZaY4SMrXVxO5_RQlRyPgfrhfhVOTl0zyY13r8QF1mlMHKqGiK8FsXdVaC3uSWNLFTqDYI83VtPwiWJlrCGkL1d1mxwUC-mAgns49GdlPrISZWNNi8ZWHogs8kn07jPTOK5_fuYIDJM_tXCjzOc3iYkAVRxvydALgV1e9DtW6oRXwuJnAwsTKhVFq5VfgGleAcY0Yx4fFDoq-SztARPOVqGrJzmbMQINR-16FY3FsxJbXHEAm3pNp5isNeIjEt3r8hwX-9iLZQCyWK4a2OEmfpaHbAbS6a_Tw616lpqFvrtCjulUg0lZpfMo4DyIX_RLbC01QHYmLb3td8iCaJmyZicTsGaU-e4f7MzbxdkuiMmFbrUEsMzhlr45uCX6o19BNPSVSVfUsLmJU8t2CKDncpzXmThSYazF4QbB6nt9LUVQy41GTx5k_lIGS9fSMUmGzj-GQpHw8H0nsu1E'
+    remain_test_token='Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImM0NjU3YTI2ZDRiYWFjZTdiMTNiMjg3NmI4NmJiMjAwMDU1YzUxOWQ2YzM1M2IxY2Y1NGRhOTA3ZGRhNThlYjkxYTEyMGFkZWZiZWUwNjBkIn0.eyJhdWQiOiIxIiwianRpIjoiYzQ2NTdhMjZkNGJhYWNlN2IxM2IyODc2Yjg2YmIyMDAwNTVjNTE5ZDZjMzUzYjFjZjU0ZGE5MDdkZGE1OGViOTFhMTIwYWRlZmJlZTA2MGQiLCJpYXQiOjE1Nzc3ODU2MDAsIm5iZiI6MTU3Nzc4NTYwMCwiZXhwIjoxNjA5NDA4MDAwLCJzdWIiOiI3NDUiLCJzY29wZXMiOltdfQ.i59VkkDGna6OhbNOYhk5_ZRGjx41IbiEgQEZ8qM7_5dLb2w895tMU1avsFWUMCQ4ETPLJeJXV-PFSzagbFzfVliTwj8xdUPyxddbvzFzpbkI19RlKjMXmlbPIk9KoxOyMnmzJGBy-TQFOMQ0PbQfS9t1Lv0L_3Z1LvxaIT1QZTfc69BoP1OpuCFiGvu55DOSpA_6Wefp85qug93ORnW6qFNBI3gqAGEiCduVyIbqSixBMuaDwmusFUswroGrV9e2Qtz8PSK5IexyAGDM1P7Yts5uASiKG61uX6C793rSmp8Qq2_3UPjlQ2iyML4XSKpfJLg0tFevZMZtMOzBR7cMsSrFsMQJxZVdyZCb6FNOuMKqRe1ZMnU2N23WlbNKWoPhuOwmQTO8a0tbgYgg-TrGo1se6Azise0Aw-T6NkukHGbuUcJKJNBzI7F3br86fhBN4tE1uI9KzXjzA7inKwyB_ew3nqQLDw_r-OnjDTnoPZ3sxVWltZAHI1AWbUhk_x9mgxgyLtw83Tgg89o6A8fcYGCPK59BRj-RR2RwoMjJDVEnVcnMa3-lQ69SHGn2R6dXwM3pPEtohPtAzPRIwYu9FwG73gnqZd2cjzy3JIfPWLMEnDE9jAOc2tzqqpQTirs0h3TYG9pFh77xlLiNEWDJAiU_aHWquiXbI5-Pb5odLfo'
 elif environment == 'normal':
     host = 'http://www.meetuapp.info'
     token='Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImY3NGEzNTUwMTdkYjhkODBiOWMyMzFkNDhhMTc4ZDI1YjE5NTc2YzlkMGQ2ZDJkNWU0Nzk3MmQzMzgzYmNiYzQzYzdkNTgzMmVkYTBiZGFkIn0.eyJhdWQiOiIxIiwianRpIjoiZjc0YTM1NTAxN2RiOGQ4MGI5YzIzMWQ0OGExNzhkMjViMTk1NzZjOWQwZDZkMmQ1ZTQ3OTcyZDMzODNiY2JjNDNjN2Q1ODMyZWRhMGJkYWQiLCJpYXQiOjE1NzQ4NTc2MDgsIm5iZiI6MTU3NDg1NzYwOCwiZXhwIjoxNjA2NDgwMDA4LCJzdWIiOiI2MiIsInNjb3BlcyI6W119.fj92n_Rl1w_dG985eH6sv4YbqG1cccu3Rv0-GDhgsJ3bwmBT3gLamNHYNyw9RYXvezrIhIhgSvXrVffiVUTFnC6tWcG6_tMF2Hl5Xa8n-6qz4Bm0j-gJx5SJie8UDjzwTaSu6UP2tC8JL3uuq5fL_Pf35OPaOaHBjBoM6qP-iskUd3qQwyWw-c1eNQfK-Yrz-0iZSOGGYRHvR3DWh4GIAbVr7CAkBNElJ0vjAMxAJowda5et3_eQ0yHLwLRi3AiAImX7Qk_3dzPOoqE9UFqHMUrGiJUoVVvIOiVAeWq1LxrXninCRuTNEmfWmu915CF7suc79rS_avj-ZED1VlOYzUwhQhgxzHwnhpsBTvK5rkTciqwVkxiP9pxP1SnOKHxzJPd3-8yNCKM03QXpsKUGqzSQgHVkYFJODYoWgy7wZlLIoOWk5zWbN2r5EKWXdJQrcxW3skwLuoOxyipVNlaQgLAdKGrNH7ZT2KO82SnRUUluJoMWV-yzjOhsGmldMjAdpT_6OoMxhydQfWzg4WpBqvYeFCSO6M2QNZuSCTEtdw8OFNGTwmekW8xiu7bv1lAQ5JsvQr11_LziDrBSne-fyCnwDHaod0YeS8hp2xNdiPO7298Rz2LLQOP28KtK8X5TeA6Fv155YE9KblilCyz49Cc90eyE1K1ZAscERRyEwAU'
@@ -154,8 +155,8 @@ class Test_meetU_API:
 
 
     @allure.story('匹配卡片下发')
-    @pytest.mark.parametrize('value,vip', [(token,0),
-                                           (token,1),
+    @pytest.mark.parametrize('value,vip', [(remain_test_token,0),
+                                           (remain_test_token,1),
                                             ('',0),
                                             ('123',0)])
     def test_find_match(self,value,vip):
@@ -180,7 +181,7 @@ class Test_meetU_API:
 
 
         logging.debug(response.text)
-        if value==token:
+        if value==remain_test_token:
             if vip==1:
                 assert result_json['remain_amount']==30
                 logging.debug('vip用户下发的卡片数量为30')
@@ -299,14 +300,12 @@ class Test_meetU_API:
             assert('total'in result_json['data'])
             logging.debug('相互喜欢的人数为：{}'.format( result_json['data']['total']))
 
-    @allure.story('匹配卡片下发接口测试')
+    @allure.story('即时匹配接口测试')
     @pytest.mark.parametrize('value,vip', [(token, 0),
                                            (token, 1),
                                            ('', 0),
                                            ('123', 0)])
     def test_instant_match(self, value,vip):
-        '即时匹配'
-
         headers = {
             "Authorization": value,
             "Content-Type": "application/x-www-form-urlencoded",
