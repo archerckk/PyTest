@@ -7,7 +7,7 @@ import pytest
 
 logging.basicConfig(level=logging.DEBUG,format='%(asctime)s-%(levelname)s-%(message)s')
 
-environment = 'test'
+environment = 'normal'
 
 if environment == 'test':
     host = 'http://150.109.38.68'
@@ -100,7 +100,7 @@ class Test_meetU_API:
             logging.debug('返回内容为：{}'.format(result))
 
             assert '"message":"success"'in result
-            assert '"user_id":429' in result
+            assert '"user_id":728' in result
         else:
             logging.debug('传入异常token，验证接口需要登录才能使用')
             logging.debug('无效参数传输，token值为：{}'.format(value))
@@ -513,7 +513,7 @@ class Test_meetU_API:
         }
 
         data = {
-            "like_id": "429",
+            "like_id": "728",
             "status": value
         }
 
