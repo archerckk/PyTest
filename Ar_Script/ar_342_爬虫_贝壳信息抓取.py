@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import datetime
+import re
 
 """
 1、抓取网页内容
@@ -31,16 +33,35 @@ def get_data(response):
 
     '位置信息获取'
     location=soup.find_all(name='a',class_='resblock-location')
-    location_list=[i.i.text()]
-    # for i in location:
+    location_list=[i.text.strip('\n') for i in location]
+    print(len(location_list))
+    for i in location_list:
+        print(i)
 
-
-    print(location)
-
+    '均价信息获取'
+    average_price=soup.find_all(name='span',class_='number')
+    average_price_list=[i.text for i in average_price]
+    for i in average_price_list:
+        print(i)
     # print(ul_content)
     # ul_content._find_all('a',class_='name')
+    '总价信息获取'
+    total_price=soup.find_all(name='div',class_='second')
+    total_price_list=[i.text for i in total_price]
+    for i in total_price_list:
+        print(i)
 
+    '总页数获取'
+    reg=re.compile(r'<a href="javascript:;" data-page="\d">(\d)</a>')
+    tmp=reg.findall(response.text)
+    print(response.text)
 
+    # total_page=soup.find(name='div',class_='page-container clearfix')
+    # total_page=soup.find_all(name='a',)
+    # print(total_page)
+    # print(total_page)
+    # num=total_page.count('a href=')
+    # print(num)
 if __name__ == '__main__':
     response=url_open(url)
     get_data(response)
