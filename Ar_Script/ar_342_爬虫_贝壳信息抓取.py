@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-import datetime
-import re
+import time
+import sqlite3
 
 """
 1、抓取网页内容
@@ -23,7 +23,10 @@ def url_open(url):
 def get_data(response):
     # print(response.text)
     soup=BeautifulSoup(response.text,'html.parser')
-    ul_content = soup.find('ul', class_='resblock-list-wrapper')
+
+    '脚本执行时间获取'
+    current_time=time.strftime('%Y-%m-%d %X',time.localtime())
+    print(current_time)
 
     '楼盘名字获取'
     div=soup.find_all(name='div',class_='resblock-name')
@@ -51,10 +54,25 @@ def get_data(response):
     for i in total_price_list:
         print(i)
 
-    '总页数获取'
-    reg=re.compile(r'<a href="javascript:;" data-page="\d">(\d)</a>')
-    tmp=reg.findall(response.text)
-    print(response.text)
+    connect=sqlite3.connect('beike.db')
+    c=connect.cursor()
+
+    length=len(area_name_list)
+    for i in range(length):
+        c.execute('INSERT INTO price(area_name,price,location,total_price,create_time)'
+                  'values({},{},{},{},{})'.format(area_name_list[i],
+                                        average_price_list[i],
+                                       location_list[i],
+                                       total_price_list[i],
+                                        current_time))
+    print('插入数据成功')
+    connect.commit()
+    print('提交数据成功')
+    connect.close()
+    # '总页数获取'
+    # reg=re.compile(r'<a href="javascript:;" data-page="\d">(\d)</a>')
+    # tmp=reg.findall(response.text)
+
 
     # total_page=soup.find(name='div',class_='page-container clearfix')
     # total_page=soup.find_all(name='a',)
