@@ -3,15 +3,13 @@ from bs4 import BeautifulSoup
 import time
 import sqlite3
 import re
+
 """
 1、抓取网页内容
 2、分析网页内容，保存自己需要的数据
 3、建立数据表
 4、将数据入库
 """
-
-
-
 
 def url_open(url):
     headers={
@@ -50,7 +48,7 @@ def get_data(response):
     '位置信息获取'
     location=soup.find_all(name='a',class_='resblock-location')
     location_list=[i.text.strip('\n') for i in location]
-    print(len(location_list))
+
     for i in location_list:
         print(i)
 
@@ -65,11 +63,11 @@ def get_data(response):
     # total_price_list=[i.text for i in total_price]
     # for i in total_price_list:
     #     print(i)
+    print("数据条目计数为：", len(location_list))
 
     '初始化数据库&建立游标'
     connect=sqlite3.connect('beike.db')
     c=connect.cursor()
-
 
     for i in range(length):
         sql="INSERT INTO price(area_name,price,location,create_time)values('{}','{}','{}','{}')".format(
