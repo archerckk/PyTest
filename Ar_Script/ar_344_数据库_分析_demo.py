@@ -13,11 +13,11 @@ for row in select_result:
     else:
         result=price_dict[row[0]]-row[1]
         if result <0:
-            print("{}\t\t\t涨了{}\t\t\t现价为：{}".format(row[0],abs(result),row[1]).rjust(len(row[0])))
+            print("{}\t\t\t涨了{}\t\t\t现价为：{}".format(row[0],abs(result),row[1]))
         elif result >0:
-            print("{}\t\t\t跌了{}\t\t\t现价为：{}".format(row[0],abs(result),row[1]).rjust(len(row[0])))
+            print("{}\t\t\t跌了{}\t\t\t现价为：{}".format(row[0],abs(result),row[1]))
         else:
-            print('{}\t\t\t价格稳定\t\t\t现价为：{}'.format(row[0],row[1]).rjust(len(row[0])))
+            print('{}\t\t\t价格稳定\t\t\t现价为：{}'.format(row[0],row[1]))
         price_dict[row[0]]=row[1]
 
 
