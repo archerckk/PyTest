@@ -1,7 +1,7 @@
 import sqlite3
 import csv
 
-def print_price(result):
+def get_price_data(result):
 
     if result < 0:
         print("{}\t\t\t涨了{}\t\t\t现价为：{}\t\t\t{}".format(row[0], abs(result), row[1],row[3]))
@@ -34,7 +34,7 @@ for row in select_result:
         price_dict[row[0]]=row[1]
     else:
         result=price_dict[row[0]]-row[1]
-        print_price(result)
+        get_price_data(result)
         price_dict[row[0]]=row[1]
 
 # data_save(result_list)
