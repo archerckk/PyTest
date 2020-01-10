@@ -1,8 +1,47 @@
 import os
+import re
 import time
 import csv
 import openpyxl
 from openpyxl.styles import numbers
+import subprocess
+import easygui as g
+
+
+def get_activity_name():
+    msg = '请选择你要检查的apk安装包'
+    title = '文件选择'
+    default = "*.apk"
+    add_time = "_{}".format(time.localtime()[5])
+
+    filePath = g.fileopenbox(msg=msg, title=title, default=default)
+
+    fileNewName = filePath.split('.apk')[0].strip() + add_time + '.apk'
+    os.rename(filePath, fileNewName)
+
+    print('选择的apk路径为：', fileNewName)
+
+    command = 'aapt dumpsys badging "%s" ' % fileNewName
+
+    handle = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+    time.sleep(2)
+
+    reg_packageName = re.compile(r"package: name='(.+?)'")
+    reg_launchableActivity = re.compile(r"launchable-activity: name='(.+?)'")
+
+    log = str(handle.stdout.read())
+    position = log.index('targetSdkVersion:')
+
+    print('\n', log[0:position + 21], '\n')  # 截取到targetSDK Version部分包信息
+
+    try:
+        packageName = reg_packageName.search(log).group(1)
+        lanuchableActivity = reg_launchableActivity.search(log).group(1).strip()
+        print('选择的apk包名为：', packageName)
+        print('选择的apk登录名为：', packageName+'/'+lanuchableActivity)
+        return fileNewName, packageName, lanuchableActivity
+    except Exception as err:
+        print(err)
 
 
 # app启动
@@ -13,14 +52,15 @@ class App(object):
         self.runtime = 0
         self.beforeStart = 0
         self.afterStart = 0
+        self.info=get_activity_name()
 
     def startApp(self):
-        cmd = 'adb shell am start -W -n com.android.chrome/com.google.android.apps.chrome.Main'
+        cmd = 'adb shell am start -W -n {}'.format(self.info[1]+"/"+self.info[2])
         self.content = os.popen(cmd).readlines()
         return self.content
 
     def stopApp(self):
-        cmd = 'adb shell am force-stop com.android.chrome'
+        cmd = 'adb shell am force-stop {}'.format(self.info[1])
         os.popen(cmd)
 
     def backApp(self):
@@ -40,7 +80,7 @@ class App(object):
     def getTime(self):
         for line in self.content:
             if "ThisTime" in line:
-                self.runtime = line.split(':')[1]
+                self.runtime = line.split(':')[1].strip()
                 break
         return self.runtime
 
