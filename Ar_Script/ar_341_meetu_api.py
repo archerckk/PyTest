@@ -7,7 +7,7 @@ import pytest
 
 logging.basicConfig(level=logging.DEBUG,format='%(asctime)s %(levelname)s %(message)s')
 
-environment = 'test'
+environment = 'normal'
 
 if environment == 'test':
     host = 'http://150.109.38.68'
@@ -558,4 +558,4 @@ class Test_meetU_API:
 
 
 if __name__ == '__main__':
-    pytest.main(' -s ./ar_341_meetu_api.py::Test_meetU_API::test_who_likes_me_count')
+    pytest.main(' -s ./ar_341_meetu_api.py::Test_meetU_API')
