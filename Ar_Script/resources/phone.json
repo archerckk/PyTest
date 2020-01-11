@@ -43,6 +43,15 @@
     "noReset": true,
     "appPackage": "com.alibaba.android.rimet",
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "sanxingLan_dingding": {
+    "automationName": "Appium",
+    "deviceName": "d125de5e",
+    "platformName": "Android",
+    "platformVersion": "8.0",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
   }
 
 }

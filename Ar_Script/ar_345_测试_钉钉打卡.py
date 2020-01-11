@@ -9,7 +9,7 @@ class AutoClick(object):
 
     def __init__(self):
         with open('./resources/phone.json')as f:
-            desired_caps=json.load(f)['sanxingC8_dingding']
+            desired_caps=json.load(f)['sanxingLan_dingding']
 
         self.driver=webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
@@ -20,26 +20,31 @@ class AutoClick(object):
     def work(self):
 
         #点击工作tab
-        work_tab_x1_rate=0.45
-        work_tab_x2_rate=0.54
-        work_tab_y1_rate=0.93
-        work_tab_y2_rate=0.98
-        self.driver.tap([(self.width*work_tab_x1_rate,self.height*work_tab_y1_rate),(self.width*work_tab_x2_rate,self.height*work_tab_y2_rate)],100)
+        # work_tab_x1_rate=0.45
+        # work_tab_x2_rate=0.54
+        # work_tab_y1_rate=0.93
+        # work_tab_y2_rate=0.98
+        # self.driver.tap([(self.width*work_tab_x1_rate,self.height*work_tab_y1_rate),(self.width*work_tab_x2_rate,self.height*work_tab_y2_rate)],100)
 
-        time.sleep(10)
+        try:
+            self.driver.find_element_by_xpath('//*[@resource-id="com.alibaba.android.rimet:id/home_bottom_tab_button_work"]/android.widget.FrameLayout[1]').click()
+            time.sleep(10)
 
 
-        #坐标点击
-        # on_work_tab_x1_rate = 0.77
-        # on_work_tab_x2_rate = 0.67
-        # on_work_tab_y1_rate = 0.92
-        # on_work_tab_y2_rate = 0.75
-        # self.driver.tap([(self.width*on_work_tab_x1_rate,self.height*on_work_tab_y1_rate),(self.width*on_work_tab_x2_rate,self.height*on_work_tab_y2_rate)],100)
+            #坐标点击
+            # on_work_tab_x1_rate = 0.77
+            # on_work_tab_x2_rate = 0.67
+            # on_work_tab_y1_rate = 0.92
+            # on_work_tab_y2_rate = 0.75
+            # self.driver.tap([(self.width*on_work_tab_x1_rate,self.height*on_work_tab_y1_rate),(self.width*on_work_tab_x2_rate,self.height*on_work_tab_y2_rate)],100)
 
-        # 点击考勤打卡按钮
-        self.driver.find_element_by_xpath('//*[@content-desc="考勤打卡"]/..').click()
-        print('点击考勤打卡执行完成')
-
+            # 点击考勤打卡按钮
+            self.driver.find_element_by_xpath('//*[@content-desc="考勤打卡"]/..').click()
+            print('点击考勤打卡执行完成')
+        except Exception as e:
+            print(e)
+            self.driver.quit()
+            assert Exception
         time.sleep(10)
 
         off_work_tab_x1_rate = 0.33
