@@ -34,6 +34,16 @@
     "noReset": true,
     "appPackage": "com.tencent.mobileqq",
     "appActivity": "com.tencent.mobileqq.activity.SplashActivity"
+  },
+  "sanxingC8_dingding": {
+    "automationName": "Appium",
+    "deviceName": "420c3a6d6a2da4bf",
+    "platformName": "Android",
+    "platformVersion": "7.1.1",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
   }
+
 }
 
