@@ -61,10 +61,6 @@ class AutoClick(object):
         # off_work_tab_y2_rate = 0.63
         # self.driver.tap([(self.width*off_work_tab_x1_rate,self.height*off_work_tab_y1_rate),(self.width*off_work_tab_x2_rate,self.height*off_work_tab_y2_rate)])
 
-        # 点击下班打卡
-
-        # self.driver.find_element_by_android_uiautomator('new UiSelector().className(\"android.widget.TextView\").textContains(\"确定\")')
-
     def on_work(self):
         try:
             cant_off_work_xpath = '//*[@content-desc="外勤打卡"]/..'
@@ -74,18 +70,18 @@ class AutoClick(object):
             off_work_xpath = '(//android.view.View[@content-desc="下班打卡"])'
             off_work_weekend_xpath = '(//android.view.View[@content-desc="下班打卡"])[2]'
 
-            if len(self.driver.find_elements_by_xpath(off_work_xpath))!=0:
+            if self.driver.find_elements_by_xpath(off_work_xpath):
                 print('工作日上班打卡已执行')
                 self.work = False
                 pass
-            elif len(self.driver.find_elements_by_xpath(off_work_weekend_xpath))!=0:
+            elif self.driver.find_elements_by_xpath(off_work_weekend_xpath):
                 print('加班上班打卡已执行')
                 self.work = False
                 pass
             else:
                 on_work_xpath = '(//android.view.View[@content-desc="上班打卡"])'
                 on_work_weekend_xpath = '(//android.view.View[@content-desc="上班打卡"])[2]'
-                if len(self.driver.find_elements_by_xpath(on_work_xpath))!=0:
+                if self.driver.find_elements_by_xpath(on_work_xpath):
                     self.driver.find_element_by_xpath(on_work_xpath).click()
                 else:
                     self.driver.find_element_by_xpath(on_work_weekend_xpath).click()
@@ -107,21 +103,19 @@ class AutoClick(object):
 
             if '外勤打卡' in self.driver.page_source:
                 print('外勤打卡状态，无法点击下班卡')
-            elif len(self.driver.find_elements_by_xpath(on_work_xpath)) != 0:
+            elif self.driver.find_elements_by_xpath(on_work_xpath):
                 print('工作日上班卡还没有打，无法点击下班卡')
-            elif len(self.driver.find_elements_by_xpath(on_work_weekend_xpath)) != 0:
+            elif self.driver.find_elements_by_xpath(on_work_weekend_xpath):
                 print('加班上班卡还没有打，无法点击下班卡')
-            elif len(self.driver.find_elements_by_xpath(off_work_xpath)) == 0:
-                print('工作日下班卡已打卡成功')
-            elif len(self.driver.find_elements_by_xpath(off_work_weekend_xpath)) == 0:
-                print('加班下班卡已打卡成功')
             else:
-                if len(self.driver.find_elements_by_xpath(off_work_weekend_xpath))!=0:
+                if self.driver.find_elements_by_xpath(off_work_weekend_xpath):
                     print('执行加班下班打卡')
                     self.driver.find_elements_by_xpath(off_work_weekend_xpath).click()
-                else:
+                elif self.driver.find_elements_by_xpath(off_work_xpath):
                     print('执行工作日下班打卡')
                     self.driver.find_element_by_xpath(off_work_xpath).click()
+                else:
+                    print('下班卡已打卡完成')
 
         time.sleep(5)
         if '下班打卡成功' in self.driver.page_source:
@@ -147,7 +141,7 @@ if __name__ == '__main__':
                 ak.on_work()
                 ak.quit()
         elif startTime[3] == off_work_time:
-            # if startTime[4]==randminute_off:
+            if startTime[4]==randminute_off:
                 clear()
                 ak = AutoClick()
                 ak.prepare_click()
