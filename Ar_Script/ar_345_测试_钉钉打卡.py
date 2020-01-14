@@ -4,6 +4,12 @@ import time
 import os
 import random
 
+'''
+1、工作日上班打卡已验证
+2、工作日下班打卡已验证
+
+'''
+
 
 def clear():
     cmd = 'adb shell am force-stop com.android.vending'
@@ -13,6 +19,7 @@ def clear():
 
 
 class AutoClick(object):
+
 
     def __init__(self):
         with open('./resources/phone.json')as f:
@@ -27,7 +34,7 @@ class AutoClick(object):
         self.off = True
 
     def prepare_click(self):
-
+        '从钉钉主界面到考勤打卡的点击动作'
         # 点击工作tab
         # work_tab_x1_rate=0.45
         # work_tab_x2_rate=0.54
@@ -62,6 +69,7 @@ class AutoClick(object):
         # self.driver.tap([(self.width*off_work_tab_x1_rate,self.height*off_work_tab_y1_rate),(self.width*off_work_tab_x2_rate,self.height*off_work_tab_y2_rate)])
 
     def on_work(self):
+        '上班打卡方法'
         try:
             cant_off_work_xpath = '//*[@content-desc="外勤打卡"]/..'
             if self.driver.find_element_by_xpath(cant_off_work_xpath).is_displayed():
@@ -91,6 +99,7 @@ class AutoClick(object):
             print('上班打卡成功')
 
     def off_work(self):
+        '下班打卡'
         try:
             cant_off_work_xpath = '//*[@content-desc="无法打卡"]/..'
             if self.driver.find_element_by_xpath(cant_off_work_xpath).is_displayed():
@@ -128,8 +137,8 @@ class AutoClick(object):
 if __name__ == '__main__':
     on_work_time = int(input('请输入上班打卡具体小时：'))
     off_work_time = int(input('请输入下班打卡具体小时：'))
-    randminute_on=random.randint(0,60)
-    randminute_off=random.randint(0,60)
+    randminute_on=random.randint(0,30)
+    randminute_off=random.randint(0,21)
     while True:
         startTime = time.localtime()
         if startTime[3] == on_work_time:
