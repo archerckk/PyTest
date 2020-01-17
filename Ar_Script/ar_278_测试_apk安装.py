@@ -36,6 +36,7 @@ def getPackagInfo():
         packageName = reg_packageName.search(log).group(1)
         lanuchableActivity = reg_launchableActivity.search(log).group(1).strip()
         print('选择的apk包名为：', packageName)
+        print(packageName+'\n'+lanuchableActivity)
         return fileNewName, packageName, lanuchableActivity
     except Exception as err:
         print(err)

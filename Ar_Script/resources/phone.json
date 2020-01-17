@@ -53,11 +53,29 @@
     "appPackage": "com.alibaba.android.rimet",
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
   },
+  "sanxingC8_meetu": {
+    "automationName": "Appium",
+    "deviceName": "420c3a6d6a2da4bf",
+    "platformName": "Android",
+    "platformVersion": "7.1.1",
+    "noReset": true,
+    "appPackage": "com.meetu.android",
+    "appActivity": "com.meetu.android.SplashActivity"
+  },
   "mate8_dingding": {
     "automationName": "Appium",
     "deviceName": "5LM0215C28005216",
     "platformName": "Android",
     "platformVersion": "7.0",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "P9_dingding": {
+    "automationName": "Appium",
+    "deviceName": "KWG7N17228001472",
+    "platformName": "Android",
+    "platformVersion": "8.0",
     "noReset": true,
     "appPackage": "com.alibaba.android.rimet",
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
