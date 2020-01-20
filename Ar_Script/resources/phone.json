@@ -88,6 +88,15 @@
     "noReset": true,
     "appPackage": "com.alibaba.android.rimet",
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "sanxingc8_prison": {
+    "automationName": "Appium",
+    "deviceName": "420c3a6d6a2da4bf",
+    "platformName": "Android",
+    "platformVersion": "7.1.1",
+    "noReset": true,
+    "appPackage": "com.dotjoy.prisonmanager",
+    "appActivity": "com.dotjoy.prisonmanager.UnityPlayerActivity"
   }
 }
 
