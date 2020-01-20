@@ -50,5 +50,5 @@ def test_one():
 #     print('点击首页工作icon成功')
 
 if __name__ == '__main__':
-    # pytest.main('./ar_346_测试_钉钉元素定位.py::Test_appium::test_icon_click2')
-    pytest.main(['-m','demo','./ar_346_测试_钉钉元素定位.py'])
+    # pytest.main('./ar_346_test_dingding_click_test.py::Test_appium::test_icon_click2')
+    pytest.main(['-m','demo','./ar_346_test_dingding_click_test.py'])

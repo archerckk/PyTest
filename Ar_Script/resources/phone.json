@@ -79,6 +79,15 @@
     "noReset": true,
     "appPackage": "com.alibaba.android.rimet",
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "moto_dingding": {
+    "automationName": "Appium",
+    "deviceName": "ZY223MN2JL",
+    "platformName": "Android",
+    "platformVersion": "8.0",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
   }
 }
 

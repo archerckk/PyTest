@@ -36,6 +36,14 @@ class AutoClick(object):
         '从钉钉主界面到考勤打卡的点击动作'
         self.check_work_icon=False
         self.check_work=False
+        account_xpath='//*[@text="请输入密码"][@class="android.widget.EditText"]'
+        login_xpath='//*[@text="登录"][@class="android.widget.TextView"]'
+
+        #假如账号退出了登录账号
+        if '你好' in self.driver.page_source:
+            self.driver.find_element_by_xpath(account_xpath).send_keys('a3203589')
+            self.driver.find_element_by_xpath(login_xpath).click()
+            time.sleep(5)
 
         #点击首页的工作按钮
         work_icon_xpath='//*[@resource-id="com.alibaba.android.rimet:id/home_bottom_tab_button_work"]/android.widget.FrameLayout[1]'
@@ -141,7 +149,9 @@ class AutoClick(object):
 if __name__ == '__main__':
     on_work_time = int(input('请输入上班打卡具体小时：'))
     off_work_time = int(input('请输入下班打卡具体小时：'))
+    shutdown_time =int(input('请输入关机具体小时：'))
     minute_check=int(input('是否启用分钟检查(0/1)：'))
+
     randminute_on=random.randint(0,30)
     randminute_off=random.randint(0,21)
 
@@ -152,6 +162,7 @@ if __name__ == '__main__':
                 clear()
                 ak = AutoClick()
                 check_work,check_work_icon=ak.prepare_click()
+
                 if check_work and check_work_icon:
                     time.sleep(6)
                     ak.on_work()
@@ -175,5 +186,10 @@ if __name__ == '__main__':
                     time.sleep(6)
                     ak.off_work()
                 ak.quit()
+
+        elif startTime[3]==shutdown_time:
+            command='shutdown -s -t 10'
+            os.popen(command)
+
         else:
             continue

@@ -1,11 +1,13 @@
 from appium import webdriver
-# from appium.webdriver.webelement import By
+from selenium.webdriver.common.by import By
+# from appium.webdriver.webelement
 import pytest
 import allure
 import time
 import json
 import os
 import logging
+import random
 
 logging.basicConfig(level=logging.DEBUG,format='%(asctime)s-%(levelname)s-%(message)s')
 # clear_package = 'adb shell pm clear com.meetu.android'
@@ -60,26 +62,26 @@ class Test_meetu_release:
 
     @allure.story('测试卡片滑动点击')
     def test_card_slid_click(self):
-        # time.sleep(5)
-        # #右滑喜欢1次
-        # self.driver.swipe(self.width*0.5,self.height*0.5,self.width*0.9,self.height*0.5,duration=1000)
-        # time.sleep(2)
-        # #上滑超级喜欢1次
-        # self.driver.swipe(self.width*0.5,self.height*0.5,self.width*0.5,0,duration=1000)
-        # time.sleep(2)
-        # for i in range(14):
-        #     self.driver.swipe(self.width*0.5,self.height*0.5,0,self.height*0.5,duration=1000)
-        #     time.sleep(2)
-        #
-        # upgrade_xpath='//*[@text="UPGRADE"][@class="android.widget.TextView"]/..'
-        # upgrad_result=self.driver.find_elements_by_xpath(upgrade_xpath)
-        # assert upgrad_result!=0
-        #
-        # stop_command='adb shell am force-stop com.meetu.android'
-        # os.popen(stop_command)
-        #
-        # start_command='adb shell am start com.meetu.android/com.meetu.android.SplashActivity '
-        # os.popen(start_command)
+        time.sleep(5)
+        #右滑喜欢1次
+        self.driver.swipe(self.width*0.5,self.height*0.5,self.width*0.9,self.height*0.5,duration=1000)
+        time.sleep(2)
+        #上滑超级喜欢1次
+        self.driver.swipe(self.width*0.5,self.height*0.5,self.width*0.5,0,duration=1000)
+        time.sleep(2)
+        for i in range(14):
+            self.driver.swipe(self.width*0.5,self.height*0.5,0,self.height*0.5,duration=1000)
+            time.sleep(2)
+
+        upgrade_xpath='//*[@text="UPGRADE"][@class="android.widget.TextView"]/..'
+        upgrad_result=self.driver.find_elements_by_xpath(upgrade_xpath)
+        assert upgrad_result!=0
+
+        stop_command='adb shell am force-stop com.meetu.android'
+        os.popen(stop_command)
+
+        start_command='adb shell am start com.meetu.android/com.meetu.android.SplashActivity '
+        os.popen(start_command)
         #
         time.sleep(5)
 
@@ -90,14 +92,15 @@ class Test_meetu_release:
 
         logging.debug('卡片全部划掉了，杀掉进程，重新启动没有产生新卡片')
 
-    @allure.story('测试即时匹配次数')
+    @allure.story('即时匹配聊天发送消息成功')
     def test_instant_chat(self):
+        random_int = random.randint(1, 100)
+        message_send = 'test message{}'.format(random_int)
         instant_xpath = '//*[@text="Instant"][@class="android.widget.TextView"]/..'
         chat_xpath= '//*[@text="Chat"][@class="android.widget.TextView"]'
-        message_xpath= '//*[@text="test message"][@class="android.widget.TextView"]/..'
+        message_xpath= '//*[@text="{}"][@class="android.widget.TextView"]/..'.format(message_send)
         edit_message_xpath= '//*[@text="Enter message content"][@class="android.widget.EditText"]'
-        send='adb shell input KEYCODE_ENTER'
-        result=0
+
 
         time.sleep(5)
         self.driver.find_element_by_xpath(instant_xpath).click()
@@ -106,18 +109,29 @@ class Test_meetu_release:
         time.sleep(6)
         self.driver.find_element_by_xpath(edit_message_xpath).click()
         time.sleep(2)
-        self.driver.find_element_by_xpath(edit_message_xpath).send_keys('test message')
+        self.driver.find_element_by_xpath(edit_message_xpath).send_keys(message_send)
         time.sleep(2)
         # self.driver.find_element_by_xpath(edit_message_xpath).click()
         #执行发送消息
         self.driver.execute_script('mobile: performEditorAction', {'action': 'send'})
-        time.sleep(2)
+        time.sleep(12)
 
-        message=self.driver.find_elements_by_xpath(message_xpath)
-        if message_xpath!=[]:
-            result=message[0].find_elements(('android.widget.ImageView')).size()
-            logging.debug('结果为：',result)
-        assert  result==1
+
+        message=self.driver.find_element_by_xpath(message_xpath)
+        logging.debug(message)
+        result=message.find_elements_by_class_name('android.widget.ImageView')
+        # logging.debug('元素为：',result)
+        result_int=len(result)
+        print('结果为：',result_int)
+        assert result_int== 1
+        logging.debug('即时匹配聊天发送消息成功')
+
+
+        #测试代码
+        # icon_xpath='//*[@resource-id="com.meetu.android:id/oz"]'
+        # tab=self.driver.find_element_by_xpath(icon_xpath)
+        # result=len(tab.find_elements_by_class_name('android.widget.ImageView'))
+        # logging.debug(result)
 
 
 
