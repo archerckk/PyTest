@@ -5,10 +5,10 @@ import os
 import time
 
 
-#设备顺序为：三星C7，VIVO AX6
-devices=['420c3a6d6a2da4bf','3665defe']
-automationName=['UiAutomator2','Appium']
-platformVersion=['7.1.1','5.0.2']
+#设备顺序为：三星C7，VIVO AX6,moto E4
+devices=['420c3a6d6a2da4bf','3665defe','ZY2249WM66']
+automationName=['UiAutomator2','Appium','UiAutomator2']
+platformVersion=['7.1.1','5.0.2','7.1.1']
 
 
 
@@ -17,10 +17,10 @@ class SearchTest(unittest.TestCase):
         self.package_name = 'com.aplus.camera.android'
 
         desired_caps = {}
-        desired_caps['automationName'] = automationName[1]
+        desired_caps['automationName'] = automationName[2]
         desired_caps['deviceName'] = devices[1]
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = platformVersion[1]
+        desired_caps['platformVersion'] = platformVersion[2]
         desired_caps['noReset'] = True
         desired_caps["appPackage"] = "com.aplus.camera.android"
         desired_caps["appActivity"] = "com.aplus.camera.android.main.HomeActivity"

@@ -7,6 +7,7 @@ import  subprocess
 import os
 
 
+
 #获取产品连接名字
 def get_product_name():
     product=input('请输入你要选择的产品缩写：')
@@ -17,17 +18,17 @@ def get_product_name():
     for i in product_list:
         if product==i.split(':')[0]:
             product=i.split(':')[1]
+            # productIndex,productPack=product_tmp.split(',')
         else:
             pass
     return product
-
 
 def get_log1():
     handle = subprocess.Popen("adb shell  logcat  >log.txt " , shell=True)
     print('\n正在执行log截取，请等待15秒左右')
     time.sleep(15)
-    subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , shell=True)
-    print('日志获取1执行完成')
+    result=subprocess.Popen("taskkill /F /T /PID %s"% str(handle.pid) , stdout=subprocess.PIPE,shell=True)
+    # print('日志获取1执行完成')
 
 
 def get_log2():
@@ -89,15 +90,16 @@ def get_stt_link(product):
     # 匹配mo原始链接
     reg_ne = re.compile(r'http://stt.%s.+/ne' % product, re.I)
     reg_nx = re.compile(r'http://stt.%s.+/nx' % product, re.I)
-    reg_real=re.compile(r'({"g_act":)(.*real_active)(.+?,"g_ver")', re.I)
-    reg_daily=re.compile(r'("g_act":)(.*daily_active)(.+?,"g_ver")', re.I)
+    reg_real=re.compile(r'(,{"g_act":.*)(real_active)(.+?,"g_ver")', re.I)
+    reg_daily=re.compile(r'("g_act":.*)(daily_active)(.+?,"g_ver")', re.I)
+
     # 匹配mo链接的cr参数
     reg_code = re.compile(r' {"code":.+{}}')
 
-    with open('log2.txt', 'r', encoding='utf-8')as f:
+    with open('log.txt', 'r', encoding='utf-8')as f:
         log = f.read()
         try:
-            reg_real_str=reg_real.search(log).group()
+            reg_real_str=reg_real.search(log).group().strip(',{')
             print('\n真实日活验证成功：',reg_real_str)
         except:
             print('\n真实日活验证失败')
@@ -117,45 +119,72 @@ def get_stt_link(product):
         except:
             print('\n日活打点上报验失败')
         try:
-            reg_code_str=reg_code.search(log).group()
-            print('\n成功上传打点日志：',reg_code_str)
+            reg_code_str = reg_code.search(log).group()
+            print('\n成功上传打点日志：：', reg_code_str)
         except:
             print('\n没有找到上传成功的日志')
         print()
 
+def get_longLive_versionName(link):
+    with open('log.txt', 'r', encoding='utf-8')as f:
+        log = f.read()
+    #正则表达式
+    reg_link=re.compile(r'.+pkg_name=(.+?)&.+',re.I)
+    try:
+        packageName=reg_link.search(link).group(1)
+        # print('\n包名为：',packageName)
+        reg_longLive = re.compile(r'{.+g_pkgname":"(%s)".+"libVerName":"(.+?)",' % packageName)
+    except:
+        print('由于配置连接获取失败，无法正常匹配')
+    else:
+        try:
+            reg_longLive_str = reg_longLive.search(log).group(2)
+            print('保活SDK匹配日志为：', reg_longLive.search(log).group())
+            print('匹配的包名为：',reg_longLive.search(log).group(1))
+            print('保活SDK版本为：：', reg_longLive_str)
+        except:
+            print('\n没有找到上传成功的日志')
+
+
+
+
 #获取产品信息
 product=get_product_name().strip('\n')
-print(product)
+print("主域名为：",product)
+# print("包名为：",packageName)
 
-#配置线程
-threads=[]
-# t1=threading.Thread(target=get_log1,args=(product,))
-t1=threading.Thread(target=get_log1)
-t2=threading.Thread(target=get_log2)
 
-threads.append(t1)
-threads.append(t2)
-
-for t in threads:
-    t.start()
-
-for t in threads:
-    t.join()
-
-i = 2
-for t in threads:
-    while 1:
-        if t.is_alive():
-            continue
-        else:
-            i-=1
-            print('线程运行数为：',i)
-            break
-
-print('线程关闭完毕')
+get_log1()
+# #配置线程
+# threads=[]
+# # t1=threading.Thread(target=get_log1,args=(product,))
+# t1=threading.Thread(target=get_log1)
+# t2=threading.Thread(target=get_log2)
+#
+# threads.append(t1)
+# threads.append(t2)
+#
+# for t in threads:
+#     t.start()
+#
+# for t in threads:
+#     t.join()
+#
+# i = 2
+# for t in threads:
+#     while 1:
+#         if t.is_alive():
+#             continue
+#         else:
+#             i-=1
+#             print('线程运行数为：',i)
+#             break
+#
+# print('线程关闭完毕')
 
 while 1:
-    if os.path.exists('.%slog.txt'%os.sep)and  os.path.exists('.%slog2.txt'%os.sep):
+    # if os.path.exists('.%slog.txt'%os.sep)and  os.path.exists('.%slog2.txt'%os.sep):
+    if os.path.exists('.%slog.txt' % os.sep):
         print('\n日志文件生成完毕')
         print('\n开始检查日志文件')
         break
@@ -165,6 +194,8 @@ while 1:
 
 # 打印stt上报域名信息
 get_stt_link(product)
+
+
 
 #尝试打印广告配置
 try:
@@ -190,8 +221,12 @@ else:
     try:
         cf_json = requests.get(cf_link[1]).json()
         pprint.pprint(cf_json)
+        print()
+        get_longLive_versionName(cf_link[1])
     except Exception as e:
         print('解析服务器地址失败，错误信息为：%s' % e)
+
+
 
 # print('在日志中查找不到要匹配的地址，请不要删除log文件，检查输出的内容！！！')
 
@@ -201,7 +236,7 @@ while True:
     if choice =='y':
         print('执行删除缓存的log')
         os.remove('./log.txt')
-        os.remove('./log2.txt')
+        # os.remove('./log2.txt')
         break
     elif choice =='n':
         print('不执行删除')

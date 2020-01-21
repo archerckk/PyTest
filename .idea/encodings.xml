@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/Ar_Script/ar_058_OS_查找指定格式文件统计数量和大小.py" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Ar_Script/ar_065_easygui_选择文件打开显示内容.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Ar_Script/ar_066_easygui_是否覆盖保存文档.py" charset="UTF-8" />
@@ -13,12 +13,19 @@
     <file url="file://$PROJECT_DIR$/Ar_Script/ar_073_类和对象_点和直线.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Ar_Script/ar_074_类和对象_猜拳游戏.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Ar_Script/ar_075_类和对象_乌龟与鱼群.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Ar_Script/ar_259_测试_上线域名确认脚本.py" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Ar_Script/ar_291_进阶_输入合理性校验.py" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Ar_Script/domainLog.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Ar_Script/errFile.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Ar_Script/resources" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Ar_Script/resources/18.gif" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Ar_Script/resources/gosms.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Ar_Script/resources/icon.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Ar_Script/resources/replace.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Ar_Script/resources/start_choice.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Ar_Script/resources/test5.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Ar_Script/resources/turtle.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Ar_Script/resources/xingzuo.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Ar_Script/resources/人口普查.xlsx" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Ar_Script/resources/台湾多语言新加的.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Ar_Script/resources/台湾多语言新加的.xml" charset="GBK" />

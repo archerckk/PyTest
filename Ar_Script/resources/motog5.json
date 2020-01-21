@@ -1,0 +1,9 @@
+{
+  "automationName": "Appium",
+  "deviceName": "ZY224RFJ76",
+  "platformName": "Android",
+  "platformVersion": "7.0",
+  "noReset": true,
+  "appPackage": "com.android.chrome",
+  "appActivity": "com.google.android.apps.chrome.Main"
+}

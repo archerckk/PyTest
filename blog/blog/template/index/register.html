@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+<form method="post" action="/index/register/" novalidate>
+    {% csrf_token %}
+    <p>用户名：{{register_form.user_name}} {{register_form.user_name.errors.0}} </p>
+    <p>密码：{{register_form.password}}  {{register_form.password.errors.0}}</p>
+    <p>确认密码：{{register_form.password_repeat}}{{register_form.password_repeat.errors.0}}  </p><br>
+    <input value="注册" type="submit">
+    {{error}}
+</form>
+
+
+</body>
+</html>
