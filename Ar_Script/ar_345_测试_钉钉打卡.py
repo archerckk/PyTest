@@ -3,6 +3,8 @@ import json
 import time
 import os
 import random
+from tool.logger import Loger
+import logging
 
 '''
 1、工作日上班打卡已验证
@@ -49,21 +51,21 @@ class AutoClick(object):
         work_icon_xpath='//*[@resource-id="com.alibaba.android.rimet:id/home_bottom_tab_button_work"]/android.widget.FrameLayout[1]'
         if self.driver.find_elements_by_xpath(work_icon_xpath):
             self.driver.find_element_by_xpath(work_icon_xpath).click()
-            print('点击首页工作icon成功')
+            logging.debug('点击首页工作icon成功')
             self.check_work_icon=True
-        time.sleep(6)
+        time.sleep(10)
 
         # 点击考勤打卡按钮
         check_work_xpath= '//*[@content-desc="考勤打卡"]/..'
         if self.driver.find_elements_by_xpath(check_work_xpath):
             self.driver.find_element_by_xpath(check_work_xpath).click()
-            print('点击考勤打卡执行完成')
+            logging.debug('点击考勤打卡执行完成')
             self.check_work=True
 
         if self.check_work and self.check_work_icon:
-            print('前置步骤执行成功')
+            logging.debug('前置步骤执行成功')
         else:
-            print('前置步骤执行失败')
+            logging.debug('前置步骤执行失败')
 
         return self.check_work,self.check_work_icon
         # 点击工作tab
@@ -85,17 +87,17 @@ class AutoClick(object):
         try:
             cant_off_work_xpath = '//*[@content-desc="外勤打卡"]/..'
             if self.driver.find_element_by_xpath(cant_off_work_xpath).is_displayed():
-                print('不在打卡范围，不触发点击事件')
+                logging.debug('不在打卡范围，不触发点击事件')
         except Exception:
             off_work_xpath = '(//android.view.View[@content-desc="下班打卡"])'
             off_work_weekend_xpath = '(//android.view.View[@content-desc="下班打卡"])[2]'
 
             if self.driver.find_elements_by_xpath(off_work_xpath):
-                print('工作日上班打卡已执行')
+                logging.debug('工作日上班打卡已执行')
                 self.work = False
                 pass
             elif self.driver.find_elements_by_xpath(off_work_weekend_xpath):
-                print('加班上班打卡已执行')
+                logging.debug('加班上班打卡已执行')
                 self.work = False
                 pass
             else:
@@ -108,14 +110,14 @@ class AutoClick(object):
 
         time.sleep(3)
         if '上班打卡成功' in self.driver.page_source:
-            print('上班打卡成功')
+            logging.debug('上班打卡成功')
 
     def off_work(self):
         '下班打卡'
         try:
             cant_off_work_xpath = '//*[@content-desc="无法打卡"]/..'
             if self.driver.find_element_by_xpath(cant_off_work_xpath).is_displayed():
-                print('现在无法打卡，不触发点击事件')
+                logging.debug('现在无法打卡，不触发点击事件')
         except Exception:
             on_work_xpath = '(//android.view.View[@content-desc="上班打卡"])'
             off_work_xpath = '(//android.view.View[@content-desc="下班打卡"])'
@@ -123,30 +125,31 @@ class AutoClick(object):
             off_work_weekend_xpath = '(//android.view.View[@content-desc="下班打卡"])[2]'
 
             if '外勤打卡' in self.driver.page_source:
-                print('外勤打卡状态，无法点击下班卡')
+                logging.debug('外勤打卡状态，无法点击下班卡')
             elif self.driver.find_elements_by_xpath(on_work_xpath):
-                print('工作日上班卡还没有打，无法点击下班卡')
+                logging.debug('工作日上班卡还没有打，无法点击下班卡')
             elif self.driver.find_elements_by_xpath(on_work_weekend_xpath):
-                print('加班上班卡还没有打，无法点击下班卡')
+                logging.debug('加班上班卡还没有打，无法点击下班卡')
             else:
                 if self.driver.find_elements_by_xpath(off_work_weekend_xpath):
-                    print('执行加班下班打卡')
+                    logging.debug('执行加班下班打卡')
                     self.driver.find_elements_by_xpath(off_work_weekend_xpath).click()
                 elif self.driver.find_elements_by_xpath(off_work_xpath):
-                    print('执行工作日下班打卡')
+                    logging.debug('执行工作日下班打卡')
                     self.driver.find_element_by_xpath(off_work_xpath).click()
                 else:
-                    print('下班卡已打卡完成')
+                    logging.debug('下班卡已打卡完成')
 
         time.sleep(3)
         if '下班打卡成功' in self.driver.page_source:
-            print('下班打卡点击成功')
+            logging.debug('下班打卡点击成功')
 
     def quit(self):
         self.driver.quit()
 
 
 if __name__ == '__main__':
+    log=Loger('dingding_work.log')
     on_work_time = int(input('请输入上班打卡具体小时：'))
     off_work_time = int(input('请输入下班打卡具体小时：'))
     shutdown_time =int(input('请输入关机具体小时：'))
