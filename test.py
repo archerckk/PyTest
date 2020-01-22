@@ -7,7 +7,10 @@ print('test code123')
 # if __name__ =='__main__':
 #     test2.ab()
 
-# '''查找包括子文件夹在内的目标文件，并写入TXT文档保存'''
+
+
+
+# '''查找包括子文件夹在内的目标文件，并写入TXT文档保存32432432432432432432'''
 #
 # def find_video(fileName,target):
 #     os.chdir(fileName)
@@ -21,7 +24,7 @@ print('test code123')
 #             os.chdir(os.pardir)
 #
 #
-# fileName=input('请输入带查找的初始目录：')
+# fileName=input('请输入带查找的初始目录23432432432432432432：')
 # program_dir=os.getcwd()
 # fileList=[]
 # target=['.avi','.rm','.mp4','.rmvb','.wmv']
