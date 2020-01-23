@@ -80,6 +80,15 @@
     "appPackage": "com.alibaba.android.rimet",
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
   },
+  "LG_dingding": {
+    "automationName": "Appium",
+    "deviceName": "LGM700bbca9716",
+    "platformName": "Android",
+    "platformVersion": "8.1",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
   "moto_dingding": {
     "automationName": "Appium",
     "deviceName": "ZY223MN2JL",

@@ -55,8 +55,14 @@ class AutoClick(object):
             self.check_work_icon=True
         time.sleep(10)
 
+        #兼容8.1系统手机
+        # context=self.driver.contexts
+        # print(context)
+        # self.driver.switch_to.context(context[0])
+        # print(self.driver.find_elements_by_xpath(check_work_xpath))
+
         # 点击考勤打卡按钮
-        check_work_xpath= '//*[@content-desc="考勤打卡"]/..'
+        check_work_xpath = '//*[@content-desc="考勤打卡"][@class="android.view.View"]/..'
         if self.driver.find_elements_by_xpath(check_work_xpath):
             self.driver.find_element_by_xpath(check_work_xpath).click()
             logging.debug('点击考勤打卡执行完成')
@@ -149,7 +155,8 @@ class AutoClick(object):
 
 
 if __name__ == '__main__':
-    log=Loger('dingding_work.log')
+    log=Loger('dingding_work')
+
     on_work_time = int(input('请输入上班打卡具体小时：'))
     off_work_time = int(input('请输入下班打卡具体小时：'))
     shutdown_time =int(input('请输入关机具体小时：'))
