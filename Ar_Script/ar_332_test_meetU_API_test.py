@@ -5,7 +5,7 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG,format='%(asctime)s-%(levelname)s-%(message)s')
 
-environment = 'test'
+environment = 'normal'
 
 if environment == 'test':
     host = 'http://150.109.38.68'
