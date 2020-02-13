@@ -3,6 +3,7 @@ import subprocess
 import time
 import easygui as g
 import re
+import logging
 
 
 def getPackagInfo():
@@ -16,7 +17,7 @@ def getPackagInfo():
     fileNewName=filePath.split('.apk')[0].strip()+add_time+'.apk'
     os.rename(filePath,fileNewName)
 
-    print('选择的apk路径为：', fileNewName)
+    logging.debug('选择的apk路径为：{}'.format(fileNewName))
 
     command = 'aapt dumpsys badging "%s" ' % fileNewName
 
@@ -30,16 +31,16 @@ def getPackagInfo():
     position=log.index('targetSdkVersion:')
 
 
-    print('\n',log[0:position+21],'\n')#截取到targetSDK Version部分包信息
+    logging.debug('\n{}\n'.format(log[0:position+21]))#截取到targetSDK Version部分包信息
 
     try:
         packageName = reg_packageName.search(log).group(1)
         lanuchableActivity = reg_launchableActivity.search(log).group(1).strip()
-        print('选择的apk包名为：', packageName)
-        print(packageName+'\n'+lanuchableActivity)
+        logging.debug('选择的apk包名为：{}'.format(packageName))
+        logging.debug(packageName+'\n'+lanuchableActivity)
         return fileNewName, packageName, lanuchableActivity
     except Exception as err:
-        print(err)
+        logging.debug(err)
 
 
 
@@ -59,7 +60,7 @@ def installapp(packagePath):
 def judgeRunning(function):
     while True:
         if function.poll() != None:
-            print('进程已终止')
+            logging.debug('进程已终止')
             break
         else:
             continue
@@ -71,11 +72,11 @@ if __name__ == '__main__':
     handle = uninstallApp(packageName)
     uninstallApp(handle)
     judgeRunning(handle)
-    print('%s 卸载成功' % packageName)
+    logging.debug('%s 卸载成功' % packageName)
 
-    print('%s 开始安装，请稍后' % packageName)
+    logging.debug('%s 开始安装，请稍后' % packageName)
     handle_install = installapp(filePath)
 
-    print('安装日志为：', handle_install.stdout.read().decode().strip('\r\n'))
+    logging.debug('安装日志为：', handle_install.stdout.read().decode().strip('\r\n'))
 
     input('安装完成,按回车关闭窗口')
