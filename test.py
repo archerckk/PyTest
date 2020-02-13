@@ -1,5 +1,7 @@
 import os
 import time
+print('pycharm test code')
+
 print('test code123')
 # import test2
 # def cd():
