@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章内容页</title>
+</head>
+<body>
+
+<p><a href="{% url 'index:alist' user_id %}" >返回</a></p>
+<h1>{{article.title}}</h1>
+<p>文章的编号为：{{article.id}}</p>
+<p>文章内容为：{{article.content}}</p>
+
+<p>------------------评论------------------</p>
+
+{% for comment in comments %}
+
+<p>{{comment.content}}</p>
+<p>评论人：{{user_name}}</p>
+
+{% endfor %}
+
+
+<form action="/index/article/{{article.id}}/" method="post">
+     {% csrf_token %}
+    <p>评论：{{comment_form.comment}}{{comment_form.comment.errors.0}}</p>
+<!--    <input name="article_id" type="hidden" value={{article.id}}>-->
+    <input type="submit" value="提交">
+</form>
+
+
+</body>
+</html>

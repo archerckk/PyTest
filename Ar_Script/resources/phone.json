@@ -9,13 +9,22 @@
     "appActivity": "com.google.android.apps.chrome.Main"
   },
   "moto_g5": {
-  "automationName": "Appium",
-  "deviceName": "ZY224RFJ76",
-  "platformName": "Android",
-  "platformVersion": "7.0",
-  "noReset": true,
-  "appPackage": "com.android.chrome",
-  "appActivity": "com.google.android.apps.chrome.Main"
+    "automationName": "Appium",
+    "deviceName": "ZY224RFJ76",
+    "platformName": "Android",
+    "platformVersion": "7.0",
+    "noReset": true,
+    "appPackage": "com.android.chrome",
+    "appActivity": "com.google.android.apps.chrome.Main"
+  },
+  "moto_g5_taobao": {
+    "automationName": "uiautomator2",
+    "deviceName": "ZY224RFJ76",
+    "platformName": "Android",
+    "platformVersion": "7.0",
+    "noReset": true,
+    "appPackage": "com.taobao.taobao",
+    "appActivity": "com.taobao.tao.welcome.Welcome"
   },
   "mate8_qq": {
     "automationName": "Appium",
@@ -25,5 +34,87 @@
     "noReset": true,
     "appPackage": "com.tencent.mobileqq",
     "appActivity": "com.tencent.mobileqq.activity.SplashActivity"
+  },
+  "mate8_meetu": {
+    "automationName": "Appium",
+    "deviceName": "5LM0215C28005216",
+    "platformName": "Android",
+    "platformVersion": "8.0",
+    "noReset": true,
+    "appPackage": "com.meetu.android",
+    "appActivity": "com.meetu.android.SplashActivity"
+  },
+  "sanxingC8_dingding": {
+    "automationName": "Appium",
+    "deviceName": "420c3a6d6a2da4bf",
+    "platformName": "Android",
+    "platformVersion": "7.1.1",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "sanxingLan_dingding": {
+    "automationName": "Appium",
+    "deviceName": "d125de5e",
+    "platformName": "Android",
+    "platformVersion": "8.0",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "sanxingC8_meetu": {
+    "automationName": "Appium",
+    "deviceName": "420c3a6d6a2da4bf",
+    "platformName": "Android",
+    "platformVersion": "7.1.1",
+    "noReset": true,
+    "appPackage": "com.meetu.android",
+    "appActivity": "com.meetu.android.SplashActivity"
+  },
+  "mate8_dingding": {
+    "automationName": "Appium",
+    "deviceName": "5LM0215C28005216",
+    "platformName": "Android",
+    "platformVersion": "7.0",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "P9_dingding": {
+    "automationName": "Appium",
+    "deviceName": "KWG7N17228001472",
+    "platformName": "Android",
+    "platformVersion": "8.0",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "LG_dingding": {
+    "automationName": "Appium",
+    "deviceName": "LGM700bbca9716",
+    "platformName": "Android",
+    "platformVersion": "8.1",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "moto_dingding": {
+    "automationName": "Appium",
+    "deviceName": "ZY223MN2JL",
+    "platformName": "Android",
+    "platformVersion": "8.0",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
+  "sanxingc8_prison": {
+    "automationName": "Appium",
+    "deviceName": "420c3a6d6a2da4bf",
+    "platformName": "Android",
+    "platformVersion": "7.1.1",
+    "noReset": true,
+    "appPackage": "com.dotjoy.prisonmanager",
+    "appActivity": "com.dotjoy.prisonmanager.UnityPlayerActivity"
   }
 }
+

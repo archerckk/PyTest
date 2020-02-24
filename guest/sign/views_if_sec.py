@@ -1,7 +1,7 @@
 from django.contrib import auth as django_auth
 import base64
 from django.http import JsonResponse
-from sign.models import Event,Guest
+from .models import Event,Guest
 import time,hashlib
 
 #用户认证

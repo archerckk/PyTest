@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章列表</title>
+</head>
+<body>
+
+<h2>{{user_name}}的文章列表</h2>
+<a href="{% url 'index:article' user_id %}">添加文章</a>
+
+
+
+{%if articles %}
+
+    {%for article in articles%}
+
+    <div>
+
+        <h1><a href="/index/{{user_id}}/article/{{article.id}}">{{article.title}}</a> </h1>
+        <div>
+          内容：  {{article.content}}
+        </div>
+    </div>
+    {% endfor %}
+
+{% else %}
+<P>你还没有发布任何文章</P>
+{% endif %}
+
+</body>
+</html>

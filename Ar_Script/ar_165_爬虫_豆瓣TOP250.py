@@ -2,13 +2,17 @@ import requests
 from bs4 import BeautifulSoup as bs
 import openpyxl
 from openpyxl.styles import NamedStyle,Alignment,Font,PatternFill
+import time
 from openpyxl.styles.colors import RED
 
 
 def url_open(url):
-    header= {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36'}
 
-    res=requests.get(url,header)
+    header= {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3904.108 Safari/537.36',
+             'Upgrade-Insecure-Requests': 1}
+             # 'cookie':'ll="118281"; bid=0Mbo_K31YXs; __gads=ID=8f4d6e5428f23ef7:T={}:S=ALNI_MaoXmCmyXgw2Az86gxoFZpCsuHvMQ; __yadk_uid=F9cjRb4y2FSfmODEhZCOv0hznJe3s43b; _vwo_uuid_v2=DC8825503EF0B1F64A605B5CC19B330D9|8372ec25fdb63dc67c8d40c1a6bfc94f; ap_v=0,6.0; __utmz=30149280.1582370178.2.2.utmcsr=baidu|utmccn=(organic)|utmcmd=organic; __utmz=223695111.1582370178.2.2.utmcsr=baidu|utmccn=(organic)|utmcmd=organic; __utma=30149280.401442872.1580737379.1582370178.1582375861.3; __utmc=30149280; __utma=223695111.48937608.1580737379.1582370178.1582375861.3; __utmb=223695111.0.10.1582375861; __utmc=223695111; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1582375861%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DPmTyBmrzLb889XXcwGBfzmS9dOsNpgWlc4W4QSkIakURSZLrff0sw-taAG-KhaPWwNWhTJQE65GKSqfEdeE_Ca%26wd%3D%26eqid%3Debb79de10004d0fa000000055e510d7a%22%5D; _pk_ses.100001.4cf6=*; __utmt_t1=1; __utmb=30149280.9.8.1582376530926; _pk_id.100001.4cf6=a726c18ea1c59195.1580737379.3.1582376531.1582370179.; RT=s=1582376579758&r=https%3A%2F%2Fmovie.douban.com%2Ftop250'.format(int(time.time()))}
+    proxy={'http':'http://221.214.181.98:53281'}
+    res=requests.get(url,header,proxies=proxy)
 
     return res
 
@@ -121,6 +125,7 @@ def save_excel(result):
 def main():
     host='https://movie.douban.com/top250'
     res=url_open(host)
+    print(res.status_code)
 
     '获取一个要爬取的页面总数'
     depth=find_depth(res)
@@ -130,6 +135,7 @@ def main():
         url=host+'?start=%d&filter='%(25*i)
         res=url_open(url)
         result.extend(find_movies(res))
+        time.sleep(5)
 
     # 'txt执行代码'
     # with open('result/douban.txt','w',encoding='utf-8')as f:
