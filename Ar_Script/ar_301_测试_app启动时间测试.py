@@ -3,6 +3,7 @@ import re
 import time
 import csv
 import openpyxl
+from openpyxl.chart import LineChart,Reference,Series
 from openpyxl.styles import numbers
 from openpyxl.styles import NamedStyle,Alignment,Font,PatternFill
 import subprocess
@@ -29,11 +30,12 @@ def get_activity_name():
     msg = '请选择你要检查的apk安装包'
     title = '文件选择'
     default = "*.apk"
-    add_time = "_{}".format(time.localtime()[5])
+    # add_time = "_{}".format(time.localtime()[5])
 
     filePath = g.fileopenbox(msg=msg, title=title, default=default)
 
-    fileNewName = filePath.split('.apk')[0].strip() + add_time + '.apk'
+    # fileNewName = filePath.split('.apk')[0].strip() + add_time + '.apk'
+    fileNewName = filePath.split('.apk')[0].strip() + '.apk'
     os.rename(filePath, fileNewName)
 
     print('选择的apk路径为：', fileNewName)
@@ -116,7 +118,7 @@ class Control(object):
         after = self.app.afterAppStart()
         result = after - before
         time.sleep(5)
-        runtime = self.app.getTime()
+        runtime = int(self.app.getTime())
 
         if self.mode:
             self.app.stopApp()
@@ -189,6 +191,24 @@ class Control(object):
         ws.column_dimensions['B'].width = 15
         ws.column_dimensions['C'].width = 30
 
+        '新增数据折线图'
+        linechart = LineChart()
+        linechart.title = 'Runtime Data'
+        linechart.style = 39
+        max_line = ws.max_row
+        data = Reference(ws, min_row=1, min_col=1, max_row=max_line-1, max_col=1)
+        linechart.add_data(data, titles_from_data=True)
+
+        ws.add_chart(linechart,'E1')
+
+        linechart2 = LineChart()
+        linechart2.title = 'Caltime Data'
+        linechart2.style = 39
+        data2 = Reference(ws, min_row=1, min_col=2, max_row=max_line - 1, max_col=2)
+        linechart2.add_data(data2, titles_from_data=True)
+
+        ws.add_chart(linechart2, 'E19')
+
         wb.save('test_data.xlsx')
 
 
@@ -203,17 +223,14 @@ class Control(object):
 
 
 
-
-
-
 if __name__ == '__main__':
     package_info=get_activity_name()
     # package_info=(" ",'com.tinder','com.tinder.activities.LoginActivity')
     control = Control(package_info,16,mode=1)
     control.run()
-    control.saveData('冷启动_v10_{}'.format(random.randint(1,100)))
+    control.saveData('冷启动_v12_{}'.format(random.randint(1,100)))
 
     control = Control(package_info,16)
     control.run()
-    control.saveData('热启动_v10_{}'.format(random.randint(1,100)))
+    control.saveData('热启动_v12_{}'.format(random.randint(1,100)))
 
