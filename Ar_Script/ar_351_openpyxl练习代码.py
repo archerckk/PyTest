@@ -33,12 +33,14 @@ ws=wb.active
 #         i.alignment=alignment
 #         i.number_format=numbers.FORMAT_GENERAL
 #3,10
+print("新增测试代码")
 linechart=LineChart()
 linechart.title='数据折线图'
 linechart.style=39
 max_line=ws.max_row
 data=Reference(ws,min_row=1,min_col=1,max_row=max_line,max_col=3)
 linechart.add_data(data,titles_from_data=True)
+
 
 series_obj = linechart.series[2]
 
