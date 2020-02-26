@@ -158,8 +158,8 @@ class Control(object):
             wb=openpyxl.load_workbook('test_data.xlsx')
         else:
             wb = openpyxl.Workbook()
-        sheet_num=len(wb.sheetnames)
-        ws=wb.create_sheet(file_attr,index=sheet_num+1)
+        # sheet_num=len(wb.sheetnames)
+        ws=wb.create_sheet(file_attr,index=0)
         # ws = wb.active
 
         '设置样式'

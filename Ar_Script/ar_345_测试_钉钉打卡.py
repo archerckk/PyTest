@@ -62,12 +62,12 @@ class AutoClick(object):
         time.sleep(3)
         print(self.driver.current_context)
 
+        # 点击考勤打卡按钮
         check_work_xpath = '//*[@content-desc="考勤打卡"][@class="android.view.View"]/..'
 
         print(self.driver.find_elements_by_xpath(check_work_xpath))
+        print(self.driver.find_elements_by_xpath(check_work_xpath))
 
-        # 点击考勤打卡按钮
-        check_work_xpath = '//*[@content-desc="考勤打卡"][@class="android.view.View"]/..'
         if self.driver.find_elements_by_xpath(check_work_xpath):
             self.driver.find_element_by_xpath(check_work_xpath).click()
             logging.debug('点击考勤打卡执行完成')
@@ -144,10 +144,10 @@ class AutoClick(object):
             else:
                 if self.driver.find_elements_by_xpath(off_work_weekend_xpath):
                     logging.debug('执行加班下班打卡')
-                    # self.driver.find_elements_by_xpath(off_work_weekend_xpath).click()
+                    self.driver.find_elements_by_xpath(off_work_weekend_xpath).click()
                 elif self.driver.find_elements_by_xpath(off_work_xpath):
                     logging.debug('执行工作日下班打卡')
-                    # self.driver.find_element_by_xpath(off_work_xpath).click()
+                    self.driver.find_element_by_xpath(off_work_xpath).click()
                 else:
                     logging.debug('下班卡已打卡完成')
 
