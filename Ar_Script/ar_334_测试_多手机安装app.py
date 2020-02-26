@@ -22,7 +22,8 @@ def getPackagInfo():
 
     filePath = g.fileopenbox(msg=msg, title=title, default=default)
 
-    fileNewName=filePath.split('.apk')[0].strip()+add_time+'.apk'
+    # fileNewName=filePath.split('.apk')[0].strip()+add_time+'.apk'
+    fileNewName=filePath.split('.apk')[0].strip()+'.apk'
     os.rename(filePath,fileNewName)
 
     logging.debug('选择的apk路径为：{}'.format(fileNewName))
