@@ -57,16 +57,17 @@ class AutoClick(object):
 
         # 兼容8.1系统手机
         context=self.driver.contexts
-        print(context)
+        logging.debug(context)
         self.driver.switch_to.context(context[0])
         time.sleep(3)
-        print(self.driver.current_context)
+        # logging.debug('现在的上下文为：')
+        logging.debug(self.driver.current_context)
 
         # 点击考勤打卡按钮
         check_work_xpath = '//*[@content-desc="考勤打卡"][@class="android.view.View"]/..'
 
         print(self.driver.find_elements_by_xpath(check_work_xpath))
-        print(self.driver.find_elements_by_xpath(check_work_xpath))
+        logging.debug(self.driver.find_elements_by_xpath(check_work_xpath))
 
         if self.driver.find_elements_by_xpath(check_work_xpath):
             self.driver.find_element_by_xpath(check_work_xpath).click()
@@ -116,8 +117,10 @@ class AutoClick(object):
                 on_work_weekend_xpath = '(//android.view.View[@content-desc="上班打卡"])[2]'
                 if self.driver.find_elements_by_xpath(on_work_xpath):
                     self.driver.find_element_by_xpath(on_work_xpath).click()
+                    logging.debug('执行上班打卡')
                 else:
                     self.driver.find_element_by_xpath(on_work_weekend_xpath).click()
+                    logging.debug('执行加班上班打卡')
 
         time.sleep(3)
         if '上班打卡成功' in self.driver.page_source:
