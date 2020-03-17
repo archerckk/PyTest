@@ -159,7 +159,7 @@ class Control(object):
         else:
             wb = openpyxl.Workbook()
         # sheet_num=len(wb.sheetnames)
-        ws=wb.create_sheet(file_attr,index=0)
+        ws=wb.create_sheet(file_attr,index=1)
         # ws = wb.active
 
         '设置样式'
@@ -226,11 +226,14 @@ class Control(object):
 if __name__ == '__main__':
     package_info=get_activity_name()
     # package_info=(" ",'com.tinder','com.tinder.activities.LoginActivity')
+    control = Control(package_info, 16)
+    control.run()
+    control.saveData('热启动_v21_{}'.format(random.randint(1, 100)))
+
+
     control = Control(package_info,16,mode=1)
     control.run()
-    control.saveData('冷启动_v12_{}'.format(random.randint(1,100)))
+    control.saveData('冷启动_v21_{}'.format(random.randint(1,100)))
 
-    control = Control(package_info,16)
-    control.run()
-    control.saveData('热启动_v12_{}'.format(random.randint(1,100)))
+
 
