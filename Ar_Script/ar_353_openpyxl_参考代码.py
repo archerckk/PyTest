@@ -383,7 +383,7 @@ ws_PieChart.add_chart(pie, "D20")
 # 使用：openpyxl.chart.ProjectedPieChart() 来实例化创建 ProjectedPieChart投影饼图
 ws_ProjectedPieChart = wb.create_sheet('ProjectedPieChart投影饼图')
 data = [
-    ['Page', 'Views'],
+    ['Pages', 'Views'],
     ['Search', 95],
     ['Products', 4],
     ['Offers', 0.5],

@@ -43,3 +43,8 @@ class BasePage(object):
             print(e)
             # print("页面上没有找到{}".format(text))
             return False
+
+class StarPage(BasePage):
+
+    '各种要需要用到的页面元素'
+
