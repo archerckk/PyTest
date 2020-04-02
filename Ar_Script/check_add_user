@@ -1,0 +1,88 @@
+2020-04-02 20:13:25.616 27744-27744/com.meetu.android D/AutoMessageMannager: 策略用户成功获取  用户id为：717  用户名为： Czz
+2020-04-02 20:13:25.616 27744-27744/com.meetu.android D/AutoMessageMannager: 开始发送模拟消息
+2020-04-02 20:13:25.617 27744-27744/com.meetu.android D/AutoMessageMannager: 消息内容为： night
+2020-04-02 20:13:25.656 27744-27744/com.meetu.android D/AutoMessageMannager: sendNotification 开始构建通知消息
+2020-04-02 20:13:25.690 27744-27744/com.meetu.android D/AutoMessageMannager: 不在前台进程，发送通知栏
+2020-04-02 20:13:25.705 27744-27744/com.meetu.android D/AutoMessageMannager: sendMessageStatistic
+2020-04-02 20:14:24.208 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:14:24.210 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:14:24.210 27744-27744/com.meetu.android D/AutoMessageMannager: 随机  服务器配置时间： 1
+2020-04-02 20:14:24.210 27744-27744/com.meetu.android D/AutoMessageMannager: 随机到的时间为： 42秒后检查是否符合并需要发送消息
+2020-04-02 20:15:06.223 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:15:06.224 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:15:06.224 27744-27744/com.meetu.android D/AutoMessageMannager: 开始请求策略用户
+2020-04-02 20:15:06.676 27744-27744/com.meetu.android D/AutoMessageMannager: 策略用户成功获取  用户id为：795  用户名为： 最新的
+2020-04-02 20:15:06.677 27744-27744/com.meetu.android D/AutoMessageMannager: 开始发送模拟消息
+2020-04-02 20:15:06.678 27744-27744/com.meetu.android D/AutoMessageMannager: 消息内容为： night
+2020-04-02 20:15:06.723 27744-27744/com.meetu.android D/AutoMessageMannager: sendNotification 开始构建通知消息
+2020-04-02 20:15:06.756 27744-27744/com.meetu.android D/AutoMessageMannager: 不在前台进程，发送通知栏
+2020-04-02 20:15:06.779 27744-27744/com.meetu.android D/AutoMessageMannager: sendMessageStatistic
+2020-04-02 20:16:06.234 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:16:06.236 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:16:06.236 27744-27744/com.meetu.android D/AutoMessageMannager: 随机  服务器配置时间： 1
+2020-04-02 20:16:06.236 27744-27744/com.meetu.android D/AutoMessageMannager: 随机到的时间为： 3秒后检查是否符合并需要发送消息
+2020-04-02 20:16:09.241 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:16:09.242 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:16:09.242 27744-27744/com.meetu.android D/AutoMessageMannager: 开始请求策略用户
+2020-04-02 20:16:09.511 27744-27744/com.meetu.android D/AutoMessageMannager: 策略用户成功获取  用户id为：705  用户名为： hhh
+2020-04-02 20:16:09.511 27744-27744/com.meetu.android D/AutoMessageMannager: 开始发送模拟消息
+2020-04-02 20:16:09.512 27744-27744/com.meetu.android D/AutoMessageMannager: 消息内容为： night
+2020-04-02 20:16:09.528 27744-27744/com.meetu.android D/AutoMessageMannager: sendNotification 开始构建通知消息
+2020-04-02 20:16:09.562 27744-27744/com.meetu.android D/AutoMessageMannager: 不在前台进程，发送通知栏
+2020-04-02 20:16:09.577 27744-27744/com.meetu.android D/AutoMessageMannager: sendMessageStatistic
+2020-04-02 20:17:09.276 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:17:09.278 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:17:09.278 27744-27744/com.meetu.android D/AutoMessageMannager: 随机  服务器配置时间： 1
+2020-04-02 20:17:09.278 27744-27744/com.meetu.android D/AutoMessageMannager: 随机到的时间为： 14秒后检查是否符合并需要发送消息
+2020-04-02 20:17:23.292 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:17:23.293 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:17:23.293 27744-27744/com.meetu.android D/AutoMessageMannager: 开始请求策略用户
+2020-04-02 20:17:23.811 27744-27744/com.meetu.android D/AutoMessageMannager: 策略用户成功获取  用户id为：764  用户名为： hsjjannannn hshsnnsnsnsnnhshhj
+2020-04-02 20:17:23.812 27744-27744/com.meetu.android D/AutoMessageMannager: 开始发送模拟消息
+2020-04-02 20:17:23.814 27744-27744/com.meetu.android D/AutoMessageMannager: 消息内容为： 晚上好
+2020-04-02 20:17:23.833 27744-27744/com.meetu.android D/AutoMessageMannager: sendNotification 开始构建通知消息
+2020-04-02 20:17:23.864 27744-27744/com.meetu.android D/AutoMessageMannager: 不在前台进程，发送通知栏
+2020-04-02 20:17:23.886 27744-27744/com.meetu.android D/AutoMessageMannager: sendNotification 开始构建通知消息
+2020-04-02 20:17:23.916 27744-27744/com.meetu.android D/AutoMessageMannager: 不在前台进程，发送通知栏
+2020-04-02 20:17:23.927 27744-27744/com.meetu.android D/AutoMessageMannager: sendMessageStatistic
+2020-04-02 20:17:25.154 27744-27744/com.meetu.android D/AutoMessageMannager: sendNotification 开始构建通知消息
+2020-04-02 20:17:25.180 27744-27744/com.meetu.android D/AutoMessageMannager: 不在前台进程，发送通知栏
+2020-04-02 20:18:23.316 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:18:23.317 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:18:23.317 27744-27744/com.meetu.android D/AutoMessageMannager: 随机  服务器配置时间： 1
+2020-04-02 20:18:23.318 27744-27744/com.meetu.android D/AutoMessageMannager: 随机到的时间为： 15秒后检查是否符合并需要发送消息
+2020-04-02 20:18:38.325 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:18:38.326 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:18:38.326 27744-27744/com.meetu.android D/AutoMessageMannager: 开始请求策略用户
+2020-04-02 20:18:38.860 27744-27744/com.meetu.android D/AutoMessageMannager: 策略用户成功获取  用户id为：721  用户名为： caster
+2020-04-02 20:18:38.860 27744-27744/com.meetu.android D/AutoMessageMannager: 开始发送模拟消息
+2020-04-02 20:18:38.863 27744-27744/com.meetu.android D/AutoMessageMannager: 消息内容为： night
+2020-04-02 20:18:38.896 27744-27744/com.meetu.android D/AutoMessageMannager: sendNotification 开始构建通知消息
+2020-04-02 20:18:38.929 27744-27744/com.meetu.android D/AutoMessageMannager: 不在前台进程，发送通知栏
+2020-04-02 20:18:38.943 27744-27744/com.meetu.android D/AutoMessageMannager: sendMessageStatistic
+2020-04-02 20:19:38.366 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:19:38.367 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:19:38.367 27744-27744/com.meetu.android D/AutoMessageMannager: 随机  服务器配置时间： 1
+2020-04-02 20:19:38.367 27744-27744/com.meetu.android D/AutoMessageMannager: 随机到的时间为： 46秒后检查是否符合并需要发送消息
+2020-04-02 20:20:24.374 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:20:24.374 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:20:24.374 27744-27744/com.meetu.android D/AutoMessageMannager: 开始请求策略用户
+2020-04-02 20:20:25.050 27744-27744/com.meetu.android D/AutoMessageMannager: 策略用户成功获取  用户id为：725  用户名为： caster
+2020-04-02 20:20:25.050 27744-27744/com.meetu.android D/AutoMessageMannager: 开始发送模拟消息
+2020-04-02 20:20:25.051 27744-27744/com.meetu.android D/AutoMessageMannager: 消息内容为： night
+2020-04-02 20:20:25.065 27744-27744/com.meetu.android D/AutoMessageMannager: sendNotification 开始构建通知消息
+2020-04-02 20:20:25.101 27744-27744/com.meetu.android D/AutoMessageMannager: 不在前台进程，发送通知栏
+2020-04-02 20:20:25.119 27744-27744/com.meetu.android D/AutoMessageMannager: sendMessageStatistic
+2020-04-02 20:21:24.389 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:21:24.390 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:21:24.390 27744-27744/com.meetu.android D/AutoMessageMannager: 随机  服务器配置时间： 1
+2020-04-02 20:21:24.390 27744-27744/com.meetu.android D/AutoMessageMannager: 随机到的时间为： 0秒后检查是否符合并需要发送消息
+2020-04-02 20:21:24.393 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线任务定时到达
+2020-04-02 20:21:24.394 27744-27744/com.meetu.android D/AutoMessageMannager: 持续在线  超过上次发送消息间隔
+2020-04-02 20:21:24.394 27744-27744/com.meetu.android D/AutoMessageMannager: 开始请求策略用户
+2020-04-02 20:21:24.680 27744-27744/com.meetu.android D/AutoMessageMannager: 策略用户成功获取  用户id为：816  用户名为： Sugar Li
+2020-04-02 20:21:24.680 27744-27744/com.meetu.android D/AutoMessageMannager: 开始发送模拟消息
+2020-04-02 20:21:24.682 27744-27744/com.meetu.android D/AutoMessageMannager: 消息内容为： night
+2020-04-02 20:21:24.713 27744-27744/com.meetu.android D/AutoMessageMannager: sendNotification 开始构建通知消息
+2020-04-02 20:21:24.754 27744-27744/com.meetu.android D/AutoMessageMannager: 不在前台进程，发送通知栏
+2020-04-02 20:21:24.767 27744-27744/com.meetu.android D/AutoMessageMannager: sendMessageStatistic
