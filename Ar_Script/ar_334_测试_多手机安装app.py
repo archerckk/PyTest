@@ -65,11 +65,13 @@ for line in device_output:
         phone_name=device.split('#')[0]
         phone_list.append(phone_name)
 
+'多手机卸载app'
 for phone in phone_list:
     uninstall_cmd='adb -s {} uninstall {}'.format(phone,packageName)
     log=os.popen(uninstall_cmd)
     logging.debug("{}卸载日志：{}".format(phone,log.read()))
 
+'多手机安装app'
 for phone in phone_list:
     install_cmd = 'adb -s {} install {}'.format(phone, filePath)
     log = os.popen(install_cmd)
