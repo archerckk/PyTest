@@ -30,7 +30,7 @@ class Test_login:
     @allure.story('meetu账号登录测试')
     @pytest.mark.parametrize('account,psw',
                              [
-                                 ('644326394@qq.com','a12345'),
+                                 # ('644326394@qq.com','a12345'),
                                  ('1','1'),
                                  ('644326394@QQ.COM','1'),
                                  ('1','123456')
@@ -50,7 +50,8 @@ class Test_login:
         elif psw=='1':
             # assert self.account_page.find_elements(self.account_page.account_format_error)==[]
             # assert self.driver.find_element(self.account_page.psw_empty_error)!=None
-            assert self.account_page.find_element(*self.account_page.login_loc,check=True).get_attribute('clickable')==False
+            assert  self.driver.find_element_by_xpath('//*[@text="Continue"][@class="android.widget.TextView"]').get_attribute('clickable')==False
+            # assert self.account_page.find_element(*self.account_page.login_loc,check=True).get_attribute('clickable')==False
 
 
         elif account=='1':

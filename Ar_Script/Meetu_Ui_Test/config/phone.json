@@ -36,7 +36,7 @@
     "appActivity": "com.tencent.mobileqq.activity.SplashActivity"
   },
   "mate8_meetu": {
-    "automationName": "uiautomator2",
+    "automationName": "Appium",
     "deviceName": "5LM0215C28005216",
     "platformName": "Android",
     "platformVersion": "8.0",
