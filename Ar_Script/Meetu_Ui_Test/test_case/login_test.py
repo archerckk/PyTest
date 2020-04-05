@@ -4,12 +4,12 @@ from Ar_Script.Meetu_Ui_Test.Pages.base_page import *
 import json
 from appium import webdriver
 import time
-
+import os
 class Test_login:
 
     def setup(self):
-
-        with open('C:\PyTest\Ar_Script\Meetu_Ui_Test\config\phone.json')as f:
+        os.chdir(os.curdir)
+        with open('..\config\phone.json')as f:
             desired_caps = json.load(f)['mate8_meetu']
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
@@ -42,26 +42,25 @@ class Test_login:
         self.account_page.psw_input(psw)
         # time.sleep(3)
         # self.driver.keyevent(4)
-        self.account_page.click_login()
-        if account==''and psw=='':
+        if account=='1'and psw=='1':
             # assert self.account_page.find_element(self.account_page.account_format_error)!=None
             # assert self.account_page.find_element(self.account_page.psw_empty_error)!=None
-            assert self.account_page.find_element(self.account_page.login_loc).get_attribute('clickable')==False
+            assert self.account_page.find_element(*self.account_page.login_loc,check=True).get_attribute('clickable')==False
 
-        elif psw=='':
+        elif psw=='1':
             # assert self.account_page.find_elements(self.account_page.account_format_error)==[]
             # assert self.driver.find_element(self.account_page.psw_empty_error)!=None
-            assert self.account_page.find_element(self.account_page.login_loc).get_attribute('clickable')==False
+            assert self.account_page.find_element(*self.account_page.login_loc,check=True).get_attribute('clickable')==False
 
 
-        elif account=='':
+        elif account=='1':
             # assert self.account_page.find_element(self.account_page.account_format_error) !=None
             # assert self.driver.find_elements(self.account_page.psw_empty_error) ==[]
-            assert self.account_page.find_element(self.account_page.login_loc).get_attribute('clickable')==False
-
+            assert self.account_page.find_element(*self.account_page.login_loc).get_attribute('clickable')==False
 
         # time.sleep(30)
         else:
+            self.account_page.click_login()
             result=self.account_page.is_toast_exist(self.driver,'Network')
             assert result==True
 

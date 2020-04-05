@@ -8,19 +8,29 @@ class BasePage(object):
     def __init__(self,driver):
         self.driver=driver
 
-    def find_element(self,*loc):
+    def find_element(self,*loc,check=False):
         try:
+            if check:
+                WebDriverWait(self.driver, 30, 0.5).until(EC.invisibility_of_element_located(loc))
+                return self.driver.find_element(*loc)
+
             WebDriverWait(self.driver,30,0.5).until(EC.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
         except :
             print("页面上找不到{}元素".format(loc))
 
-    def find_elements(self, *loc):
+    def find_elements(self, *loc,check=False):
         try:
+            if check:
+                WebDriverWait(self.driver, 30, 0.5).until(EC.invisibility_of_element_located(loc))
+                return self.driver.find_elements(*loc)
+
             WebDriverWait(self.driver, 30, 0.5).until(EC.visibility_of_element_located(loc))
             return self.driver.find_elements(*loc)
         except:
             print("页面上找不到{}元素".format(loc))
+
+
 
     def send_keys(self,loc,value,click_first=True,clear_first=True):
         try:
@@ -72,7 +82,7 @@ class Account_login_page(BasePage):
     psw_father_loc=(By.XPATH,'//*[@text="Password"]/..')
     psw_loc=(By.CLASS_NAME,'android.widget.EditText')
 
-    login_loc=(By.XPATH,'//*[@text="Continue"]')
+    login_loc=(By.XPATH,'//*[@text="Continue"][@class="android.widget.TextView"]')
 
     forget_psw_loc=(By.XPATH,'//*[@text="I\'ve forgotten my password?]')
 
