@@ -5,7 +5,7 @@ import easygui as g
 import re
 import logging
 
-def getPackagInfo():
+def getPackagInfo(add_time=False):
     msg = '请选择你要检查的apk安装包'
     title = '文件选择'
     default = "*.apk"
@@ -13,7 +13,11 @@ def getPackagInfo():
 
     filePath = g.fileopenbox(msg=msg, title=title, default=default)
 
-    fileNewName=filePath.split('.apk')[0].strip()+add_time+'.apk'
+    if add_time:
+        fileNewName=filePath.split('.apk')[0].strip()+add_time+'.apk'
+
+    fileNewName=filePath.split('.apk')[0].strip()+'.apk'
+
     os.rename(filePath,fileNewName)
 
     logging.debug('选择的apk路径为：{}'.format(fileNewName))
