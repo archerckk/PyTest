@@ -104,23 +104,23 @@ class AutoClick(object):
             off_work_xpath = '(//android.view.View[@content-desc="下班打卡"])'
             off_work_weekend_xpath = '(//android.view.View[@content-desc="下班打卡"])[2]'
 
-            if self.driver.find_elements_by_xpath(off_work_xpath):
-                logging.debug('工作日上班打卡已执行')
+            if self.driver.find_elements_by_xpath(off_work_weekend_xpath):
+                logging.debug('加班上班打卡已执行')
                 self.work = False
                 pass
-            elif self.driver.find_elements_by_xpath(off_work_weekend_xpath):
-                logging.debug('加班上班打卡已执行')
+            elif self.driver.find_elements_by_xpath(off_work_xpath):
+                logging.debug('工作日上班打卡已执行')
                 self.work = False
                 pass
             else:
                 on_work_xpath = '(//android.view.View[@content-desc="上班打卡"])'
                 on_work_weekend_xpath = '(//android.view.View[@content-desc="上班打卡"])[2]'
-                if self.driver.find_elements_by_xpath(on_work_xpath):
-                    self.driver.find_element_by_xpath(on_work_xpath).click()
-                    logging.debug('执行上班打卡')
-                else:
+                if self.driver.find_elements_by_xpath(on_work_weekend_xpath):
                     self.driver.find_element_by_xpath(on_work_weekend_xpath).click()
                     logging.debug('执行加班上班打卡')
+                else:
+                    self.driver.find_element_by_xpath(on_work_xpath).click()
+                    logging.debug('执行工作日上班打卡')
 
         time.sleep(3)
         if '上班打卡成功' in self.driver.page_source:
@@ -140,9 +140,10 @@ class AutoClick(object):
 
             if '外勤打卡' in self.driver.page_source:
                 logging.debug('外勤打卡状态，无法点击下班卡')
-            elif self.driver.find_elements_by_xpath(on_work_xpath):
-                logging.debug('工作日上班卡还没有打，无法点击下班卡')
+
             elif self.driver.find_elements_by_xpath(on_work_weekend_xpath):
+                logging.debug('工作日上班卡还没有打，无法点击下班卡')
+            elif  self.driver.find_elements_by_xpath(on_work_xpath):
                 logging.debug('加班上班卡还没有打，无法点击下班卡')
             else:
                 if self.driver.find_elements_by_xpath(off_work_weekend_xpath):
