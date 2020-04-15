@@ -228,12 +228,12 @@ if __name__ == '__main__':
     # package_info=(" ",'com.tinder','com.tinder.activities.LoginActivity')
     control = Control(package_info, 16)
     control.run()
-    control.saveData('热启动_v21_{}'.format(random.randint(1, 100)))
+    control.saveData('热启动_v30_{}'.format(random.randint(1, 100)))
 
 
     control = Control(package_info,16,mode=1)
     control.run()
-    control.saveData('冷启动_v21_{}'.format(random.randint(1,100)))
+    control.saveData('冷启动_v30_{}'.format(random.randint(1,100)))
 
 
 
