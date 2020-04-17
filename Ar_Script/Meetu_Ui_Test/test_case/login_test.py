@@ -5,6 +5,8 @@ import json
 from appium import webdriver
 import time
 import os
+
+
 class Test_login:
 
     def setup(self):
@@ -15,6 +17,7 @@ class Test_login:
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
         self.account_page=Account_login_page(self.driver)
         self.start_page=StarPage(self.driver)
+        self.home_page=Home_page(self.driver)
         # self.windows_size = self.driver.get_window_size()
         # self.height = self.windows_size['height']
         # self.width = self.windows_size['width']

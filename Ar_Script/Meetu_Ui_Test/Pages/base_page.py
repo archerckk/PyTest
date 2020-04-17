@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from appium import webdriver
+import time
 
 class BasePage(object):
 
@@ -113,3 +114,38 @@ class Account_login_page(BasePage):
 
     def network_error_is_exist(self):
         return self.is_toast_exist(self.driver,'Network')
+
+class Home_page(BasePage):
+    '各种要需要用到的页面元素'
+    match_card_title_loc = (By.XPATH, '//*[@text="Match"]')
+    permission_allow_loc = (By.XPATH, '//*[@text="总是允许"]')
+    guide_first_click_loc=(By.XPATH,'//*[@text="Try it"]')
+
+
+
+    def permission_allow(self):
+        if self.find_elements(*self.permission_allow_loc):
+            self.find_element(*self.permission_allow_loc).click()
+        else:
+            print('没有找到定位权限弹窗')
+
+    def judge_login_success(self):
+
+        result=self.find_elements(*self.match_card_title_loc)
+
+        if result!=[]:
+            return True
+        else:
+            return False
+
+    def close_guide(self):
+
+        if self.find_elements(*self.guide_first_click_loc):
+            self.find_element(*self.guide_first_click_loc).click()
+
+            for i in range(3):
+                self.driver.keyevent(4)
+                time.sleep(1)
+        else:
+            print('引导已关闭')
+
