@@ -15,7 +15,7 @@ def get_meminfo_data(package):
     for i in new_info:
         if 'TOTAL' in i:
             tmp='#'.join(i.split())
-            result=tmp.split('#')[2]
+            result=int(tmp.split('#')[2])
 
     return result
 

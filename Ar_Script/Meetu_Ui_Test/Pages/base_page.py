@@ -118,15 +118,19 @@ class Account_login_page(BasePage):
 class Home_page(BasePage):
     '各种要需要用到的页面元素'
     match_card_title_loc = (By.XPATH, '//*[@text="Match"]')
-    permission_allow_loc = (By.XPATH, '//*[@text="总是允许"]')
-    guide_first_click_loc=(By.XPATH,'//*[@text="Try it"]')
+    # permission_allow_loc = (By.XPATH, '//*[contain(@text,"始终允许")]')
+    permission_allow_loc = (By.XPATH, '//*[@text="始终允许"]')
 
+    guide_first_click_loc=(By.XPATH,'//*[@text="Try it"]')
+    card_num_show_test_server_loc=(By.XPATH,'//*[@text="1/80"]')
 
 
     def permission_allow(self):
         if self.find_elements(*self.permission_allow_loc):
             self.find_element(*self.permission_allow_loc).click()
         else:
+            if "允许" in self.driver.page_source or "始终允许" in self.driver.page_source:
+                self.driver.switch_to.alert.accept()
             print('没有找到定位权限弹窗')
 
     def judge_login_success(self):
@@ -149,3 +153,9 @@ class Home_page(BasePage):
         else:
             print('引导已关闭')
 
+    def loading_finish_judge(self):
+        if self.find_elements(*self.card_num_show_test_server_loc):
+            return True
+        else:
+            print('卡片没有加载完成')
+            return False
