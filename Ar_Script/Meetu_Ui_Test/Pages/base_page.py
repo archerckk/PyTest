@@ -3,11 +3,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from appium import webdriver
 import time
+from  Ar_Script.Meetu_Ui_Test.common.logger import Loger
+import logging
 
 class BasePage(object):
 
     def __init__(self,driver):
         self.driver=driver
+        self.log=Loger()
 
     def find_element(self,*loc,check=False):
         try:
@@ -18,7 +21,7 @@ class BasePage(object):
             WebDriverWait(self.driver,30,0.5).until(EC.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
         except :
-            print("页面上找不到{}元素".format(loc))
+            logging.debug("页面上找不到{}元素".format(loc))
 
     def find_elements(self, *loc,check=False):
         try:
@@ -29,7 +32,7 @@ class BasePage(object):
             WebDriverWait(self.driver, 30, 0.5).until(EC.visibility_of_element_located(loc))
             return self.driver.find_elements(*loc)
         except:
-            print("页面上找不到{}元素".format(loc))
+             logging.debug("页面上找不到{}元素".format(loc))
 
 
 
@@ -44,7 +47,7 @@ class BasePage(object):
 
             self.driver.find_element(*loc).send_keys(value)
         except AttributeError:
-            print("页面上找不到{}元素".format(loc))
+             logging.debug("页面上找不到{}元素".format(loc))
 
     def is_toast_exist(self,driver,text):
         try:
@@ -52,7 +55,7 @@ class BasePage(object):
             WebDriverWait(driver,5,0.5).until(EC.presence_of_element_located(text_loc))
             return True
         except Exception as e:
-            print(e)
+            logging.debug(e)
             # print("页面上没有找到{}".format(text))
             return False
 
@@ -127,11 +130,14 @@ class Home_page(BasePage):
 
     def permission_allow(self):
         if self.find_elements(*self.permission_allow_loc):
+
             self.find_element(*self.permission_allow_loc).click()
+            logging.debug('执行权限窗口点击')
         else:
             if "允许" in self.driver.page_source or "始终允许" in self.driver.page_source:
                 self.driver.switch_to.alert.accept()
-            print('没有找到定位权限弹窗')
+                logging.debug('执行权限运行')
+            logging.debug('没有找到定位权限弹窗')
 
     def judge_login_success(self):
 
@@ -151,11 +157,11 @@ class Home_page(BasePage):
                 self.driver.keyevent(4)
                 time.sleep(1)
         else:
-            print('引导已关闭')
+             logging.debug('引导已关闭')
 
     def loading_finish_judge(self):
         if self.find_elements(*self.card_num_show_test_server_loc):
             return True
         else:
-            print('卡片没有加载完成')
+            logging.debug('卡片没有加载完成')
             return False

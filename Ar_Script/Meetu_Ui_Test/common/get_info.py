@@ -5,6 +5,47 @@ from openpyxl.styles import numbers
 from openpyxl.styles import NamedStyle,Alignment,Font,PatternFill
 import openpyxl
 import time
+import re
+import easygui as g
+
+
+
+def get_activity_name():
+    msg = '请选择你要检查的apk安装包'
+    title = '文件选择'
+    default = "*.apk"
+    # add_time = "_{}".format(time.localtime()[5])
+
+    filePath = g.fileopenbox(msg=msg, title=title, default=default)
+
+    # fileNewName = filePath.split('.apk')[0].strip() + add_time + '.apk'
+    fileNewName = filePath.split('.apk')[0].strip() + '.apk'
+    os.rename(filePath, fileNewName)
+
+    print('选择的apk路径为：', fileNewName)
+
+    command = 'aapt dumpsys badging "%s" ' % fileNewName
+
+    handle = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+    time.sleep(2)
+
+    reg_packageName = re.compile(r"package: name='(.+?)'")
+    reg_launchableActivity = re.compile(r"launchable-activity: name='(.+?)'")
+
+    log = str(handle.stdout.read())
+    position = log.index('targetSdkVersion:')
+
+    print('\n', log[0:position + 21], '\n')  # 截取到targetSDK Version部分包信息
+
+    try:
+        packageName = reg_packageName.search(log).group(1)
+        lanuchableActivity = reg_launchableActivity.search(log).group(1).strip()
+        print('选择的apk包名为：', packageName)
+        print('选择的apk登录名为：', packageName+'/'+lanuchableActivity)
+        return fileNewName, packageName, lanuchableActivity
+    except Exception as err:
+        print(err)
+
 
 def get_meminfo_data(package):
 
@@ -32,8 +73,8 @@ def saveData(result_list,file_attr='test'):
     length = len(result_list)
 
 
-    if os.path.exists('test_data.xlsx'):
-        wb=openpyxl.load_workbook('test_data.xlsx')
+    if os.path.exists('app_start_time_test_data.xlsx'):
+        wb=openpyxl.load_workbook('app_start_time_test_data.xlsx')
     else:
         wb = openpyxl.Workbook()
     ws=wb.create_sheet(file_attr,index=1)
@@ -84,7 +125,7 @@ def saveData(result_list,file_attr='test'):
     #
     # ws.add_chart(linechart2, 'E19')
 
-    wb.save('test_data.xlsx')
+    wb.save('meminfo_test_data.xlsx')
     # tmp='#'.join(info_result.split())
     # for i in tmp:
     #     print(i)
