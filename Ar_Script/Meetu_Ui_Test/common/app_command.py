@@ -69,8 +69,9 @@ class Control(object):
 
         if self.mode:
             self.app.stopApp()
+        else:
+            self.app.backApp()
 
-        self.app.backApp()
         currentTime = self.getCurrntTime()
         self.allData.append((runtime, result, currentTime))
         time.sleep(3)
@@ -101,8 +102,8 @@ class Control(object):
 
         print('总行数2为：',length)
 
-        if os.path.exists('app_start_time_test_data.xlsx'):
-            wb=openpyxl.load_workbook('app_start_time_test_data.xlsx')
+        if os.path.exists('../test_result/app_start_time_test_data.xlsx'):
+            wb=openpyxl.load_workbook('../test_result/app_start_time_test_data.xlsx')
         else:
             wb = openpyxl.Workbook()
         # sheet_num=len(wb.sheetnames)
@@ -156,4 +157,4 @@ class Control(object):
 
         ws.add_chart(linechart2, 'E19')
 
-        wb.save('app_start_time_test_data.xlsx')
+        wb.save('../test_result/app_start_time_test_data.xlsx')

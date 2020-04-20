@@ -73,8 +73,8 @@ def saveData(result_list,file_attr='test'):
     length = len(result_list)
 
 
-    if os.path.exists('app_start_time_test_data.xlsx'):
-        wb=openpyxl.load_workbook('app_start_time_test_data.xlsx')
+    if os.path.exists('../test_result/meminfo_test_data.xlsx'):
+        wb=openpyxl.load_workbook('../test_result/meminfo_test_data.xlsx')
     else:
         wb = openpyxl.Workbook()
     ws=wb.create_sheet(file_attr,index=1)
@@ -125,7 +125,7 @@ def saveData(result_list,file_attr='test'):
     #
     # ws.add_chart(linechart2, 'E19')
 
-    wb.save('meminfo_test_data.xlsx')
+    wb.save('../test_result/meminfo_test_data.xlsx')
     # tmp='#'.join(info_result.split())
     # for i in tmp:
     #     print(i)

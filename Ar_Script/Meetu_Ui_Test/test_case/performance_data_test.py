@@ -13,16 +13,26 @@ import random
 
 class Test_Meminfo:
 
+    @classmethod
+    def setup_class(self):
+        os.popen('adb shell pm clear {}'.format('com.meetu.android'))
+        print('执行清理数据')
+
     def setup(self):
         os.chdir(os.curdir)
         with open('..\config\phone.json')as f:
             desired_caps = json.load(f)['mate8_meetu']
+
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
         self.package_info=('',desired_caps['appPackage'],desired_caps['appActivity'])
         self.account_page = Account_login_page(self.driver)
         self.start_page = StarPage(self.driver)
         self.home_page=Home_page(self.driver)
+
+        self.hot_start_control=Control(self.package_info,16)
+        self.cold_start_control=Control(self.package_info,16,mode=1)
+
         self.loger=Loger()
         # self.windows_size = self.driver.get_window_size()
         # self.height = self.windows_size['height']
@@ -37,7 +47,7 @@ class Test_Meminfo:
     @pytest.mark.parametrize('package,activity',[('com.meetu.android',"com.meetu.android.SplashActivity")])
     def test_meminfo(self,package,activity):
         account='archerckk@163.com'
-        psw='a12345'
+        psw='123456'
         meminfo_list=[]
 
 
@@ -61,22 +71,17 @@ class Test_Meminfo:
                 meminfo_list.append(result)
 
         logging.debug(meminfo_list)
-        saveData(meminfo_list)
-        # if self.home_page.judge_login_success() :
-        #     print('登录成功')
-        # else:
-        #     print('登录失败')
+        saveData(meminfo_list,file_attr='meetU_v{}'.format(29))
+
 
     @allure.story('启动时间测试')
     @pytest.mark.parametrize('package_info',[('','com.meetu.android',"com.meetu.android.SplashActivity")])
     def test_app_start_time(self,package_info):
-        self.control=Control(self.package_info,16)
-        self.control.run()
-        self.control.saveData('热启动_v31test_{}'.format(random.randint(1, 100)))
+        self.hot_start_control.run()
+        self.hot_start_control.saveData('热启动_v31')
 
-        self.control = Control(package_info, 16, mode=1)
-        self.control.run()
-        self.control.saveData('冷启动_v31test_{}'.format(random.randint(1, 100)))
+        self.cold_start_control.run()
+        self.cold_start_control.saveData('冷启动_v31')
 
 if __name__ == '__main__':
-    pytest.main(['-s','meminfo_record_test.py'])
+    pytest.main(['-s','performance_data_test.py'])

@@ -125,7 +125,7 @@ class Home_page(BasePage):
     permission_allow_loc = (By.XPATH, '//*[@text="始终允许"]')
 
     guide_first_click_loc=(By.XPATH,'//*[@text="Try it"]')
-    card_num_show_test_server_loc=(By.XPATH,'//*[@text="1/80"]')
+    card_num_show_test_server_loc=(By.XPATH,'//*[contains(@text,"1/")]')
 
 
     def permission_allow(self):
