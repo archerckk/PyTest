@@ -53,11 +53,12 @@ class App(object):
 
 class Control(object):
 
-    def __init__(self,package_info,count,mode=0,):
+    def __init__(self,package_info,count,driver,mode=0):
         self.app = App(package_info)
         self.count = count
         self.allData = [('runTime', 'calTime', 'currentTime')]
         self.mode=mode
+        self.driver=driver
 
     def testOnce(self):
         before = self.app.beforeAppStart()

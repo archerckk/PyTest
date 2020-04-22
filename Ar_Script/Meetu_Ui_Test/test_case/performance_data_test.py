@@ -13,10 +13,10 @@ import random
 
 class Test_Meminfo:
 
-    @classmethod
-    def setup_class(self):
-        os.popen('adb shell pm clear {}'.format('com.meetu.android'))
-        print('执行清理数据')
+    # @classmethod
+    # def setup_class(self):
+    #     os.popen('adb shell pm clear {}'.format('com.meetu.android'))
+    #     print('执行清理数据')
 
     def setup(self):
         os.chdir(os.curdir)
@@ -30,8 +30,8 @@ class Test_Meminfo:
         self.start_page = StarPage(self.driver)
         self.home_page=Home_page(self.driver)
 
-        self.hot_start_control=Control(self.package_info,16)
-        self.cold_start_control=Control(self.package_info,16,mode=1)
+        self.hot_start_control=Control(self.package_info,count=3,driver=self.driver)
+        self.cold_start_control=Control(self.package_info,count=3,driver=self.driver,mode=1)
 
         self.loger=Loger()
         # self.windows_size = self.driver.get_window_size()
