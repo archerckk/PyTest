@@ -3,6 +3,8 @@ import os
 import re
 import time
 import logging as log
+
+
 log.basicConfig(level=log.DEBUG,format='%(asctime)s-%(levelname)s-%(message)s')
 msg='请选择一个你要跑脚本的产品apk包'
 default='*.apk'

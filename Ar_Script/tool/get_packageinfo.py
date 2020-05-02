@@ -44,3 +44,16 @@ def getPackagInfo(add_time=False):
         return fileNewName, packageName, lanuchableActivity
     except Exception as err:
         logging.debug(err)
+
+def get_meminfo_data(package):
+
+    cmd="adb shell dumpsys meminfo {}".format(package)
+    info_result=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE).stdout.readlines()
+    new_info=[ str(i) for i in info_result]
+    result=''
+    for i in new_info:
+        if 'TOTAL' in i:
+            tmp='#'.join(i.split())
+            result=int(tmp.split('#')[2])
+
+    return result
