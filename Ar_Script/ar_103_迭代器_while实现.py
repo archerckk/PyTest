@@ -62,9 +62,7 @@ while True:
 class LeapYear(object):
 
     def __init__(self):
-        self.range=range(datetime.today().year)
-        self.year=0
-        self.tmp=0
+       self.now=datetime.today().year
 
     def is_leap_year(self,i):
         if ((i%4==0 and i%100!=0)or(i%400==0)):
@@ -76,21 +74,21 @@ class LeapYear(object):
         return self
 
     def __next__(self):
-        if self.year<len(self.range):
-            self.tmp=self.year
-            self.year+=1
-            if self.is_leap_year(self.tmp):
-                return self.tmp
-            else:
-                return 0
-        else:
-            raise StopIteration
+        while not self.is_leap_year(self.now):
+            self.now-=1
+
+        tmp=self.now
+        self.now-=1
+
+        if self.now<=0:
+            raise StopIteration()
+
+        return tmp
 
 leap_year=LeapYear()
 # print(type(leap_year))
 for i in leap_year:
-    if i>2000:
-        print(i)
+    print(i)
 
 
 # '参考答案：'
