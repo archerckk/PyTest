@@ -90,6 +90,34 @@ leap_year=LeapYear()
 for i in leap_year:
     print(i)
 
+"""
+写一个MyRev类，功能与reversed()相同（内置函数reversed是返回一个迭代器，是序列seq的逆序宣誓）
+"""
+
+class MyRev(object):
+
+    def __init__(self,seq):
+        self.seq=seq
+        self.tmp=-1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        length=len(self.seq)
+        result=self.seq[self.tmp]
+        self.tmp-=1
+
+        if self.tmp<(-length-1):
+            raise StopIteration
+        return result
+
+test=MyRev('123456')
+
+# print(len(test))
+for i in test:
+    print(i,end='')
+
 
 # '参考答案：'
 # alist = range(5)
