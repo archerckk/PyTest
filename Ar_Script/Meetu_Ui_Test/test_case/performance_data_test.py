@@ -21,7 +21,7 @@ class Test_Meminfo:
     def setup(self):
         os.chdir(os.curdir)
         with open('..\config\phone.json')as f:
-            desired_caps = json.load(f)['mate8_meetu']
+            desired_caps = json.load(f)['sanxingC8_meetu']
 
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
@@ -30,8 +30,8 @@ class Test_Meminfo:
         self.start_page = StarPage(self.driver)
         self.home_page=Home_page(self.driver)
 
-        self.hot_start_control=Control(self.package_info,count=3,driver=self.driver)
-        self.cold_start_control=Control(self.package_info,count=3,driver=self.driver,mode=1)
+        self.hot_start_control=Control(self.package_info,count=16,driver=self.driver)
+        self.cold_start_control=Control(self.package_info,count=16,driver=self.driver,mode=1)
 
         self.loger=Loger()
         # self.windows_size = self.driver.get_window_size()
@@ -71,17 +71,17 @@ class Test_Meminfo:
                 meminfo_list.append(result)
 
         logging.debug(meminfo_list)
-        saveData(meminfo_list,file_attr='meetU_v{}'.format(29))
+        saveData(meminfo_list,file_attr='meetU_v{}'.format(30))
 
 
     @allure.story('启动时间测试')
     @pytest.mark.parametrize('package_info',[('','com.meetu.android',"com.meetu.android.SplashActivity")])
     def test_app_start_time(self,package_info):
         self.hot_start_control.run()
-        self.hot_start_control.saveData('热启动_v31')
+        self.hot_start_control.saveData('热启动_v33')
 
         self.cold_start_control.run()
-        self.cold_start_control.saveData('冷启动_v31')
+        self.cold_start_control.saveData('冷启动_v33')
 
 if __name__ == '__main__':
     pytest.main(['-s','performance_data_test.py'])

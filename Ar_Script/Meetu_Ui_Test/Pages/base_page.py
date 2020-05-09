@@ -121,8 +121,8 @@ class Account_login_page(BasePage):
 class Home_page(BasePage):
     '各种要需要用到的页面元素'
     match_card_title_loc = (By.XPATH, '//*[@text="Match"]')
-    # permission_allow_loc = (By.XPATH, '//*[contain(@text,"始终允许")]')
-    permission_allow_loc = (By.XPATH, '//*[@text="始终允许"]')
+    # permission_allow_loc = (By.XPATH, '//*[contain(@text,"总是允许")]')
+    permission_allow_loc = (By.XPATH, '//*[@text="总是允许"]')
 
     guide_first_click_loc=(By.XPATH,'//*[@text="Try it"]')
     card_num_show_test_server_loc=(By.XPATH,'//*[contains(@text,"1/")]')
