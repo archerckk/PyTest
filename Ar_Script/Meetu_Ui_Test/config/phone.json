@@ -68,8 +68,8 @@
     "platformName": "Android",
     "platformVersion": "8.1",
     "noReset": true,
-    "appPackage": "com.meetu.android",
-    "appActivity": "com.meetu.android.SplashActivity"
+    "appPackage": "com.real.app.android",
+    "appActivity": "com.social.nene.activity.SplashActivity"
   },
   "mate8_dingding": {
     "automationName": "Appium",

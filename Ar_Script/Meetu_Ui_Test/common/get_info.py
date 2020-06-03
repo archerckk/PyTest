@@ -7,7 +7,21 @@ import openpyxl
 import time
 import re
 import easygui as g
+from Ar_Script.Meetu_Ui_Test.common.app_command import *
 
+
+
+
+def test_app_cpu_home_stay_cost():
+    package_info=get_activity_name()
+    os.popen('adb shell am start {}/{}'.format(package_info[1],package_info[2]))
+    time.sleep(5)
+    os.popen('adb shell input keyevent 4 ')
+    result=[('测试时间','cpu百分比')]
+    result.extend(get_cpu_data(package_info[1]))
+    print('测试结果',result)
+    data_save=Data_Save(result,'cpu_test','test_result.xlsx',(0,1),(0,'C1'))
+    data_save.save_data()
 
 
 def get_activity_name():
@@ -45,6 +59,23 @@ def get_activity_name():
         return fileNewName, packageName, lanuchableActivity
     except Exception as err:
         print(err)
+
+def get_cpu_data(package):
+    result=[]
+    cmd="adb shell top -n 5 -d 3 |findstr {}".format(package[0:7])
+    info_result=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE).stdout.readlines()
+    # print(info_result)
+    # for i in info_result:
+    #     print(i)
+    new_info=[ str(i) for i in info_result]
+    print(new_info)
+    for i in new_info:
+        tmp='#'.join(i.split())
+        print(tmp)
+        current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        result.append((current_time,float(tmp.split('#')[9])))
+        print(result)
+    return result
 
 
 def get_meminfo_data(package):
@@ -132,7 +163,9 @@ def saveData(result_list,file_attr='test'):
     # print(tmp)
 
 if __name__ == '__main__':
-    package='com.meetu.android'
+    package='com.real.app.android'
     result_list=[245305,350000,285307,266666]
-    print(get_meminfo_data(package))
-    saveData(result_list)
+    # print(get_cpu_data(package))
+    # print(get_meminfo_data(package))
+    test_app_cpu_home_stay_cost()
+    # saveData(result_list)

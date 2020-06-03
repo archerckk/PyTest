@@ -115,6 +115,7 @@ class Control(object):
         font = Font(size=13, bold=True)
         alignment = Alignment(horizontal='center', vertical='center')
 
+        '录入数据到单元格'
         for i in range(1, length+1):
             # 设置单元格的格式为数字，去掉单元格的前后空格
             ws['A{}'.format(i)].number_format = numbers.FORMAT_GENERAL
@@ -159,3 +160,77 @@ class Control(object):
         ws.add_chart(linechart2, 'E19')
 
         wb.save('../test_result/app_start_time_test_data.xlsx')
+
+class Data_Save(object):
+    """
+    title 传入表格的标题，类型为元组
+    file_name 为保存的文件的文件名
+    """
+    def __init__(self, data:list, sheet_name,file_name,line_chart_add:tuple,add_position:tuple):
+        self.data=data
+        self.sheet_name=sheet_name
+        self.file_name=file_name
+        self.line_chart_add=line_chart_add
+        self.add_position=add_position
+
+    def save_data(self):
+        if os.path.exists('../test_result/{}'.format(self.file_name)):
+            wb = openpyxl.load_workbook('../test_result/{}'.format(self.file_name))
+        else:
+            wb = openpyxl.Workbook()
+            # sheet_num=len(wb.sheetnames)
+        ws = wb.create_sheet(self.sheet_name, index=1)
+        length = len(self.data)
+
+        font = Font(size=13, bold=True)
+        alignment = Alignment(horizontal='center', vertical='center')
+
+        for i in range(1, length + 1):
+            # 设置单元格的格式为数字，去掉单元格的前后空格
+            ws['A{}'.format(i)].number_format = numbers.FORMAT_GENERAL
+            ws['B{}'.format(i)].number_format = numbers.FORMAT_GENERAL
+
+            ws['A{}'.format(i)] = self.data[i - 1][0]
+            if i - 1 == 0:
+                ws['A{}'.format(i)].font = font
+            ws['A{}'.format(i)].alignment = alignment
+
+            ws['B{}'.format(i)] = self.data[i - 1][1]
+            if i - 1 == 0:
+                ws['B{}'.format(i)].font = font
+            ws['B{}'.format(i)].alignment = alignment
+
+            # ws['c{}'.format(i)] = self.data[i - 1][2]
+            # if i - 1 == 0:
+            #     ws['C{}'.format(i)].font = font
+            # ws['C{}'.format(i)].alignment = alignment
+
+        '设置列宽'
+        ws.column_dimensions['A'].width = 10
+        ws.column_dimensions['B'].width = 15
+        # ws.column_dimensions['C'].width = 30
+
+
+        max_line = ws.max_row
+
+
+        '新增数据折线图'
+        if self.line_chart_add[0]:
+            linechart = LineChart()
+            linechart.title = self.data[0][0]
+            linechart.style = 39
+            data = Reference(ws, min_row=1, min_col=1, max_row=max_line - 1, max_col=1)
+            linechart.add_data(data, titles_from_data=True)
+
+            ws.add_chart(linechart, self.add_position[0])
+
+        if self.line_chart_add[1]:
+            linechart2 = LineChart()
+            linechart2.title = self.data[0][1]
+            linechart2.style = 39
+            data2 = Reference(ws, min_row=1, min_col=2, max_row=max_line - 1, max_col=2)
+            linechart2.add_data(data2, titles_from_data=True)
+
+            ws.add_chart(linechart2, self.add_position[1])
+
+        wb.save('../test_result/{}'.format(self.file_name))
