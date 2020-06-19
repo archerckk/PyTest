@@ -53,6 +53,15 @@
     "appPackage": "com.alibaba.android.rimet",
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
   },
+    "mumu_dingding": {
+    "automationName": "Appium",
+    "deviceName": "127.0.0.1:7555",
+    "platformName": "Android",
+    "platformVersion": "6.0.1",
+    "noReset": true,
+    "appPackage": "com.alibaba.android.rimet",
+    "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
+  },
   "sanxingLan_dingding": {
     "automationName": "Appium",
     "deviceName": "d125de5e",
