@@ -31,7 +31,7 @@ class AutoClick(object):
 
     def __init__(self):
         with open('./resources/phone.json')as f:
-            desired_caps = json.load(f)['sanxingC8_dingding']
+            desired_caps = json.load(f)['mumu_dingding']
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
