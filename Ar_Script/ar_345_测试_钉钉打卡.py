@@ -18,8 +18,8 @@ from selenium.webdriver.support import expected_conditions
 
 
 def clear():
-    cmd = 'adb shell am force-stop com.android.vending'
-    cmd2 = 'adb shell input keyevent KEYCODE_HOME'
+    cmd = 'adb -s 420c3a6d6a2da4bf shell am force-stop com.android.vending'
+    cmd2 = 'adb -s 420c3a6d6a2da4bf shell input keyevent KEYCODE_HOME'
     os.popen(cmd)
     os.popen(cmd2)
 
@@ -31,7 +31,7 @@ class AutoClick(object):
 
     def __init__(self):
         with open('./resources/phone.json')as f:
-            desired_caps = json.load(f)['mumu_dingding']
+            desired_caps = json.load(f)['sanxingC8_dingding']
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
