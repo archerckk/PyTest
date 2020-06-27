@@ -194,8 +194,8 @@ class Test_meetU_API:
             assert result_json['error']=='Unauthenticated.'
 
     @allure.story('获取用户信息接口测试')
-    @pytest.mark.parametrize('value', [token, '', '123'])
-    def test_get_profile(self,value):
+    @pytest.mark.parametrize('value', [token, '', '123'],ids=['正常token','空token','错误token'])
+    def test_get_profile(self,value,):
         headers={
             "Authorization":value,
             "Content-Type": "application/x-www-form-urlencoded",
