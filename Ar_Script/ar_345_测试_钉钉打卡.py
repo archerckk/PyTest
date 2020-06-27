@@ -23,10 +23,6 @@ def clear():
     os.popen(cmd)
     os.popen(cmd2)
 
-
-
-
-
 class AutoClick(object):
 
     def __init__(self):
