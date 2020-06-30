@@ -54,7 +54,7 @@
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
   },
     "mumu_dingding": {
-    "automationName": "Appium",
+    "automationName": "uiautomator2",
     "deviceName": "127.0.0.1:7555",
     "platformName": "Android",
     "platformVersion": "6.0.1",

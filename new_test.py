@@ -28,3 +28,15 @@ def method(a):
 
 
 print(method(2))
+
+
+class Tom:
+
+    def __init__(self):
+        self.hair='hair'
+
+
+class J(Tom):
+
+    def __init__(self):
+        super().__init__()
