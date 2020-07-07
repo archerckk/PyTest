@@ -166,7 +166,7 @@ install_all_phone_button = tk.Button(my_window, text='遍历安装', command=ins
 install_all_phone_button.grid(row=3, column=1, padx=10, pady=20)
 
 '安装程序按钮'
-install_app_button = tk.Button(my_window, text='安装应用', command=install_app)
+install_app_button = tk.Button(my_window, text='普通安装', command=install_app)
 install_app_button.grid(row=3, column=2, padx=10, pady=20)
 
 "覆盖安装app"
