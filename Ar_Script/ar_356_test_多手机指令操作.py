@@ -5,6 +5,16 @@ from tool.get_packageinfo import getPackagInfo
 from tool.logger import Loger
 import logging
 
+file_path, package_name, lanuchableActivity = None, None, None
+
+
+def check_package_info():
+    global file_path, package_name, lanuchableActivity
+
+    if file_path is None and package_name is None and lanuchableActivity is None:
+        file_path, package_name, lanuchableActivity = getPackagInfo()
+
+    return file_path, package_name, lanuchableActivity
 
 def get_phone_info():
     cmd = 'adb devices'
@@ -51,17 +61,26 @@ def clear_data(package_name):
 
 
 def stop_app(package_name):
-    target_phone = my_list_box.get(my_list_box.curselection())
-    cmd = 'adb -s {} shell am force-stop {}'.format(target_phone, package_name)
-    os.popen(cmd)
-    logging.debug('停止{}手机的{}'.format(target_phone, package_name))
+    try:
+        check_package_info()
+        target_phone = my_list_box.get(my_list_box.curselection())
+        cmd = 'adb -s {} shell am force-stop {}'.format(target_phone, package_name)
+        os.popen(cmd)
+        logging.debug('停止{}手机的{}'.format(target_phone, package_name))
+    except Exception as e:
+        pass
+
 
 
 def uninstall_app(package_name):
-    target_phone = my_list_box.get(my_list_box.curselection())
-    cmd = 'adb -s {} uninstall {}'.format(target_phone, package_name)
-    os.popen(cmd)
-    logging.debug('卸载{}手机的{}'.format(target_phone, package_name))
+    try:
+        check_package_info()
+        target_phone = my_list_box.get(my_list_box.curselection())
+        cmd = 'adb -s {} uninstall {}'.format(target_phone, package_name)
+        os.popen(cmd)
+        logging.debug('卸载{}手机的{}'.format(target_phone, package_name))
+    except Exception as e:
+        pass
 
 
 def install_app():
@@ -100,15 +119,13 @@ def clear_gp_data():
     target_phone = my_list_box.get(my_list_box.curselection())
     clear_gp_data_cmd = 'adb -s {} shell pm clear {}'.format(target_phone, package_gp)
     log = os.popen(clear_gp_data_cmd)
-    logging.debug("清除{}手机的GP数据\n{}".format(target_phone, log.read()))
+    logging.debug("清除{}手机的GP数据：{}".format(target_phone, log.read()))
 
 
 my_loger = Loger()
 my_window = tk.Tk()
 my_window.title('手机指令操作')
 my_window.geometry('400x400')
-
-file_path, package_name, lanuchableActivity = getPackagInfo()
 
 '测试代码'
 # file_path, package_name, lanuchableActivity=1,2,3
@@ -137,7 +154,7 @@ stop_app_button = tk.Button(my_window, text='终止程序', command=lambda: stop
 stop_app_button.grid(row=2, column=3, padx=10, pady=20)
 
 "清除GP数据"
-clear_gp_data_button=tk.Button(my_window, text='谷歌清理', command=clear_gp_data)
+clear_gp_data_button = tk.Button(my_window, text='谷歌清理', command=clear_gp_data)
 clear_gp_data_button.grid(row=2, column=4, padx=10, pady=20)
 
 '卸载app'
@@ -155,7 +172,5 @@ install_app_button.grid(row=3, column=2, padx=10, pady=20)
 "覆盖安装app"
 override_install_button = tk.Button(my_window, text='覆盖安装', command=override_install_phone)
 override_install_button.grid(row=3, column=3, padx=10, pady=20)
-
-
 
 my_window.mainloop()
