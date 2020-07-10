@@ -174,3 +174,4 @@ guest/guest/__pycache__/
 pyrequest/db_fixture/__pycache__/
 pyrequest/interface/__pycache__/
 report/
+/.gitignore
