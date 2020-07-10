@@ -1,0 +1,176 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+/.idea/
+Answer/test_result.json
+Ar_Script/Meetu_Ui_Test/Pages/__pycache__/
+Ar_Script/Meetu_Ui_Test/common/__pycache__/
+Ar_Script/Meetu_Ui_Test/test_case/__pycache__/
+Ar_Script/Meetu_Ui_Test/test_case/cpu.log
+Ar_Script/Meetu_Ui_Test/test_result/test_result.xlsx
+Ar_Script/__pycache__/
+Ar_Script/adbOut.txt
+Ar_Script/all.log
+Ar_Script/all.log.123
+Ar_Script/all_report/
+Ar_Script/beike.csv
+Ar_Script/bs4.html
+Ar_Script/csvData.csv
+Ar_Script/data3.json
+Ar_Script/dingding_work.log
+Ar_Script/domainLog.txt
+Ar_Script/errFile.txt
+Ar_Script/fileLog.txt
+Ar_Script/flowData.csv
+Ar_Script/flowData.xlsx
+Ar_Script/log_test2.txt
+Ar_Script/position.csv
+Ar_Script/power.csv
+Ar_Script/resources/bugly_page.txt
+"Ar_Script/result/2017\345\205\250\345\233\275\345\237\216\345\270\202\346\210\277\344\273\267 \345\267\245\350\265\204\346\216\222\350\241\214\346\246\234.xlsx"
+"Ar_Script/result/\350\261\206\347\223\243top250.xlsx"
+Ar_Script/review/__pycache__/
+Ar_Script/test.log
+Ar_Script/test/__pycache__/
+Ar_Script/testData.csv
+Ar_Script/testData.xlsx
+Ar_Script/test_data.json
+Ar_Script/tool/__pycache__/
+Ar_Script/unittest_demo/Cal_demo/__pycache__/
+Ar_Script/unittest_demo/Cal_demo/doc_test/__pycache__/
+Ar_Script/unittest_demo/Title_test_demo/Test_case/__pycache__/
+Scrapy/__pycache__/
+all_report/
+blog/blog/__pycache__/
+blog/index/__pycache__/
+blog/index/migrations/0001_initial.py
+blog/index/migrations/0002_article_pub_time.py
+blog/index/migrations/__pycache__/
+gitignore/
+guest/guest/__pycache__/
+pyrequest/db_fixture/__pycache__/
+pyrequest/interface/__pycache__/
+report/
