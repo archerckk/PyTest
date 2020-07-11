@@ -207,7 +207,7 @@ if __name__ == '__main__':
     while True:
         startTime = time.localtime()
         if startTime[3] == on_work_time:
-            if randminute_on:
+            if startTime[4]==randminute_on:
                 clear()
                 ak = AutoClick()
                 check_work, check_work_icon = ak.prepare_click()
