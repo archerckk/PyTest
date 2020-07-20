@@ -17,12 +17,14 @@ data = {"unique_token":"f0770546b39b9857d24a21e559f4c416","chatType":"0"}
 
 url_get = '{}/api/user/who_likes_me_count'.format(host)
 
-# for i in range(100):
-#     response = requests.post(url, headers=headers,data=data)
-#     print(response.status_code)
-#     print(response.text)
-
+#失败接口循环
 for i in range(100):
-    response=requests.get(url_get,headers=headers)
+    response = requests.post(url, headers=headers,data=data)
     print(response.status_code)
     print(response.text)
+
+#成功接口循环
+# for i in range(100):
+#     response=requests.get(url_get,headers=headers)
+#     print(response.status_code)
+#     print(response.text)
