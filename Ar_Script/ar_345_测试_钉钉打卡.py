@@ -90,8 +90,13 @@ class AutoClick(object):
         # logging.debug('现在的上下文为：')
         logging.debug(self.driver.current_context)
 
+
         # 点击考勤打卡按钮
+
         check_work_xpath = (By.XPATH, '//*[@content-desc="考勤打卡"][@class="android.view.View"]/..')
+
+        #往上滑动页面避免找不到考勤打卡元素
+        self.driver.swipe(self.width*0.5,self.height*0.5,self.width*0.5,self.height*0.3)
 
         print(self.driver.find_elements(*check_work_xpath))
         logging.debug(self.driver.find_elements(*check_work_xpath))
