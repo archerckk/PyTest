@@ -7,7 +7,10 @@ def get_fomat():
     with open('./header_fomat.txt','r')as f:
         content=f.readlines()
         for line in content:
-            key,value=line.split(':')
+            try:
+                key,value=line.split(':')
+            except :
+                pass
             result_dict[key]=value.strip()
 
     with open('./header_fomat.txt','w')as f:
