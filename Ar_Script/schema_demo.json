@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "info": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "stuName": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "uid",
+        "stuName"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "info"
+  ]
+}

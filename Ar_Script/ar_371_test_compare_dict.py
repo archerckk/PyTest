@@ -23,8 +23,19 @@
 
 # dict1 = {"id": "50356270565167104", "name": "班级优化"}
 # dict2 = {"id": "50356270565167104", "name": "班级优化2"}
+import requests
+
 dict1 = {"id": "503", "name": "班级优化", "info": {"uid":"2017","stuName":["张三","李四",'6666']}}
 dict2 = {"id": "503", "name": "班级优化2", "info": {"uid":"2017","stuName":["张三","赵五"]}}
+
+headers={
+"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"
+
+}
+
+url='https://www.liquid-technologies.com/online-json-to-schema-converter'
+res=requests.post(url,data=dict1,headers=headers)
+print(res.json())
 
 
 

@@ -302,5 +302,6 @@ dmypy.json
 Ar_Script/position2.csv
 Ar_Script/resources/xmind_new.txt
 Hogworts/selenium_test/data/cookies.json
-!/.idea/
 /.idea/
+#/.idea/
+/.idea/PyTest.iml
