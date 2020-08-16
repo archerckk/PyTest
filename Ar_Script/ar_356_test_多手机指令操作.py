@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import *
 import os
+
+import yaml
+
 from tool.get_packageinfo import getPackagInfo
 from tool.logger import Loger
 import logging
@@ -28,6 +31,9 @@ class PhoneControl:
                 device = '#'.join(line.split())
                 phone_name = device.split('#')[0]
                 phone_list.append(phone_name)
+        if "Active" in phone_list:
+            phone_list.remove("Active")
+
         if '' in phone_list:
             phone_list.remove('')
 
@@ -47,12 +53,20 @@ class PhoneControl:
         return phone_list_for_button
 
     def get_phone_id(self, event):
-        target_phone = my_list_box.get(my_list_box.curselection())
+        self.target_phone = my_list_box.get(my_list_box.curselection())
         # target_phone=my_list_box.curselection()
 
-        logging.debug('选择设备为：{}'.format(target_phone))
+        logging.debug('选择设备为：{}'.format( self.target_phone))
 
-        return target_phone
+        return  self.target_phone
+
+    def get_tag_id(self,event):
+
+        self.target_tag = self.top_list_box.get(self.top_list_box.curselection())
+        logging.debug('选择tag为：{}'.format( self.target_tag))
+        cmd = f'start cmd /k  "adb -s {self.target_phone} shell logcat |findstr {self.target_tag} " '
+        os.popen(cmd)
+        return  self.target_tag
 
     def clear_data(self, package_name):
         try:
@@ -121,6 +135,26 @@ class PhoneControl:
         log = os.popen(clear_gp_data_cmd)
         logging.debug("清除{}手机的GP数据：{}".format(target_phone, log.read()))
 
+    def change_package(self):
+        self.get_target_info()
+
+    def run_logcat(self):
+        self.top=Toplevel(my_window)
+        self.top.title('tag')
+        self.top.geometry('200x200')
+
+        with open('tag.yml')as f:
+            self.tag_list=yaml.safe_load(f)
+
+        self.top_list_box=Listbox(self.top,selectmode='extended')
+
+        for tag in self.tag_list:
+            self.top_list_box.insert(END,tag)
+        self.top_list_box.pack()
+
+        self.top_list_box.bind("<Double-Button-1>", self.get_tag_id)
+
+
 
 my_loger = Loger()
 my_window = tk.Tk()
@@ -139,6 +173,8 @@ my_list_box.grid(row=1, column=1, columnspan=10, padx=30, pady=30, sticky="nsew"
 phone_list = phone.get_phone_list(my_list_box)
 
 my_list_box.bind("<Double-Button-1>", phone.get_phone_id)
+
+
 
 '刷新手机连接列表'
 flash_phone_list_button = tk.Button(my_window, text='刷新列表', command=lambda: phone.get_phone_list(my_list_box))
@@ -172,5 +208,14 @@ install_app_button.grid(row=3, column=2, padx=10, pady=20)
 "覆盖安装app"
 override_install_button = tk.Button(my_window, text='覆盖安装', command=phone.override_install_phone)
 override_install_button.grid(row=3, column=3, padx=10, pady=20)
+
+"更换安装包的信息"
+change_package_button=tk.Button(my_window,text="更换包名",command=phone.change_package)
+change_package_button.grid(row=3, column=4, padx=10, pady=20)
+
+"日志监控"
+change_package_button=tk.Button(my_window,text="日志监控",command=phone.run_logcat)
+change_package_button.grid(row=3, column=5, padx=10, pady=20)
+
 
 my_window.mainloop()
