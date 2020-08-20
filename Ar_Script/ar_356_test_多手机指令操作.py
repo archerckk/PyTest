@@ -1,12 +1,13 @@
 import tkinter as tk
 from tkinter import *
 import os
-
+import subprocess
 import yaml
-
+import sys
 from tool.get_packageinfo import getPackagInfo
 from tool.logger import Loger
 import logging
+
 
 
 class PhoneControl:
@@ -64,8 +65,10 @@ class PhoneControl:
 
         self.target_tag = self.top_list_box.get(self.top_list_box.curselection())
         logging.debug('选择tag为：{}'.format( self.target_tag))
-        cmd = f'start cmd /k  "adb -s {self.target_phone} shell logcat |findstr {self.target_tag} " '
-        os.popen(cmd)
+        cmd = f'start cmd /k  "adb -s {self.target_phone} shell logcat |findstr {self.target_tag}" '
+        # cmd='start cmd /k "curl www.baidu.com"'
+        subprocess.Popen(cmd,stdout=subprocess.PIPE,shell=True,stderr=subprocess.PIPE).stdout.read().decode(encoding='gbk')
+
         return  self.target_tag
 
     def clear_data(self, package_name):
@@ -143,7 +146,7 @@ class PhoneControl:
         self.top.title('tag')
         self.top.geometry('200x200')
 
-        with open('tag.yml')as f:
+        with open('tag.yml',encoding='utf-8')as f:
             self.tag_list=yaml.safe_load(f)
 
         self.top_list_box=Listbox(self.top,selectmode='extended')
