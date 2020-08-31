@@ -7,7 +7,7 @@ with open('resources/text.txt')as f:
     for i in f:
         content+=i
 
-reg_break=re.compile(r'2020-.+com.social.nene I/LovU: ')
+reg_break=re.compile(r'20.+com.social.nene I/LovU: ')
 tmp_content=re.sub(reg_break,'',content)
 new_content=tmp_content.replace(' ','').replace('\n','')
 
