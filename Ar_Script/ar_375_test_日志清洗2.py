@@ -3,10 +3,11 @@ import pprint
 import json
 
 content=''
-with open('text.txt')as f:
-    for i in f:
-        content+=i
+
 while 1:
+    with open('text.txt')as f:
+        for i in f:
+            content += i
     mode=input('请选择你的模式:')
     reg_break=re.compile(r'2020-.+com.social.nene I/LovU: ')
     tmp_content=re.sub(reg_break,'',content)
