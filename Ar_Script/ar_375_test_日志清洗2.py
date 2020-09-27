@@ -13,8 +13,11 @@ while 1:
     tmp_content=re.sub(reg_break,'',content)
     new_content=tmp_content.replace(' ','').replace('\n','')
     if mode=='1':
-        json_result = json.loads(new_content)
-        pprint.pprint(json_result)
+        try:
+            json_result = json.loads(new_content)
+            pprint.pprint(json_result)
+        except Exception as e:
+            print(e)
     else:
         print(new_content)
 
