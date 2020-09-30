@@ -1,3 +1,6 @@
+import pytest
+
+
 def upper_attr(future_class_name, future_class_parents, future_class_attr):
     '''返回一个类对象，将属性都转为大写形式'''
     #  选择所有不以'__'开头的属性
@@ -19,4 +22,16 @@ class Foo(object):
     # 我们也可以只在这里定义__metaclass__，这样就只会作用于这个类中
     bar = 'bip'
 
-print(dir(Foo))
+# print(dir(Foo))
+
+import random
+
+data={
+    'key1':random.sample(range(10),3),
+    'key2':random.sample(range(10),3),
+}
+
+
+@pytest.mark.parametrize('a',[1,2,3])
+def test_demo(a):
+    print(f'启动测试数据：{a}')
