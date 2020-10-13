@@ -68,8 +68,8 @@
     "platformName": "Android",
     "platformVersion": "8.1",
     "noReset": true,
-    "appPackage": "com.real.app.android",
-    "appActivity": "com.social.nene.activity.SplashActivity"
+    "appPackage": "com.social.nene",
+    "appActivity": "com.funny.lovu.splash.LaunchActivity"
   },
   "mate8_dingding": {
     "automationName": "Appium",
