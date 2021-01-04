@@ -1,18 +1,19 @@
 import pymysql
 
-db = pymysql.connect("106.55.63.242:13306","root","123456","vmall" )
+db = pymysql.connect("localhost","root","123456","vmall" )
 
 
 # 使用 cursor() 方法创建一个游标对象 cursor
 cursor = db.cursor()
 
 # 使用 execute()  方法执行 SQL 查询
-cursor.execute("SELECT VERSION()")
+cursor.execute("SELECT * from  goods")
 
 # 使用 fetchone() 方法获取单条数据.
-data = cursor.fetchone()
+data = cursor.fetchall()
 
-print("Database version : %s " % data)
+for i in data:
+    print(i)
 
 # 关闭数据库连接
 db.close()
