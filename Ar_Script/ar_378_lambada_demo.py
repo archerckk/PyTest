@@ -11,3 +11,6 @@ print(dict(dict1_to_list))
 str1='{"a":1,"d":3,"c":2}'
 json_result=json.loads(str1)
 print(type(json_result),json_result)
+tmp_list=list(json_result.items())
+tmp_list.sort(key=lambda k:k[1])
+print(dict(tmp_list))
