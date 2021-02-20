@@ -28,7 +28,7 @@ class AutoClick(object):
 
     def __init__(self):
         with open('./resources/phone.json')as f:
-            desired_caps = json.load(f)['sanxingC8_dingding']
+            desired_caps = json.load(f)['RONGYAO_dingding']
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
@@ -74,8 +74,7 @@ class AutoClick(object):
             time.sleep(5)
 
         # 点击首页的工作按钮
-        work_icon_xpath = (By.XPATH,
-                           '//*[@resource-id="com.alibaba.android.rimet:id/home_bottom_tab_button_work"]/android.widget.FrameLayout[1]')
+        work_icon_xpath = (By.XPATH, '//*[@text="工作台"]')
         if self.driver.find_elements(*work_icon_xpath):
             self.driver.find_element(*work_icon_xpath).click()
             logging.debug('点击首页工作icon成功')
@@ -93,16 +92,16 @@ class AutoClick(object):
 
         # 点击考勤打卡按钮
 
-        check_work_xpath = (By.XPATH, '//*[@content-desc="考勤打卡"][@class="android.view.View"]/..')
+        check_work_xpath = (By.XPATH, '//*[@text="考勤打卡"]/..')
 
         #往上滑动页面避免找不到考勤打卡元素
-        self.driver.swipe(self.width*0.5,self.height*0.5,self.width*0.5,self.height*0.3)
+        # self.driver.swipe(self.width*0.5,self.height*0.5,self.width*0.5,self.height*0.3)
 
         print(self.driver.find_elements(*check_work_xpath))
         logging.debug(self.driver.find_elements(*check_work_xpath))
 
         if self.driver.find_elements(*check_work_xpath):
-            self.driver.find_element(*check_work_xpath).click()
+            self.driver.find_elements(*check_work_xpath)[1].click()
             logging.debug('点击考勤打卡执行完成')
             self.check_work = True
 
@@ -129,12 +128,12 @@ class AutoClick(object):
     def on_work(self):
         '上班打卡'
         try:
-            cant_off_work_xpath = (By.XPATH, '//*[@content-desc="外勤打卡"]/..')
+            cant_off_work_xpath = (By.XPATH, '//*[@text="外勤打卡"]/..')
             if self.driver.find_element(*cant_off_work_xpath).is_displayed():
                 logging.debug('不在打卡范围，不触发点击事件')
         except Exception:
-            off_work_xpath = (By.XPATH, '(//android.view.View[@content-desc="下班打卡"])')
-            off_work_weekend_xpath = (By.XPATH, '(//android.view.View[@content-desc="下班打卡"])[2]'
+            off_work_xpath = (By.XPATH, '(//android.view.View[@text="下班打卡"])')
+            off_work_weekend_xpath = (By.XPATH, '(//android.view.View[@text="下班打卡"])[2]'
                                       )
             if self.driver.find_elements(*off_work_weekend_xpath):
                 logging.debug('加班上班打卡已执行')
@@ -145,8 +144,8 @@ class AutoClick(object):
                 self.work = False
                 pass
             else:
-                on_work_xpath = (By.XPATH, '(//android.view.View[@content-desc="上班打卡"])')
-                on_work_weekend_xpath = (By.XPATH, '(//android.view.View[@content-desc="上班打卡"])[2]')
+                on_work_xpath = (By.XPATH, '(//android.view.View[@text="上班打卡"])')
+                on_work_weekend_xpath = (By.XPATH, '(//android.view.View[@text="上班打卡"])[2]')
                 if self.driver.find_elements(*on_work_weekend_xpath):
                     self.driver.find_element(*on_work_weekend_xpath).click()
                     logging.debug('执行加班上班打卡')
@@ -161,14 +160,14 @@ class AutoClick(object):
     def off_work(self):
         '下班打卡'
         try:
-            cant_off_work_xpath = (By.XPATH, '//*[@content-desc="无法打卡"]/..')
+            cant_off_work_xpath = (By.XPATH, '//*[@text="无法打卡"]/..')
             if self.driver.find_element(*cant_off_work_xpath).is_displayed():
                 logging.debug('现在无法打卡，不触发点击事件')
         except Exception:
-            on_work_xpath = (By.XPATH, '(//android.view.View[@content-desc="上班打卡"])')
-            off_work_xpath = (By.XPATH, '(//android.view.View[@content-desc="下班打卡"])')
-            on_work_weekend_xpath = (By.XPATH, '(//android.view.View[@content-desc="上班打卡"])[2]')
-            off_work_weekend_xpath = (By.XPATH, '(//android.view.View[@content-desc="下班打卡"])[2]')
+            on_work_xpath = (By.XPATH, '(//android.view.View[@text="上班打卡"])')
+            off_work_xpath = (By.XPATH, '(//android.view.View[@text="下班打卡"])')
+            on_work_weekend_xpath = (By.XPATH, '(//android.view.View[@text="上班打卡"])[2]')
+            off_work_weekend_xpath = (By.XPATH, '(//android.view.View[@text="下班打卡"])[2]')
 
             if '外勤打卡' in self.driver.page_source:
                 logging.debug('外勤打卡状态，无法点击下班卡')
@@ -206,13 +205,14 @@ if __name__ == '__main__':
     shutdown_time = data[2]
     minute_check = data[3]
 
-    randminute_on = random.randint(0, 30)
-    randminute_off = random.randint(0, 21)
+    randminute_on = random.randint(0, 20)
+    randminute_off = random.randint(31, 50)
 
     while True:
         startTime = time.localtime()
         if startTime[3] == on_work_time:
-            if startTime[4]==randminute_on:
+            # if startTime[4] == randminute_on:
+            if 1:
                 clear()
                 ak = AutoClick()
                 check_work, check_work_icon = ak.prepare_click()
