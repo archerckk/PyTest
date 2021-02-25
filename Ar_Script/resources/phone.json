@@ -89,11 +89,11 @@
     "appPackage": "com.alibaba.android.rimet",
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
   },
-  "P9_dingding": {
+  "RONGYAO_dingding": {
     "automationName": "Appium",
-    "deviceName": "KWG7N17228001472",
+    "deviceName": "DEFNW19B12001476",
     "platformName": "Android",
-    "platformVersion": "8.0",
+    "platformVersion": "9.0",
     "noReset": true,
     "appPackage": "com.alibaba.android.rimet",
     "appActivity": "com.alibaba.android.rimet.biz.LaunchHomeActivity"
