@@ -14,3 +14,11 @@ print(type(json_result),json_result)
 tmp_list=list(json_result.items())
 tmp_list.sort(key=lambda k:k[1])
 print(dict(tmp_list))
+
+# filter 的使用
+filter_result=list(filter(lambda x:x%2,range(10)))
+print(filter_result)
+
+# map的使用
+map_result=list(map(lambda x:x**2,range(10)))
+print(map_result)
