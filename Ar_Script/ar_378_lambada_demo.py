@@ -31,31 +31,54 @@ result_list = []
 def judge_num(num):
     for i in range(2, num):
         if num % i == 0:
-            print(i)
-        else:
-           print(i)
+            # print(num,'不是质数')
+            return False
+    else:
+        return True
+
 
 
 def get_num_list(num):
     for i in range(2, num):
-        if judge_num:
+        if judge_num(i):
             print(i)
             num_list.append(i)
-        print(num_list)
+    print(num_list)
     return num_list
 
 
 def cal_length(num):
-    num_list=get_num_list(num)
-    print(num_list)
+    get_num_list(num)
+    # print(num_list)
 
     for i in num_list:
         for j in num_list:
-            if i + j == num:
-                result_list.append((i, j))
+            if i + j == num :
+                    result_list.append((i, j))
+
+    del_num(result_list)
+
+    print(result_list)
     length = len(result_list)
 
     return length
 
+def del_num(num):
+    for i in num:
+        tmp=tuple(reversed(list(i)))
+        print('临时变量为：',tmp)
+        if result_list.count(tmp)!= 0:
+            if tmp==i :
+                continue
+            else:
+                result_list.remove(tmp)
+        else:
+            continue
+    print("删除结果为:",num)
 
-print(judge_num(10))
+
+
+
+
+
+print(cal_length(10))
