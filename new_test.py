@@ -1,4 +1,5 @@
 import random
+import tempfile
 
 #循环分支的练习代码
 # target=random.randint(1,100)
@@ -34,6 +35,7 @@ class Tom:
 
     def __init__(self):
         self.hair='hair'
+        self.eye='写轮眼'
 
 
 class J(Tom):
